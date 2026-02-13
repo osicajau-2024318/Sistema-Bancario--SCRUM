@@ -1,0 +1,16 @@
+C:\Sistema-Bancario--SCRUM\src\AuthServiceBanco.Application\bin\Debug\net8.0\AuthServiceBanco.Application.deps.json
+C:\Sistema-Bancario--SCRUM\src\AuthServiceBanco.Application\bin\Debug\net8.0\AuthServiceBanco.Application.dll
+C:\Sistema-Bancario--SCRUM\src\AuthServiceBanco.Application\bin\Debug\net8.0\AuthServiceBanco.Application.pdb
+C:\Sistema-Bancario--SCRUM\src\AuthServiceBanco.Application\bin\Debug\net8.0\AuthServiceBanco.Domain.dll
+C:\Sistema-Bancario--SCRUM\src\AuthServiceBanco.Application\bin\Debug\net8.0\AuthServiceBanco.Domain.pdb
+C:\Sistema-Bancario--SCRUM\src\AuthServiceBanco.Application\obj\Debug\net8.0\AuthServiceBanco.Application.csproj.AssemblyReference.cache
+C:\Sistema-Bancario--SCRUM\src\AuthServiceBanco.Application\obj\Debug\net8.0\AuthServiceBanco.Application.GeneratedMSBuildEditorConfig.editorconfig
+C:\Sistema-Bancario--SCRUM\src\AuthServiceBanco.Application\obj\Debug\net8.0\AuthServiceBanco.Application.AssemblyInfoInputs.cache
+C:\Sistema-Bancario--SCRUM\src\AuthServiceBanco.Application\obj\Debug\net8.0\AuthServiceBanco.Application.AssemblyInfo.cs
+C:\Sistema-Bancario--SCRUM\src\AuthServiceBanco.Application\obj\Debug\net8.0\AuthServiceBanco.Application.csproj.CoreCompileInputs.cache
+C:\Sistema-Bancario--SCRUM\src\AuthServiceBanco.Application\obj\Debug\net8.0\AuthServiceBanco.Application.sourcelink.json
+C:\Sistema-Bancario--SCRUM\src\AuthServiceBanco.Application\obj\Debug\net8.0\AuthServ.DAF76D02.Up2Date
+C:\Sistema-Bancario--SCRUM\src\AuthServiceBanco.Application\obj\Debug\net8.0\AuthServiceBanco.Application.dll
+C:\Sistema-Bancario--SCRUM\src\AuthServiceBanco.Application\obj\Debug\net8.0\refint\AuthServiceBanco.Application.dll
+C:\Sistema-Bancario--SCRUM\src\AuthServiceBanco.Application\obj\Debug\net8.0\AuthServiceBanco.Application.pdb
+C:\Sistema-Bancario--SCRUM\src\AuthServiceBanco.Application\obj\Debug\net8.0\ref\AuthServiceBanco.Application.dll
