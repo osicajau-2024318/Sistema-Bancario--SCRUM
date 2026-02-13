@@ -1,0 +1,56 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v8.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v8.0": {
+      "AuthServiceBanco.Persistence/1.0.0": {
+        "dependencies": {
+          "AuthServiceBanco.Application": "1.0.0",
+          "AuthServiceBanco.Domain": "1.0.0"
+        },
+        "runtime": {
+          "AuthServiceBanco.Persistence.dll": {}
+        }
+      },
+      "AuthServiceBanco.Application/1.0.0": {
+        "dependencies": {
+          "AuthServiceBanco.Domain": "1.0.0"
+        },
+        "runtime": {
+          "AuthServiceBanco.Application.dll": {
+            "assemblyVersion": "1.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "AuthServiceBanco.Domain/1.0.0": {
+        "runtime": {
+          "AuthServiceBanco.Domain.dll": {
+            "assemblyVersion": "1.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      }
+    }
+  },
+  "libraries": {
+    "AuthServiceBanco.Persistence/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "AuthServiceBanco.Application/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "AuthServiceBanco.Domain/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
