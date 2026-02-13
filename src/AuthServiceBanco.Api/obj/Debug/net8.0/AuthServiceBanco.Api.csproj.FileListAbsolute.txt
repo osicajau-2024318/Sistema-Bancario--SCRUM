@@ -38,3 +38,6 @@ C:\Sistema-Bancario--SCRUM\src\AuthServiceBanco.Api\obj\Debug\net8.0\refint\Auth
 C:\Sistema-Bancario--SCRUM\src\AuthServiceBanco.Api\obj\Debug\net8.0\AuthServiceBanco.Api.pdb
 C:\Sistema-Bancario--SCRUM\src\AuthServiceBanco.Api\obj\Debug\net8.0\AuthServiceBanco.Api.genruntimeconfig.cache
 C:\Sistema-Bancario--SCRUM\src\AuthServiceBanco.Api\obj\Debug\net8.0\ref\AuthServiceBanco.Api.dll
+C:\2024505\Sistema-Bancario--SCRUM\src\AuthServiceBanco.Api\obj\Debug\net8.0\AuthServiceBanco.Api.dll
+C:\2024505\Sistema-Bancario--SCRUM\src\AuthServiceBanco.Api\obj\Debug\net8.0\refint\AuthServiceBanco.Api.dll
+C:\2024505\Sistema-Bancario--SCRUM\src\AuthServiceBanco.Api\obj\Debug\net8.0\AuthServiceBanco.Api.pdb

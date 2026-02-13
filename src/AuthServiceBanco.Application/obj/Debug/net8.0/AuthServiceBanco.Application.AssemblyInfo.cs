@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("AuthServiceBanco.Application")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1d2a4df0ba67d5cce4c7041d4c765bfb23197b27")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5424bbd0141171e66f27ab0bf4486b6154a51551")]
 [assembly: System.Reflection.AssemblyProductAttribute("AuthServiceBanco.Application")]
 [assembly: System.Reflection.AssemblyTitleAttribute("AuthServiceBanco.Application")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

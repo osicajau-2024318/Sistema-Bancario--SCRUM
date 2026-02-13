@@ -1,31 +1,81 @@
-'use strict';
+import User from "./user.model.js";
 
-/**
- * Middleware para validar que el usuario tenga un rol específico
- * Debe ejecutarse después de validateJWT
- */
-export const requireRole = (...allowedRoles) => {
-  return (req, res, next) => {
-    if (!req.user) {
-      return res.status(401).json({
-        success: false,
-        message: 'Usuario no autenticado',
-        error: 'UNAUTHORIZED',
-      });
+export const getUsers = async (req, res) => {
+    try {
+        const users = await User.find({ isActive: true });
+
+        res.status(200).json({
+            success: true,
+            users
+        });
+
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            message: error.message
+        });
     }
+};
 
-    const userRole = req.user.role;
+export const updateUser = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const data = req.body;
 
-    if (!allowedRoles.includes(userRole)) {
-      return res.status(403).json({
-        success: false,
-        message: 'No tienes permisos para acceder a este recurso',
-        error: 'FORBIDDEN',
-        requiredRole: allowedRoles,
-        yourRole: userRole,
-      });
+        const user = await User.findByIdAndUpdate(
+            id,
+            data,
+            { new: true }
+        );
+
+        if (!user) {
+            return res.status(404).json({
+                success: false,
+                message: "Error, usuario no encontrado"
+            });
+        }
+
+        res.status(200).json({
+            success: true,
+            message: "Usuario actualizado correctamente",
+            user
+        });
+
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            message: error.message
+        });
     }
+};
 
-    next();
-  };
+export const deleteUser = async (req, res) => {
+    try {
+        const { id } = req.params;
+
+        const user = await User.findByIdAndUpdate(
+            id,
+            { isActive: false },
+            { new: true }
+        );
+
+        if (!user) {
+            return res.status(404).json({
+                success: false,
+                message: "Usuario no encontrado"
+            });
+        }
+
+        res.status(200).json({
+            success: true,
+            message: "Usuario eliminado",
+            user
+        });
+
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            message: error.message
+        });
+    }
 };

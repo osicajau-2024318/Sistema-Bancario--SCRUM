@@ -1,4 +1,5 @@
 import { Router } from "express";
+
 import { 
     registerUser, 
     loginUser, 
@@ -6,6 +7,8 @@ import {
     updateUser, 
     deleteUser 
 } from "./user.controller.js";
+
+import {auth} from "../middlewares/auth.js";
 
 const route = Router();
 
@@ -21,17 +24,21 @@ route.post(
 
 route.get(
     "/",
+    auth,
     getUsers
 );
 
 route.put(
     "/:id",
+    auth,
     updateUser
 );
 
 route.delete(
     "/:id",
+    auth,
     deleteUser
 );
 
 export default route;
+
