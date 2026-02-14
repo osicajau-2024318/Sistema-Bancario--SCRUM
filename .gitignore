@@ -1,0 +1,17 @@
+# Node.js
+node_modules/
+
+# Logs
+*.log
+
+# Sistema operativo
+.DS_Store
+
+# Compilados .NET
+bin/
+obj/
+
+# Otros
+/dist
+/build
+
