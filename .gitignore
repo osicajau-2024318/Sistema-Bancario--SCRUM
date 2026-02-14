@@ -4,14 +4,14 @@ node_modules/
 # Logs
 *.log
 
-# Sistema operativo
-.DS_Store
-
 # Compilados .NET
 bin/
 obj/
 
-# Otros
-/dist
-/build
+# Frontend (Vite/React)
+dist/
+build/
 
+# Sistema operativo
+.DS_Store
+Thumbs.db
