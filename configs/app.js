@@ -55,7 +55,7 @@ export const initServer = async () => {
         app.use(errorHandler);
 
         app.listen(PORT, () => {
-            console.log(`KinalSports Admin server running on port ${PORT}`);
+            console.log(`Banco server running on port ${PORT}`);
             console.log(`Health check: http://localhost:${PORT}${BASE_PATH}/health`);
         })
     } catch (error) {
