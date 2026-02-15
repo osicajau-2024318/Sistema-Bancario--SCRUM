@@ -1,12 +1,11 @@
 import { body, param } from 'express-validator';
 import { checkValidators } from './checkValidators.js';
 import { validateJWT } from './validate-JWT.js';
-import { requireRole } from './validate-role.js';
+import { validateRole } from './validate-role.js';
 
-// Validaciones para crear campos (field)
 export const validateCreateField = [
     validateJWT,
-    requireRole('ADMIN_ROLE'),
+    validateRole('ADMIN'),
     body('fieldName')
         .trim()
         .notEmpty()
@@ -38,7 +37,7 @@ export const validateCreateField = [
 
 export const validateUpdateFieldRequest = [
     validateJWT,
-    requireRole('ADMIN_ROLE'),
+    validateRole('ADMIN'),
     param('id')
         .isMongoId()
         .withMessage('ID debe ser un ObjectId válido de MongoDB'),
@@ -67,17 +66,15 @@ export const validateUpdateFieldRequest = [
     checkValidators,
 ];
 
-// Validaciones para activar/desactivar campos
 export const validateFieldStatusChange = [
     validateJWT,
-    requireRole('ADMIN_ROLE'),
+    validateRole('ADMIN'),
     param('id')
         .isMongoId()
         .withMessage('ID debe ser un ObjectId válido de MongoDB'),
     checkValidators,
 ];
 
-// Validación para obtener campo por ID
 export const validateGetFieldById = [
     param('id')
         .isMongoId()
