@@ -17,21 +17,23 @@ export const createDefaultAdmin = async () => {
         const numeroCuenta = crypto.randomInt(1000000000, 9999999999).toString();
 
         // Crear admin por defecto
-        const admin = new User({
-            name: 'Administrador',
-            username: 'ADMINB',
-            email: 'admin@banco.com',
-            password: 'ADMINB',
-            numeroCuenta: numeroCuenta,
-            dpi: '0000000000000',
-            address: 'Oficina Central',
-            cellphone: '00000000',
-            workPlace: 'Banco Central',
-            monthlyIncome: 10000,
-            rol: 'ADMIN',
-            balance: 0,
-            estado: true
+       const admin = new User({
+        name: "Administrador",
+        username: "ADMINB",
+        email: "admin@banco.com",
+        password: "ADMINB", 
+        numeroCuenta: "4019206205",   
+        balance: 0,
+        dpi: "0000000000000",
+        address: "Oficina Central",
+        cellphone: "00000000",
+        workPlace: "Banco Central",
+        monthlyIncome: 10000,
+        rol: "ADMIN",                 
+        estado: true                  
         });
+
+
 
         await admin.save();
         console.log(' Administrador ADMINB creado exitosamente');
