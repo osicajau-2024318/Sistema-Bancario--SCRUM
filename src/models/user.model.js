@@ -11,10 +11,17 @@ const userSchema = new Schema({
         type: String,
         required: true
     },
+    username: {
+        type: String,
+        required: [true, 'El username es obligatorio'],
+        unique: true,
+        trim: true
+    },
     dpi: {
         type: String,
         required: true,
-        unique: true
+        unique: true,
+        immutable: true
     },
     email: {
         type: String,
@@ -26,6 +33,31 @@ const userSchema = new Schema({
         type: String,
         required: true,
         minlength: 6
+    },
+    address: {
+        type: String,
+        required: [true, 'La dirección es obligatoria'],
+        trim: true
+    },
+    cellphone: {
+        type: String,
+        required: [true, 'El celular es obligatorio'],
+        match: [/^\d{8}$/, 'El celular debe tener 8 dígitos']
+    },
+    workPlace: {
+        type: String,
+        required: [true, 'El nombre de trabajo es obligatorio'],
+        trim: true
+    },
+    monthlyIncome: {
+        type: Number,
+        required: [true, 'Los ingresos mensuales son obligatorios'],
+        min: [100, 'Los ingresos deben ser al menos Q100']
+    },
+    balance: {
+        type: Number,
+        default: 0,
+        min: [0, 'El saldo no puede ser negativo']
     },
     rol: {
         type: String,
@@ -40,15 +72,23 @@ const userSchema = new Schema({
     timestamps: true
 });
 
-userSchema.pre("save", async function (next) {
-
-    if (!this.isModified("password")) return next();
-
-    const salt = await bcrypt.genSalt(10);
-    this.password = await bcrypt.hash(this.password, salt);
-
+// Prevenir modificación de DPI
+userSchema.pre('findOneAndUpdate', function(next) {
+    const update = this.getUpdate();
+    if (update.dpi || (update.$set && update.$set.dpi)) {
+        const error = new Error('El DPI no puede ser modificado');
+        return next(error);
+    }
     next();
 });
+
+userSchema.pre("save", async function () {
+    if (!this.isModified("password")) return;
+    const salt = await bcrypt.genSalt(10);
+    this.password = await bcrypt.hash(this.password, salt);
+});
+
+
 
 userSchema.methods.comparePassword = async function (password) {
     return await bcrypt.compare(password, this.password);
