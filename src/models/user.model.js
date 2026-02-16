@@ -1,6 +1,11 @@
 import { Schema, model } from "mongoose";
 import bcrypt from "bcryptjs";
 
+export const ROLES = {
+    ADMIN: "ADMIN",
+    CLIENTE: "CLIENTE"
+};
+
 const userSchema = new Schema({
     numeroCuenta: {
         type: String,
@@ -61,8 +66,8 @@ const userSchema = new Schema({
     },
     rol: {
         type: String,
-        enum: ["ADMIN", "CLIENTE"],
-        default: "CLIENTE"
+        enum: Object.values(ROLES),
+        default: ROLES.CLIENTE
     },
     estado: {
         type: Boolean,
@@ -72,12 +77,10 @@ const userSchema = new Schema({
     timestamps: true
 });
 
-// Prevenir modificación de DPI
 userSchema.pre('findOneAndUpdate', function(next) {
     const update = this.getUpdate();
     if (update.dpi || (update.$set && update.$set.dpi)) {
-        const error = new Error('El DPI no puede ser modificado');
-        return next(error);
+        return next(new Error('El DPI no puede ser modificado'));
     }
     next();
 });
@@ -87,8 +90,6 @@ userSchema.pre("save", async function () {
     const salt = await bcrypt.genSalt(10);
     this.password = await bcrypt.hash(this.password, salt);
 });
-
-
 
 userSchema.methods.comparePassword = async function (password) {
     return await bcrypt.compare(password, this.password);
