@@ -1,5 +1,6 @@
 import { Schema, model } from "mongoose";
 
+// Modelos  para las cuentas bancarias 
 const cuentaSchema = new Schema({
     numeroCuenta: {
         type: String,
@@ -24,7 +25,7 @@ const cuentaSchema = new Schema({
     saldo: {
         type: Number,
         default: 0,
-        min: [0, 'El saldo no puede ser negativo']
+        min: [0, 'El saldo no puede ser menor a 0']
     },
     moneda: {
         type: String,
@@ -48,7 +49,7 @@ const cuentaSchema = new Schema({
     versionKey: false
 });
 
-// Índices para búsquedas rápidas
+// Indice para buscar mas rapido por Id Usuario Numero de ceunta y estado.
 cuentaSchema.index({ userId: 1 });
 cuentaSchema.index({ numeroCuenta: 1 });
 cuentaSchema.index({ estado: 1 });
