@@ -2,7 +2,7 @@ import Cuenta from '../models/cuenta.model.js';
 import User from '../models/user.model.js';
 import crypto from 'crypto';
 
-// Crear cuenta (Admin o Cliente para sí mismo)
+// Crear cuenta 
 export const crearCuenta = async (req, res) => {
     try {
         const { tipoCuenta, userId } = req.body;
@@ -85,7 +85,7 @@ export const obtenerTodasCuentas = async (req, res) => {
                 pages: Math.ceil(total / limit)
             }
         });
-
+        // Atrape el weeoe para la obtencion de las cuentas
     } catch (error) {
         console.error('Error obteniendo cuentas:', error);
         res.status(500).json({
@@ -127,7 +127,7 @@ export const obtenerCuentaPorId = async (req, res) => {
         const userRole = req.user.role;
 
         const cuenta = await Cuenta.findById(id)
-            .populate('userId', 'name email username');
+            .populate('userId', 'name email userna');
 
         if (!cuenta) {
             return res.status(404).json({
@@ -310,6 +310,7 @@ export const eliminarCuenta = async (req, res) => {
                 success: false,
                 message: 'No se puede eliminar una cuenta con saldo positivo'
             });
+
         }
 
         // Cambia el estado a CERRADA
