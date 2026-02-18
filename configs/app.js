@@ -11,10 +11,12 @@ import { requestLimit } from '../middlewares/request-limit.js';
 import { errorHandler } from '../middlewares/handle-errors.js';
 import fieldRoutes from '../src/fields/field.routes.js'
 import userRoutes from '../src/routes/user.routes.js';
+import cuentaRoutes from '../src/routes/cuenta.routes.js';
 
 const BASE_PATH = '/SistemaBancarioAdmin/v1';
 
 const middlewares = (app) => {
+    
     app.use(express.urlencoded({ extended: false, limit: '10mb' }));
     app.use(express.json({ limit: '10mb' }));
     app.use(cors(corsOptions));
@@ -25,8 +27,9 @@ const middlewares = (app) => {
 
 const routes = (app) => {
 
-    app.use(`${BASE_PATH}/fields`, fieldRoutes);
+     app.use(`${BASE_PATH}/fields`, fieldRoutes);
     app.use(`${BASE_PATH}/auth`, userRoutes);
+    app.use(`${BASE_PATH}/cuentas`, cuentaRoutes);
 
     app.get(`${BASE_PATH}/Health`, (request, response) => {
         response.status(200).json({

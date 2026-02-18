@@ -85,7 +85,7 @@ export const obtenerTodasCuentas = async (req, res) => {
                 pages: Math.ceil(total / limit)
             }
         });
-        // Atrape el weeoe para la obtencion de las cuentas
+        // Atrape el error para la obtencion de las cuentas
     } catch (error) {
         console.error('Error obteniendo cuentas:', error);
         res.status(500).json({
