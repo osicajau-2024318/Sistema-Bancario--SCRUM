@@ -3,28 +3,54 @@ import { Schema, model } from "mongoose";
 const cuentaSchema = new Schema({
     numeroCuenta: {
         type: String,
-        required: true,
-        unique: true
+        required: [true, 'El número de cuenta es obligatorio'],
+        unique: true,
+        match: [/^\d{10}$/, 'El número de cuenta debe tener 10 dígitos']
     },
-
+    userId: {
+        type: Schema.Types.ObjectId,
+        ref: 'User',
+        required: [true, 'El usuario es obligatorio']
+    },
+    tipoCuenta: {
+        type: String,
+        required: [true, 'El tipo de cuenta es obligatorio'],
+        enum: {
+            values: ['AHORRO', 'CORRIENTE', 'NOMINA'],
+            message: 'Tipo de cuenta no válido'
+        },
+        default: 'AHORRO'
+    },
     saldo: {
         type: Number,
-        default: 0
+        default: 0,
+        min: [0, 'El saldo no puede ser negativo']
     },
-
-    tipo: {
+    moneda: {
         type: String,
-        enum: ["ahorro", "monetaria"],
-        required: true
+        default: 'GTQ',
+        enum: ['GTQ', 'USD']
     },
-
-    usuario: {
-        type: Schema.Types.ObjectId,
-        ref: "User",   // referencia al modelo User
-        required: true
+    estado: {
+        type: String,
+        enum: {
+            values: ['ACTIVA', 'BLOQUEADA', 'CERRADA'],
+            message: 'Estado no válido'
+        },
+        default: 'ACTIVA'
+    },
+    fechaApertura: {
+        type: Date,
+        default: Date.now
     }
 }, {
-    timestamps: true
+    timestamps: true,
+    versionKey: false
 });
 
-export default model("Cuenta", cuentaSchema);
+// Índices para búsquedas rápidas
+cuentaSchema.index({ userId: 1 });
+cuentaSchema.index({ numeroCuenta: 1 });
+cuentaSchema.index({ estado: 1 });
+
+export default model('Cuenta', cuentaSchema);
