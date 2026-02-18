@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\2024505\\Sistema-Bancario--SCRUM\\src\\AuthServiceBanco.Persistence\\AuthServiceBanco.Persistence.csproj": {}
+    "C:\\Users\\Informatica\\Documents\\SB\\Sistema-Bancario--SCRUM\\src\\AuthServiceBanco.Persistence\\AuthServiceBanco.Persistence.csproj": {}
   },
   "projects": {
-    "C:\\2024505\\Sistema-Bancario--SCRUM\\src\\AuthServiceBanco.Application\\AuthServiceBanco.Application.csproj": {
+    "C:\\Users\\Informatica\\Documents\\SB\\Sistema-Bancario--SCRUM\\src\\AuthServiceBanco.Application\\AuthServiceBanco.Application.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\2024505\\Sistema-Bancario--SCRUM\\src\\AuthServiceBanco.Application\\AuthServiceBanco.Application.csproj",
+        "projectUniqueName": "C:\\Users\\Informatica\\Documents\\SB\\Sistema-Bancario--SCRUM\\src\\AuthServiceBanco.Application\\AuthServiceBanco.Application.csproj",
         "projectName": "AuthServiceBanco.Application",
-        "projectPath": "C:\\2024505\\Sistema-Bancario--SCRUM\\src\\AuthServiceBanco.Application\\AuthServiceBanco.Application.csproj",
-        "packagesPath": "C:\\Users\\edy14\\.nuget\\packages\\",
-        "outputPath": "C:\\2024505\\Sistema-Bancario--SCRUM\\src\\AuthServiceBanco.Application\\obj\\",
+        "projectPath": "C:\\Users\\Informatica\\Documents\\SB\\Sistema-Bancario--SCRUM\\src\\AuthServiceBanco.Application\\AuthServiceBanco.Application.csproj",
+        "packagesPath": "C:\\Users\\Informatica\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Informatica\\Documents\\SB\\Sistema-Bancario--SCRUM\\src\\AuthServiceBanco.Application\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\edy14\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\Informatica\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
@@ -26,8 +26,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\2024505\\Sistema-Bancario--SCRUM\\src\\AuthServiceBanco.Domain\\AuthServiceBanco.Domain.csproj": {
-                "projectPath": "C:\\2024505\\Sistema-Bancario--SCRUM\\src\\AuthServiceBanco.Domain\\AuthServiceBanco.Domain.csproj"
+              "C:\\Users\\Informatica\\Documents\\SB\\Sistema-Bancario--SCRUM\\src\\AuthServiceBanco.Domain\\AuthServiceBanco.Domain.csproj": {
+                "projectPath": "C:\\Users\\Informatica\\Documents\\SB\\Sistema-Bancario--SCRUM\\src\\AuthServiceBanco.Domain\\AuthServiceBanco.Domain.csproj"
               }
             }
           }
@@ -92,21 +92,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.418/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.417/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\2024505\\Sistema-Bancario--SCRUM\\src\\AuthServiceBanco.Domain\\AuthServiceBanco.Domain.csproj": {
+    "C:\\Users\\Informatica\\Documents\\SB\\Sistema-Bancario--SCRUM\\src\\AuthServiceBanco.Domain\\AuthServiceBanco.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\2024505\\Sistema-Bancario--SCRUM\\src\\AuthServiceBanco.Domain\\AuthServiceBanco.Domain.csproj",
+        "projectUniqueName": "C:\\Users\\Informatica\\Documents\\SB\\Sistema-Bancario--SCRUM\\src\\AuthServiceBanco.Domain\\AuthServiceBanco.Domain.csproj",
         "projectName": "AuthServiceBanco.Domain",
-        "projectPath": "C:\\2024505\\Sistema-Bancario--SCRUM\\src\\AuthServiceBanco.Domain\\AuthServiceBanco.Domain.csproj",
-        "packagesPath": "C:\\Users\\edy14\\.nuget\\packages\\",
-        "outputPath": "C:\\2024505\\Sistema-Bancario--SCRUM\\src\\AuthServiceBanco.Domain\\obj\\",
+        "projectPath": "C:\\Users\\Informatica\\Documents\\SB\\Sistema-Bancario--SCRUM\\src\\AuthServiceBanco.Domain\\AuthServiceBanco.Domain.csproj",
+        "packagesPath": "C:\\Users\\Informatica\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Informatica\\Documents\\SB\\Sistema-Bancario--SCRUM\\src\\AuthServiceBanco.Domain\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\edy14\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\Informatica\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
@@ -150,21 +150,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.418/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.417/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\2024505\\Sistema-Bancario--SCRUM\\src\\AuthServiceBanco.Persistence\\AuthServiceBanco.Persistence.csproj": {
+    "C:\\Users\\Informatica\\Documents\\SB\\Sistema-Bancario--SCRUM\\src\\AuthServiceBanco.Persistence\\AuthServiceBanco.Persistence.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\2024505\\Sistema-Bancario--SCRUM\\src\\AuthServiceBanco.Persistence\\AuthServiceBanco.Persistence.csproj",
+        "projectUniqueName": "C:\\Users\\Informatica\\Documents\\SB\\Sistema-Bancario--SCRUM\\src\\AuthServiceBanco.Persistence\\AuthServiceBanco.Persistence.csproj",
         "projectName": "AuthServiceBanco.Persistence",
-        "projectPath": "C:\\2024505\\Sistema-Bancario--SCRUM\\src\\AuthServiceBanco.Persistence\\AuthServiceBanco.Persistence.csproj",
-        "packagesPath": "C:\\Users\\edy14\\.nuget\\packages\\",
-        "outputPath": "C:\\2024505\\Sistema-Bancario--SCRUM\\src\\AuthServiceBanco.Persistence\\obj\\",
+        "projectPath": "C:\\Users\\Informatica\\Documents\\SB\\Sistema-Bancario--SCRUM\\src\\AuthServiceBanco.Persistence\\AuthServiceBanco.Persistence.csproj",
+        "packagesPath": "C:\\Users\\Informatica\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Informatica\\Documents\\SB\\Sistema-Bancario--SCRUM\\src\\AuthServiceBanco.Persistence\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\edy14\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\Informatica\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
@@ -176,11 +176,11 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\2024505\\Sistema-Bancario--SCRUM\\src\\AuthServiceBanco.Application\\AuthServiceBanco.Application.csproj": {
-                "projectPath": "C:\\2024505\\Sistema-Bancario--SCRUM\\src\\AuthServiceBanco.Application\\AuthServiceBanco.Application.csproj"
+              "C:\\Users\\Informatica\\Documents\\SB\\Sistema-Bancario--SCRUM\\src\\AuthServiceBanco.Application\\AuthServiceBanco.Application.csproj": {
+                "projectPath": "C:\\Users\\Informatica\\Documents\\SB\\Sistema-Bancario--SCRUM\\src\\AuthServiceBanco.Application\\AuthServiceBanco.Application.csproj"
               },
-              "C:\\2024505\\Sistema-Bancario--SCRUM\\src\\AuthServiceBanco.Domain\\AuthServiceBanco.Domain.csproj": {
-                "projectPath": "C:\\2024505\\Sistema-Bancario--SCRUM\\src\\AuthServiceBanco.Domain\\AuthServiceBanco.Domain.csproj"
+              "C:\\Users\\Informatica\\Documents\\SB\\Sistema-Bancario--SCRUM\\src\\AuthServiceBanco.Domain\\AuthServiceBanco.Domain.csproj": {
+                "projectPath": "C:\\Users\\Informatica\\Documents\\SB\\Sistema-Bancario--SCRUM\\src\\AuthServiceBanco.Domain\\AuthServiceBanco.Domain.csproj"
               }
             }
           }
@@ -215,7 +215,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.418/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.417/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

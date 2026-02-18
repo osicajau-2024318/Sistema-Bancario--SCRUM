@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("AuthServiceBanco.Persistence")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5424bbd0141171e66f27ab0bf4486b6154a51551")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+fa64d2a350b945c441c409063be6b3325cd351be")]
 [assembly: System.Reflection.AssemblyProductAttribute("AuthServiceBanco.Persistence")]
 [assembly: System.Reflection.AssemblyTitleAttribute("AuthServiceBanco.Persistence")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
