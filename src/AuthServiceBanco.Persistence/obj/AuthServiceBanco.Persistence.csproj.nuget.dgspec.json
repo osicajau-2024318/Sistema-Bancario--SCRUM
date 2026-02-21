@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Informatica\\Documents\\SB\\Sistema-Bancario--SCRUM\\src\\AuthServiceBanco.Persistence\\AuthServiceBanco.Persistence.csproj": {}
+    "/Users/josueboror/Visual/Banco/Sistema-Bancario--SCRUM/src/AuthServiceBanco.Persistence/AuthServiceBanco.Persistence.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Informatica\\Documents\\SB\\Sistema-Bancario--SCRUM\\src\\AuthServiceBanco.Application\\AuthServiceBanco.Application.csproj": {
+    "/Users/josueboror/Visual/Banco/Sistema-Bancario--SCRUM/src/AuthServiceBanco.Application/AuthServiceBanco.Application.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Informatica\\Documents\\SB\\Sistema-Bancario--SCRUM\\src\\AuthServiceBanco.Application\\AuthServiceBanco.Application.csproj",
+        "projectUniqueName": "/Users/josueboror/Visual/Banco/Sistema-Bancario--SCRUM/src/AuthServiceBanco.Application/AuthServiceBanco.Application.csproj",
         "projectName": "AuthServiceBanco.Application",
-        "projectPath": "C:\\Users\\Informatica\\Documents\\SB\\Sistema-Bancario--SCRUM\\src\\AuthServiceBanco.Application\\AuthServiceBanco.Application.csproj",
-        "packagesPath": "C:\\Users\\Informatica\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Informatica\\Documents\\SB\\Sistema-Bancario--SCRUM\\src\\AuthServiceBanco.Application\\obj\\",
+        "projectPath": "/Users/josueboror/Visual/Banco/Sistema-Bancario--SCRUM/src/AuthServiceBanco.Application/AuthServiceBanco.Application.csproj",
+        "packagesPath": "/Users/josueboror/.nuget/packages/",
+        "outputPath": "/Users/josueboror/Visual/Banco/Sistema-Bancario--SCRUM/src/AuthServiceBanco.Application/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Informatica\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "/Users/josueboror/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
@@ -26,8 +26,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\Informatica\\Documents\\SB\\Sistema-Bancario--SCRUM\\src\\AuthServiceBanco.Domain\\AuthServiceBanco.Domain.csproj": {
-                "projectPath": "C:\\Users\\Informatica\\Documents\\SB\\Sistema-Bancario--SCRUM\\src\\AuthServiceBanco.Domain\\AuthServiceBanco.Domain.csproj"
+              "/Users/josueboror/Visual/Banco/Sistema-Bancario--SCRUM/src/AuthServiceBanco.Domain/AuthServiceBanco.Domain.csproj": {
+                "projectPath": "/Users/josueboror/Visual/Banco/Sistema-Bancario--SCRUM/src/AuthServiceBanco.Domain/AuthServiceBanco.Domain.csproj"
               }
             }
           }
@@ -41,7 +41,8 @@
           "enableAudit": "true",
           "auditLevel": "low",
           "auditMode": "direct"
-        }
+        },
+        "SdkAnalysisLevel": "10.0.100"
       },
       "frameworks": {
         "net8.0": {
@@ -87,26 +88,36 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[8.0.23, 8.0.23]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Ref",
+              "version": "[8.0.23, 8.0.23]"
+            }
+          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.417/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/10.0.102/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\Informatica\\Documents\\SB\\Sistema-Bancario--SCRUM\\src\\AuthServiceBanco.Domain\\AuthServiceBanco.Domain.csproj": {
+    "/Users/josueboror/Visual/Banco/Sistema-Bancario--SCRUM/src/AuthServiceBanco.Domain/AuthServiceBanco.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Informatica\\Documents\\SB\\Sistema-Bancario--SCRUM\\src\\AuthServiceBanco.Domain\\AuthServiceBanco.Domain.csproj",
+        "projectUniqueName": "/Users/josueboror/Visual/Banco/Sistema-Bancario--SCRUM/src/AuthServiceBanco.Domain/AuthServiceBanco.Domain.csproj",
         "projectName": "AuthServiceBanco.Domain",
-        "projectPath": "C:\\Users\\Informatica\\Documents\\SB\\Sistema-Bancario--SCRUM\\src\\AuthServiceBanco.Domain\\AuthServiceBanco.Domain.csproj",
-        "packagesPath": "C:\\Users\\Informatica\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Informatica\\Documents\\SB\\Sistema-Bancario--SCRUM\\src\\AuthServiceBanco.Domain\\obj\\",
+        "projectPath": "/Users/josueboror/Visual/Banco/Sistema-Bancario--SCRUM/src/AuthServiceBanco.Domain/AuthServiceBanco.Domain.csproj",
+        "packagesPath": "/Users/josueboror/.nuget/packages/",
+        "outputPath": "/Users/josueboror/Visual/Banco/Sistema-Bancario--SCRUM/src/AuthServiceBanco.Domain/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Informatica\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "/Users/josueboror/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
@@ -129,7 +140,8 @@
           "enableAudit": "true",
           "auditLevel": "low",
           "auditMode": "direct"
-        }
+        },
+        "SdkAnalysisLevel": "10.0.100"
       },
       "frameworks": {
         "net8.0": {
@@ -145,26 +157,36 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[8.0.23, 8.0.23]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Ref",
+              "version": "[8.0.23, 8.0.23]"
+            }
+          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.417/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/10.0.102/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\Informatica\\Documents\\SB\\Sistema-Bancario--SCRUM\\src\\AuthServiceBanco.Persistence\\AuthServiceBanco.Persistence.csproj": {
+    "/Users/josueboror/Visual/Banco/Sistema-Bancario--SCRUM/src/AuthServiceBanco.Persistence/AuthServiceBanco.Persistence.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Informatica\\Documents\\SB\\Sistema-Bancario--SCRUM\\src\\AuthServiceBanco.Persistence\\AuthServiceBanco.Persistence.csproj",
+        "projectUniqueName": "/Users/josueboror/Visual/Banco/Sistema-Bancario--SCRUM/src/AuthServiceBanco.Persistence/AuthServiceBanco.Persistence.csproj",
         "projectName": "AuthServiceBanco.Persistence",
-        "projectPath": "C:\\Users\\Informatica\\Documents\\SB\\Sistema-Bancario--SCRUM\\src\\AuthServiceBanco.Persistence\\AuthServiceBanco.Persistence.csproj",
-        "packagesPath": "C:\\Users\\Informatica\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Informatica\\Documents\\SB\\Sistema-Bancario--SCRUM\\src\\AuthServiceBanco.Persistence\\obj\\",
+        "projectPath": "/Users/josueboror/Visual/Banco/Sistema-Bancario--SCRUM/src/AuthServiceBanco.Persistence/AuthServiceBanco.Persistence.csproj",
+        "packagesPath": "/Users/josueboror/.nuget/packages/",
+        "outputPath": "/Users/josueboror/Visual/Banco/Sistema-Bancario--SCRUM/src/AuthServiceBanco.Persistence/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Informatica\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "/Users/josueboror/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
@@ -176,11 +198,11 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\Informatica\\Documents\\SB\\Sistema-Bancario--SCRUM\\src\\AuthServiceBanco.Application\\AuthServiceBanco.Application.csproj": {
-                "projectPath": "C:\\Users\\Informatica\\Documents\\SB\\Sistema-Bancario--SCRUM\\src\\AuthServiceBanco.Application\\AuthServiceBanco.Application.csproj"
+              "/Users/josueboror/Visual/Banco/Sistema-Bancario--SCRUM/src/AuthServiceBanco.Application/AuthServiceBanco.Application.csproj": {
+                "projectPath": "/Users/josueboror/Visual/Banco/Sistema-Bancario--SCRUM/src/AuthServiceBanco.Application/AuthServiceBanco.Application.csproj"
               },
-              "C:\\Users\\Informatica\\Documents\\SB\\Sistema-Bancario--SCRUM\\src\\AuthServiceBanco.Domain\\AuthServiceBanco.Domain.csproj": {
-                "projectPath": "C:\\Users\\Informatica\\Documents\\SB\\Sistema-Bancario--SCRUM\\src\\AuthServiceBanco.Domain\\AuthServiceBanco.Domain.csproj"
+              "/Users/josueboror/Visual/Banco/Sistema-Bancario--SCRUM/src/AuthServiceBanco.Domain/AuthServiceBanco.Domain.csproj": {
+                "projectPath": "/Users/josueboror/Visual/Banco/Sistema-Bancario--SCRUM/src/AuthServiceBanco.Domain/AuthServiceBanco.Domain.csproj"
               }
             }
           }
@@ -194,7 +216,8 @@
           "enableAudit": "true",
           "auditLevel": "low",
           "auditMode": "direct"
-        }
+        },
+        "SdkAnalysisLevel": "10.0.100"
       },
       "frameworks": {
         "net8.0": {
@@ -210,12 +233,22 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[8.0.23, 8.0.23]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Ref",
+              "version": "[8.0.23, 8.0.23]"
+            }
+          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.417/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/10.0.102/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

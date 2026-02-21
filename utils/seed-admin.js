@@ -22,7 +22,7 @@ export const createDefaultAdmin = async () => {
         username: "ADMINB",
         email: "admin@banco.com",
         password: "ADMINB", 
-        numeroCuenta: "4019206205",   
+        numeroCuenta: numeroCuenta,   
         balance: 0,
         dpi: "0000000000000",
         address: "Oficina Central",

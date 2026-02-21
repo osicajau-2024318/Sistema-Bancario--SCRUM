@@ -5070,19 +5070,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Informatica\\.nuget\\packages\\": {}
+    "/Users/josueboror/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Informatica\\Documents\\SB\\Sistema-Bancario--SCRUM\\src\\AuthServiceBanco.Api\\AuthServiceBanco.Api.csproj",
+      "projectUniqueName": "/Users/josueboror/Visual/Banco/Sistema-Bancario--SCRUM/src/AuthServiceBanco.Api/AuthServiceBanco.Api.csproj",
       "projectName": "AuthServiceBanco.Api",
-      "projectPath": "C:\\Users\\Informatica\\Documents\\SB\\Sistema-Bancario--SCRUM\\src\\AuthServiceBanco.Api\\AuthServiceBanco.Api.csproj",
-      "packagesPath": "C:\\Users\\Informatica\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Informatica\\Documents\\SB\\Sistema-Bancario--SCRUM\\src\\AuthServiceBanco.Api\\obj\\",
+      "projectPath": "/Users/josueboror/Visual/Banco/Sistema-Bancario--SCRUM/src/AuthServiceBanco.Api/AuthServiceBanco.Api.csproj",
+      "packagesPath": "/Users/josueboror/.nuget/packages/",
+      "outputPath": "/Users/josueboror/Visual/Banco/Sistema-Bancario--SCRUM/src/AuthServiceBanco.Api/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Informatica\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "/Users/josueboror/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
@@ -5094,11 +5094,11 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "C:\\Users\\Informatica\\Documents\\SB\\Sistema-Bancario--SCRUM\\src\\AuthServiceBanco.Application\\AuthServiceBanco.Application.csproj": {
-              "projectPath": "C:\\Users\\Informatica\\Documents\\SB\\Sistema-Bancario--SCRUM\\src\\AuthServiceBanco.Application\\AuthServiceBanco.Application.csproj"
+            "/Users/josueboror/Visual/Banco/Sistema-Bancario--SCRUM/src/AuthServiceBanco.Application/AuthServiceBanco.Application.csproj": {
+              "projectPath": "/Users/josueboror/Visual/Banco/Sistema-Bancario--SCRUM/src/AuthServiceBanco.Application/AuthServiceBanco.Application.csproj"
             },
-            "C:\\Users\\Informatica\\Documents\\SB\\Sistema-Bancario--SCRUM\\src\\AuthServiceBanco.Persistence\\AuthServiceBanco.Persistence.csproj": {
-              "projectPath": "C:\\Users\\Informatica\\Documents\\SB\\Sistema-Bancario--SCRUM\\src\\AuthServiceBanco.Persistence\\AuthServiceBanco.Persistence.csproj"
+            "/Users/josueboror/Visual/Banco/Sistema-Bancario--SCRUM/src/AuthServiceBanco.Persistence/AuthServiceBanco.Persistence.csproj": {
+              "projectPath": "/Users/josueboror/Visual/Banco/Sistema-Bancario--SCRUM/src/AuthServiceBanco.Persistence/AuthServiceBanco.Persistence.csproj"
             }
           }
         }
@@ -5112,7 +5112,8 @@
         "enableAudit": "true",
         "auditLevel": "low",
         "auditMode": "direct"
-      }
+      },
+      "SdkAnalysisLevel": "10.0.100"
     },
     "frameworks": {
       "net8.0": {
@@ -5154,6 +5155,20 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
+        "downloadDependencies": [
+          {
+            "name": "Microsoft.AspNetCore.App.Ref",
+            "version": "[8.0.23, 8.0.23]"
+          },
+          {
+            "name": "Microsoft.NETCore.App.Host.osx-arm64",
+            "version": "[8.0.23, 8.0.23]"
+          },
+          {
+            "name": "Microsoft.NETCore.App.Ref",
+            "version": "[8.0.23, 8.0.23]"
+          }
+        ],
         "frameworkReferences": {
           "Microsoft.AspNetCore.App": {
             "privateAssets": "none"
@@ -5162,7 +5177,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.417/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/10.0.102/PortableRuntimeIdentifierGraph.json"
       }
     }
   },
@@ -5171,7 +5186,7 @@
       "code": "NU1603",
       "level": "Warning",
       "warningLevel": 1,
-      "message": "AuthServiceBanco.Application depends on System.IdentityModel.Tokens.Jwt (>= 7.1.0) but System.IdentityModel.Tokens.Jwt 7.1.0 was not found. An approximate best match of System.IdentityModel.Tokens.Jwt 7.1.2 was resolved.",
+      "message": "AuthServiceBanco.Application depends on System.IdentityModel.Tokens.Jwt (>= 7.1.0) but System.IdentityModel.Tokens.Jwt 7.1.0 was not found. System.IdentityModel.Tokens.Jwt 7.1.2 was resolved instead.",
       "libraryId": "System.IdentityModel.Tokens.Jwt",
       "targetGraphs": [
         "net8.0"

@@ -1,8 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "M4BgSSyX3A0=",
+  "dgSpecHash": "HJy1LHED2p8=",
   "success": true,
-  "projectFilePath": "C:\\Users\\Informatica\\Documents\\SB\\Sistema-Bancario--SCRUM\\src\\AuthServiceBanco.Domain\\AuthServiceBanco.Domain.csproj",
-  "expectedPackageFiles": [],
+  "projectFilePath": "/Users/josueboror/Visual/Banco/Sistema-Bancario--SCRUM/src/AuthServiceBanco.Domain/AuthServiceBanco.Domain.csproj",
+  "expectedPackageFiles": [
+    "/Users/josueboror/.nuget/packages/microsoft.netcore.app.ref/8.0.23/microsoft.netcore.app.ref.8.0.23.nupkg.sha512",
+    "/Users/josueboror/.nuget/packages/microsoft.aspnetcore.app.ref/8.0.23/microsoft.aspnetcore.app.ref.8.0.23.nupkg.sha512"
+  ],
   "logs": []
 }
