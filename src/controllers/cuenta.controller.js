@@ -8,9 +8,11 @@ export const crearCuenta = async (req, res) => {
         const { tipoCuenta, userId } = req.body;
         
         // Si es cliente, solo puede crear para sí mismo
-        let cuentaUserId = userId;
-        if (req.user.role !== 'ADMIN') {
-            cuentaUserId = req.user.id;
+        let cuentaUserId;
+        if (req.user.role === 'ADMIN') {
+            cuentaUserId = userId || req.user.id;
+        } else {
+        cuentaUserId = req.user.id;
         }
 
         // Verificar que el usuario exista
