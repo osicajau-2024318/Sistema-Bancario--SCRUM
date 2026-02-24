@@ -1,3 +1,0 @@
-﻿<Project>
-  <Import Project="..\build\AuthServiceBanco.Api.props" />
-</Project>
