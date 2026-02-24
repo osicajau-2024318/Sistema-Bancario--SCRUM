@@ -5,10 +5,6 @@ npm-debug.log*
 # Logs
 *.log
 
-# Compilados .NET
-bin/
-obj/
-
 # Frontend (Vite/React)
 dist/
 build/
@@ -16,3 +12,7 @@ build/
 # Sistema operativo
 .DS_Store
 Thumbs.db
+bin/
+obj/
+*.cache
+*.log
