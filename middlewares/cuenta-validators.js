@@ -7,6 +7,40 @@ export const validateCrearCuenta = [
         .isIn(['AHORRO', 'CORRIENTE', 'NOMINA'])
         .withMessage('Tipo de cuenta no válido'),
     
+    body('saldo')
+        .notEmpty()
+        .withMessage('El saldo inicial es obligatorio')
+        .isNumeric()
+        .withMessage('El saldo debe ser un número')
+        .custom((value) => {
+            if (value < 0) {
+                throw new Error('El saldo no puede ser negativo');
+            }
+            return true;
+        }),
+    
+    body('moneda')
+        .notEmpty()
+        .withMessage('La moneda es obligatoria')
+        .isIn(['GTQ', 'USD'])
+        .withMessage('Moneda no válida. Use GTQ o USD'),
+    
+    // Validación para abrir cuenta en quetzales y en dolares
+    body('saldo')
+        .custom((value, { req }) => {
+            const moneda = req.body.moneda;
+            
+            if (moneda === 'GTQ' && value < 100) {
+                throw new Error('El saldo mínimo para cuentas en Quetzales es Q100');
+            }
+            
+            if (moneda === 'USD' && value < 25) {
+                throw new Error('El saldo mínimo para cuentas en Dólares es $25');
+            }
+            
+            return true;
+        }),
+    
     body('userId')
         .optional()
         .isMongoId()
