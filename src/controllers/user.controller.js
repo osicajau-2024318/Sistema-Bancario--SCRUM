@@ -32,16 +32,17 @@ export const registerUser = async (req, res) => {
         await user.save();
 
         res.status(201).json({
-            success: true,
-            message: "Usuario registrado con éxito",
-            data: {
-                id: user._id,
-                name: user.name,
-                username: user.username,
-                email: user.email,
-                numeroCuenta: user.numeroCuenta
-            }
-        });
+        success: true,
+        message: "Registro exitoso. Tu cuenta será activada por un administrador pronto.",
+        data: {
+            id: user._id,
+            name: user.name,
+            username: user.username,
+            email: user.email,
+            numeroCuenta: user.numeroCuenta,
+            estado: user.estado
+    }
+});
 
     } catch (error) {
         res.status(500).json({
@@ -187,6 +188,139 @@ export const deleteUser = async (req, res) => {
         res.status(500).json({
             success: false,
             message: error.message
+        });
+    }
+};
+
+// Ver usuarios pendientes de activaciin (Solo como Admin)
+export const obtenerUsuariosPendientes = async (req, res) => {
+    try {
+        const { page = 1, limit = 10 } = req.query;
+
+        const usuarios = await User.find({ estado: false })
+            .select('-password')
+            .limit(limit * 1)
+            .skip((page - 1) * limit)
+            .sort({ createdAt: -1 });
+
+        const total = await User.countDocuments({ estado: false });
+
+        res.status(200).json({
+            success: true,
+            message: 'Usuarios pendientes de activación',
+            data: usuarios,
+            pagination: {
+                total,
+                page: parseInt(page),
+                pages: Math.ceil(total / limit)
+            }
+        });
+
+    } catch (error) {
+        console.error('Error obteniendo usuarios pendientes:', error);
+        res.status(500).json({
+            success: false,
+            message: 'Error al obtener usuarios pendientes',
+            error: error.message
+        });
+    }
+};
+
+// Activar usuario (Solo como Admin)
+export const activarUsuario = async (req, res) => {
+    try {
+        const { id } = req.params;
+
+        const usuario = await User.findById(id);
+
+        if (!usuario) {
+            return res.status(404).json({
+                success: false,
+                message: 'Usuario no encontrado'
+            });
+        }
+
+        if (usuario.estado === true) {
+            return res.status(400).json({
+                success: false,
+                message: 'Este usuario ya está activo'
+            });
+        }
+
+        usuario.estado = true;
+        await usuario.save();
+
+        res.status(200).json({
+            success: true,
+            message: 'Usuario activado exitosamente',
+            data: {
+                id: usuario._id,
+                name: usuario.name,
+                username: usuario.username,
+                email: usuario.email,
+                estado: usuario.estado
+            }
+        });
+
+    } catch (error) {
+        console.error('Error activando usuario:', error);
+        res.status(500).json({
+            success: false,
+            message: 'Error al activar usuario',
+            error: error.message
+        });
+    }
+};
+
+// Desactivar usuario (Solo como Admin)
+export const desactivarUsuario = async (req, res) => {
+    try {
+        const { id } = req.params;
+
+        const usuario = await User.findById(id);
+
+        if (!usuario) {
+            return res.status(404).json({
+                success: false,
+                message: 'Usuario no encontrado'
+            });
+        }
+
+        if (usuario.rol === 'ADMIN') {
+            return res.status(403).json({
+                success: false,
+                message: 'No se puede desactivar un administrador'
+            });
+        }
+
+        if (usuario.estado === false) {
+            return res.status(400).json({
+                success: false,
+                message: 'Este usuario ya está inactivo'
+            });
+        }
+
+        usuario.estado = false;
+        await usuario.save();
+
+        res.status(200).json({
+            success: true,
+            message: 'Usuario desactivado exitosamente',
+            data: {
+                id: usuario._id,
+                name: usuario.name,
+                username: usuario.username,
+                email: usuario.email,
+                estado: usuario.estado
+            }
+        });
+
+    } catch (error) {
+        console.error('Error desactivando usuario:', error);
+        res.status(500).json({
+            success: false,
+            message: 'Error al desactivar usuario',
+            error: error.message
         });
     }
 };

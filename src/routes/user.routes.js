@@ -4,7 +4,10 @@ import {
     loginUser, 
     getUsers, 
     updateUser, 
-    deleteUser 
+    deleteUser,
+    obtenerUsuariosPendientes,
+    activarUsuario,
+    desactivarUsuario
 } from "../controllers/user.controller.js";
 
 // Importar middlewares correctos
@@ -49,3 +52,27 @@ route.delete(
 );
 
 export default route;
+
+// Ver usuarios pendientes (Solo como Admin)
+route.get(
+    "/pendientes",
+    validateJWT,
+    validateRole('ADMIN'),
+    obtenerUsuariosPendientes
+);
+
+// Activar usuario (Solo como Admin)
+route.patch(
+    "/:id/activar",
+    validateJWT,
+    validateRole('ADMIN'),
+    activarUsuario
+);
+
+// Desactivar usuario (Solo como Admin)
+route.patch(
+    "/:id/desactivar",
+    validateJWT,
+    validateRole('ADMIN'),
+    desactivarUsuario
+);
