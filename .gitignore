@@ -1,0 +1,17 @@
+# Node.js
+node_modules/
+
+# Logs
+*.log
+
+# Compilados .NET
+bin/
+obj/
+
+# Frontend (Vite/React)
+dist/
+build/
+
+# Sistema operativo
+.DS_Store
+Thumbs.db

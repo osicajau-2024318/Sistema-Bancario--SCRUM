@@ -1,0 +1,223 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\2024505\\Sistema-Bancario--SCRUM\\src\\AuthServiceBanco.Persistence\\AuthServiceBanco.Persistence.csproj": {}
+  },
+  "projects": {
+    "C:\\2024505\\Sistema-Bancario--SCRUM\\src\\AuthServiceBanco.Application\\AuthServiceBanco.Application.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\2024505\\Sistema-Bancario--SCRUM\\src\\AuthServiceBanco.Application\\AuthServiceBanco.Application.csproj",
+        "projectName": "AuthServiceBanco.Application",
+        "projectPath": "C:\\2024505\\Sistema-Bancario--SCRUM\\src\\AuthServiceBanco.Application\\AuthServiceBanco.Application.csproj",
+        "packagesPath": "C:\\Users\\edy14\\.nuget\\packages\\",
+        "outputPath": "C:\\2024505\\Sistema-Bancario--SCRUM\\src\\AuthServiceBanco.Application\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\edy14\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {
+              "C:\\2024505\\Sistema-Bancario--SCRUM\\src\\AuthServiceBanco.Domain\\AuthServiceBanco.Domain.csproj": {
+                "projectPath": "C:\\2024505\\Sistema-Bancario--SCRUM\\src\\AuthServiceBanco.Domain\\AuthServiceBanco.Domain.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "BCrypt.Net-Next": {
+              "target": "Package",
+              "version": "[4.0.3, )"
+            },
+            "CloudinaryDotNet": {
+              "target": "Package",
+              "version": "[1.26.0, )"
+            },
+            "Konscious.Security.Cryptography.Argon2": {
+              "target": "Package",
+              "version": "[1.3.1, )"
+            },
+            "MailKit": {
+              "target": "Package",
+              "version": "[4.5.0, )"
+            },
+            "Microsoft.Extensions.Configuration": {
+              "target": "Package",
+              "version": "[8.0.0, )"
+            },
+            "Microsoft.Extensions.Logging": {
+              "target": "Package",
+              "version": "[8.0.0, )"
+            },
+            "System.IdentityModel.Tokens.Jwt": {
+              "target": "Package",
+              "version": "[7.1.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.418/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\2024505\\Sistema-Bancario--SCRUM\\src\\AuthServiceBanco.Domain\\AuthServiceBanco.Domain.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\2024505\\Sistema-Bancario--SCRUM\\src\\AuthServiceBanco.Domain\\AuthServiceBanco.Domain.csproj",
+        "projectName": "AuthServiceBanco.Domain",
+        "projectPath": "C:\\2024505\\Sistema-Bancario--SCRUM\\src\\AuthServiceBanco.Domain\\AuthServiceBanco.Domain.csproj",
+        "packagesPath": "C:\\Users\\edy14\\.nuget\\packages\\",
+        "outputPath": "C:\\2024505\\Sistema-Bancario--SCRUM\\src\\AuthServiceBanco.Domain\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\edy14\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.418/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\2024505\\Sistema-Bancario--SCRUM\\src\\AuthServiceBanco.Persistence\\AuthServiceBanco.Persistence.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\2024505\\Sistema-Bancario--SCRUM\\src\\AuthServiceBanco.Persistence\\AuthServiceBanco.Persistence.csproj",
+        "projectName": "AuthServiceBanco.Persistence",
+        "projectPath": "C:\\2024505\\Sistema-Bancario--SCRUM\\src\\AuthServiceBanco.Persistence\\AuthServiceBanco.Persistence.csproj",
+        "packagesPath": "C:\\Users\\edy14\\.nuget\\packages\\",
+        "outputPath": "C:\\2024505\\Sistema-Bancario--SCRUM\\src\\AuthServiceBanco.Persistence\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\edy14\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {
+              "C:\\2024505\\Sistema-Bancario--SCRUM\\src\\AuthServiceBanco.Application\\AuthServiceBanco.Application.csproj": {
+                "projectPath": "C:\\2024505\\Sistema-Bancario--SCRUM\\src\\AuthServiceBanco.Application\\AuthServiceBanco.Application.csproj"
+              },
+              "C:\\2024505\\Sistema-Bancario--SCRUM\\src\\AuthServiceBanco.Domain\\AuthServiceBanco.Domain.csproj": {
+                "projectPath": "C:\\2024505\\Sistema-Bancario--SCRUM\\src\\AuthServiceBanco.Domain\\AuthServiceBanco.Domain.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.418/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

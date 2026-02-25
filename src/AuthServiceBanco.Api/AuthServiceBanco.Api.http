@@ -1,0 +1,6 @@
+@AuthServiceBanco.Api_HostAddress = http://localhost:5025
+
+GET {{AuthServiceBanco.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
