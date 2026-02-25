@@ -1,5 +1,6 @@
 using AuthServiceBanco.Application.DTOs;
 using AuthServiceBanco.Application.DTOs.Email;
+using AuthServiceBanco.Domain.Entities;
 
 namespace AuthServiceBanco.Application.Interfaces;
 
@@ -12,5 +13,6 @@ public interface IAuthService
     Task<EmailResponseDto> ForgotPasswordAsync(ForgotPasswordDto forgotPasswordDto);
     Task<EmailResponseDto> ResetPasswordAsync(ResetPasswordDto resetPasswordDto);
     Task<UserResponseDto?> GetUserByIdAsync(string userId);
-    Task RegisterLoginHistoryAsync(object userId, string ipAddress);
+    Task RegisterLoginHistoryAsync(string userId, string ipAddress);
+    Task<IEnumerable<LoginHistory>> GetLoginHistoryAsync(string userId);
 }

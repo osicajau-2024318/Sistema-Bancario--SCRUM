@@ -429,21 +429,17 @@ public class AuthService(
         return MapToUserResponseDto(user);
     }
 
-    public async Task RegisterLoginHistoryAsync(Guid userId, string ip)
-{
-    var country = await IpLocationService.GetCountryAsync(ip);
-
-    var history = new LoginHistory
+    public Task RegisterLoginHistoryAsync(string userId, string ipAddress)
     {
-        UserId = userId,
-        IpAddress = ip,
-        Country = country,
-        LoginDate = DateTime.UtcNow
-    };
+        logger.LogInformation("Login history requested for user {UserId} from IP {IpAddress}", userId, ipAddress);
+        return Task.CompletedTask;
+    }
 
-    _context.LoginHistories.Add(history);
-    await _context.SaveChangesAsync();
-}
+    public Task<IEnumerable<LoginHistory>> GetLoginHistoryAsync(string userId)
+    {
+        logger.LogInformation("Login history requested for user {UserId}", userId);
+        return Task.FromResult(Enumerable.Empty<LoginHistory>());
+    }
 
 }
 

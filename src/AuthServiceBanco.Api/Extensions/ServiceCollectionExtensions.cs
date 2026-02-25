@@ -3,7 +3,6 @@ using AuthServiceBanco.Application.Services;
 using AuthServiceBanco.Domain.Interfaces;
 using AuthServiceBanco.Persistence.Data;
 using AuthServiceBanco.Persistence.Repositories;
-using AuthServiceBanco.Persistence.Repositories;
 using Microsoft.EntityFrameworkCore;
 
 namespace AuthServiceBanco.Api.Extensions;

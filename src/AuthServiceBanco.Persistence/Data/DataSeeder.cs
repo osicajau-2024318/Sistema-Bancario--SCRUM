@@ -1,9 +1,9 @@
-using AuthServiceIN6BV.Domain.Entities;
-using AuthServiceIN6BV.Application.Services;
-using AuthServiceIN6BV.Domain.Constants;
+using AuthServiceBanco.Domain.Entities;
+using AuthServiceBanco.Application.Services;
+using AuthServiceBanco.Domain.Constants;
 using Microsoft.EntityFrameworkCore;
 
-namespace AuthServiceIN6BV.Persistence.Data;
+namespace AuthServiceBanco.Persistence.Data;
 
 public static class DataSeeder
 {
