@@ -1,59 +1,59 @@
 import { Router } from "express";
 import { 
-    registerUser, 
+    registerUser,
+    registerUserByAdmin,
     loginUser, 
     getUsers, 
+    getMyProfile,
+    buscarUsuario,
     updateUser, 
     deleteUser,
     obtenerUsuariosPendientes,
     activarUsuario,
     desactivarUsuario
 } from "../controllers/user.controller.js";
-
-// Importar middlewares correctos
 import { validateJWT } from "../../middlewares/validate-JWT.js";
 import { validateRole } from "../../middlewares/validate-role.js";
 import { validateRegister, validateLogin } from "../../middlewares/auth-validators.js";
 
 const route = Router();
 
-// Rutas públicas no necesitan JWT
+
+// Registro público (requiere aprobación del admin)
+route.post("/register", validateRegister, registerUser);
+
+// Login
+route.post("/login", validateLogin, loginUser);
+
+// Ver mi perfil (Cliente o Admin)
+route.get("/me", validateJWT, getMyProfile);
+
+// Registrar usuario como admin 
 route.post(
-    "/register",
-    validateRegister,  //  Validar campos
-    registerUser
+    "/register-admin",
+    validateJWT,
+    validateRole('ADMIN'),
+    validateRegister,
+    registerUserByAdmin
 );
 
-route.post(
-    "/login",
-    validateLogin,     //  Validar campos
-    loginUser
+// Buscar usuario específico (por email, username o DPI)
+route.get(
+    "/buscar",
+    validateJWT,
+    validateRole('ADMIN'),
+    buscarUsuario
 );
 
-// Rutas protegidas dÍ necesitan JWT
+// Ver todos los usuarios activos
 route.get(
     "/",
-    validateJWT,       // Validar que tenga token
-    validateRole('ADMIN'),  // Solo admin puede ver todos los usuarios
+    validateJWT,
+    validateRole('ADMIN'),
     getUsers
 );
 
-route.put(
-    "/:id",
-    validateJWT,       //  Validar que tenga token
-    updateUser
-);
-
-route.delete(
-    "/:id",
-    validateJWT,       // Validar que tenga token
-    validateRole('ADMIN'),  //  Solo admin puede eliminar
-    deleteUser
-);
-
-export default route;
-
-// Ver usuarios pendientes (Solo como Admin)
+// Ver usuarios pendientes de activación
 route.get(
     "/pendientes",
     validateJWT,
@@ -61,7 +61,7 @@ route.get(
     obtenerUsuariosPendientes
 );
 
-// Activar usuario (Solo como Admin)
+// Activar usuario
 route.patch(
     "/:id/activar",
     validateJWT,
@@ -69,10 +69,28 @@ route.patch(
     activarUsuario
 );
 
-// Desactivar usuario (Solo como Admin)
+// Desactivar usuario
 route.patch(
     "/:id/desactivar",
     validateJWT,
     validateRole('ADMIN'),
     desactivarUsuario
 );
+
+// Actualizar usuario
+route.put(
+    "/:id",
+    validateJWT,
+    validateRole('ADMIN'),
+    updateUser
+);
+
+// Eliminar (desactivar) usuario
+route.delete(
+    "/:id",
+    validateJWT,
+    validateRole('ADMIN'),
+    deleteUser
+);
+
+export default route;

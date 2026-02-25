@@ -1,6 +1,5 @@
 import { Schema, model } from "mongoose";
 
-// Modelos  para las cuentas bancarias 
 const cuentaSchema = new Schema({
     numeroCuenta: {
         type: String,
@@ -24,14 +23,23 @@ const cuentaSchema = new Schema({
     },
     saldo: {
         type: Number,
-        default: 0,
-        min: [0, 'El saldo no puede ser menor a 0']
+        required: [true, 'El saldo inicial es obligatorio'],
+        min: [0, 'El saldo no puede ser negativo']
     },
     moneda: {
         type: String,
-        default: 'GTQ',
-        enum: ['GTQ', 'USD']
+        required: [true, 'La moneda es obligatoria'],
+        enum: {
+            values: ['GTQ', 'USD'],
+            message: 'Moneda no válida. Use GTQ o USD'
+        }
     },
+    // Estado para el sistema de aprobación (similar a User)
+    aprobada: {
+        type: Boolean,
+        default: false  // Las cuentas creadas por clientes requieren aprobación
+    },
+    // Estado operacional de la cuenta
     estado: {
         type: String,
         enum: {
@@ -49,9 +57,10 @@ const cuentaSchema = new Schema({
     versionKey: false
 });
 
-// Indice para buscar mas rapido por Id Usuario Numero de ceunta y estado.
+// Índices para búsquedas rápidas
 cuentaSchema.index({ userId: 1 });
 cuentaSchema.index({ numeroCuenta: 1 });
 cuentaSchema.index({ estado: 1 });
+cuentaSchema.index({ aprobada: 1 });
 
 export default model('Cuenta', cuentaSchema);

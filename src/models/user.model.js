@@ -79,7 +79,7 @@ userSchema.pre('findOneAndUpdate', function(next) {
         const error = new Error('El DPI no puede ser modificado');
         return next(error);
     }
-    next();
+    next;
 });
 
 userSchema.pre("save", async function (next) {

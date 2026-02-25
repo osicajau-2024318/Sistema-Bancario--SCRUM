@@ -1,13 +1,18 @@
 import { Router } from 'express';
 import {
     crearCuenta,
+    crearCuentaByAdmin,
     obtenerTodasCuentas,
     obtenerMisCuentas,
     obtenerCuentaPorId,
     obtenerCuentaPorNumero,
     actualizarCuenta,
     cambiarEstadoCuenta,
-    eliminarCuenta
+    cerrarCuenta,
+    obtenerCuentasPendientes,
+    aprobarCuenta,
+    desactivarCuenta,
+    activarCuentaCerrada
 } from '../controllers/cuenta.controller.js';
 import { validateJWT } from '../../middlewares/validate-JWT.js';
 import { validateRole } from '../../middlewares/validate-role.js';
@@ -24,28 +29,107 @@ const router = Router();
 // Todas las rutas requieren autenticación
 router.use(validateJWT);
 
-// Crear cuenta (Admin puede para cualquier usuario, Cliente solo para sí mismo)
-router.post('/create', validateCrearCuenta, crearCuenta);
+// Crear cuenta como cliente (requiere aprobación)
+router.post(
+    '/create',
+    validateCrearCuenta,
+    crearCuenta
+);
 
-// Obtener todas las cuentas (Solo Admin)
-router.get('/', validateRole('ADMIN'), obtenerTodasCuentas);
+// Ver mis cuentas aprobadas
+router.get(
+    '/mis-cuentas',
+    obtenerMisCuentas
+);
 
-// Obtener mis cuentas (Cliente o Admin)
-router.get('/mis-cuentas', obtenerMisCuentas);
+// Ver cuenta por ID (solo propias o admin)
+router.get(
+    '/:id',
+    validateIdParam,
+    obtenerCuentaPorId
+);
 
-// Obtener cuenta por ID
-router.get('/:id', validateIdParam, obtenerCuentaPorId);
+// Ver cuenta por número (solo propias o admin)
+router.get(
+    '/numero/:numeroCuenta',
+    validateNumeroCuentaParam,
+    obtenerCuentaPorNumero
+);
 
-// Obtener cuenta por número de cuenta
-router.get('/numero/:numeroCuenta', validateNumeroCuentaParam, obtenerCuentaPorNumero);
+// ==========================================
+// RUTAS SOLO ADMIN
+// ==========================================
 
-// Actualizar cuenta
-router.put('/:id', validateIdParam, validateActualizarCuenta, actualizarCuenta);
+// Crear cuenta como admin (directamente aprobada)
+router.post(
+    '/create-admin',
+    validateRole('ADMIN'),
+    validateCrearCuenta,
+    crearCuentaByAdmin
+);
 
-// Cambiar estado de cuenta (Solo Admin)
-router.patch('/:id/estado', validateRole('ADMIN'), validateIdParam, validateCambiarEstado, cambiarEstadoCuenta);
+// Ver todas las cuentas aprobadas
+router.get(
+    '/',
+    validateRole('ADMIN'),
+    obtenerTodasCuentas
+);
 
-// Eliminar cuenta (Solo Admin)
-router.delete('/:id', validateRole('ADMIN'), validateIdParam, eliminarCuenta);
+// Ver cuentas pendientes de aprobación
+router.get(
+    '/admin/pendientes',
+    validateRole('ADMIN'),
+    obtenerCuentasPendientes
+);
+
+// Aprobar cuenta
+router.patch(
+    '/:id/aprobar',
+    validateRole('ADMIN'),
+    validateIdParam,
+    aprobarCuenta
+);
+
+// Desactivar/Rechazar cuenta
+router.patch(
+    '/:id/desactivar',
+    validateRole('ADMIN'),
+    validateIdParam,
+    desactivarCuenta
+);
+
+// Activar cuenta cerrada (reactivar)
+router.patch(
+    '/:id/activar-cerrada',
+    validateRole('ADMIN'),
+    validateIdParam,
+    activarCuentaCerrada
+);
+
+// Actualizar cuenta (solo admin)
+router.put(
+    '/:id',
+    validateRole('ADMIN'),
+    validateIdParam,
+    validateActualizarCuenta,
+    actualizarCuenta
+);
+
+// Cambiar estado de cuenta (solo admin)
+router.patch(
+    '/:id/estado',
+    validateRole('ADMIN'),
+    validateIdParam,
+    validateCambiarEstado,
+    cambiarEstadoCuenta
+);
+
+// Cerrar cuenta (solo admin) - equivale a "eliminar"
+router.delete(
+    '/:id',
+    validateRole('ADMIN'),
+    validateIdParam,
+    cerrarCuenta
+);
 
 export default router;

@@ -2,6 +2,7 @@ import User from "../models/user.model.js";
 import { generateJWT } from "../../helpers/generate-jwt.js";
 import crypto from 'crypto';
 
+// Registrar usuario (Público - requiere aprobación de admin)
 export const registerUser = async (req, res) => {
     try {
         // Validar ingresos mínimos
@@ -26,23 +27,77 @@ export const registerUser = async (req, res) => {
             ...req.body,
             numeroCuenta,
             rol: 'CLIENTE',
-            balance: 0
+            balance: 0,
+            estado: false  // Requiere aprobación del admin
         });
         
         await user.save();
 
         res.status(201).json({
-        success: true,
-        message: "Registro exitoso. Tu cuenta será activada por un administrador pronto.",
-        data: {
-            id: user._id,
-            name: user.name,
-            username: user.username,
-            email: user.email,
-            numeroCuenta: user.numeroCuenta,
-            estado: user.estado
+            success: true,
+            message: "Registro exitoso. Tu cuenta será activada por un administrador pronto.",
+            data: {
+                id: user._id,
+                name: user.name,
+                username: user.username,
+                email: user.email,
+                numeroCuenta: user.numeroCuenta,
+                estado: user.estado
+            }
+        });
+
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            message: error.message
+        });
     }
-});
+};
+
+// Registrar usuario como ADMIN (sin aprobación)
+export const registerUserByAdmin = async (req, res) => {
+    try {
+        // Validar ingresos mínimos
+        if (req.body.monthlyIncome < 100) {
+            return res.status(400).json({
+                success: false,
+                message: 'Los ingresos mensuales deben ser al menos Q100'
+            });
+        }
+
+        // Generar número de cuenta aleatorio (10 dígitos)
+        let numeroCuenta;
+        let exists = true;
+        
+        while (exists) {
+            numeroCuenta = crypto.randomInt(1000000000, 9999999999).toString();
+            const existing = await User.findOne({ numeroCuenta });
+            if (!existing) exists = false;
+        }
+
+        const user = new User({
+            ...req.body,
+            numeroCuenta,
+            rol: req.body.rol || 'CLIENTE',  // Admin puede especificar el rol
+            balance: 0,
+            estado: true  // Admin crea usuarios directamente activos
+        });
+        
+        await user.save();
+
+        res.status(201).json({
+            success: true,
+            message: "Usuario creado exitosamente por administrador",
+            data: {
+                id: user._id,
+                name: user.name,
+                username: user.username,
+                email: user.email,
+                numeroCuenta: user.numeroCuenta,
+                rol: user.rol,
+                estado: user.estado
+            }
+        });
 
     } catch (error) {
         res.status(500).json({
@@ -78,7 +133,7 @@ export const loginUser = async (req, res) => {
         if (!user.estado) {
             return res.status(423).json({
                 success: false,
-                message: 'Cuenta desactivada'
+                message: 'Tu cuenta aún no ha sido activada por un administrador. Por favor espera.'
             });
         }
 
@@ -112,16 +167,85 @@ export const loginUser = async (req, res) => {
     }
 };
 
+// Ver todos los usuarios activos (Admin)
 export const getUsers = async (req, res) => {
     try {
-        const users = await User.find({ estado: true });
+        const users = await User.find({ estado: true })
+            .select('-password');
 
         res.status(200).json({
             success: true,
-            users
+            data: users
         });
 
     } catch(error) {
+        res.status(500).json({
+            success: false,
+            message: error.message
+        });
+    }
+};
+
+// Ver mi perfil (Cliente o Admin)
+export const getMyProfile = async (req, res) => {
+    try {
+        const userId = req.user.id;
+
+        const user = await User.findById(userId).select('-password');
+
+        if (!user) {
+            return res.status(404).json({
+                success: false,
+                message: 'Usuario no encontrado'
+            });
+        }
+
+        res.status(200).json({
+            success: true,
+            data: user
+        });
+
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            message: error.message
+        });
+    }
+};
+
+
+export const buscarUsuario = async (req, res) => {
+    try {
+        const { busqueda } = req.query;
+
+        if (!busqueda) {
+            return res.status(400).json({
+                success: false,
+                message: 'Debe proporcionar un término de búsqueda (email, username o DPI)'
+            });
+        }
+
+        const usuario = await User.findOne({
+            $or: [
+                { email: busqueda },
+                { username: busqueda },
+                { dpi: busqueda }
+            ]
+        }).select('-password');
+
+        if (!usuario) {
+            return res.status(404).json({
+                success: false,
+                message: 'Usuario no encontrado'
+            });
+        }
+
+        res.status(200).json({
+            success: true,
+            data: usuario
+        });
+
+    } catch (error) {
         res.status(500).json({
             success: false,
             message: error.message
@@ -138,7 +262,7 @@ export const updateUser = async (req, res) => {
             id,
             data,
             {new: true}
-        );
+        ).select('-password');
 
         if (!user) {
             return res.status(404).json({
@@ -150,7 +274,7 @@ export const updateUser = async (req, res) => {
         res.status(200).json({
             success: true,
             message: "Usuario actualizado correctamente",
-            user
+            data: user
         });
 
     } catch (error) {
@@ -169,7 +293,7 @@ export const deleteUser = async (req, res) => {
             id,
             { estado: false },
             { new: true }
-        );
+        ).select('-password');
 
         if (!user) {
             return res.status(404).json({
@@ -180,8 +304,8 @@ export const deleteUser = async (req, res) => {
 
         res.status(200).json({
             success: true,
-            message: "Usuario eliminado",
-            user
+            message: "Usuario desactivado",
+            data: user
         });
 
     } catch (error) {
@@ -192,7 +316,7 @@ export const deleteUser = async (req, res) => {
     }
 };
 
-// Ver usuarios pendientes de activaciin (Solo como Admin)
+// Ver usuarios pendientes de activación (Admin)
 export const obtenerUsuariosPendientes = async (req, res) => {
     try {
         const { page = 1, limit = 10 } = req.query;
@@ -226,7 +350,7 @@ export const obtenerUsuariosPendientes = async (req, res) => {
     }
 };
 
-// Activar usuario (Solo como Admin)
+// Activa el usuario (Admin)
 export const activarUsuario = async (req, res) => {
     try {
         const { id } = req.params;
@@ -272,7 +396,7 @@ export const activarUsuario = async (req, res) => {
     }
 };
 
-// Desactivar usuario (Solo como Admin)
+// Desactivar usuario (Admin)
 export const desactivarUsuario = async (req, res) => {
     try {
         const { id } = req.params;
