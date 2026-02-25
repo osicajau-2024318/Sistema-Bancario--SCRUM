@@ -10,10 +10,13 @@ import { helmetConfiguration } from './helmet-configuration.js';
 import { requestLimit } from '../middlewares/request-limit.js';
 import { errorHandler } from '../middlewares/handle-errors.js';
 import fieldRoutes from '../src/fields/field.routes.js'
+import userRoutes from '../src/routes/user.routes.js';
+import cuentaRoutes from '../src/routes/cuenta.routes.js';
 
 const BASE_PATH = '/SistemaBancarioAdmin/v1';
 
 const middlewares = (app) => {
+    
     app.use(express.urlencoded({ extended: false, limit: '10mb' }));
     app.use(express.json({ limit: '10mb' }));
     app.use(cors(corsOptions));
@@ -24,7 +27,9 @@ const middlewares = (app) => {
 
 const routes = (app) => {
 
-    app.use(`${BASE_PATH}/fields`, fieldRoutes);
+     app.use(`${BASE_PATH}/fields`, fieldRoutes);
+    app.use(`${BASE_PATH}/auth`, userRoutes);
+    app.use(`${BASE_PATH}/cuentas`, cuentaRoutes);
 
     app.get(`${BASE_PATH}/Health`, (request, response) => {
         response.status(200).json({
@@ -45,8 +50,7 @@ const routes = (app) => {
 export const initServer = async () => {
     const app = express();
     const PORT = process.env.PORT;
-    app.set('trus proxy', 1);
-
+    app.set('trust proxy', 1);
     try {
         await dbConnection();
         middlewares(app);
@@ -55,7 +59,7 @@ export const initServer = async () => {
         app.use(errorHandler);
 
         app.listen(PORT, () => {
-            console.log(`KinalSports Admin server running on port ${PORT}`);
+            console.log(`Sistema Banco server running on port ${PORT}`);
             console.log(`Health check: http://localhost:${PORT}${BASE_PATH}/health`);
         })
     } catch (error) {
