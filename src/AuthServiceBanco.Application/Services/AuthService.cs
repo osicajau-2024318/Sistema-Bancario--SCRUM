@@ -428,5 +428,22 @@ public class AuthService(
 
         return MapToUserResponseDto(user);
     }
+
+    public async Task RegisterLoginHistoryAsync(Guid userId, string ip)
+{
+    var country = await IpLocationService.GetCountryAsync(ip);
+
+    var history = new LoginHistory
+    {
+        UserId = userId,
+        IpAddress = ip,
+        Country = country,
+        LoginDate = DateTime.UtcNow
+    };
+
+    _context.LoginHistories.Add(history);
+    await _context.SaveChangesAsync();
+}
+
 }
 
