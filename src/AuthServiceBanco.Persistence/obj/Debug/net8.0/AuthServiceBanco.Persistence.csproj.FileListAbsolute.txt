@@ -16,3 +16,6 @@ C:\Sistema-Bancario--SCRUM\src\AuthServiceBanco.Persistence\obj\Debug\net8.0\Aut
 C:\Sistema-Bancario--SCRUM\src\AuthServiceBanco.Persistence\obj\Debug\net8.0\refint\AuthServiceBanco.Persistence.dll
 C:\Sistema-Bancario--SCRUM\src\AuthServiceBanco.Persistence\obj\Debug\net8.0\AuthServiceBanco.Persistence.pdb
 C:\Sistema-Bancario--SCRUM\src\AuthServiceBanco.Persistence\obj\Debug\net8.0\ref\AuthServiceBanco.Persistence.dll
+C:\SB\Sistema-Bancario--SCRUM\src\AuthServiceBanco.Persistence\obj\Debug\net8.0\AuthServiceBanco.Persistence.dll
+C:\SB\Sistema-Bancario--SCRUM\src\AuthServiceBanco.Persistence\obj\Debug\net8.0\refint\AuthServiceBanco.Persistence.dll
+C:\SB\Sistema-Bancario--SCRUM\src\AuthServiceBanco.Persistence\obj\Debug\net8.0\AuthServiceBanco.Persistence.pdb
