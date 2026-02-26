@@ -1,135 +1,182 @@
-import { Router } from 'express';
-import {
-    crearCuenta,
-    crearCuentaByAdmin,
-    obtenerTodasCuentas,
-    obtenerMisCuentas,
-    obtenerCuentaPorId,
-    obtenerCuentaPorNumero,
-    actualizarCuenta,
-    cambiarEstadoCuenta,
-    cerrarCuenta,
-    obtenerCuentasPendientes,
-    aprobarCuenta,
-    desactivarCuenta,
-    activarCuentaCerrada
-} from '../controllers/cuenta.controller.js';
-import { validateJWT } from '../../middlewares/validate-JWT.js';
-import { validateRole } from '../../middlewares/validate-role.js';
-import {
-    validateCrearCuenta,
-    validateActualizarCuenta,
-    validateCambiarEstado,
-    validateIdParam,
-    validateNumeroCuentaParam
-} from '../../middlewares/cuenta-validators.js';
+import { Router } from "express";
+import { 
+    registerEmpleado,
+    registerEmpleadoByAdmin,
+    loginEmpleado,
+    getMyProfile,
+    updateMyProfile,
+    crearCuentaEmpleado,
+    getMisCuentasEmpleado,
+    actualizarCuentaEmpleado,
+    buscarCuentaEmpleado,
+    verUsuarios,
+    verCuentas,
+    buscarUsuario,
+    getEmpleados,
+    buscarEmpleado,
+    updateEmpleado,
+    deleteEmpleado,
+    obtenerEmpleadosPendientes,
+    activarEmpleado,
+    desactivarEmpleado
+} from "../controllers/empleado.controller.js";
+import { validateJWT } from "../../middlewares/validate-JWT.js";
+import { validateRole } from "../../middlewares/validate-role.js";
+import { 
+    validateRegisterEmpleado, 
+    validateLoginEmpleado,
+    validateCrearCuenta
+} from "../../middlewares/empleado-validators.js";
 
 const router = Router();
 
-// Todas las rutas requieren autenticación
-router.use(validateJWT);
+// Registro público de empleado (requiere aprobación del admin)
+router.post("/register", validateRegisterEmpleado, registerEmpleado);
 
-// Crear cuenta como cliente (requiere aprobación)
-router.post(
-    '/create',
-    validateCrearCuenta,
-    crearCuenta
-);
+// Login de empleado
+router.post("/login", validateLoginEmpleado, loginEmpleado);
 
-// Ver mis cuentas aprobadas
+
+
+// Ver mi perfil de empleado
 router.get(
-    '/mis-cuentas',
-    obtenerMisCuentas
+    "/me", 
+    validateJWT, 
+    validateRole('EMPLEADO', 'ADMIN'),
+    getMyProfile
 );
 
-// ⚠️  DEBE ir ANTES de /:id — si va después, Express interpreta "pendientes" como un :id
-router.get(
-    '/admin/pendientes',
-    validateRole('ADMIN'),
-    obtenerCuentasPendientes
-);
-
-// Ver cuenta por ID (solo propias o admin)
-router.get(
-    '/:id',
-    validateIdParam,
-    obtenerCuentaPorId
-);
-
-// Ver cuenta por número (solo propias o admin)
-router.get(
-    '/numero/:account_number',
-    validateNumeroCuentaParam,
-    obtenerCuentaPorNumero
-);
-
-// ==========================================
-// RUTAS SOLO ADMIN
-// ==========================================
-
-// Crear cuenta como admin (directamente aprobada)
-router.post(
-    '/create-admin',
-    validateRole('ADMIN'),
-    validateCrearCuenta,
-    crearCuentaByAdmin
-);
-
-// Ver todas las cuentas aprobadas
-router.get(
-    '/',
-    validateRole('ADMIN'),
-    obtenerTodasCuentas
-);
-
-// Aprobar cuenta
-router.patch(
-    '/:id/aprobar',
-    validateRole('ADMIN'),
-    validateIdParam,
-    aprobarCuenta
-);
-
-// Desactivar/Rechazar cuenta
-router.patch(
-    '/:id/desactivar',
-    validateRole('ADMIN'),
-    validateIdParam,
-    desactivarCuenta
-);
-
-// Activar cuenta cerrada (reactivar)
-router.patch(
-    '/:id/activar-cerrada',
-    validateRole('ADMIN'),
-    validateIdParam,
-    activarCuentaCerrada
-);
-
-// Actualizar cuenta (solo admin)
+// Actualizar mi perfil de empleado
 router.put(
-    '/:id',
-    validateRole('ADMIN'),
-    validateIdParam,
-    validateActualizarCuenta,
-    actualizarCuenta
+    "/me", 
+    validateJWT, 
+    validateRole('EMPLEADO', 'ADMIN'),
+    updateMyProfile
 );
 
-// Cambiar estado de cuenta (solo admin)
+// Ver mis cuentas (cuentas activas del sistema que el empleado gestiona)
+router.get(
+    "/mis-cuentas",
+    validateJWT,
+    validateRole('EMPLEADO', 'ADMIN'),
+    getMisCuentasEmpleado
+);
+
+// Buscar cuenta por número de cuenta
+router.get(
+    "/buscar-cuenta",
+    validateJWT,
+    validateRole('EMPLEADO', 'ADMIN'),
+    buscarCuentaEmpleado
+);
+
+// Crear cuenta para usuarios (directamente aprobada, sin esperar admin)
+router.post(
+    "/crear-cuenta",
+    validateJWT,
+    validateRole('EMPLEADO', 'ADMIN'),
+    validateCrearCuenta,
+    crearCuentaEmpleado
+);
+
+// Actualizar una cuenta específica (tipo y estado)
+router.put(
+    "/cuenta/:id",
+    validateJWT,
+    validateRole('EMPLEADO', 'ADMIN'),
+    actualizarCuentaEmpleado
+);
+
+// Ver usuarios activos
+router.get(
+    "/usuarios",
+    validateJWT,
+    validateRole('EMPLEADO', 'ADMIN'),
+    verUsuarios
+);
+
+// Buscar usuario por email, username o DPI
+router.get(
+    "/buscar-usuario",
+    validateJWT,
+    validateRole('EMPLEADO', 'ADMIN'),
+    buscarUsuario
+);
+
+// Ver todas las cuentas activas (con filtro opcional ?estado=ACTIVA|BLOQUEADA|CERRADA)
+router.get(
+    "/cuentas",
+    validateJWT,
+    validateRole('EMPLEADO', 'ADMIN'),
+    verCuentas
+);
+
+
+
+// Registrar empleado como admin (directamente activo)
+router.post(
+    "/register-admin",
+    validateJWT,
+    validateRole('ADMIN'),
+    validateRegisterEmpleado,
+    registerEmpleadoByAdmin
+);
+
+// Buscar empleado por email o DPI
+router.get(
+    "/buscar",
+    validateJWT,
+    validateRole('ADMIN'),
+    buscarEmpleado
+);
+
+// ⚠️ DEBE ir ANTES de /:id
+// Ver empleados pendientes de activación
+router.get(
+    "/pendientes",
+    validateJWT,
+    validateRole('ADMIN'),
+    obtenerEmpleadosPendientes
+);
+
+// Ver todos los empleados activos
+router.get(
+    "/",
+    validateJWT,
+    validateRole('ADMIN'),
+    getEmpleados
+);
+
+// Activar empleado
 router.patch(
-    '/:id/estado',
+    "/:id/activar",
+    validateJWT,
     validateRole('ADMIN'),
-    validateIdParam,
-    validateCambiarEstado,
-    cambiarEstadoCuenta
+    activarEmpleado
 );
 
-// Cerrar cuenta (solo admin) - equivale a "eliminar"
-router.delete(
-    '/:id',
+// Desactivar empleado
+router.patch(
+    "/:id/desactivar",
+    validateJWT,
     validateRole('ADMIN'),
-    validateIdParam,
-    cerrarCuenta
+    desactivarEmpleado
+);
+
+// Actualizar datos de un empleado (admin actualiza a otros)
+router.put(
+    "/:id",
+    validateJWT,
+    validateRole('ADMIN'),
+    updateEmpleado
+);
+
+// Eliminar (desactivar) empleado
+router.delete(
+    "/:id",
+    validateJWT,
+    validateRole('ADMIN'),
+    deleteEmpleado
 );
 
 export default router;
