@@ -1,5 +1,5 @@
 'use strict';
-
+import empleadoRoutes from '../src/routes/empleado.routes.js';
 import express from 'express';
 import cors from 'cors';
 import helmet from 'helmet';
@@ -23,6 +23,7 @@ const middlewares = (app) => {
     app.use(helmet(helmetConfiguration));
     app.use(requestLimit);
     app.use(morgan('dev'));
+    app.use(`${BASE_PATH}/empleados`, empleadoRoutes);
 }
 
 const routes = (app) => {
