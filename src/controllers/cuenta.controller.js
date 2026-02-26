@@ -2,23 +2,23 @@ import Cuenta from '../models/cuenta.model.js';
 import User from '../models/user.model.js';
 import crypto from 'crypto';
 
-// Crear cuenta (Cliente - requiere aprobación)
+
 export const crearCuenta = async (req, res) => {
     try {
-        const { tipoCuenta, saldo, moneda } = req.body;
-        
-        // Si es cliente, solo puede crear para sí mismo
+        const { account_type, account_balance, moneda } = req.body;
+
+        // Cliente SIEMPRE crea para sí mismo
         const cuentaUserId = req.user.id;
 
-        // Validar saldo mínimo según la moneda
-        if (moneda === 'GTQ' && saldo < 100) {
+        // Validar saldo mínimo según moneda
+        if (moneda === 'GTQ' && account_balance < 100) {
             return res.status(400).json({
                 success: false,
                 message: 'El saldo mínimo para cuentas en Quetzales es Q100'
             });
         }
 
-        if (moneda === 'USD' && saldo < 25) {
+        if (moneda === 'USD' && account_balance < 25) {
             return res.status(400).json({
                 success: false,
                 message: 'El saldo mínimo para cuentas en Dólares es $25'
@@ -34,25 +34,25 @@ export const crearCuenta = async (req, res) => {
             });
         }
 
-        // Generar número de cuenta aleatorio (10 dígitos)
-        let numeroCuenta;
+        // Generar número de cuenta único
+        let account_number;
         let exists = true;
-        
+
         while (exists) {
-            numeroCuenta = crypto.randomInt(1000000000, 9999999999).toString();
-            const existing = await Cuenta.findOne({ numeroCuenta });
+            account_number = crypto.randomInt(1000000000, 9999999999).toString();
+            const existing = await Cuenta.findOne({ account_number });
             if (!existing) exists = false;
         }
 
-        // Crear cuenta pendiente de aprobación
+        // Crear cuenta PENDIENTE de aprobación
         const cuenta = new Cuenta({
-            numeroCuenta,
-            userId: cuentaUserId,
-            tipoCuenta: tipoCuenta || 'AHORRO',
-            saldo,
+            account_number,
+            user_id: cuentaUserId,
+            account_type: account_type || 'AHORRO',
+            account_balance,
             moneda,
-            estado: 'ACTIVA',
-            aprobada: false  // Cliente requiere aprobación
+            estado: 'PENDIENTE',
+            aprobada: false  // Requiere aprobación
         });
 
         await cuenta.save();
@@ -73,23 +73,23 @@ export const crearCuenta = async (req, res) => {
     }
 };
 
-// Crear cuenta como ADMIN (directamente aprobada)
+
 export const crearCuentaByAdmin = async (req, res) => {
     try {
-        const { tipoCuenta, userId, saldo, moneda } = req.body;
-        
-        // Admin puede crear para cualquier usuario
-        const cuentaUserId = userId || req.user.id;
+        const { account_type, user_id, account_balance, moneda } = req.body;
 
-        // Validar saldo mínimo según la moneda
-        if (moneda === 'GTQ' && saldo < 100) {
+        // Admin puede crear para cualquier usuario o para sí mismo
+        const cuentaUserId = user_id || req.user.id;
+
+        // Validar saldo mínimo según moneda
+        if (moneda === 'GTQ' && account_balance < 100) {
             return res.status(400).json({
                 success: false,
                 message: 'El saldo mínimo para cuentas en Quetzales es Q100'
             });
         }
 
-        if (moneda === 'USD' && saldo < 25) {
+        if (moneda === 'USD' && account_balance < 25) {
             return res.status(400).json({
                 success: false,
                 message: 'El saldo mínimo para cuentas en Dólares es $25'
@@ -105,33 +105,37 @@ export const crearCuentaByAdmin = async (req, res) => {
             });
         }
 
-        // Generar número de cuenta aleatorio (10 dígitos)
-        let numeroCuenta;
+        // Generar número de cuenta único
+        let account_number;
         let exists = true;
-        
+
         while (exists) {
-            numeroCuenta = crypto.randomInt(1000000000, 9999999999).toString();
-            const existing = await Cuenta.findOne({ numeroCuenta });
+            account_number = crypto.randomInt(1000000000, 9999999999).toString();
+            const existing = await Cuenta.findOne({ account_number });
             if (!existing) exists = false;
         }
 
-        // Admin crea cuenta directamente aprobada
+        // Admin crea cuenta DIRECTAMENTE APROBADA Y ACTIVA
         const cuenta = new Cuenta({
-            numeroCuenta,
-            userId: cuentaUserId,
-            tipoCuenta: tipoCuenta || 'AHORRO',
-            saldo,
+            account_number,
+            user_id: cuentaUserId,
+            account_type: account_type || 'AHORRO',
+            account_balance,
             moneda,
             estado: 'ACTIVA',
-            aprobada: true  // Admin crea directamente aprobada
+            aprobada: true  // Directamente aprobada
         });
 
         await cuenta.save();
 
+        // Poblar con información del usuario
+        const cuentaCompleta = await Cuenta.findById(cuenta._id)
+            .populate('user_id', 'user_name user_email user_username user_type');
+
         res.status(201).json({
             success: true,
             message: 'Cuenta creada exitosamente por administrador',
-            data: cuenta
+            data: cuentaCompleta
         });
 
     } catch (error) {
@@ -144,16 +148,16 @@ export const crearCuentaByAdmin = async (req, res) => {
     }
 };
 
-// Obtener todas las cuentas APROBADAS (Admin)
 export const obtenerTodasCuentas = async (req, res) => {
     try {
         const { page = 1, limit = 10, estado } = req.query;
 
+        // Solo cuentas aprobadas
         const filter = { aprobada: true };
         if (estado) filter.estado = estado;
 
         const cuentas = await Cuenta.find(filter)
-            .populate('userId', 'name email username rol')  // Incluye nombre y rol
+            .populate('user_id', 'user_name user_email user_username user_type')
             .limit(limit * 1)
             .skip((page - 1) * limit)
             .sort({ createdAt: -1 });
@@ -180,16 +184,16 @@ export const obtenerTodasCuentas = async (req, res) => {
     }
 };
 
-// Obtener mis cuentas APROBADAS (Cliente o Admin)
+
 export const obtenerMisCuentas = async (req, res) => {
     try {
         const userId = req.user.id;
 
-        const cuentas = await Cuenta.find({ 
-            userId,
-            aprobada: true  // Solo mostrar cuentas aprobadas
+        const cuentas = await Cuenta.find({
+            user_id: userId,
+            aprobada: true  // Solo aprobadas
         })
-        .populate('userId', 'name email username rol')
+        .populate('user_id', 'user_name user_email user_username user_type')
         .sort({ createdAt: -1 });
 
         res.status(200).json({
@@ -207,7 +211,7 @@ export const obtenerMisCuentas = async (req, res) => {
     }
 };
 
-// Obtener cuenta por ID
+
 export const obtenerCuentaPorId = async (req, res) => {
     try {
         const { id } = req.params;
@@ -215,7 +219,7 @@ export const obtenerCuentaPorId = async (req, res) => {
         const userRole = req.user.role;
 
         const cuenta = await Cuenta.findById(id)
-            .populate('userId', 'name email username rol');
+            .populate('user_id', 'user_name user_email user_username user_type');
 
         if (!cuenta) {
             return res.status(404).json({
@@ -225,7 +229,7 @@ export const obtenerCuentaPorId = async (req, res) => {
         }
 
         // Si no es admin, solo puede ver sus propias cuentas
-        if (userRole !== 'ADMIN' && cuenta.userId._id.toString() !== userId) {
+        if (userRole !== 'ADMIN' && cuenta.user_id._id.toString() !== userId) {
             return res.status(403).json({
                 success: false,
                 message: 'No tienes permisos para ver esta cuenta'
@@ -247,15 +251,15 @@ export const obtenerCuentaPorId = async (req, res) => {
     }
 };
 
-// Obtener cuenta por número de cuenta
+
 export const obtenerCuentaPorNumero = async (req, res) => {
     try {
-        const { numeroCuenta } = req.params;
+        const { account_number } = req.params;
         const userId = req.user.id;
         const userRole = req.user.role;
 
-        const cuenta = await Cuenta.findOne({ numeroCuenta })
-            .populate('userId', 'name email username rol');
+        const cuenta = await Cuenta.findOne({ account_number })
+            .populate('user_id', 'user_name user_email user_username user_type');
 
         if (!cuenta) {
             return res.status(404).json({
@@ -265,7 +269,7 @@ export const obtenerCuentaPorNumero = async (req, res) => {
         }
 
         // Si no es admin, solo puede ver sus propias cuentas
-        if (userRole !== 'ADMIN' && cuenta.userId._id.toString() !== userId) {
+        if (userRole !== 'ADMIN' && cuenta.user_id._id.toString() !== userId) {
             return res.status(403).json({
                 success: false,
                 message: 'No tienes permisos para ver esta cuenta'
@@ -287,11 +291,11 @@ export const obtenerCuentaPorNumero = async (req, res) => {
     }
 };
 
-// Actualizar cuenta (SOLO ADMIN)
+
 export const actualizarCuenta = async (req, res) => {
     try {
         const { id } = req.params;
-        const { tipoCuenta, estado } = req.body;
+        const { account_type, estado } = req.body;
 
         const cuenta = await Cuenta.findById(id);
 
@@ -302,16 +306,15 @@ export const actualizarCuenta = async (req, res) => {
             });
         }
 
-        // Campos permitidos para actualizar
         const allowedUpdates = {};
-        if (tipoCuenta) allowedUpdates.tipoCuenta = tipoCuenta;
+        if (account_type) allowedUpdates.account_type = account_type;
         if (estado) allowedUpdates.estado = estado;
 
         const cuentaActualizada = await Cuenta.findByIdAndUpdate(
             id,
             { $set: allowedUpdates },
             { new: true, runValidators: true }
-        ).populate('userId', 'name email username rol');
+        ).populate('user_id', 'user_name user_email user_username user_type');
 
         res.status(200).json({
             success: true,
@@ -329,7 +332,7 @@ export const actualizarCuenta = async (req, res) => {
     }
 };
 
-// Cambiar estado de cuenta (Admin)
+
 export const cambiarEstadoCuenta = async (req, res) => {
     try {
         const { id } = req.params;
@@ -339,7 +342,7 @@ export const cambiarEstadoCuenta = async (req, res) => {
             id,
             { $set: { estado } },
             { new: true, runValidators: true }
-        ).populate('userId', 'name email username rol');
+        ).populate('user_id', 'user_name user_email user_username user_type');
 
         if (!cuenta) {
             return res.status(404).json({
@@ -364,7 +367,7 @@ export const cambiarEstadoCuenta = async (req, res) => {
     }
 };
 
-// Cerrar cuenta es lo mismo que eliminar 
+
 export const cerrarCuenta = async (req, res) => {
     try {
         const { id } = req.params;
@@ -378,7 +381,6 @@ export const cerrarCuenta = async (req, res) => {
             });
         }
 
-        // Cambiar estado a CERRADA (equivale a eliminada)
         cuenta.estado = 'CERRADA';
         await cuenta.save();
 
@@ -399,13 +401,13 @@ export const cerrarCuenta = async (req, res) => {
 };
 
 
-// Ver cuentas pendientes de aprobación (Admin)
 export const obtenerCuentasPendientes = async (req, res) => {
     try {
         const { page = 1, limit = 10 } = req.query;
 
+        // Buscar SOLO cuentas pendientes (aprobada: false)
         const cuentas = await Cuenta.find({ aprobada: false })
-            .populate('userId', 'name email username rol')
+            .populate('user_id', 'user_name user_email user_username user_type')
             .limit(limit * 1)
             .skip((page - 1) * limit)
             .sort({ createdAt: -1 });
@@ -433,7 +435,7 @@ export const obtenerCuentasPendientes = async (req, res) => {
     }
 };
 
-// Aprobar cuenta (Admin)
+
 export const aprobarCuenta = async (req, res) => {
     try {
         const { id } = req.params;
@@ -454,12 +456,14 @@ export const aprobarCuenta = async (req, res) => {
             });
         }
 
+        // Aprobar cuenta
         cuenta.aprobada = true;
         cuenta.estado = 'ACTIVA';
         await cuenta.save();
 
+        // Poblar información del usuario
         const cuentaPopulada = await Cuenta.findById(id)
-            .populate('userId', 'name email username rol');
+            .populate('user_id', 'user_name user_email user_username user_type');
 
         res.status(200).json({
             success: true,
@@ -477,7 +481,6 @@ export const aprobarCuenta = async (req, res) => {
     }
 };
 
-// Rechazar/Desactivar cuenta (Admin)
 export const desactivarCuenta = async (req, res) => {
     try {
         const { id } = req.params;
@@ -491,7 +494,7 @@ export const desactivarCuenta = async (req, res) => {
             });
         }
 
-        // Si está pendiente, rechazar (cerrar)
+        // Si está pendiente, la rechazamos (cerramos)
         if (cuenta.aprobada === false) {
             cuenta.estado = 'CERRADA';
             await cuenta.save();
@@ -503,7 +506,7 @@ export const desactivarCuenta = async (req, res) => {
             });
         }
 
-        // Si ya está aprobada, desactivar (cerrar)
+        // Si ya está aprobada, la desactivamos (cerramos)
         cuenta.estado = 'CERRADA';
         await cuenta.save();
 
@@ -523,7 +526,6 @@ export const desactivarCuenta = async (req, res) => {
     }
 };
 
-// Activar cuenta cerrada (Admin) - Reactivar cuenta
 export const activarCuentaCerrada = async (req, res) => {
     try {
         const { id } = req.params;
@@ -544,12 +546,13 @@ export const activarCuentaCerrada = async (req, res) => {
             });
         }
 
+        // Reactivar cuenta
         cuenta.estado = 'ACTIVA';
         cuenta.aprobada = true;
         await cuenta.save();
 
         const cuentaPopulada = await Cuenta.findById(id)
-            .populate('userId', 'name email username rol');
+            .populate('user_id', 'user_name user_email user_username user_type');
 
         res.status(200).json({
             success: true,

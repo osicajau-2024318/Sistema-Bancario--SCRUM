@@ -6,7 +6,7 @@ import crypto from 'crypto';
 export const registerUser = async (req, res) => {
     try {
         // Validar ingresos mínimos
-        if (req.body.monthlyIncome < 100) {
+        if (req.body.user_income_month < 100) {
             return res.status(400).json({
                 success: false,
                 message: 'Los ingresos mensuales deben ser al menos Q100'
@@ -14,23 +14,23 @@ export const registerUser = async (req, res) => {
         }
 
         // Generar número de cuenta aleatorio (10 dígitos)
-        let numeroCuenta;
+        let user_number_account;
         let exists = true;
-        
+
         while (exists) {
-            numeroCuenta = crypto.randomInt(1000000000, 9999999999).toString();
-            const existing = await User.findOne({ numeroCuenta });
+            user_number_account = crypto.randomInt(1000000000, 9999999999).toString();
+            const existing = await User.findOne({ user_number_account });
             if (!existing) exists = false;
         }
 
         const user = new User({
             ...req.body,
-            numeroCuenta,
-            rol: 'CLIENTE',
+            user_number_account,
+            user_type: 'CLIENTE',
             balance: 0,
             estado: false  // Requiere aprobación del admin
         });
-        
+
         await user.save();
 
         res.status(201).json({
@@ -38,10 +38,10 @@ export const registerUser = async (req, res) => {
             message: "Registro exitoso. Tu cuenta será activada por un administrador pronto.",
             data: {
                 id: user._id,
-                name: user.name,
-                username: user.username,
-                email: user.email,
-                numeroCuenta: user.numeroCuenta,
+                user_name: user.user_name,
+                user_username: user.user_username,
+                user_email: user.user_email,
+                user_number_account: user.user_number_account,
                 estado: user.estado
             }
         });
@@ -58,7 +58,7 @@ export const registerUser = async (req, res) => {
 export const registerUserByAdmin = async (req, res) => {
     try {
         // Validar ingresos mínimos
-        if (req.body.monthlyIncome < 100) {
+        if (req.body.user_income_month < 100) {
             return res.status(400).json({
                 success: false,
                 message: 'Los ingresos mensuales deben ser al menos Q100'
@@ -66,23 +66,23 @@ export const registerUserByAdmin = async (req, res) => {
         }
 
         // Generar número de cuenta aleatorio (10 dígitos)
-        let numeroCuenta;
+        let user_number_account;
         let exists = true;
-        
+
         while (exists) {
-            numeroCuenta = crypto.randomInt(1000000000, 9999999999).toString();
-            const existing = await User.findOne({ numeroCuenta });
+            user_number_account = crypto.randomInt(1000000000, 9999999999).toString();
+            const existing = await User.findOne({ user_number_account });
             if (!existing) exists = false;
         }
 
         const user = new User({
             ...req.body,
-            numeroCuenta,
-            rol: req.body.rol || 'CLIENTE',  // Admin puede especificar el rol
+            user_number_account,
+            user_type: req.body.user_type || 'CLIENTE',  // Admin puede especificar el tipo
             balance: 0,
             estado: true  // Admin crea usuarios directamente activos
         });
-        
+
         await user.save();
 
         res.status(201).json({
@@ -90,11 +90,11 @@ export const registerUserByAdmin = async (req, res) => {
             message: "Usuario creado exitosamente por administrador",
             data: {
                 id: user._id,
-                name: user.name,
-                username: user.username,
-                email: user.email,
-                numeroCuenta: user.numeroCuenta,
-                rol: user.rol,
+                user_name: user.user_name,
+                user_username: user.user_username,
+                user_email: user.user_email,
+                user_number_account: user.user_number_account,
+                user_type: user.user_type,
                 estado: user.estado
             }
         });
@@ -109,9 +109,9 @@ export const registerUserByAdmin = async (req, res) => {
 
 export const loginUser = async (req, res) => {
     try {
-        const { email, password } = req.body;
+        const { user_email, user_password } = req.body;
 
-        const user = await User.findOne({ email });
+        const user = await User.findOne({ user_email });
 
         if (!user) {
             return res.status(401).json({
@@ -120,7 +120,7 @@ export const loginUser = async (req, res) => {
             });
         }
 
-        const isMatch = await user.comparePassword(password);
+        const isMatch = await user.comparePassword(user_password);
 
         if (!isMatch) {
             return res.status(401).json({
@@ -138,7 +138,7 @@ export const loginUser = async (req, res) => {
         }
 
         // Generar JWT
-        const token = await generateJWT(user._id, { role: user.rol });
+        const token = await generateJWT(user._id, { role: user.user_type });
 
         // Calcular expiración
         const expiresAt = new Date(Date.now() + 30 * 60 * 1000);
@@ -149,11 +149,11 @@ export const loginUser = async (req, res) => {
             token,
             data: {
                 id: user._id,
-                name: user.name,
-                username: user.username,
-                email: user.email,
-                rol: user.rol,
-                numeroCuenta: user.numeroCuenta,
+                user_name: user.user_name,
+                user_username: user.user_username,
+                user_email: user.user_email,
+                user_type: user.user_type,
+                user_number_account: user.user_number_account,
                 balance: user.balance
             },
             expiresAt
@@ -171,7 +171,7 @@ export const loginUser = async (req, res) => {
 export const getUsers = async (req, res) => {
     try {
         const users = await User.find({ estado: true })
-            .select('-password');
+            .select('-user_password');
 
         res.status(200).json({
             success: true,
@@ -191,7 +191,7 @@ export const getMyProfile = async (req, res) => {
     try {
         const userId = req.user.id;
 
-        const user = await User.findById(userId).select('-password');
+        const user = await User.findById(userId).select('-user_password');
 
         if (!user) {
             return res.status(404).json({
@@ -213,7 +213,6 @@ export const getMyProfile = async (req, res) => {
     }
 };
 
-
 export const buscarUsuario = async (req, res) => {
     try {
         const { busqueda } = req.query;
@@ -227,11 +226,11 @@ export const buscarUsuario = async (req, res) => {
 
         const usuario = await User.findOne({
             $or: [
-                { email: busqueda },
-                { username: busqueda },
-                { dpi: busqueda }
+                { user_email: busqueda },
+                { user_username: busqueda },
+                { user_dpi: busqueda }
             ]
-        }).select('-password');
+        }).select('-user_password');
 
         if (!usuario) {
             return res.status(404).json({
@@ -255,14 +254,14 @@ export const buscarUsuario = async (req, res) => {
 
 export const updateUser = async (req, res) => {
     try {
-        const {id} = req.params;
+        const { id } = req.params;
         const data = req.body;
 
         const user = await User.findByIdAndUpdate(
             id,
             data,
-            {new: true}
-        ).select('-password');
+            { new: true }
+        ).select('-user_password');
 
         if (!user) {
             return res.status(404).json({
@@ -279,11 +278,11 @@ export const updateUser = async (req, res) => {
 
     } catch (error) {
         res.status(500).json({
-            success:false,
+            success: false,
             message: error.message
         });
     }
-}
+};
 
 export const deleteUser = async (req, res) => {
     try {
@@ -293,7 +292,7 @@ export const deleteUser = async (req, res) => {
             id,
             { estado: false },
             { new: true }
-        ).select('-password');
+        ).select('-user_password');
 
         if (!user) {
             return res.status(404).json({
@@ -321,13 +320,15 @@ export const obtenerUsuariosPendientes = async (req, res) => {
     try {
         const { page = 1, limit = 10 } = req.query;
 
-        const usuarios = await User.find({ estado: false })
-            .select('-password')
+        // Solo clientes con estado false (pendientes de aprobación)
+        // Los admins nunca deberían estar pendientes
+        const usuarios = await User.find({ estado: false, user_type: 'CLIENTE' })
+            .select('-user_password')
             .limit(limit * 1)
             .skip((page - 1) * limit)
             .sort({ createdAt: -1 });
 
-        const total = await User.countDocuments({ estado: false });
+        const total = await User.countDocuments({ estado: false, user_type: 'CLIENTE' });
 
         res.status(200).json({
             success: true,
@@ -379,9 +380,9 @@ export const activarUsuario = async (req, res) => {
             message: 'Usuario activado exitosamente',
             data: {
                 id: usuario._id,
-                name: usuario.name,
-                username: usuario.username,
-                email: usuario.email,
+                user_name: usuario.user_name,
+                user_username: usuario.user_username,
+                user_email: usuario.user_email,
                 estado: usuario.estado
             }
         });
@@ -410,7 +411,7 @@ export const desactivarUsuario = async (req, res) => {
             });
         }
 
-        if (usuario.rol === 'ADMIN') {
+        if (usuario.user_type === 'ADMIN') {
             return res.status(403).json({
                 success: false,
                 message: 'No se puede desactivar un administrador'
@@ -432,9 +433,9 @@ export const desactivarUsuario = async (req, res) => {
             message: 'Usuario desactivado exitosamente',
             data: {
                 id: usuario._id,
-                name: usuario.name,
-                username: usuario.username,
-                email: usuario.email,
+                user_name: usuario.user_name,
+                user_username: usuario.user_username,
+                user_email: usuario.user_email,
                 estado: usuario.estado
             }
         });
