@@ -28,7 +28,7 @@ route.post("/login", validateLogin, loginUser);
 // Ver mi perfil (Cliente o Admin)
 route.get("/me", validateJWT, getMyProfile);
 
-// Registrar usuario como admin 
+// Registrar usuario como admin
 route.post(
     "/register-admin",
     validateJWT,
@@ -38,6 +38,7 @@ route.post(
 );
 
 // Buscar usuario específico (por email, username o DPI)
+// ⚠️ DEBE ir ANTES de /:id
 route.get(
     "/buscar",
     validateJWT,
@@ -53,7 +54,7 @@ route.get(
     getUsers
 );
 
-// Ver usuarios pendientes de activación
+// ⚠️ DEBE ir ANTES de /:id — si va después, Express interpreta "pendientes" como un :id
 route.get(
     "/pendientes",
     validateJWT,

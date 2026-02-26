@@ -42,6 +42,13 @@ router.get(
     obtenerMisCuentas
 );
 
+// ⚠️  DEBE ir ANTES de /:id — si va después, Express interpreta "pendientes" como un :id
+router.get(
+    '/admin/pendientes',
+    validateRole('ADMIN'),
+    obtenerCuentasPendientes
+);
+
 // Ver cuenta por ID (solo propias o admin)
 router.get(
     '/:id',
@@ -51,7 +58,7 @@ router.get(
 
 // Ver cuenta por número (solo propias o admin)
 router.get(
-    '/numero/:numeroCuenta',
+    '/numero/:account_number',
     validateNumeroCuentaParam,
     obtenerCuentaPorNumero
 );
@@ -73,13 +80,6 @@ router.get(
     '/',
     validateRole('ADMIN'),
     obtenerTodasCuentas
-);
-
-// Ver cuentas pendientes de aprobación
-router.get(
-    '/admin/pendientes',
-    validateRole('ADMIN'),
-    obtenerCuentasPendientes
 );
 
 // Aprobar cuenta

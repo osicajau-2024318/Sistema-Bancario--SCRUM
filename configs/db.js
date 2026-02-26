@@ -1,5 +1,4 @@
 'use strict';
-
 import mongoose from "mongoose";
 
 export const dbConnection = async () => {
@@ -15,7 +14,8 @@ export const dbConnection = async () => {
             console.log('MongoDB | conectado a mongoDB');
         });
         mongoose.connection.on('open', () => {
-            console.log('MongoDB | conectado a la base de datos kinalSports');
+            
+            console.log(`MongoDB | conectado a la base de datos ${mongoose.connection.name}`);
         });
         mongoose.connection.on('reconnected', () => {
             console.log('MongoDB | reconectando a mongoDB');
@@ -27,11 +27,12 @@ export const dbConnection = async () => {
         await mongoose.connect(process.env.URI_MONGO, {
             serverSelectionTimeoutMS: 5000,
             maxPoolSize: 10
-        })
+        });
+
     } catch (error) {
         console.log(`Error al conectar la db: ${error}`);
     }
-}
+};
 
 const gracefulShutdown = async (signal) => {
     console.log(`MongoDB | Received ${signal}. Closing database connection...`);
@@ -43,7 +44,7 @@ const gracefulShutdown = async (signal) => {
         console.error('MongoDB | Error during graceful shutdown:', error.message);
         process.exit(1);
     }
-}
+};
 
 process.on('SIGINT', () => gracefulShutdown('SIGINT'));
 process.on('SIGTERM', () => gracefulShutdown('SIGTERM'));

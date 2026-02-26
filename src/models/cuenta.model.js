@@ -1,18 +1,18 @@
-import { Schema, model } from "mongoose";
+import mongoose, { Schema } from "mongoose";
 
 const cuentaSchema = new Schema({
-    numeroCuenta: {
+    account_number: {
         type: String,
         required: [true, 'El número de cuenta es obligatorio'],
         unique: true,
         match: [/^\d{10}$/, 'El número de cuenta debe tener 10 dígitos']
     },
-    userId: {
+    user_id: {
         type: Schema.Types.ObjectId,
         ref: 'User',
         required: [true, 'El usuario es obligatorio']
     },
-    tipoCuenta: {
+    account_type: {
         type: String,
         required: [true, 'El tipo de cuenta es obligatorio'],
         enum: {
@@ -21,11 +21,15 @@ const cuentaSchema = new Schema({
         },
         default: 'AHORRO'
     },
-    saldo: {
+    account_balance: {
         type: Number,
         required: [true, 'El saldo inicial es obligatorio'],
         min: [0, 'El saldo no puede ser negativo']
     },
+    account_history: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Transaccion'
+    }],
     moneda: {
         type: String,
         required: [true, 'La moneda es obligatoria'],
@@ -34,16 +38,14 @@ const cuentaSchema = new Schema({
             message: 'Moneda no válida. Use GTQ o USD'
         }
     },
-    // Estado para el sistema de aprobación (similar a User)
     aprobada: {
         type: Boolean,
-        default: false  // Las cuentas creadas por clientes requieren aprobación
+        default: false
     },
-    // Estado operacional de la cuenta
     estado: {
         type: String,
         enum: {
-            values: ['ACTIVA', 'BLOQUEADA', 'CERRADA'],
+            values: ['ACTIVA', 'BLOQUEADA', 'CERRADA', 'PENDIENTE'],
             message: 'Estado no válido'
         },
         default: 'ACTIVA'
@@ -57,10 +59,12 @@ const cuentaSchema = new Schema({
     versionKey: false
 });
 
-// Índices para búsquedas rápidas
-cuentaSchema.index({ userId: 1 });
-cuentaSchema.index({ numeroCuenta: 1 });
+
+cuentaSchema.index({ user_id: 1 });
 cuentaSchema.index({ estado: 1 });
 cuentaSchema.index({ aprobada: 1 });
 
-export default model('Cuenta', cuentaSchema);
+
+const Cuenta = mongoose.models.Cuenta || mongoose.model('Cuenta', cuentaSchema);
+
+export default Cuenta;

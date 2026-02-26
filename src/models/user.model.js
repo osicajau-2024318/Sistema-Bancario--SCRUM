@@ -1,55 +1,55 @@
-import { Schema, model } from "mongoose";
+import mongoose, { Schema } from "mongoose";
 import bcrypt from "bcryptjs";
 
 const userSchema = new Schema({
-    numeroCuenta: {
+    user_number_account: {
         type: String,
         required: true,
         unique: true
     },
-    name: {
+    user_name: {
         type: String,
         required: true
     },
-    username: {
+    user_username: {
         type: String,
         required: [true, 'El username es obligatorio'],
         unique: true,
         trim: true
     },
-    dpi: {
+    user_dpi: {
         type: String,
         required: true,
         unique: true,
         immutable: true
     },
-    email: {
+    user_email: {
         type: String,
         required: true,
         unique: true,
         lowercase: true
     },
-    password: {
+    user_password: {
         type: String,
         required: true,
         minlength: 6
     },
-    address: {
+    user_address: {
         type: String,
         required: [true, 'La dirección es obligatoria'],
         trim: true
     },
-    cellphone: {
+    user_phone_number: {
         type: String,
         required: [true, 'El celular es obligatorio'],
         match: [/^\d{8}$/, 'El celular debe tener 8 dígitos']
     },
-    workPlace: {
+    user_name_work: {
         type: String,
         required: [true, 'El nombre de trabajo es obligatorio'],
         trim: true
     },
-    monthlyIncome: {
+    user_income_month: {
         type: Number,
         required: [true, 'Los ingresos mensuales son obligatorios'],
         min: [100, 'Los ingresos deben ser al menos Q100']
@@ -59,45 +59,43 @@ const userSchema = new Schema({
         default: 0,
         min: [0, 'El saldo no puede ser negativo']
     },
-    rol: {
+    user_type: {
         type: String,
         enum: ["ADMIN", "CLIENTE"],
         default: "CLIENTE"
     },
     estado: {
         type: Boolean,
-        default: false // Cuando se crea un usuario se crea como falso y no se registra 
+        default: false // Cuando se crea un usuario se crea como falso y no se registra
     }
 }, {
     timestamps: true
 });
 
 // Prevenir modificación de DPI
-userSchema.pre('findOneAndUpdate', function(next) {
+userSchema.pre('findOneAndUpdate', function() {
     const update = this.getUpdate();
-    if (update.dpi || (update.$set && update.$set.dpi)) {
-        const error = new Error('El DPI no puede ser modificado');
-        return next(error);
+    if (update.user_dpi || (update.$set && update.$set.user_dpi)) {
+        throw new Error('El DPI no puede ser modificado');
     }
-    next;
 });
 
-userSchema.pre("save", async function (next) {
-    if (!this.isModified("password")) return next;
+userSchema.pre("save", async function () {
+    if (!this.isModified("user_password")) return;
     const salt = await bcrypt.genSalt(10);
-    this.password = await bcrypt.hash(this.password, salt)
-    next;
+    this.user_password = await bcrypt.hash(this.user_password, salt);
 });
-
-
 
 userSchema.methods.comparePassword = async function (password) {
-    return await bcrypt.compare(password, this.password);
+    return await bcrypt.compare(password, this.user_password);
 };
 
 userSchema.methods.toJSON = function () {
-    const { password, __v, ...user } = this.toObject();
+    const { user_password, __v, ...user } = this.toObject();
     return user;
 };
 
-export default model("User", userSchema);
+// Guard para evitar OverwriteModelError si el módulo se carga más de una vez
+const User = mongoose.models.User || mongoose.model("User", userSchema);
+
+export default User;
