@@ -23,14 +23,13 @@ const middlewares = (app) => {
     app.use(helmet(helmetConfiguration));
     app.use(requestLimit);
     app.use(morgan('dev'));
-    app.use(`${BASE_PATH}/empleados`, empleadoRoutes);
 }
 
 const routes = (app) => {
-
-     app.use(`${BASE_PATH}/fields`, fieldRoutes);
+    app.use(`${BASE_PATH}/fields`, fieldRoutes);
     app.use(`${BASE_PATH}/auth`, userRoutes);
     app.use(`${BASE_PATH}/cuentas`, cuentaRoutes);
+    app.use(`${BASE_PATH}/empleados`, empleadoRoutes);
 
     app.get(`${BASE_PATH}/Health`, (request, response) => {
         response.status(200).json({

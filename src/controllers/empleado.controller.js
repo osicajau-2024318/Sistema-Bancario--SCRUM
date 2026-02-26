@@ -301,6 +301,129 @@ export const crearCuentaEmpleado = async (req, res) => {
     }
 };
 
+
+export const getMisCuentasEmpleado = async (req, res) => {
+    try {
+
+        const { page = 1, limit = 10, estado } = req.query;
+
+        const filter = { aprobada: true };
+        if (estado) filter.estado = estado;
+
+        const cuentas = await Cuenta.find(filter)
+            .populate('user_id', 'user_name user_email user_username user_type')
+            .limit(limit * 1)
+            .skip((page - 1) * limit)
+            .sort({ createdAt: -1 });
+
+        const total = await Cuenta.countDocuments(filter);
+
+        res.status(200).json({
+            success: true,
+            message: 'Cuentas activas del sistema',
+            data: cuentas,
+            pagination: {
+                total,
+                page: parseInt(page),
+                pages: Math.ceil(total / limit)
+            }
+        });
+
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            message: error.message
+        });
+    }
+};
+
+// ========================================
+// ACTUALIZAR CUENTA (Empleado puede actualizar tipo y estado)
+// ========================================
+export const actualizarCuentaEmpleado = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const { account_type, estado } = req.body;
+
+        const cuenta = await Cuenta.findById(id);
+
+        if (!cuenta) {
+            return res.status(404).json({
+                success: false,
+                message: 'Cuenta no encontrada'
+            });
+        }
+
+        // Empleado solo puede actualizar cuentas aprobadas
+        if (!cuenta.aprobada) {
+            return res.status(400).json({
+                success: false,
+                message: 'No se puede actualizar una cuenta pendiente de aprobación'
+            });
+        }
+
+        const allowedUpdates = {};
+        if (account_type) allowedUpdates.account_type = account_type;
+        if (estado) allowedUpdates.estado = estado;
+
+        const cuentaActualizada = await Cuenta.findByIdAndUpdate(
+            id,
+            { $set: allowedUpdates },
+            { new: true, runValidators: true }
+        ).populate('user_id', 'user_name user_email user_username user_type');
+
+        res.status(200).json({
+            success: true,
+            message: 'Cuenta actualizada exitosamente',
+            data: cuentaActualizada
+        });
+
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            message: error.message
+        });
+    }
+};
+
+
+export const buscarCuentaEmpleado = async (req, res) => {
+    try {
+        const { busqueda } = req.query;
+
+        if (!busqueda) {
+            return res.status(400).json({
+                success: false,
+                message: 'Debe proporcionar un número de cuenta o ID'
+            });
+        }
+
+        const cuenta = await Cuenta.findOne({
+            $or: [
+                { account_number: busqueda }
+            ]
+        }).populate('user_id', 'user_name user_email user_username user_type');
+
+        if (!cuenta) {
+            return res.status(404).json({
+                success: false,
+                message: 'Cuenta no encontrada'
+            });
+        }
+
+        res.status(200).json({
+            success: true,
+            data: cuenta
+        });
+
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            message: error.message
+        });
+    }
+};
+
 export const verUsuarios = async (req, res) => {
     try {
         const { page = 1, limit = 10 } = req.query;
@@ -331,9 +454,7 @@ export const verUsuarios = async (req, res) => {
     }
 };
 
-// ========================================
-// VER CUENTAS ACTIVAS (Empleado puede ver)
-// ========================================
+
 export const verCuentas = async (req, res) => {
     try {
         const { page = 1, limit = 10, estado } = req.query;

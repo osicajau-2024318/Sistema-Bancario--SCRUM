@@ -62,7 +62,4 @@ export const validateLogin = [
         .isEmail().withMessage('Email inválido'),
     
     body('user_password')
-        .notEmpty().withMessage('La contraseña es obligatoria'),
-    
-    checkValidators
 ];
