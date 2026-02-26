@@ -1,19 +1,18 @@
-'use strict';
 
 export const validateRole = (...allowedRoles) => {
     return (req, res, next) => {
-        if (!req.user) {
-            return res.status(500).json({
+        // Verificar que el usuario esté autenticado
+        if (!req.user || !req.user.role) {
+            return res.status(401).json({
                 success: false,
-                message: 'Se requiere validar JWT primero'
+                message: 'No autenticado'
             });
         }
 
         if (!allowedRoles.includes(req.user.role)) {
             return res.status(403).json({
                 success: false,
-                message: 'No tienes permisos para esta acción',
-                error: 'FORBIDDEN'
+                message: 'No tienes permisos para acceder a este recurso'
             });
         }
 
