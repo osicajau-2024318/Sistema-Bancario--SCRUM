@@ -1,0 +1,1460 @@
+{
+  "info": {
+    "_postman_id": "e7579d46-16de-45e6-b358-a951dc0c5f2f",
+    "name": "Banco",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "48119170",
+    "_collection_link": "https://go.postman.co/collection/48119170-e7579d46-16de-45e6-b358-a951dc0c5f2f?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "Administrador",
+      "item": [
+        {
+          "name": "CRUD",
+          "item": [
+            {
+              "name": "login",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Successful POST request\", function () {",
+                      "    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
+                      "});",
+                      ""
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"user_email\": \"admin@banco.com\",\n  \"user_password\": \"ADMINB\"\n}\n",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:3006/SistemaBancarioAdmin/v1/auth/login",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3006",
+                  "path": [
+                    "SistemaBancarioAdmin",
+                    "v1",
+                    "auth",
+                    "login"
+                  ]
+                },
+                "description": "This is a POST request, submitting data to an API via the request body. This request submits JSON data, and the data is reflected in the response.\n\nA successful POST request typically returns a `200 OK` or `201 Created` response code."
+              },
+              "response": []
+            },
+            {
+              "name": "Crear usuario",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2OTlmOWQxYTZlODU0MzVhMDhmYTFjM2UiLCJqdGkiOiIwMjM1YjlmYS04YmE1LTRhMjgtOTFlMS0zMWI3NTYyOTVkMjQiLCJpYXQiOjE3NzIwODMyNzQsInJvbGUiOiJBRE1JTiIsImV4cCI6MTc3MjA4NTA3NCwiYXVkIjoiQXV0aFNlcnZpY2UiLCJpc3MiOiJBdXRoU2VydmljZSJ9.JGWc0cC9NcEV474jwISfxD__g3DvTgL6hcZqOypMoKw",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"user_name\": \"Davidd\",\r\n  \"user_username\": \"Peres\",\r\n  \"user_dpi\": \"9854588899666\",\r\n  \"user_email\": \"sueboeertt@gmail.com\",\r\n  \"user_password\": \"Password1w23!\",\r\n  \"user_address\": \"Ciudad de Guatemala, Zowna 10\",\r\n  \"user_phone_number\": \"12345678\",\r\n  \"user_name_work\": \"Empresa\",\r\n  \"user_income_month\": \"10000\"\r\n}\r\n",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:3006/SistemaBancarioAdmin/v1/auth/register-admin",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3006",
+                  "path": [
+                    "SistemaBancarioAdmin",
+                    "v1",
+                    "auth",
+                    "register-admin"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Activar Usuario",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2OTlmOWQxYTZlODU0MzVhMDhmYTFjM2UiLCJqdGkiOiI1MTAxYzI2ZS00YTRlLTQ3YmUtOTc2ZS03Y2UxM2YyYzM0YjAiLCJpYXQiOjE3NzIwNjgyNDUsInJvbGUiOiJBRE1JTiIsImV4cCI6MTc3MjA3MDA0NSwiYXVkIjoiQXV0aFNlcnZpY2UiLCJpc3MiOiJBdXRoU2VydmljZSJ9.q6JfbfVQ1fI-nmHIiGbbeqWCUfdLIe5ROql8Hj-lha4",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "PATCH",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"name\": \"Juan Pérez López\",\r\n  \"username\": \"astral\",\r\n  \"email\": \"jsajche-2024380@kinal.edu.gt\",\r\n  \"password\": \"Password1w23!\",\r\n  \"dpi\": \"1234588890913\",\r\n  \"address\": \"Ciudad de Guatemala, Zowna 10\",\r\n  \"cellphone\": \"12345678\",\r\n  \"workPlace\": \"Empresa \",\r\n  \"monthlyIncome\": \"10000\"\r\n}\r\n"
+                },
+                "url": {
+                  "raw": "http://localhost:3006/SistemaBancarioAdmin/v1/auth/:id/activar",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3006",
+                  "path": [
+                    "SistemaBancarioAdmin",
+                    "v1",
+                    "auth",
+                    ":id",
+                    "activar"
+                  ],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": "699fa0206e85435a08fa1c72"
+                    }
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Activar Empleado",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2OTlmOWQxYTZlODU0MzVhMDhmYTFjM2UiLCJqdGkiOiIxNjZjMTE1My1mNjI0LTRlM2YtYjBjZC03NzQwODlkZTNmNDciLCJpYXQiOjE3NzIwNzg3MTEsInJvbGUiOiJBRE1JTiIsImV4cCI6MTc3MjA4MDUxMSwiYXVkIjoiQXV0aFNlcnZpY2UiLCJpc3MiOiJBdXRoU2VydmljZSJ9.BUVjkl_Y7OKY2LXFGW2oxiB0WAimM0bak6lmysiX0gc",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "PATCH",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:3006/SistemaBancarioAdmin/v1/empleados/:id/activar",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3006",
+                  "path": [
+                    "SistemaBancarioAdmin",
+                    "v1",
+                    "empleados",
+                    ":id",
+                    "activar"
+                  ],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": "699fc450eefd96c6e88a810b"
+                    }
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Listar usuarios",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2OTlmOWQxYTZlODU0MzVhMDhmYTFjM2UiLCJqdGkiOiI2NWQ4OWZiMS05YjFmLTQ2OTItYTExYS0wMWM1YzZmNDRhMjIiLCJpYXQiOjE3NzIwNjgxMzAsInJvbGUiOiJBRE1JTiIsImV4cCI6MTc3MjA2OTkzMCwiYXVkIjoiQXV0aFNlcnZpY2UiLCJpc3MiOiJBdXRoU2VydmljZSJ9.zzX80oC6166ckcp6KdQkUbivRKMBtuGQmMyhmsEp46k",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:3006/SistemaBancarioAdmin/v1/auth/",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3006",
+                  "path": [
+                    "SistemaBancarioAdmin",
+                    "v1",
+                    "auth",
+                    ""
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Actualizar usuario",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2OTlmOWQxYTZlODU0MzVhMDhmYTFjM2UiLCJqdGkiOiI2NWQ4OWZiMS05YjFmLTQ2OTItYTExYS0wMWM1YzZmNDRhMjIiLCJpYXQiOjE3NzIwNjgxMzAsInJvbGUiOiJBRE1JTiIsImV4cCI6MTc3MjA2OTkzMCwiYXVkIjoiQXV0aFNlcnZpY2UiLCJpc3MiOiJBdXRoU2VydmljZSJ9.zzX80oC6166ckcp6KdQkUbivRKMBtuGQmMyhmsEp46k",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "PUT",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"user_name\": \"Juan Carlos Pérez López\",\n  \"user_address\": \"Ciudad de Guatemala, Zona 11\",\n  \"user_phone_number\": \"98765432\",\n  \"user_name_work\": \"Empresa XYZ S.A.\",\n  \"user_income_month\": 6000\n}\n\n",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:3006/SistemaBancarioAdmin/v1/auth/:id",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3006",
+                  "path": [
+                    "SistemaBancarioAdmin",
+                    "v1",
+                    "auth",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": "699f9d1a6e85435a08fa1c3e"
+                    }
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Desactivar Usuario",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2OTlmM2RmMmQ4ODkyZGEyM2IwOGM0MWEiLCJqdGkiOiIxM2Q3MGRjNC04ZGViLTQ3NWItOThhOC0wMDFjOTA5N2M5YmUiLCJpYXQiOjE3NzIwNDY4OTksInJvbGUiOiJBRE1JTiIsImV4cCI6MTc3MjA0ODY5OSwiYXVkIjoiQXV0aFNlcnZpY2UiLCJpc3MiOiJBdXRoU2VydmljZSJ9.UmHhh6lMBN44vpdGvZ7fmng3pDJXESMpLwDz3Og33Gg",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:3006/SistemaBancarioAdmin/v1/auth/699f3e65be5e478a1d9f2e38",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3006",
+                  "path": [
+                    "SistemaBancarioAdmin",
+                    "v1",
+                    "auth",
+                    "699f3e65be5e478a1d9f2e38"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Buscar Usuario",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2OTlmOWQxYTZlODU0MzVhMDhmYTFjM2UiLCJqdGkiOiI1MTAxYzI2ZS00YTRlLTQ3YmUtOTc2ZS03Y2UxM2YyYzM0YjAiLCJpYXQiOjE3NzIwNjgyNDUsInJvbGUiOiJBRE1JTiIsImV4cCI6MTc3MjA3MDA0NSwiYXVkIjoiQXV0aFNlcnZpY2UiLCJpc3MiOiJBdXRoU2VydmljZSJ9.q6JfbfVQ1fI-nmHIiGbbeqWCUfdLIe5ROql8Hj-lha4",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"name\": \"Juan Pérez López\",\r\n  \"username\": \"pepe\",\r\n  \"email\": \"jsajchee-2024380@kinal.edu.gt\",\r\n  \"password\": \"Password1w23!\",\r\n  \"dpi\": \"1234588890915\",\r\n  \"address\": \"Ciudad de Guatemala, Zowna 10\",\r\n  \"cellphone\": \"12345678\",\r\n  \"workPlace\": \"Empresa \",\r\n  \"monthlyIncome\": \"10000\"\r\n}\r\n"
+                },
+                "url": {
+                  "raw": "http://localhost:3006/SistemaBancarioAdmin/v1/auth/buscar?busqueda=rrrr",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3006",
+                  "path": [
+                    "SistemaBancarioAdmin",
+                    "v1",
+                    "auth",
+                    "buscar"
+                  ],
+                  "query": [
+                    {
+                      "key": "busqueda",
+                      "value": "rrrr"
+                    }
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Mis datos",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2OTlmOWQxYTZlODU0MzVhMDhmYTFjM2UiLCJqdGkiOiI1MTAxYzI2ZS00YTRlLTQ3YmUtOTc2ZS03Y2UxM2YyYzM0YjAiLCJpYXQiOjE3NzIwNjgyNDUsInJvbGUiOiJBRE1JTiIsImV4cCI6MTc3MjA3MDA0NSwiYXVkIjoiQXV0aFNlcnZpY2UiLCJpc3MiOiJBdXRoU2VydmljZSJ9.q6JfbfVQ1fI-nmHIiGbbeqWCUfdLIe5ROql8Hj-lha4",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:3006/SistemaBancarioAdmin/v1/auth/me",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3006",
+                  "path": [
+                    "SistemaBancarioAdmin",
+                    "v1",
+                    "auth",
+                    "me"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Crear empleado",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2OTlmOWQxYTZlODU0MzVhMDhmYTFjM2UiLCJqdGkiOiIwMjM1YjlmYS04YmE1LTRhMjgtOTFlMS0zMWI3NTYyOTVkMjQiLCJpYXQiOjE3NzIwODMyNzQsInJvbGUiOiJBRE1JTiIsImV4cCI6MTc3MjA4NTA3NCwiYXVkIjoiQXV0aFNlcnZpY2UiLCJpc3MiOiJBdXRoU2VydmljZSJ9.JGWc0cC9NcEV474jwISfxD__g3DvTgL6hcZqOypMoKw",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"empleado_name\": \"María\",\r\n    \"empleado_surname\": \"García\",\r\n    \"empleado_email\": \"maria@banco.com\",\r\n    \"empleado_password\": \"Admin1234\",\r\n    \"empleado_dpi\": \"9876543210123\",\r\n    \"empleado_age\": 35,\r\n    \"empleado_antique\": 5,\r\n    \"empleado_salary\": 8000,\r\n    \"empleado_post\": \"GERENTE\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:3006/SistemaBancarioAdmin/v1/empleados/register-admin",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3006",
+                  "path": [
+                    "SistemaBancarioAdmin",
+                    "v1",
+                    "empleados",
+                    "register-admin"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "CUENTAS",
+          "item": [
+            {
+              "name": "Crear Cuenta ADMIN",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2OTlmOWQxYTZlODU0MzVhMDhmYTFjM2UiLCJqdGkiOiI2OTUxYjhkYS0zMThjLTQ3NjAtODQwYi0yM2IyYjJiNWVjNGEiLCJpYXQiOjE3NzIwNzE3ODgsInJvbGUiOiJBRE1JTiIsImV4cCI6MTc3MjA3MzU4OCwiYXVkIjoiQXV0aFNlcnZpY2UiLCJpc3MiOiJBdXRoU2VydmljZSJ9.qIkHPdUeS9clORJ70Urj5vN7oREWfgbGFq6sKXEg-QA",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"account_type\": \"AHORRO\",\r\n  \"account_balance\": 200,\r\n  \"moneda\": \"GTQ\"\r\n}\r\n",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:3006/SistemaBancarioAdmin/v1/cuentas/create",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3006",
+                  "path": [
+                    "SistemaBancarioAdmin",
+                    "v1",
+                    "cuentas",
+                    "create"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Crear Cuenta Usuario",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2OTlmOWQxYTZlODU0MzVhMDhmYTFjM2UiLCJqdGkiOiIyYzc5ZGVmOS00YjY1LTQ2NDItOGRhOS05M2EzMDExMDM4ZDUiLCJpYXQiOjE3NzIwNjk5MjQsInJvbGUiOiJBRE1JTiIsImV4cCI6MTc3MjA3MTcyNCwiYXVkIjoiQXV0aFNlcnZpY2UiLCJpc3MiOiJBdXRoU2VydmljZSJ9.Hl1IBTE7JDFa-qXZR2XtoxTnIOgmtBaBCtpZAo-rjBI",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"account_type\": \"AHORRO\",\n  \"account_balance\": 200,\n  \"moneda\": \"GTQ\"\n}\n",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:3006/SistemaBancarioAdmin/v1/cuentas/create/",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3006",
+                  "path": [
+                    "SistemaBancarioAdmin",
+                    "v1",
+                    "cuentas",
+                    "create",
+                    ""
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Listar Cuentas ADMIN",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2OTlmOWQxYTZlODU0MzVhMDhmYTFjM2UiLCJqdGkiOiI2OTUxYjhkYS0zMThjLTQ3NjAtODQwYi0yM2IyYjJiNWVjNGEiLCJpYXQiOjE3NzIwNzE3ODgsInJvbGUiOiJBRE1JTiIsImV4cCI6MTc3MjA3MzU4OCwiYXVkIjoiQXV0aFNlcnZpY2UiLCJpc3MiOiJBdXRoU2VydmljZSJ9.qIkHPdUeS9clORJ70Urj5vN7oREWfgbGFq6sKXEg-QA",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:3006/SistemaBancarioAdmin/v1/cuentas",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3006",
+                  "path": [
+                    "SistemaBancarioAdmin",
+                    "v1",
+                    "cuentas"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Mis Cuentas",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2OTlmOWQxYTZlODU0MzVhMDhmYTFjM2UiLCJqdGkiOiI2OTUxYjhkYS0zMThjLTQ3NjAtODQwYi0yM2IyYjJiNWVjNGEiLCJpYXQiOjE3NzIwNzE3ODgsInJvbGUiOiJBRE1JTiIsImV4cCI6MTc3MjA3MzU4OCwiYXVkIjoiQXV0aFNlcnZpY2UiLCJpc3MiOiJBdXRoU2VydmljZSJ9.qIkHPdUeS9clORJ70Urj5vN7oREWfgbGFq6sKXEg-QA",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:3006/SistemaBancarioAdmin/v1/cuentas/mis-cuentas",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3006",
+                  "path": [
+                    "SistemaBancarioAdmin",
+                    "v1",
+                    "cuentas",
+                    "mis-cuentas"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Buscar Cuenta",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2OTlmM2RmMmQ4ODkyZGEyM2IwOGM0MWEiLCJqdGkiOiIxM2Q3MGRjNC04ZGViLTQ3NWItOThhOC0wMDFjOTA5N2M5YmUiLCJpYXQiOjE3NzIwNDY4OTksInJvbGUiOiJBRE1JTiIsImV4cCI6MTc3MjA0ODY5OSwiYXVkIjoiQXV0aFNlcnZpY2UiLCJpc3MiOiJBdXRoU2VydmljZSJ9.UmHhh6lMBN44vpdGvZ7fmng3pDJXESMpLwDz3Og33Gg",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:3006/SistemaBancarioAdmin/v1/cuentas/id",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3006",
+                  "path": [
+                    "SistemaBancarioAdmin",
+                    "v1",
+                    "cuentas",
+                    "id"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Actualizar Cuenta",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2OTlmOWQxYTZlODU0MzVhMDhmYTFjM2UiLCJqdGkiOiI2OTUxYjhkYS0zMThjLTQ3NjAtODQwYi0yM2IyYjJiNWVjNGEiLCJpYXQiOjE3NzIwNzE3ODgsInJvbGUiOiJBRE1JTiIsImV4cCI6MTc3MjA3MzU4OCwiYXVkIjoiQXV0aFNlcnZpY2UiLCJpc3MiOiJBdXRoU2VydmljZSJ9.qIkHPdUeS9clORJ70Urj5vN7oREWfgbGFq6sKXEg-QA",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "PUT",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"account_type\": \"AHORRO\",\n  \"estado\": \"ACTIVA\"\n}\n",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:3006/SistemaBancarioAdmin/v1/cuentas/:id ",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3006",
+                  "path": [
+                    "SistemaBancarioAdmin",
+                    "v1",
+                    "cuentas",
+                    ":id "
+                  ],
+                  "variable": [
+                    {
+                      "key": "id ",
+                      "value": "699fabe313568a651ad31975"
+                    }
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Eliminar Cuenta",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2OTlmOWQxYTZlODU0MzVhMDhmYTFjM2UiLCJqdGkiOiI2OTUxYjhkYS0zMThjLTQ3NjAtODQwYi0yM2IyYjJiNWVjNGEiLCJpYXQiOjE3NzIwNzE3ODgsInJvbGUiOiJBRE1JTiIsImV4cCI6MTc3MjA3MzU4OCwiYXVkIjoiQXV0aFNlcnZpY2UiLCJpc3MiOiJBdXRoU2VydmljZSJ9.qIkHPdUeS9clORJ70Urj5vN7oREWfgbGFq6sKXEg-QA",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:3006/SistemaBancarioAdmin/v1/cuentas/:id ",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3006",
+                  "path": [
+                    "SistemaBancarioAdmin",
+                    "v1",
+                    "cuentas",
+                    ":id "
+                  ],
+                  "variable": [
+                    {
+                      "key": "id ",
+                      "value": "699fabe313568a651ad31975"
+                    }
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Activar cuentas",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2OTlmOWQxYTZlODU0MzVhMDhmYTFjM2UiLCJqdGkiOiIxNjZjMTE1My1mNjI0LTRlM2YtYjBjZC03NzQwODlkZTNmNDciLCJpYXQiOjE3NzIwNzg3MTEsInJvbGUiOiJBRE1JTiIsImV4cCI6MTc3MjA4MDUxMSwiYXVkIjoiQXV0aFNlcnZpY2UiLCJpc3MiOiJBdXRoU2VydmljZSJ9.BUVjkl_Y7OKY2LXFGW2oxiB0WAimM0bak6lmysiX0gc",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "PATCH",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:3006/SistemaBancarioAdmin/v1/cuentas/:id/aprobar",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3006",
+                  "path": [
+                    "SistemaBancarioAdmin",
+                    "v1",
+                    "cuentas",
+                    ":id",
+                    "aprobar"
+                  ],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": "699fc450eefd96c6e88a810b"
+                    }
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Ver Cuentas pendientes",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2OTlmOWQxYTZlODU0MzVhMDhmYTFjM2UiLCJqdGkiOiIxNjZjMTE1My1mNjI0LTRlM2YtYjBjZC03NzQwODlkZTNmNDciLCJpYXQiOjE3NzIwNzg3MTEsInJvbGUiOiJBRE1JTiIsImV4cCI6MTc3MjA4MDUxMSwiYXVkIjoiQXV0aFNlcnZpY2UiLCJpc3MiOiJBdXRoU2VydmljZSJ9.BUVjkl_Y7OKY2LXFGW2oxiB0WAimM0bak6lmysiX0gc",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:3006/SistemaBancarioAdmin/v1/cuentas/admin/pendientes",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3006",
+                  "path": [
+                    "SistemaBancarioAdmin",
+                    "v1",
+                    "cuentas",
+                    "admin",
+                    "pendientes"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "login",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Successful POST request\", function () {",
+                      "    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
+                      "});",
+                      ""
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                }
+              ],
+              "request": {
+                "auth": {
+                  "type": "noauth"
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"user_email\": \"admin@banco.com\",\n  \"user_password\": \"ADMINB\"\n}\n",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:3006/SistemaBancarioAdmin/v1/auth/login",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3006",
+                  "path": [
+                    "SistemaBancarioAdmin",
+                    "v1",
+                    "auth",
+                    "login"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Usuarios",
+      "item": [
+        {
+          "name": "CRUD",
+          "item": [
+            {
+              "name": "Registrarse",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"user_name\": \"Juan Pérez López\",\r\n  \"user_username\": \"eeeeeee\",\r\n  \"user_email\": \"jsaajceeeeeeehere-2024380@kinal.edu.gt\",\r\n  \"user_password\": \"Password1w23!\",\r\n  \"user_dpi\": \"1234587790665\",\r\n  \"user_address\": \"Ciudad de Guatemala, Zowna 10\",\r\n  \"user_phone_number\": \"12345678\",\r\n  \"user_name_work\": \"Empresa \",\r\n  \"user_income_month\": \"10000\"\r\n}\r\n",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:3006/SistemaBancarioAdmin/v1/auth/register",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3006",
+                  "path": [
+                    "SistemaBancarioAdmin",
+                    "v1",
+                    "auth",
+                    "register"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Login",
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"user_email\": \"jsaajceeeehere-2024380@kinal.edu.gt\",\r\n  \"user_password\": \"Password1w23!\"\r\n}\r\n",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:3006/SistemaBancarioAdmin/v1/auth/login",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3006",
+                  "path": [
+                    "SistemaBancarioAdmin",
+                    "v1",
+                    "auth",
+                    "login"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Actualizar usuario",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2OTlmNDM2N2JlNWU0NzhhMWQ5ZjJlNDgiLCJqdGkiOiJkYmRkZjEzOC0wMWU5LTRjODMtODY0OC00YzMzOTljNzM5NmUiLCJpYXQiOjE3NzIwNTE3NDIsInJvbGUiOiJDTElFTlRFIiwiZXhwIjoxNzcyMDUzNTQyLCJhdWQiOiJBdXRoU2VydmljZSIsImlzcyI6IkF1dGhTZXJ2aWNlIn0.mt-N8qYKwozq4N_qiYWGzfG_wvwndhn8iI_XFhTrJ0Y",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "PUT",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"user_name\": \"Juan Carlos Pérez\",\n  \"user_address\": \"Nueva dirección\",\n  \"user_name_work\": \"Nueva Empresa\",\n  \"user_income_month\": 7000\n}\n",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:3006/SistemaBancarioAdmin/v1/auth/:id ",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3006",
+                  "path": [
+                    "SistemaBancarioAdmin",
+                    "v1",
+                    "auth",
+                    ":id "
+                  ],
+                  "variable": [
+                    {
+                      "key": "id ",
+                      "value": "699f4367be5e478a1d9f2e48"
+                    }
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Mis datos",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2OTlmYTAyMDZlODU0MzVhMDhmYTFjNzIiLCJqdGkiOiI1ZDY0OTczZi1hNmI2LTRkM2QtOGNkYy00NzMyMDk3MTdjNzUiLCJpYXQiOjE3NzIwNjkzMzgsInJvbGUiOiJDTElFTlRFIiwiZXhwIjoxNzcyMDcxMTM4LCJhdWQiOiJBdXRoU2VydmljZSIsImlzcyI6IkF1dGhTZXJ2aWNlIn0.lcZSWoTPHm9l59bQTCPWE6d060BOT6hWtYKz92znyUo",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:3006/SistemaBancarioAdmin/v1/auth/me",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3006",
+                  "path": [
+                    "SistemaBancarioAdmin",
+                    "v1",
+                    "auth",
+                    "me"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "CUENTAS",
+          "item": [
+            {
+              "name": "Crear Cuenta",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2OTlmYTAyMDZlODU0MzVhMDhmYTFjNzIiLCJqdGkiOiJiMGUwMzMzNy0xYmNiLTQ5OGUtOGNhMy0yYzJmNzEyYWU0NmEiLCJpYXQiOjE3NzIwNzE4OTAsInJvbGUiOiJDTElFTlRFIiwiZXhwIjoxNzcyMDczNjkwLCJhdWQiOiJBdXRoU2VydmljZSIsImlzcyI6IkF1dGhTZXJ2aWNlIn0.UpHu0CvKAXqyRrdRO6CUfYQdXg38o_0AboxIbyoSAOw",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"account_type\": \"NOMINA\",\r\n  \"account_balance\": 2000,\r\n  \"moneda\": \"GTQ\"\r\n}\r\n",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:3006/SistemaBancarioAdmin/v1/cuentas/create",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3006",
+                  "path": [
+                    "SistemaBancarioAdmin",
+                    "v1",
+                    "cuentas",
+                    "create"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Mis Cuentas",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2OTlmYTAyMDZlODU0MzVhMDhmYTFjNzIiLCJqdGkiOiJiMGUwMzMzNy0xYmNiLTQ5OGUtOGNhMy0yYzJmNzEyYWU0NmEiLCJpYXQiOjE3NzIwNzE4OTAsInJvbGUiOiJDTElFTlRFIiwiZXhwIjoxNzcyMDczNjkwLCJhdWQiOiJBdXRoU2VydmljZSIsImlzcyI6IkF1dGhTZXJ2aWNlIn0.UpHu0CvKAXqyRrdRO6CUfYQdXg38o_0AboxIbyoSAOw",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:3006/SistemaBancarioAdmin/v1/cuentas/mis-cuentas",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3006",
+                  "path": [
+                    "SistemaBancarioAdmin",
+                    "v1",
+                    "cuentas",
+                    "mis-cuentas"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Buscar Cuenta",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2OTlmNWY3OWE2ZmU0MGIwOGI3YmQ1ZDMiLCJqdGkiOiJmNTI4OGU3Mi1mYmY4LTRjOTktYmZkZi0yMzI3MTQ1OTI4NWUiLCJpYXQiOjE3NzIwNjA5MDIsInJvbGUiOiJDTElFTlRFIiwiZXhwIjoxNzcyMDYyNzAyLCJhdWQiOiJBdXRoU2VydmljZSIsImlzcyI6IkF1dGhTZXJ2aWNlIn0.VkuOxYZGYyji98FT8RahTwbzWUbJKcl8a_f9bKxDqCs",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:3006/SistemaBancarioAdmin/v1/cuentas/:id",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3006",
+                  "path": [
+                    "SistemaBancarioAdmin",
+                    "v1",
+                    "cuentas",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": "699f6003a6fe40b08b7bd5dd"
+                    }
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Empleados",
+      "item": [
+        {
+          "name": "CRUD",
+          "item": [
+            {
+              "name": "Registrarse",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"empleado_name\": \"Roberto\",\r\n  \"empleado_surname\": \"González\",\r\n  \"empleado_email\": \"roberto@banco.com\",\r\n  \"empleado_password\": \"Secure123!\",\r\n  \"empleado_dpi\": \"9999999999999\",\r\n  \"empleado_age\": 30,\r\n  \"empleado_antique\": 5,\r\n  \"empleado_salary\": 5000,\r\n  \"empleado_post\": \"CAJERO\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:3006/SistemaBancarioAdmin/v1/empleados/register",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3006",
+                  "path": [
+                    "SistemaBancarioAdmin",
+                    "v1",
+                    "empleados",
+                    "register"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Login",
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"empleado_email\": \"roberto@banco.com\",\r\n  \"empleado_password\": \"Secure123!\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:3006/SistemaBancarioAdmin/v1/empleados/login",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3006",
+                  "path": [
+                    "SistemaBancarioAdmin",
+                    "v1",
+                    "empleados",
+                    "login"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Actualizar  Empleado",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2OTlmYzQ1MGVlZmQ5NmM2ZTg4YTgxMGIiLCJqdGkiOiIxN2VkYjEwMi1mZmU1LTQ3OTAtYTJiNy03MmVmODdlYjQ4ODMiLCJpYXQiOjE3NzIwODM1NDIsInJvbGUiOiJFTVBMRUFETyIsImV4cCI6MTc3MjA4NTM0MiwiYXVkIjoiQXV0aFNlcnZpY2UiLCJpc3MiOiJBdXRoU2VydmljZSJ9.CaludYhG_Qihcmi37npMl_VC1hn1KhQlfRUskMWLb60",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "PUT",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n\"empleado_name\": \"Carlos Alberto\",\n\"empleado_salary\": 5500,\n\"empleado_age\": 29\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:3006/SistemaBancarioAdmin/v1/empleados/me",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3006",
+                  "path": [
+                    "SistemaBancarioAdmin",
+                    "v1",
+                    "empleados",
+                    "me"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Mis datos",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2OTlmYzQ1MGVlZmQ5NmM2ZTg4YTgxMGIiLCJqdGkiOiIxN2VkYjEwMi1mZmU1LTQ3OTAtYTJiNy03MmVmODdlYjQ4ODMiLCJpYXQiOjE3NzIwODM1NDIsInJvbGUiOiJFTVBMRUFETyIsImV4cCI6MTc3MjA4NTM0MiwiYXVkIjoiQXV0aFNlcnZpY2UiLCJpc3MiOiJBdXRoU2VydmljZSJ9.CaludYhG_Qihcmi37npMl_VC1hn1KhQlfRUskMWLb60",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:3006/SistemaBancarioAdmin/v1/empleados/me",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3006",
+                  "path": [
+                    "SistemaBancarioAdmin",
+                    "v1",
+                    "empleados",
+                    "me"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Listar usuarios",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2OTlmYzQ1MGVlZmQ5NmM2ZTg4YTgxMGIiLCJqdGkiOiI2ZjYzZDQ3YS1jOGE0LTQ2YTItOGE0NC1lZDM0NjZlNzZjYjIiLCJpYXQiOjE3NzIwNzg5MzMsInJvbGUiOiJFTVBMRUFETyIsImV4cCI6MTc3MjA4MDczMywiYXVkIjoiQXV0aFNlcnZpY2UiLCJpc3MiOiJBdXRoU2VydmljZSJ9.cSt5xBiVIbvVAySLbIG_uWfUtpDNh1LY1mhIWWnz_4w",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:3006/SistemaBancarioAdmin/v1/empleados/usuarios",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3006",
+                  "path": [
+                    "SistemaBancarioAdmin",
+                    "v1",
+                    "empleados",
+                    "usuarios"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "CUENTAS",
+          "item": [
+            {
+              "name": "Crear Cuenta",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2OTlmYzQ1MGVlZmQ5NmM2ZTg4YTgxMGIiLCJqdGkiOiI3MmI2M2E3MS0yYjIyLTQyZTYtYThjNS0xYTBmZmNjNmZiZjEiLCJpYXQiOjE3NzIwNzkxMzAsInJvbGUiOiJFTVBMRUFETyIsImV4cCI6MTc3MjA4MDkzMCwiYXVkIjoiQXV0aFNlcnZpY2UiLCJpc3MiOiJBdXRoU2VydmljZSJ9.3AsV96YXrGnXVWiVmST2JYICa7wJl_Ano6K_RIxAx9A",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"user_id\": \"699f9d1a6e85435a08fa1c3e\",\r\n  \"account_type\": \"AHORRO\",\r\n  \"account_balance\": 500,\r\n  \"moneda\": \"GTQ\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:3006/SistemaBancarioAdmin/v1/empleados/crear-cuenta",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3006",
+                  "path": [
+                    "SistemaBancarioAdmin",
+                    "v1",
+                    "empleados",
+                    "crear-cuenta"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Mis Cuentas",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2OTlmYzQ1MGVlZmQ5NmM2ZTg4YTgxMGIiLCJqdGkiOiIxN2VkYjEwMi1mZmU1LTQ3OTAtYTJiNy03MmVmODdlYjQ4ODMiLCJpYXQiOjE3NzIwODM1NDIsInJvbGUiOiJFTVBMRUFETyIsImV4cCI6MTc3MjA4NTM0MiwiYXVkIjoiQXV0aFNlcnZpY2UiLCJpc3MiOiJBdXRoU2VydmljZSJ9.CaludYhG_Qihcmi37npMl_VC1hn1KhQlfRUskMWLb60",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:3006/SistemaBancarioAdmin/v1/cuentas/mis-cuentas?estado=ACTIVA",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3006",
+                  "path": [
+                    "SistemaBancarioAdmin",
+                    "v1",
+                    "cuentas",
+                    "mis-cuentas"
+                  ],
+                  "query": [
+                    {
+                      "key": "estado",
+                      "value": "ACTIVA"
+                    }
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Buscar Cuenta",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2OTlmYzQ1MGVlZmQ5NmM2ZTg4YTgxMGIiLCJqdGkiOiIxN2VkYjEwMi1mZmU1LTQ3OTAtYTJiNy03MmVmODdlYjQ4ODMiLCJpYXQiOjE3NzIwODM1NDIsInJvbGUiOiJFTVBMRUFETyIsImV4cCI6MTc3MjA4NTM0MiwiYXVkIjoiQXV0aFNlcnZpY2UiLCJpc3MiOiJBdXRoU2VydmljZSJ9.CaludYhG_Qihcmi37npMl_VC1hn1KhQlfRUskMWLb60",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:3006/SistemaBancarioAdmin/v1/cuentas/buscar-cuenta?busqueda=5731954799",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3006",
+                  "path": [
+                    "SistemaBancarioAdmin",
+                    "v1",
+                    "cuentas",
+                    "buscar-cuenta"
+                  ],
+                  "query": [
+                    {
+                      "key": "busqueda",
+                      "value": "5731954799"
+                    }
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Crear Cuenta  Usuario",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2OTlmYzQ1MGVlZmQ5NmM2ZTg4YTgxMGIiLCJqdGkiOiIxN2VkYjEwMi1mZmU1LTQ3OTAtYTJiNy03MmVmODdlYjQ4ODMiLCJpYXQiOjE3NzIwODM1NDIsInJvbGUiOiJFTVBMRUFETyIsImV4cCI6MTc3MjA4NTM0MiwiYXVkIjoiQXV0aFNlcnZpY2UiLCJpc3MiOiJBdXRoU2VydmljZSJ9.CaludYhG_Qihcmi37npMl_VC1hn1KhQlfRUskMWLb60",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n\"user_id\": \"664abc123def456ghi789jkl\",\r\n\"account_type\": \"AHORRO\",\r\n\"account_balance\": 500,\r\n\"moneda\": \"GTQ\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:3006/SistemaBancarioAdmin/v1/auth/register-admin",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3006",
+                  "path": [
+                    "SistemaBancarioAdmin",
+                    "v1",
+                    "auth",
+                    "register-admin"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
