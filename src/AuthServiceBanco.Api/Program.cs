@@ -1,5 +1,6 @@
 
 using AuthServiceBanco.Persistence.Data;
+using AuthServiceBanco.Persistence.Seed;
 using AuthServiceBanco.Api.Middlewares;
 using AuthServiceBanco.Api.Extensions;
 using AuthServiceBanco.Api.ModelBinders;
@@ -7,6 +8,10 @@ using Serilog;
 using Microsoft.AspNetCore.Hosting.Server;
 using Microsoft.AspNetCore.Hosting.Server.Features;
 using NetEscapades.AspNetCore.SecurityHeaders;
+using System.IdentityModel.Tokens.Jwt;
+
+// Desactivar mapeo automático de claims JWT para preservar "sub" y otros claims estándar
+JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -128,20 +133,24 @@ using (var scope = app.Services.CreateScope())
     {
         logger.LogInformation("Checking database connection...");
 
-        // Ensure database is created (similar to Sequelize sync in Node.js)
+        // Ensure database is created
         await context.Database.EnsureCreatedAsync();
 
         logger.LogInformation("Database ready. Running seed data...");
         await DataSeeder.SeedAsync(context);
+
+        // 🔽 AQUÍ VA TU ADMIN SEED
+        await AdminSeed.InitializeAsync(scope.ServiceProvider);
 
         logger.LogInformation("Database initialization completed successfully");
     }
     catch (Exception ex)
     {
         logger.LogError(ex, "An error occurred while initializing the database");
-        throw; // Re-throw to stop the application
+        throw;
     }
 }
+
 
 app.Run();
 

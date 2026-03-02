@@ -1,22 +1,25 @@
 'use strict';
 
+import { Roles } from '../src/constants/roles.js';
+
 export const validateRole = (...allowedRoles) => {
-    return (req, res, next) => {
-        if (!req.user) {
-            return res.status(500).json({
-                success: false,
-                message: 'Se requiere validar JWT primero'
-            });
-        }
+  return (req, res, next) => {
+    if (!req.user || !req.user.role) {
+      return res.status(401).json({
+        success: false,
+        message: 'Usuario no autenticado'
+      });
+    }
 
-        if (!allowedRoles.includes(req.user.role)) {
-            return res.status(403).json({
-                success: false,
-                message: 'No tienes permisos para esta acción',
-                error: 'FORBIDDEN'
-            });
-        }
+    const hasRole = allowedRoles.includes(req.user.role);
 
-        next();
-    };
+    if (!hasRole) {
+      return res.status(403).json({
+        success: false,
+        message: 'No tienes permisos para esta acción'
+      });
+    }
+
+    next();
+  };
 };

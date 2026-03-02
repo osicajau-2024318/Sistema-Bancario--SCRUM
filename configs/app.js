@@ -9,9 +9,13 @@ import { corsOptions } from './cors-configuration.js';
 import { helmetConfiguration } from './helmet-configuration.js';
 import { requestLimit } from '../middlewares/request-limit.js';
 import { errorHandler } from '../middlewares/handle-errors.js';
-import fieldRoutes from '../src/fields/field.routes.js'
-import userRoutes from '../src/routes/user.routes.js';
-import cuentaRoutes from '../src/routes/cuenta.routes.js';
+import accountRoutes from '../src/routes/account.routes.js';
+import transactionRoutes from '../src/routes/transaction.routes.js';
+import depositRoutes from '../src/routes/deposit.routes.js';
+import productRoutes from '../src/routes/product.routes.js';
+import favoriteRoutes from '../src/routes/favorite.routes.js';
+import currencyRoutes from '../src/routes/currency.routes.js';
+
 
 const BASE_PATH = '/SistemaBancarioAdmin/v1';
 
@@ -26,16 +30,17 @@ const middlewares = (app) => {
 }
 
 const routes = (app) => {
-
-     app.use(`${BASE_PATH}/fields`, fieldRoutes);
-    app.use(`${BASE_PATH}/auth`, userRoutes);
-    app.use(`${BASE_PATH}/cuentas`, cuentaRoutes);
-
+    app.use(`${BASE_PATH}/accounts`, accountRoutes);
+    app.use(`${BASE_PATH}/transactions`, transactionRoutes);
+    app.use(`${BASE_PATH}/deposits`, depositRoutes);
+    app.use(`${BASE_PATH}/products`, productRoutes);
+    app.use(`${BASE_PATH}/favorites`, favoriteRoutes);
+    app.use(`${BASE_PATH}/currency`, currencyRoutes);
     app.get(`${BASE_PATH}/Health`, (request, response) => {
         response.status(200).json({
             status: 'Healthy',
             timestamp: new Date().toISOString(),
-            service: 'KinalSports Admin Server'
+            service: 'Sistema Bancario Server'
         })
     })
 
