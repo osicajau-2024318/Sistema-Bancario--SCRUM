@@ -97,7 +97,11 @@ public class AuthService(
                 Id = userProfileId,
                 UserId = userId,
                 ProfilePicture = profilePicturePath,
-                Phone = registerDto.Phone
+                Phone = registerDto.Phone,
+                Address = registerDto.Address ?? string.Empty,
+                Dpi = registerDto.Dpi ?? string.Empty,
+                WorkName = registerDto.WorkName ?? string.Empty,
+                MonthlyIncome = registerDto.MonthlyIncome ?? 0
             },
             UserEmail = new UserEmail
             {
@@ -184,6 +188,13 @@ public class AuthService(
             throw new UnauthorizedAccessException("User account is disabled");
         }
 
+        // Verificar si el email ha sido verificado
+        if (user.UserEmail?.EmailVerified == false)
+        {
+            logger.LogFailedLoginAttempt();
+            throw new UnauthorizedAccessException("Email not verified. Please check your email to verify your account.");
+        }
+
         // Verificar contraseña
         if (!passwordHashService.VerifyPassword(loginDto.Password, user.Password))
         {
@@ -220,6 +231,10 @@ public class AuthService(
             Email = user.Email,
             ProfilePicture = _cloudinaryService.GetFullImageUrl(user.UserProfile?.ProfilePicture ?? string.Empty),
             Phone = user.UserProfile?.Phone ?? string.Empty,
+            Address = user.UserProfile?.Address ?? string.Empty,
+            Dpi = user.UserProfile?.Dpi ?? string.Empty,
+            WorkName = user.UserProfile?.WorkName ?? string.Empty,
+            MonthlyIncome = user.UserProfile?.MonthlyIncome ?? 0,
             Role = userRole,
             Status = user.Status,
             IsEmailVerified = user.UserEmail?.EmailVerified ?? false,

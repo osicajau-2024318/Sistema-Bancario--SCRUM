@@ -27,6 +27,7 @@ public static class AuthenticationExtensions
                 ValidIssuer = jwtSettings["Issuer"],
                 ValidAudience = jwtSettings["Audience"],
                 IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(secretKey)),
+                RoleClaimType = "role",
                 ClockSkew = TimeSpan.Zero
             };
         });
