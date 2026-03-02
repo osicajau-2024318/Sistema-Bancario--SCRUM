@@ -1,0 +1,13 @@
+<Project>
+  <PropertyGroup>
+    <!-- Force single-threaded build to prevent out of memory issues -->
+    <ConcurrentBuild>false</ConcurrentBuild>
+    <BuildInParallel>false</BuildInParallel>
+    <MSBUILDNODEREUSEONDEMAND>false</MSBUILDNODEREUSEONDEMAND>
+    <MSBuildMaximumConcurrentProcesses>1</MSBuildMaximumConcurrentProcesses>
+    
+    <!-- Disable all analyzers to reduce memory usage -->
+    <EnableNETAnalyzers>false</EnableNETAnalyzers>
+    <RunAnalyzersDuringBuild>false</RunAnalyzersDuringBuild>
+  </PropertyGroup>
+</Project>

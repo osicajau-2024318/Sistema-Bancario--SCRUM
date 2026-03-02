@@ -29,5 +29,16 @@ public class RegisterDto
     [StringLength(8, MinimumLength = 8)]
     public string Phone { get; set; } = string.Empty;
 
+    [MaxLength(100)]
+    public string? Address { get; set; }
+
+    [StringLength(13, MinimumLength = 13, ErrorMessage = "El DPI debe tener exactamente 13 dígitos")]
+    public string? Dpi { get; set; }
+
+    [MaxLength(50)]
+    public string? WorkName { get; set; }
+
+    public decimal? MonthlyIncome { get; set; }
+
     public IFileData? ProfilePicture { get; set; }
 }
