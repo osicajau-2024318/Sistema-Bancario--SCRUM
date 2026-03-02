@@ -9,10 +9,6 @@ npm-debug.log*
 bin/
 obj/
 
-# Frontend (Vite/React)
-dist/
-build/
-
 # Sistema operativo
 .DS_Store
 Thumbs.db
