@@ -234,9 +234,13 @@ public class AdminService(
         var user = await users.GetByIdAsync(userId);
 
         // Activar la cuenta
-        user.AccountState = Domain.Enums.AccountState.ACTIVA;
-        user.Status = true;
-        user.UpdatedAt = DateTime.UtcNow;
+       user.AccountState = Domain.Enums.AccountState.ACTIVA;
+       user.Status = true;
+       user.UpdatedAt = DateTime.UtcNow;
+
+    // A la hora de activar la cuenta por ADMIN el email se verifica automaticamente
+    if (user.UserEmail != null)
+        user.UserEmail.EmailVerified = true;
 
         await users.UpdateAsync(user);
 
