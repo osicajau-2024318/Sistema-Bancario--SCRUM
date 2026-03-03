@@ -1,3 +1,4 @@
+import mongoose from 'mongoose';
 import Account from '../models/account.model.js';
 import { convertCurrency } from '../services/currency.service.js';
 import { verifyUserExists, verifyMonthlyIncome, createClientInAuthService } from '../services/authService.service.js';
@@ -253,7 +254,14 @@ export const transfer = async (req, res) => {
 
 export const getAccountById = async (req, res) => {
   try {
-    const account = await Account.findById(req.params.id);
+    const { id } = req.params;
+
+    // Validar formato de ObjectId
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      return res.status(400).json({ success: false, message: 'ID de cuenta inválido' });
+    }
+
+    const account = await Account.findById(id);
 
     if (!account) {
       return res.status(404).json({ success: false, message: 'Cuenta no encontrada' });
@@ -354,13 +362,15 @@ export const getAccountMovements = async (req, res) => {
   try {
     const { accountId } = req.params;
 
+    // Validar formato de ObjectId
+    if (!mongoose.Types.ObjectId.isValid(accountId)) {
+      return res.status(400).json({ success: false, message: 'ID de cuenta inválido' });
+    }
+
     const account = await Account.findById(accountId);
 
     if (!account) {
-      return res.status(404).json({
-        success: false,
-        message: 'Cuenta no encontrada'
-      });
+      return res.status(404).json({ success: false, message: 'id de cuenta no encontrado' });
     }
 
     // Obtener últimos 5 movimientos
@@ -369,7 +379,8 @@ export const getAccountMovements = async (req, res) => {
         { from_account: account.account_number },
         { to_account: account.account_number },
         { account_id: account._id }
-      ]
+      ],
+      transaction_type: { $in: ['TRANSFERENCIA', 'COMPRA', 'CREDITO'] }
     })
       .sort({ createdAt: -1 })
       .limit(5);

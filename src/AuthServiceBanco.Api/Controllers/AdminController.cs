@@ -76,4 +76,14 @@ public class AdminController(
         var result = await adminService.DeleteUserAsync(userId);
         return Ok(new { success = true, message = "Usuario eliminado correctamente" });
     }
+
+    [HttpPost("users/{userId}/activate")]
+    public async Task<IActionResult> ActivateUser(string userId)
+    {
+        if (!await CurrentUserIsAdmin())
+            return StatusCode(403, new { success = false, message = "Forbidden" });
+
+        var result = await adminService.ActivateUserAccountAsync(userId);
+        return Ok(new { success = true, data = result, message = "Cuenta activada correctamente" });
+    }
 }
