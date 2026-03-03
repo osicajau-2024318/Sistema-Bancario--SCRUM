@@ -12,11 +12,10 @@ import { Roles } from '../constants/roles.js';
 
 const router = Router();
 
-// Requieren token — productos son exclusivos para clientes del banco
 router.get('/', validateJWT, getProducts);
 router.get('/:id', validateJWT, getProductById);
 
-// Solo admin
+// Solo admin  validateRole recibe string directo, NO array
 router.post('/', validateJWT, validateRole(Roles.ADMIN), createProduct);
 router.put('/:id', validateJWT, validateRole(Roles.ADMIN), updateProduct);
 router.delete('/:id', validateJWT, validateRole(Roles.ADMIN), deleteProduct);
