@@ -49,6 +49,7 @@ public class AuthService(
 
         // Validar y manejar la imagen de perfil
         string profilePicturePath = _cloudinaryService.GetDefaultAvatarUrl();
+        
 
         // Crear nuevo usuario y entidades relacionadas
         var emailVerificationToken = TokenGeneratorService.GenerateEmailVerificationToken();

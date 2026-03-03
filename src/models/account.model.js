@@ -19,6 +19,12 @@ const accountSchema = new Schema({
     default: 'AHORRO'
   },
 
+  currency: {
+    type: String,
+    enum: ['GTQ', 'USD'],
+    default: 'GTQ'
+  },
+
   daily_transfer_limit: {
     type: Number,
     default: 10000
@@ -42,12 +48,12 @@ const accountSchema = new Schema({
   user_id: {
     type: String,
     required: true,
-    maxlength: 16  // Compatible con PostgreSQL user ID
+    maxlength: 16
   },
 
   estado: {
     type: String,
-    enum: ['ACTIVA', 'BLOQUEADA', 'CERRADA'],
+    enum: ['ACTIVA', 'BLOQUEADA', 'CERRADA', 'PENDIENTE'],
     default: 'ACTIVA'
   }
 
