@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const AUTH_SERVICE_URL = process.env.AUTH_SERVICE_URL || 'http://localhost:5025/api/v1';
 
-console.log('🔗 AUTH_SERVICE_URL configurada:', AUTH_SERVICE_URL);
+console.log(' AUTH_SERVICE_URL configurada:', AUTH_SERVICE_URL);
 
 // Servicio para comunicarse con .NET Auth API
 export const verifyUserExists = async (userId) => {
