@@ -25,29 +25,32 @@ const isAccountActive = (account) => {
 // ─── ADMIN: Crear cuenta para cualquier usuario por userId ───
 export const createAccount = async (req, res) => {
   try {
-    let { userId, account_type, currency, balance } = req.body;
-
-    if (!userId) {
-      return res.status(400).json({ success: false, message: 'El userId es obligatorio' });
+    if (!req.body || Object.keys(req.body).length === 0) {
+      return res.status(400).json({ success: false, message: 'Se requiere account_type, currency y opcionalmente balance ' });
     }
 
-    // Verificar que el usuario existe en .NET
-    const token = req.headers.authorization?.split(' ')[1];
-    try {
-      await verifyUserExists(userId, token);
-    } catch (error) {
-      return res.status(404).json({ success: false, message: 'Usuario no encontrado en el sistema' });
+    const { userId, account_type, currency, balance } = req.body;
+    const targetUserId = userId || req.user.id;
+
+    if (!account_type || !['AHORRO', 'CORRIENTE', 'NOMINA'].includes(account_type)) {
+      return res.status(400).json({ success: false, message: 'Tipo de cuenta inválido. Use AHORRO, CORRIENTE o NOMINA' });
     }
 
-    // Verificar que no tenga ya una cuenta
-    const existing = await Account.findOne({ user_id: userId });
-    if (existing) {
-      return res.status(400).json({ success: false, message: 'Este usuario ya tiene una cuenta bancaria' });
+    if (!currency || !['GTQ', 'USD'].includes(currency)) {
+      return res.status(400).json({ success: false, message: 'Moneda inválida. Use GTQ o USD' });
     }
 
     const initialBalance = parseFloat(balance) || 0;
     if (initialBalance < 0) {
       return res.status(400).json({ success: false, message: 'El saldo inicial no puede ser negativo' });
+    }
+
+    // Verificar que el usuario existe en .NET — usa targetUserId
+    const token = req.headers.authorization?.split(' ')[1];
+    try {
+      await verifyUserExists(targetUserId, token);
+    } catch (error) {
+      return res.status(404).json({ success: false, message: 'Usuario no encontrado en el sistema' });
     }
 
     // Generar número de cuenta único
@@ -59,11 +62,12 @@ export const createAccount = async (req, res) => {
     }
 
     const account = new Account({
-      user_id: userId,
-      account_type: account_type || 'AHORRO',
-      currency: currency || 'GTQ',
+      user_id: targetUserId,
+      account_type,
+      currency,
       balance: initialBalance,
-      estado: 'ACTIVA' // Admin crea cuenta activa directamente
+      account_number,
+      estado: 'ACTIVA'
     });
 
     await account.save();
@@ -79,18 +83,13 @@ export const createAccount = async (req, res) => {
   }
 };
 
-
 // ─── USUARIO: Crear su propia cuenta (queda PENDIENTE hasta que admin active) ───
 export const createMyAccount = async (req, res) => {
   try {
     const userId = req.user.id;
     let { account_type, currency, balance } = req.body;
 
-    // Verificar que no tenga ya una cuenta
-    const existing = await Account.findOne({ user_id: userId });
-    if (existing) {
-      return res.status(400).json({ success: false, message: 'Ya tienes una cuenta bancaria' });
-    }
+   
 
     const initialBalance = parseFloat(balance) || 0;
     if (initialBalance < 0) {
@@ -166,10 +165,30 @@ export const activateAccount = async (req, res) => {
 
 // Obtener cuentas del usuario
 export const getMyAccount = async (req, res) => {
-  const userId = req.user.id;
+  try {
+    const userId = req.user.id;
+    const accounts = await Account.find({ user_id: userId });
 
-  const account = await Account.findOne({ user_id: userId });
-  res.json(account);
+    if (!accounts || accounts.length === 0) {
+      return res.status(404).json({ 
+        success: false, 
+        message: 'No tienes cuentas bancarias registradas' 
+      });
+    }
+
+    res.json({ 
+      success: true, 
+      totalAccounts: accounts.length, 
+      accounts 
+    });
+
+  } catch (error) {
+    res.status(500).json({ 
+      success: false, 
+      message: 'Error al obtener cuentas', 
+      error: error.message 
+    });
+  }
 };
 
 // Transferencia
@@ -590,5 +609,43 @@ export const registerUser = async (req, res) => {
 
   } catch (error) {
     res.status(500).json({ success: false, message: 'Error al registrar', error: error.message });
+  }
+};
+
+export const getMyInfo = async (req, res) => {
+  try {
+    const userId = req.user.id;
+    const token = req.headers.authorization?.split(' ')[1];
+
+    let userInfo = null;
+    try {
+      const response = await axios.get(
+        `${process.env.AUTH_SERVICE_URL}/users/me`,
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
+      userInfo = response.data?.data || response.data;
+    } catch (error) {
+      return res.status(500).json({
+        success: false,
+        message: 'Error al obtener información del usuario',
+        error: error.response?.data?.message || error.message
+      });
+    }
+
+    const accounts = await Account.find({ user_id: userId });
+
+    res.json({
+      success: true,
+      user: userInfo,
+      accounts,
+      totalAccounts: accounts.length
+    });
+
+  } catch (error) {
+    res.status(500).json({ 
+      success: false, 
+      message: 'Error al obtener información', 
+      error: error.message 
+    });
   }
 };
