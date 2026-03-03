@@ -32,6 +32,6 @@ router.get('/by-activity', validateJWT, validateRole(Roles.ADMIN), getAccountsBy
 router.get('/by-balance', validateJWT, validateRole(Roles.ADMIN), getAccountsByBalance);
 router.get('/by-movements', validateJWT, validateRole(Roles.ADMIN), getAccountsByMovements);
 router.get('/:accountId/movements', validateJWT, validateRole(Roles.ADMIN), getAccountMovements);
-router.get('/:id', validateJWT, getAccountById);
+router.get('/:id', validateJWT, validateRole(Roles.ADMIN), getAccountById);
 
 export default router;

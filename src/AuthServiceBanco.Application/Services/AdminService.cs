@@ -1,4 +1,5 @@
 using AuthServiceBanco.Application.DTOs;
+using AuthServiceBanco.Application.Exceptions;
 using AuthServiceBanco.Application.DTOs.Admin;
 using AuthServiceBanco.Application.Interfaces;
 using AuthServiceBanco.Domain.Constants;
@@ -19,6 +20,22 @@ public class AdminService(
         if (dto.MonthlyIncome < 100)
             throw new InvalidOperationException("No se puede crear la cuenta si los ingresos son menores a Q100");
 
+        // Validaciones de unicidad: email, username, dpi
+        if (!string.IsNullOrWhiteSpace(dto.Email) && await users.ExistsByEmailAsync(dto.Email))
+        {
+            throw new BusinessException(ErrorCodes.EMAIL_ALREADY_EXISTS, "Cuenta con correo ya existente");
+        }
+
+        if (!string.IsNullOrWhiteSpace(dto.Username) && await users.ExistsByUsernameAsync(dto.Username))
+        {
+            throw new BusinessException(ErrorCodes.USERNAME_ALREADY_EXISTS, "Cuenta con username ya existente");
+        }
+
+        if (!string.IsNullOrWhiteSpace(dto.Dpi) && await users.ExistsByDpiAsync(dto.Dpi))
+        {
+            throw new BusinessException(ErrorCodes.DPI_ALREADY_EXISTS, "Cuenta con DPI ya existente");
+        }
+
         var user = new User
         {
             Id = UuidGenerator.GenerateUserId(),
@@ -28,6 +45,7 @@ public class AdminService(
             Email = dto.Email,
             Password = string.Empty,
             Status = true,
+            AccountState = Domain.Enums.AccountState.ACTIVA,
             CreatedAt = DateTime.UtcNow,
             UpdatedAt = DateTime.UtcNow
         };
@@ -87,6 +105,7 @@ public class AdminService(
             Role = RoleConstants.USER_ROLE,
             Status = user.Status,
             IsEmailVerified = true,
+            AccountState = user.AccountState.ToString(),
             CreatedAt = user.CreatedAt,
             UpdatedAt = user.UpdatedAt
         };
@@ -116,6 +135,7 @@ public class AdminService(
             Role = u.UserRoles.FirstOrDefault()?.Role?.Name ?? RoleConstants.USER_ROLE,
             Status = u.Status,
             IsEmailVerified = u.UserEmail?.EmailVerified ?? false,
+            AccountState = u.AccountState.ToString(),
             CreatedAt = u.CreatedAt,
             UpdatedAt = u.UpdatedAt
         }).ToList();
@@ -149,6 +169,7 @@ public class AdminService(
             Role = user.UserRoles.FirstOrDefault()?.Role?.Name ?? RoleConstants.USER_ROLE,
             Status = user.Status,
             IsEmailVerified = user.UserEmail?.EmailVerified ?? false,
+            AccountState = user.AccountState.ToString(),
             CreatedAt = user.CreatedAt,
             UpdatedAt = user.UpdatedAt
         };
@@ -206,5 +227,19 @@ public class AdminService(
         }
 
         return await users.DeleteAsync(userId);
+    }
+
+    public async Task<UserResponseDto> ActivateUserAccountAsync(string userId)
+    {
+        var user = await users.GetByIdAsync(userId);
+
+        // Activar la cuenta
+        user.AccountState = Domain.Enums.AccountState.ACTIVA;
+        user.Status = true;
+        user.UpdatedAt = DateTime.UtcNow;
+
+        await users.UpdateAsync(user);
+
+        return await GetUserByIdAsync(userId);
     }
 }

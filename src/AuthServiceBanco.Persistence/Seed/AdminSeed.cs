@@ -18,11 +18,12 @@ public static class AdminSeed
         var existing = await userRepo.GetByUsernameAsync("ADMINB");
         if (existing != null)
         {
-            var needsUpdate = !existing.Status || existing.Password.StartsWith("AQAAAA", StringComparison.Ordinal);
+            var needsUpdate = existing == null || !existing.Status || existing.Password.StartsWith("AQAAAA", StringComparison.Ordinal);
 
             if (needsUpdate)
             {
                 existing.Status = true;
+                existing.AccountState = AuthServiceBanco.Domain.Enums.AccountState.ACTIVA;
                 existing.Password = passwordHashService.HashPassword("ADMINB");
                 existing.UpdatedAt = DateTime.UtcNow;
                 await userRepo.UpdateAsync(existing);
@@ -31,14 +32,15 @@ public static class AdminSeed
             return;
         }
 
-        var user = new User
+            var user = new User
         {
             Id = UuidGenerator.GenerateUserId(),
             Name = "ADMIN",
             Surname = "BANK",
             Username = "ADMINB",
             Email = "admin@bank.com",
-            Status = true,
+                Status = true,
+                AccountState = AuthServiceBanco.Domain.Enums.AccountState.ACTIVA,
             CreatedAt = DateTime.UtcNow,
             UpdatedAt = DateTime.UtcNow
         };

@@ -40,6 +40,13 @@ public class AuthService(
             throw new BusinessException(ErrorCodes.USERNAME_ALREADY_EXISTS, "Username already exists");
         }
 
+        // Verificar si el DPI ya existe
+        if (!string.IsNullOrWhiteSpace(registerDto.Dpi) && await userRepository.ExistsByDpiAsync(registerDto.Dpi))
+        {
+            // Registrar si hay un logger específico no está implementado, usar mensaje consistente en español
+            throw new BusinessException(ErrorCodes.DPI_ALREADY_EXISTS, "Cuenta con DPI ya existente");
+        }
+
         // Validar y manejar la imagen de perfil
         string profilePicturePath;
 
@@ -83,7 +90,7 @@ public class AuthService(
             throw new InvalidOperationException($"Default role '{RoleConstants.USER_ROLE}' not found. Ensure seeding runs before registration.");
         }
 
-        var user = new User
+            var user = new User
         {
             Id = userId,
             Name = registerDto.Name,
@@ -91,7 +98,8 @@ public class AuthService(
             Username = registerDto.Username,
             Email = registerDto.Email.ToLowerInvariant(),
             Password = passwordHashService.HashPassword(registerDto.Password),
-            Status = false,
+                Status = false,
+                AccountState = Domain.Enums.AccountState.PENDIENTE,
             UserProfile = new UserProfile
             {
                 Id = userProfileId,
@@ -182,10 +190,10 @@ public class AuthService(
         }
 
         // Verificar si el usuario está activo
-        if (!user.Status)
+        if (user.AccountState != Domain.Enums.AccountState.ACTIVA)
         {
             logger.LogFailedLoginAttempt();
-            throw new UnauthorizedAccessException("User account is disabled");
+            throw new UnauthorizedAccessException("Cuenta pendiente de activación");
         }
 
         // Verificar si el email ha sido verificado
@@ -238,6 +246,7 @@ public class AuthService(
             Role = userRole,
             Status = user.Status,
             IsEmailVerified = user.UserEmail?.EmailVerified ?? false,
+            AccountState = user.AccountState.ToString(),
             CreatedAt = user.CreatedAt,
             UpdatedAt = user.UpdatedAt
         };

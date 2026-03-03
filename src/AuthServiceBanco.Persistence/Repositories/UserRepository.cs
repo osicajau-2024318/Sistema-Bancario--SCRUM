@@ -108,6 +108,12 @@ public class UserRepository(ApplicationDbContext context) : IUserRepository
             .AnyAsync(u => EF.Functions.ILike(u.Username, username));
     }
 
+    public async Task<bool> ExistsByDpiAsync(string dpi)
+    {
+        return await context.UserProfiles
+            .AnyAsync(up => EF.Functions.ILike(up.Dpi, dpi));
+    }
+
     public async Task UpdateUserRoleAsync(string userId, string roleId)
     {
         var existingRoles = await context.UserRoles

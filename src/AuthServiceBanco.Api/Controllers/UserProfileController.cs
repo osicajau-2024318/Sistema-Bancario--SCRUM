@@ -1,5 +1,8 @@
+using System;
+using System.Security.Claims;
 using AuthServiceBanco.Application.DTOs;
 using AuthServiceBanco.Application.Interfaces;
+using AuthServiceBanco.Domain.Constants;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -24,6 +27,16 @@ public class UserProfileController(IUserManagementService userManagementService)
         if (user == null)
         {
             return NotFound(new { success = false, message = "Usuario no encontrado" });
+        }
+
+        var currentUserId = User.Claims.FirstOrDefault(c => c.Type == "sub")?.Value;
+        var role = User.Claims.FirstOrDefault(c => c.Type == "role")?.Value
+                   ?? User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role)?.Value;
+
+        if (!string.Equals(role, RoleConstants.ADMIN_ROLE, StringComparison.Ordinal) &&
+            !string.Equals(currentUserId, userId, StringComparison.Ordinal))
+        {
+            return StatusCode(403, new { success = false, message = "Forbidden" });
         }
 
         return Ok(new
