@@ -3,6 +3,7 @@ import Account from '../models/account.model.js';
 import { convertCurrency } from '../services/currency.service.js';
 import { verifyUserExists, verifyMonthlyIncome, createClientInAuthService } from '../services/authService.service.js';
 import Transaction from '../models/transaction.model.js';
+import axios from 'axios';
 
 const isAccountActive = (account) => {
   if (typeof account?.estado === 'string') {
@@ -496,5 +497,47 @@ export const updateAccount = async (req, res) => {
       message: 'Error al actualizar cuenta',
       error: error.message
     });
+  }
+};
+
+export const registerUser = async (req, res) => {
+  try {
+    let { name, surname, username, email, password, phone,
+          dpi, address, workName, monthlyIncome } = req.body;
+
+    monthlyIncome = parseFloat(monthlyIncome);
+
+    if (!name || !surname || !username || !email || !password || !phone) {
+      return res.status(400).json({ success: false, message: 'Faltan campos obligatorios' });
+    }
+
+    if (monthlyIncome < 100) {
+      return res.status(400).json({ success: false, message: 'Ingresos mensuales deben ser al menos Q100' });
+    }
+
+    // Registrar usuario en  queda con Status false (pendiente)
+    let result;
+    try {
+      result = await axios.post(`${process.env.AUTH_SERVICE_URL}/api/v1/auth/register`, {
+        name, surname, username, email, password, phone,
+        dpi: dpi || '', address: address || '',
+        workName: workName || '', monthlyIncome
+      });
+    } catch (error) {
+      return res.status(error.response?.status || 500).json({
+        success: false,
+        message: error.response?.data?.message || 'Error al registrar usuario',
+        details: error.response?.data
+      });
+    }
+
+    res.status(201).json({
+      success: true,
+      message: 'Registro exitoso. Tu cuenta está pendiente de activación por un administrador.',
+      user: result.data
+    });
+
+  } catch (error) {
+    res.status(500).json({ success: false, message: 'Error al registrar', error: error.message });
   }
 };
