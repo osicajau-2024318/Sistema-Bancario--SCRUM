@@ -21,95 +21,146 @@ const isAccountActive = (account) => {
   return true;
 };
 
-// Crear cuenta Y usuario (solo admin)
-// NUEVO FLUJO: Crea el usuario primero en .NET, luego crea la cuenta en MongoDB
-// Funciona con JSON y form-data
+
+// ─── ADMIN: Crear cuenta para cualquier usuario por userId ───
 export const createAccount = async (req, res) => {
   try {
-    let { 
-      name, surname, username, email, password, phone,
-      dpi, address, workName, monthlyIncome, account_type 
-    } = req.body;
-    
-    // Convertir monthlyIncome a número si es string (desde form-data)
-    monthlyIncome = parseFloat(monthlyIncome);
-    
+    let { userId, account_type, currency, balance } = req.body;
+
+    if (!userId) {
+      return res.status(400).json({ success: false, message: 'El userId es obligatorio' });
+    }
+
+    // Verificar que el usuario existe en .NET
     const token = req.headers.authorization?.split(' ')[1];
-
-    if (!token) {
-      return res.status(401).json({ 
-        success: false, 
-        message: 'Token de autenticación requerido' 
-      });
-    }
-
-    // Verificar que los ingresos mensuales sean >= Q100
-    if (monthlyIncome < 100) {
-      return res.status(400).json({ 
-        success: false, 
-        message: 'No se puede crear la cuenta. Ingresos mensuales deben ser >= Q100' 
-      });
-    }
-
-    // 1. Crear usuario en .NET (PostgreSQL)
-    let userCreationResult;
     try {
-      userCreationResult = await createClientInAuthService({
-        name,
-        surname,
-        username,
-        email,
-        password,
-        phone,
-        dpi: dpi || '',
-        address: address || '',
-        workName: workName || '',
-        monthlyIncome
-      }, token);
+      await verifyUserExists(userId, token);
     } catch (error) {
-      return res.status(error.response?.status || 500).json({
-        success: false,
-        message: error.response?.data?.message || 'Error al crear usuario en sistema de autenticación',
-        details: error.response?.data
-      });
+      return res.status(404).json({ success: false, message: 'Usuario no encontrado en el sistema' });
     }
 
-    const userId = userCreationResult.data.id;
+    // Verificar que no tenga ya una cuenta
+    const existing = await Account.findOne({ user_id: userId });
+    if (existing) {
+      return res.status(400).json({ success: false, message: 'Este usuario ya tiene una cuenta bancaria' });
+    }
 
-    // 2. Generar número de cuenta aleatorio
-    const account_number = Math.floor(1000000000 + Math.random() * 9000000000).toString();
+    const initialBalance = parseFloat(balance) || 0;
+    if (initialBalance < 0) {
+      return res.status(400).json({ success: false, message: 'El saldo inicial no puede ser negativo' });
+    }
 
-    // 3. Crear cuenta bancaria en MongoDB
+    // Generar número de cuenta único
+    let account_number;
+    let exists = true;
+    while (exists) {
+      account_number = Math.floor(1000000000 + Math.random() * 9000000000).toString();
+      exists = await Account.findOne({ account_number });
+    }
+
     const account = new Account({
       user_id: userId,
       account_type: account_type || 'AHORRO',
-      account_number
+      currency: currency || 'GTQ',
+      balance: initialBalance,
+      estado: 'ACTIVA' // Admin crea cuenta activa directamente
     });
 
     await account.save();
 
-    // 4. Devolver respuesta completa
     res.status(201).json({
       success: true,
-      message: 'Usuario y cuenta creados exitosamente',
-      user: userCreationResult.data,
-      account: {
-        id: account._id,
-        user_id: account.user_id,
-        account_number: account.account_number,
-        account_type: account.account_type,
-        balance: account.balance,
-        active: isAccountActive(account),
-        estado: account.estado
-      }
+      message: 'Cuenta creada exitosamente',
+      account
     });
 
   } catch (error) {
-    res.status(500).json({ 
-      success: false, 
-      message: 'Error al crear cuenta', 
-      error: error.message 
+    res.status(500).json({ success: false, message: 'Error al crear cuenta', error: error.message });
+  }
+};
+
+
+// ─── USUARIO: Crear su propia cuenta (queda PENDIENTE hasta que admin active) ───
+export const createMyAccount = async (req, res) => {
+  try {
+    const userId = req.user.id;
+    let { account_type, currency, balance } = req.body;
+
+    // Verificar que no tenga ya una cuenta
+    const existing = await Account.findOne({ user_id: userId });
+    if (existing) {
+      return res.status(400).json({ success: false, message: 'Ya tienes una cuenta bancaria' });
+    }
+
+    const initialBalance = parseFloat(balance) || 0;
+    if (initialBalance < 0) {
+      return res.status(400).json({ success: false, message: 'El saldo inicial no puede ser negativo' });
+    }
+
+    if (!['AHORRO', 'CORRIENTE', 'NOMINA'].includes(account_type)) {
+      return res.status(400).json({ success: false, message: 'Tipo de cuenta inválido. Use AHORRO, CORRIENTE o NOMINA' });
+    }
+
+    if (!['GTQ', 'USD'].includes(currency)) {
+      return res.status(400).json({ success: false, message: 'Moneda inválida. Use GTQ o USD' });
+    }
+
+    // Generar número de cuenta único
+    let account_number;
+    let exists = true;
+    while (exists) {
+      account_number = Math.floor(1000000000 + Math.random() * 9000000000).toString();
+      exists = await Account.findOne({ account_number });
+    }
+
+    const account = new Account({
+      user_id: userId,
+      account_type,
+      currency,
+      balance: initialBalance,
+      account_number,
+      estado: 'PENDIENTE' // Queda pendiente hasta que admin active
     });
+
+    await account.save();
+
+    res.status(201).json({
+      success: true,
+      message: 'Cuenta creada. Pendiente de activación por un administrador.',
+      account
+    });
+
+  } catch (error) {
+    res.status(500).json({ success: false, message: 'Error al crear cuenta', error: error.message });
+  }
+};
+
+
+// ─── ADMIN: Activar cuenta de un usuario ───
+export const activateAccount = async (req, res) => {
+  try {
+    const { accountId } = req.params;
+
+    const account = await Account.findById(accountId);
+    if (!account) {
+      return res.status(404).json({ success: false, message: 'Cuenta no encontrada' });
+    }
+
+    if (account.estado === 'ACTIVA') {
+      return res.status(400).json({ success: false, message: 'La cuenta ya está activa' });
+    }
+
+    account.estado = 'ACTIVA';
+    await account.save();
+
+    res.json({
+      success: true,
+      message: 'Cuenta activada correctamente',
+      account
+    });
+
+  } catch (error) {
+    res.status(500).json({ success: false, message: 'Error al activar cuenta', error: error.message });
   }
 };
 

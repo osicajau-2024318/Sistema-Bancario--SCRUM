@@ -1,11 +1,12 @@
 import { Router } from 'express';
-import multer from 'multer';
-import { 
-  createAccount, 
-  getMyAccount, 
-  transfer, 
-  getAccountById, 
-  getAccountsByActivity, 
+import {
+  createAccount,
+  createMyAccount,
+  activateAccount,
+  getMyAccount,
+  transfer,
+  getAccountById,
+  getAccountsByActivity,
   getAccountsByBalance,
   getAllAccounts,
   updateAccount,
@@ -15,18 +16,19 @@ import {
 import { validateJWT } from '../../middlewares/validate-JWT.js';
 import { validateRole } from '../../middlewares/validate-role.js';
 import { Roles } from '../constants/roles.js';
-import { validateCreateAccount, validateTransfer } from '../../middlewares/account.validators.js';
+import { validateTransfer } from '../../middlewares/account.validators.js';
 
 const router = Router();
-const parseFormData = multer().none();
 
-// Rutas de cliente (deben estar ANTES que /:id)
+// ─── USUARIO ───
 router.get('/me', validateJWT, getMyAccount);
+router.post('/my-account', validateJWT, validateRole(Roles.USER), createMyAccount);
 router.put('/me', validateJWT, validateRole(Roles.USER), updateAccount);
 router.post('/transfer', validateJWT, validateRole(Roles.USER), validateTransfer, transfer);
 
-// Rutas de admin
-router.post('/', validateJWT, validateRole(Roles.ADMIN), parseFormData, validateCreateAccount, createAccount);
+// ─── ADMIN ───
+router.post('/', validateJWT, validateRole(Roles.ADMIN), createAccount);
+router.post('/:accountId/activate', validateJWT, validateRole(Roles.ADMIN), activateAccount);
 router.get('/all', validateJWT, validateRole(Roles.ADMIN), getAllAccounts);
 router.get('/by-activity', validateJWT, validateRole(Roles.ADMIN), getAccountsByActivity);
 router.get('/by-balance', validateJWT, validateRole(Roles.ADMIN), getAccountsByBalance);
