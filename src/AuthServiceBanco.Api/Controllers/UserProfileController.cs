@@ -59,7 +59,8 @@ public class UserProfileController(IUserManagementService userManagementService)
     [Authorize]
     public async Task<IActionResult> GetMyProfile()
     {
-        var userId = User.Claims.FirstOrDefault(c => c.Type == "sub")?.Value;
+        var userId = User.Claims.FirstOrDefault(c => c.Type == "sub")?.Value
+             ?? User.Claims.FirstOrDefault(c => c.Type == "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier")?.Value;
         if (string.IsNullOrEmpty(userId))
         {
             return Unauthorized(new { success = false, message = "Usuario no autenticado" });
