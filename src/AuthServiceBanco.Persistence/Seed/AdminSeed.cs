@@ -18,7 +18,9 @@ public static class AdminSeed
         var existing = await userRepo.GetByUsernameAsync("ADMINB");
         if (existing != null)
         {
-            var needsUpdate = existing == null || !existing.Status || existing.Password.StartsWith("AQAAAA", StringComparison.Ordinal);
+            var needsUpdate = !existing.Status 
+                || existing.AccountState != Domain.Enums.AccountState.ACTIVA
+                || existing.Password.StartsWith("AQAAAA", StringComparison.Ordinal);
 
             if (needsUpdate)
             {
@@ -27,6 +29,12 @@ public static class AdminSeed
                 existing.Password = passwordHashService.HashPassword("ADMINB");
                 existing.UpdatedAt = DateTime.UtcNow;
                 await userRepo.UpdateAsync(existing);
+
+                // Asegurar que el email esté verificado
+                if (existing.UserEmail != null)
+                {
+                    existing.UserEmail.EmailVerified = true;
+                }
             }
 
             return;
