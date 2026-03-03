@@ -16,6 +16,7 @@ public class UserResponseDto
     public string Role { get; set; } = string.Empty;
     public bool Status { get; set; }
     public bool IsEmailVerified { get; set; }
+    public string AccountState { get; set; } = string.Empty;
     public DateTime CreatedAt { get; set; }
     public DateTime UpdatedAt { get; set; }
 }

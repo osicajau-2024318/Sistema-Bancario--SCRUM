@@ -87,6 +87,7 @@ public class UserManagementService(IUserRepository users, IRoleRepository roles,
             Role = roleName,
             Status = user.Status,
             IsEmailVerified = user.UserEmail?.EmailVerified ?? false,
+            AccountState = user.AccountState.ToString(),
             CreatedAt = user.CreatedAt,
             UpdatedAt = user.UpdatedAt
         };

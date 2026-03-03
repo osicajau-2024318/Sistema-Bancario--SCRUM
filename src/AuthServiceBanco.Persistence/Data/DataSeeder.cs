@@ -49,6 +49,7 @@ public static class DataSeeder
                     Email = "admin@ksports.local",
                     Password = passwordHasher.HashPassword("Admin1234!"),
                     Status = true,
+                    AccountState = AuthServiceBanco.Domain.Enums.AccountState.ACTIVA,
                     UserProfile = new UserProfile
                     {
                         Id = profileId,

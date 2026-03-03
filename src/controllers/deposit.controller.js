@@ -1,5 +1,7 @@
+import mongoose from 'mongoose';
 import Account from '../models/account.model.js';
 import Transaction from '../models/transaction.model.js';
+import { Roles } from '../constants/roles.js';
 
 export const createDeposit = async (req, res) => {
   try {
@@ -21,9 +23,11 @@ export const createDeposit = async (req, res) => {
     const account = await Account.findOne({ account_number: accountNumber });
     if (!account) return res.status(404).json({ success: false, message: 'Cuenta no encontrada' });
 
-    // Validar que la cuenta pertenece al usuario autenticado
-    if (account.user_id.toString() !== userId) {
-      return res.status(403).json({ success: false, message: 'No tienes permiso para depositar en esta cuenta' });
+    // Validar que la cuenta pertenece al usuario autenticado (permitir a Admins)
+    if (req.user.role !== Roles.ADMIN) {
+      if (account.user_id.toString() !== userId) {
+        return res.status(403).json({ success: false, message: 'No tienes permiso para depositar en esta cuenta' });
+      }
     }
 
     if (account.estado !== 'ACTIVA')
@@ -148,5 +152,54 @@ export const getPendingDeposits = async (req, res) => {
       message: 'Error al obtener depósitos pendientes',
       error: error.message
     });
+  }
+};
+
+// Admin: Modificar monto de un depósito existente
+export const updateDeposit = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { amount } = req.body;
+
+    // Validar id
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      return res.status(400).json({ success: false, message: 'ID de transacción inválido' });
+    }
+
+    // Validar monto
+    const newAmount = parseFloat(amount);
+    if (isNaN(newAmount) || newAmount <= 0) {
+      return res.status(400).json({ success: false, message: 'Monto inválido' });
+    }
+
+    const transaction = await Transaction.findById(id);
+    if (!transaction) return res.status(404).json({ success: false, message: 'Transacción no encontrada' });
+
+    if (transaction.transaction_type !== 'DEPOSITO') {
+      return res.status(400).json({ success: false, message: 'Solo depósitos pueden modificarse' });
+    }
+
+    if (transaction.reverted) {
+      return res.status(400).json({ success: false, message: 'No se puede modificar un depósito revertido' });
+    }
+
+    // Obtener cuenta
+    const account = await Account.findById(transaction.account_id);
+    if (!account) return res.status(404).json({ success: false, message: 'Cuenta asociada no encontrada' });
+
+    // Calcular diferencia y aplicar al saldo
+    const diff = newAmount - transaction.transaction_amount;
+    transaction.transaction_amount = newAmount;
+    transaction.updatedAt = new Date();
+    await transaction.save();
+
+    account.balance += diff;
+    await account.save();
+
+    return res.status(200).json({ success: true, message: 'Depósito modificado correctamente', transaction, balance: account.balance });
+
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ success: false, message: 'Error al modificar depósito', error: error.message });
   }
 };

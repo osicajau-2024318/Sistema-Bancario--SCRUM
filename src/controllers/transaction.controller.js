@@ -77,7 +77,8 @@ export const getTransactionById = async (req, res) => {
     }
 
     // Verificar que la transacción pertenece al usuario
-    if (transaction.user_id !== userId) {
+    const txUserId = transaction.user_id?.toString ? transaction.user_id.toString() : transaction.user_id;
+    if (txUserId !== userId) {
       return res.status(403).json({
         success: false,
         message: 'No tienes permiso para ver esta transacción'
