@@ -28,3 +28,8 @@ System.IO.IOException: Failed to bind to address http://127.0.0.1:5025: address 
    at Microsoft.AspNetCore.Hosting.GenericWebHostService.StartAsync(CancellationToken cancellationToken)
    at Microsoft.Extensions.Hosting.Internal.Host.<StartAsync>b__15_1(IHostedService service, CancellationToken token)
    at Microsoft.Extensions.Hosting.Internal.Host.ForeachService[T](IEnumerable`1 services, CancellationToken token, Boolean concurrent, Boolean abortOnFirstException, List`1 exceptions, Func`3 operation)
+[2026-03-03 11:23:45 INF] Checking database connection... {"SourceContext":"Program"}
+[2026-03-03 11:23:46 WRN] The 'AccountState' property 'AccountState' on entity type 'User' is configured with a database-generated default, but has no configured sentinel value. The database-generated default will always be used for inserts when the property has the value 'ACTIVA', since this is the CLR default for the 'AccountState' type. Consider using a nullable type, using a nullable backing field, or setting the sentinel value for the property to ensure the database default is used when, and only when, appropriate. See https://aka.ms/efcore-docs-default-values for more information. {"EventId":{"Id":20601,"Name":"Microsoft.EntityFrameworkCore.Model.Validation.BoolWithDefaultWarning"},"SourceContext":"Microsoft.EntityFrameworkCore.Model.Validation"}
+[2026-03-03 11:23:46 INF] Database ready. Running seed data... {"SourceContext":"Program"}
+[2026-03-03 11:23:46 INF] Database initialization completed successfully {"SourceContext":"Program"}
+[2026-03-03 11:23:46 INF] AuthService API is running at http://localhost:5025. Health endpoint: http://localhost:5025/health {"SourceContext":"Program"}
