@@ -38,7 +38,7 @@ export const createDeposit = async (req, res) => {
     today.setHours(0, 0, 0, 0);
 
     const depositsToday = await Transaction.aggregate([
-      { $match: { account_id: account._id, transaction_type: 'DEPOSITO', transaction_date_time: { $gte: today } } },
+      { $match: { account_id: account._id, transaction_type: 'DEPOSITO', createdAt: { $gte: today } } },
       { $group: { _id: null, total: { $sum: '$transaction_amount' } } }
     ]);
 
@@ -91,7 +91,7 @@ export const revertDeposit = async (req, res) => {
     }
 
     const now = new Date();
-    const diff = (now - transaction.transaction_date_time) / 1000; // segundos
+    const diff = (now - transaction.createdAt) / 1000;
     if (diff > 60) return res.status(400).json({ success: false, message: 'Solo depósitos menores a 1 minuto pueden revertirse' });
 
     // Restar del saldo

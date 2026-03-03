@@ -48,32 +48,7 @@ public class AuthService(
         }
 
         // Validar y manejar la imagen de perfil
-        string profilePicturePath;
-
-        if (registerDto.ProfilePicture != null && registerDto.ProfilePicture.Size > 0)
-        {
-            var (isValid, errorMessage) = FileValidator.ValidateImage(registerDto.ProfilePicture);
-            if (!isValid)
-            {
-                logger.LogWarning($"File validation failed: {errorMessage}");
-                throw new BusinessException(ErrorCodes.INVALID_FILE_FORMAT, errorMessage!);
-            }
-
-            try
-            {
-                var fileName = FileValidator.GenerateSecureFileName(registerDto.ProfilePicture.FileName);
-                profilePicturePath = await _cloudinaryService.UploadImageAsync(registerDto.ProfilePicture, fileName);
-            }
-            catch (Exception)
-            {
-                logger.LogImageUploadError();
-                throw new BusinessException(ErrorCodes.IMAGE_UPLOAD_FAILED, "Failed to upload profile image");
-            }
-        }
-        else
-        {
-            profilePicturePath = _cloudinaryService.GetDefaultAvatarUrl();
-        }
+        string profilePicturePath = _cloudinaryService.GetDefaultAvatarUrl();
 
         // Crear nuevo usuario y entidades relacionadas
         var emailVerificationToken = TokenGeneratorService.GenerateEmailVerificationToken();

@@ -8,16 +8,17 @@ import {
 } from '../controllers/product.controller.js';
 import { validateJWT } from '../../middlewares/validate-JWT.js';
 import { validateRole } from '../../middlewares/validate-role.js';
+import { Roles } from '../constants/roles.js';
 
 const router = Router();
 
-// Rutas públicas
-router.get('/', getProducts);
-router.get('/:id', getProductById);
+// Requieren token — productos son exclusivos para clientes del banco
+router.get('/', validateJWT, getProducts);
+router.get('/:id', validateJWT, getProductById);
 
-// Rutas de admin
-router.post('/', [validateJWT, validateRole(['ADMIN'])], createProduct);
-router.put('/:id', [validateJWT, validateRole(['ADMIN'])], updateProduct);
-router.delete('/:id', [validateJWT, validateRole(['ADMIN'])], deleteProduct);
+// Solo admin
+router.post('/', validateJWT, validateRole(Roles.ADMIN), createProduct);
+router.put('/:id', validateJWT, validateRole(Roles.ADMIN), updateProduct);
+router.delete('/:id', validateJWT, validateRole(Roles.ADMIN), deleteProduct);
 
 export default router;
