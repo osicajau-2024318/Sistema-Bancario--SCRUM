@@ -386,12 +386,10 @@ export const getAccountsByActivity = async (req, res) => {
 // Admin: Ver cuentas con más movimientos (ordenado ASC o DESC)
 export const getAccountsByMovements = async (req, res) => {
   try {
-    const { order = 'desc' } = req.query; // 'asc' o 'desc'
+    const { order = 'desc' } = req.query;
 
-    // Obtener todas las cuentas
     const accounts = await Account.find();
 
-    // Calcular cantidad de movimientos para cada cuenta
     const accountsWithMovements = await Promise.all(
       accounts.map(async (account) => {
         const movementsCount = await Transaction.countDocuments({
@@ -399,7 +397,8 @@ export const getAccountsByMovements = async (req, res) => {
             { from_account: account.account_number },
             { to_account: account.account_number },
             { account_id: account._id }
-          ]
+          ],
+          transaction_type: { $in: ['TRANSFERENCIA', 'COMPRA', 'CREDITO'] }
         });
 
         return {
@@ -409,7 +408,6 @@ export const getAccountsByMovements = async (req, res) => {
       })
     );
 
-    // Ordenar por cantidad de movimientos
     const sortOrder = order === 'asc' ? 1 : -1;
     accountsWithMovements.sort((a, b) => sortOrder * (a.movementsCount - b.movementsCount));
 
