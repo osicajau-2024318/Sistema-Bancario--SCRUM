@@ -74,3 +74,383 @@ System.IO.IOException: Failed to bind to address http://127.0.0.1:5025: address 
 [2026-03-03 20:43:21 INF] User login successfully. {"EventId":{"Id":1002,"Name":"LogUserLoggedIn"},"SourceContext":"AuthServiceBanco.Application.Services.AuthService","ActionId":"7128d07f-0ee1-4190-b0cc-69ad06b303be","ActionName":"AuthServiceBanco.Api.Controllers.AuthController.Login (AuthServiceBanco.Api)","RequestId":"0HNJPI0CVHNA0:00000002","RequestPath":"/api/v1/auth/login","ConnectionId":"0HNJPI0CVHNA0"}
 [2026-03-03 20:43:21 INF] HTTP POST /api/v1/auth/login responded 200 in 103.0192 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNJPI0CVHNA0:00000002","ConnectionId":"0HNJPI0CVHNA0"}
 [2026-03-03 20:43:28 INF] HTTP GET /api/v1/users/me responded 200 in 48.6431 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNJPI0CVHNA1:00000001","ConnectionId":"0HNJPI0CVHNA1"}
+[2026-03-03 20:57:08 INF] User login successfully. {"EventId":{"Id":1002,"Name":"LogUserLoggedIn"},"SourceContext":"AuthServiceBanco.Application.Services.AuthService","ActionId":"7128d07f-0ee1-4190-b0cc-69ad06b303be","ActionName":"AuthServiceBanco.Api.Controllers.AuthController.Login (AuthServiceBanco.Api)","RequestId":"0HNJPI0CVHNA3:00000001","RequestPath":"/api/v1/auth/login","ConnectionId":"0HNJPI0CVHNA3"}
+[2026-03-03 20:57:08 INF] HTTP POST /api/v1/auth/login responded 200 in 125.4101 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNJPI0CVHNA3:00000001","ConnectionId":"0HNJPI0CVHNA3"}
+[2026-03-03 21:29:46 INF] User login successfully. {"EventId":{"Id":1002,"Name":"LogUserLoggedIn"},"SourceContext":"AuthServiceBanco.Application.Services.AuthService","ActionId":"7128d07f-0ee1-4190-b0cc-69ad06b303be","ActionName":"AuthServiceBanco.Api.Controllers.AuthController.Login (AuthServiceBanco.Api)","RequestId":"0HNJPI0CVHNA5:00000001","RequestPath":"/api/v1/auth/login","ConnectionId":"0HNJPI0CVHNA5"}
+[2026-03-03 21:29:46 INF] HTTP POST /api/v1/auth/login responded 200 in 131.4081 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNJPI0CVHNA5:00000001","ConnectionId":"0HNJPI0CVHNA5"}
+[2026-03-03 21:29:56 INF] HTTP PUT /api/v1/users/me responded 401 in 48.5053 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNJPI0CVHNA5:00000002","ConnectionId":"0HNJPI0CVHNA5"}
+[2026-03-03 21:30:50 INF] HTTP PUT /api/v1/users/me responded 401 in 7.0315 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNJPI0CVHNA5:00000003","ConnectionId":"0HNJPI0CVHNA5"}
+[2026-03-03 21:30:51 INF] HTTP PUT /api/v1/users/me responded 401 in 4.8291 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNJPI0CVHNA5:00000004","ConnectionId":"0HNJPI0CVHNA5"}
+[2026-03-03 21:34:45 INF] User login successfully. {"EventId":{"Id":1002,"Name":"LogUserLoggedIn"},"SourceContext":"AuthServiceBanco.Application.Services.AuthService","ActionId":"7128d07f-0ee1-4190-b0cc-69ad06b303be","ActionName":"AuthServiceBanco.Api.Controllers.AuthController.Login (AuthServiceBanco.Api)","RequestId":"0HNJPI0CVHNA7:00000001","RequestPath":"/api/v1/auth/login","ConnectionId":"0HNJPI0CVHNA7"}
+[2026-03-03 21:34:45 INF] HTTP POST /api/v1/auth/login responded 200 in 106.9246 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNJPI0CVHNA7:00000001","ConnectionId":"0HNJPI0CVHNA7"}
+[2026-03-03 21:35:15 INF] HTTP PUT /api/v1/users/me responded 401 in 7.4808 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNJPI0CVHNA7:00000002","ConnectionId":"0HNJPI0CVHNA7"}
+[2026-03-03 21:35:15 INF] HTTP PUT /api/v1/users/me responded 401 in 2.6725 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNJPI0CVHNA7:00000003","ConnectionId":"0HNJPI0CVHNA7"}
+[2026-03-03 21:35:16 INF] HTTP PUT /api/v1/users/me responded 401 in 2.5116 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNJPI0CVHNA7:00000004","ConnectionId":"0HNJPI0CVHNA7"}
+[2026-03-03 21:35:21 INF] HTTP GET /api/v1/users/me responded 200 in 35.6602 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNJPI0CVHNA8:00000001","ConnectionId":"0HNJPI0CVHNA8"}
+[2026-03-03 21:35:35 INF] HTTP PUT /api/v1/users/me responded 401 in 3.8682 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNJPI0CVHNA7:00000005","ConnectionId":"0HNJPI0CVHNA7"}
+[2026-03-03 21:59:19 INF] HTTP POST /api/v1/auth/login responded 400 in 45.8363 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNJPI0CVHNAA:00000001","ConnectionId":"0HNJPI0CVHNAA"}
+[2026-03-03 21:59:34 INF] User login successfully. {"EventId":{"Id":1002,"Name":"LogUserLoggedIn"},"SourceContext":"AuthServiceBanco.Application.Services.AuthService","ActionId":"7128d07f-0ee1-4190-b0cc-69ad06b303be","ActionName":"AuthServiceBanco.Api.Controllers.AuthController.Login (AuthServiceBanco.Api)","RequestId":"0HNJPI0CVHNAA:00000002","RequestPath":"/api/v1/auth/login","ConnectionId":"0HNJPI0CVHNAA"}
+[2026-03-03 21:59:34 INF] HTTP POST /api/v1/auth/login responded 200 in 226.1678 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNJPI0CVHNAA:00000002","ConnectionId":"0HNJPI0CVHNAA"}
+[2026-03-03 22:00:20 INF] HTTP PUT /api/v1/users/me responded 401 in 13.3640 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNJPI0CVHNAA:00000003","ConnectionId":"0HNJPI0CVHNAA"}
+[2026-03-03 22:00:21 INF] HTTP PUT /api/v1/users/me responded 401 in 2.4568 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNJPI0CVHNAA:00000004","ConnectionId":"0HNJPI0CVHNAA"}
+[2026-03-03 22:00:22 INF] HTTP PUT /api/v1/users/me responded 401 in 2.3986 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNJPI0CVHNAA:00000005","ConnectionId":"0HNJPI0CVHNAA"}
+[2026-03-03 22:00:23 INF] HTTP PUT /api/v1/users/me responded 401 in 1.7269 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNJPI0CVHNAA:00000006","ConnectionId":"0HNJPI0CVHNAA"}
+[2026-03-03 22:00:40 INF] Checking database connection... {"SourceContext":"Program"}
+[2026-03-03 22:00:40 WRN] The 'AccountState' property 'AccountState' on entity type 'User' is configured with a database-generated default, but has no configured sentinel value. The database-generated default will always be used for inserts when the property has the value 'ACTIVA', since this is the CLR default for the 'AccountState' type. Consider using a nullable type, using a nullable backing field, or setting the sentinel value for the property to ensure the database default is used when, and only when, appropriate. See https://aka.ms/efcore-docs-default-values for more information. {"EventId":{"Id":20601,"Name":"Microsoft.EntityFrameworkCore.Model.Validation.BoolWithDefaultWarning"},"SourceContext":"Microsoft.EntityFrameworkCore.Model.Validation"}
+[2026-03-03 22:00:41 INF] Database ready. Running seed data... {"SourceContext":"Program"}
+[2026-03-03 22:00:41 INF] Database initialization completed successfully {"SourceContext":"Program"}
+[2026-03-03 22:00:41 INF] AuthService API is running at http://localhost:5025. Health endpoint: http://localhost:5025/health {"SourceContext":"Program"}
+[2026-03-03 22:01:08 WRN] Failed to determine the https port for redirect. {"EventId":{"Id":3,"Name":"FailedToDeterminePort"},"SourceContext":"Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware","RequestId":"0HNJPKAL8TIUC:00000001","RequestPath":"/api/v1/users/me","ConnectionId":"0HNJPKAL8TIUC"}
+[2026-03-03 22:01:08 INF] HTTP PUT /api/v1/users/me responded 200 in 129.2530 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNJPKAL8TIUC:00000001","ConnectionId":"0HNJPKAL8TIUC"}
+[2026-03-03 22:02:13 INF] HTTP PUT /api/v1/users/me responded 200 in 50.2819 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNJPKAL8TIUE:00000001","ConnectionId":"0HNJPKAL8TIUE"}
+[2026-03-03 22:02:13 INF] HTTP PUT /api/v1/users/me responded 200 in 43.1783 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNJPKAL8TIUE:00000002","ConnectionId":"0HNJPKAL8TIUE"}
+[2026-03-03 22:02:14 INF] HTTP PUT /api/v1/users/me responded 200 in 9.2885 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNJPKAL8TIUE:00000003","ConnectionId":"0HNJPKAL8TIUE"}
+[2026-03-03 22:02:14 INF] HTTP PUT /api/v1/users/me responded 200 in 10.8573 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNJPKAL8TIUE:00000004","ConnectionId":"0HNJPKAL8TIUE"}
+[2026-03-03 22:02:47 INF] HTTP PUT /api/v1/users/me responded 200 in 15.4764 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNJPKAL8TIUE:00000005","ConnectionId":"0HNJPKAL8TIUE"}
+[2026-03-03 22:05:15 INF] HTTP GET /api/v1/admin/users/usr_NqYvUS6y7RtS responded 401 in 13.1556 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNJPKAL8TIUG:00000001","ConnectionId":"0HNJPKAL8TIUG"}
+[2026-03-03 22:05:16 INF] HTTP GET /api/v1/admin/users/usr_NqYvUS6y7RtS responded 401 in 0.4650 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNJPKAL8TIUG:00000002","ConnectionId":"0HNJPKAL8TIUG"}
+[2026-03-03 22:05:17 INF] HTTP GET /api/v1/admin/users/usr_NqYvUS6y7RtS responded 401 in 0.9718 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNJPKAL8TIUG:00000003","ConnectionId":"0HNJPKAL8TIUG"}
+[2026-03-03 22:06:00 ERR] An unhandled exception occurred {"SourceContext":"AuthServiceBanco.Api.Middlewares.GlobalExceptionMiddleware","RequestId":"0HNJPKAL8TIUG:00000004","RequestPath":"/api/v1/admin/users/:iduser","ConnectionId":"0HNJPKAL8TIUG"}
+System.InvalidOperationException: User with id :iduser not found.
+   at AuthServiceBanco.Persistence.Repositories.UserRepository.GetByIdAsync(String id) in /Users/josueboror/Visual/Banco/Sistema-Bancario--SCRUM/src/AuthServiceBanco.Persistence/Repositories/UserRepository.cs:line 21
+   at AuthServiceBanco.Application.Services.AdminService.GetUserByIdAsync(String userId) in /Users/josueboror/Visual/Banco/Sistema-Bancario--SCRUM/src/AuthServiceBanco.Application/Services/AdminService.cs:line 154
+   at AuthServiceBanco.Api.Controllers.AdminController.GetUserById(String userId) in /Users/josueboror/Visual/Banco/Sistema-Bancario--SCRUM/src/AuthServiceBanco.Api/Controllers/AdminController.cs:line 56
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at AuthServiceBanco.Api.Middlewares.GlobalExceptionMiddleware.InvokeAsync(HttpContext context) in /Users/josueboror/Visual/Banco/Sistema-Bancario--SCRUM/src/AuthServiceBanco.Api/Middlewares/GlobalExceptionMiddleware.cs:line 18
+[2026-03-03 22:06:00 INF] HTTP GET /api/v1/admin/users/:iduser responded 404 in 54.2346 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNJPKAL8TIUG:00000004","ConnectionId":"0HNJPKAL8TIUG"}
+[2026-03-03 22:06:37 INF] HTTP GET /api/v1/admin/users/usr_mYVMcrqy3Z8q responded 200 in 18.1415 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNJPKAL8TIUG:00000005","ConnectionId":"0HNJPKAL8TIUG"}
+[2026-03-03 22:06:47 INF] HTTP GET /api/v1/admin/users/usr_mYVMcrqy3Z8q responded 200 in 9.5448 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNJPKAL8TIUG:00000006","ConnectionId":"0HNJPKAL8TIUG"}
+[2026-03-03 22:22:27 INF] HTTP PUT /api/v1/users/me responded 401 in 3.1360 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNJPKAL8TIUI:00000001","ConnectionId":"0HNJPKAL8TIUI"}
+[2026-03-03 22:22:28 INF] HTTP PUT /api/v1/users/me responded 401 in 0.4823 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNJPKAL8TIUI:00000002","ConnectionId":"0HNJPKAL8TIUI"}
+[2026-03-03 22:23:40 WRN] Registration rejected: Username already exists. {"EventId":{"Id":1005,"Name":"LogRegistrationWithExistingUsername"},"SourceContext":"AuthServiceBanco.Application.Services.AuthService","ActionId":"a4f3dd04-6da4-43fa-bf76-e1d7ec746550","ActionName":"AuthServiceBanco.Api.Controllers.AuthController.Register (AuthServiceBanco.Api)","RequestId":"0HNJPKAL8TIUK:00000001","RequestPath":"/api/v1/auth/register","ConnectionId":"0HNJPKAL8TIUK"}
+[2026-03-03 22:23:40 ERR] An unhandled exception occurred {"SourceContext":"AuthServiceBanco.Api.Middlewares.GlobalExceptionMiddleware","RequestId":"0HNJPKAL8TIUK:00000001","RequestPath":"/api/v1/auth/register","ConnectionId":"0HNJPKAL8TIUK"}
+AuthServiceBanco.Application.Exceptions.BusinessException: Username already exists
+   at AuthServiceBanco.Application.Services.AuthService.RegisterAsync(RegisterDto registerDto) in /Users/josueboror/Visual/Banco/Sistema-Bancario--SCRUM/src/AuthServiceBanco.Application/Services/AuthService.cs:line 40
+   at AuthServiceBanco.Api.Controllers.AuthController.Register(RegisterDto registerDto) in /Users/josueboror/Visual/Banco/Sistema-Bancario--SCRUM/src/AuthServiceBanco.Api/Controllers/AuthController.cs:line 42
+   at lambda_method469(Closure, Object)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.AwaitableObjectResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.RateLimiting.RateLimitingMiddleware.InvokeInternal(HttpContext context, EnableRateLimitingAttribute enableRateLimitingAttribute)
+   at AuthServiceBanco.Api.Middlewares.GlobalExceptionMiddleware.InvokeAsync(HttpContext context) in /Users/josueboror/Visual/Banco/Sistema-Bancario--SCRUM/src/AuthServiceBanco.Api/Middlewares/GlobalExceptionMiddleware.cs:line 18
+[2026-03-03 22:23:40 INF] HTTP POST /api/v1/auth/register responded 400 in 62.2375 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNJPKAL8TIUK:00000001","ConnectionId":"0HNJPKAL8TIUK"}
+[2026-03-03 22:23:52 ERR] An unhandled exception occurred {"SourceContext":"AuthServiceBanco.Api.Middlewares.GlobalExceptionMiddleware","RequestId":"0HNJPKAL8TIUK:00000002","RequestPath":"/api/v1/auth/register","ConnectionId":"0HNJPKAL8TIUK"}
+AuthServiceBanco.Application.Exceptions.BusinessException: Cuenta con DPI ya existente
+   at AuthServiceBanco.Application.Services.AuthService.RegisterAsync(RegisterDto registerDto) in /Users/josueboror/Visual/Banco/Sistema-Bancario--SCRUM/src/AuthServiceBanco.Application/Services/AuthService.cs:line 47
+   at AuthServiceBanco.Api.Controllers.AuthController.Register(RegisterDto registerDto) in /Users/josueboror/Visual/Banco/Sistema-Bancario--SCRUM/src/AuthServiceBanco.Api/Controllers/AuthController.cs:line 42
+   at lambda_method469(Closure, Object)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.AwaitableObjectResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.RateLimiting.RateLimitingMiddleware.InvokeInternal(HttpContext context, EnableRateLimitingAttribute enableRateLimitingAttribute)
+   at AuthServiceBanco.Api.Middlewares.GlobalExceptionMiddleware.InvokeAsync(HttpContext context) in /Users/josueboror/Visual/Banco/Sistema-Bancario--SCRUM/src/AuthServiceBanco.Api/Middlewares/GlobalExceptionMiddleware.cs:line 18
+[2026-03-03 22:23:52 INF] HTTP POST /api/v1/auth/register responded 400 in 17.2465 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNJPKAL8TIUK:00000002","ConnectionId":"0HNJPKAL8TIUK"}
+[2026-03-03 22:23:59 INF] User Astral910 registered successfully. {"EventId":{"Id":1001,"Name":"LogUserRegistered"},"SourceContext":"AuthServiceBanco.Application.Services.AuthService","ActionId":"a4f3dd04-6da4-43fa-bf76-e1d7ec746550","ActionName":"AuthServiceBanco.Api.Controllers.AuthController.Register (AuthServiceBanco.Api)","RequestId":"0HNJPKAL8TIUK:00000003","RequestPath":"/api/v1/auth/register","ConnectionId":"0HNJPKAL8TIUK"}
+[2026-03-03 22:23:59 INF] HTTP POST /api/v1/auth/register responded 201 in 170.4155 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNJPKAL8TIUK:00000003","ConnectionId":"0HNJPKAL8TIUK"}
+[2026-03-03 22:24:01 INF] Email sent successfully {"SourceContext":"AuthServiceBanco.Application.Services.EmailService","ActionId":"a4f3dd04-6da4-43fa-bf76-e1d7ec746550","ActionName":"AuthServiceBanco.Api.Controllers.AuthController.Register (AuthServiceBanco.Api)","RequestId":"0HNJPKAL8TIUK:00000003","RequestPath":"/api/v1/auth/register","ConnectionId":"0HNJPKAL8TIUK"}
+[2026-03-03 22:24:01 INF] Email pipeline completed {"SourceContext":"AuthServiceBanco.Application.Services.EmailService","ActionId":"a4f3dd04-6da4-43fa-bf76-e1d7ec746550","ActionName":"AuthServiceBanco.Api.Controllers.AuthController.Register (AuthServiceBanco.Api)","RequestId":"0HNJPKAL8TIUK:00000003","RequestPath":"/api/v1/auth/register","ConnectionId":"0HNJPKAL8TIUK"}
+[2026-03-03 22:24:01 INF] Email processed {"SourceContext":"AuthServiceBanco.Application.Services.EmailService","ActionId":"a4f3dd04-6da4-43fa-bf76-e1d7ec746550","ActionName":"AuthServiceBanco.Api.Controllers.AuthController.Register (AuthServiceBanco.Api)","RequestId":"0HNJPKAL8TIUK:00000003","RequestPath":"/api/v1/auth/register","ConnectionId":"0HNJPKAL8TIUK"}
+[2026-03-03 22:24:01 INF] Verification email sent {"SourceContext":"AuthServiceBanco.Application.Services.AuthService","ActionId":"a4f3dd04-6da4-43fa-bf76-e1d7ec746550","ActionName":"AuthServiceBanco.Api.Controllers.AuthController.Register (AuthServiceBanco.Api)","RequestId":"0HNJPKAL8TIUK:00000003","RequestPath":"/api/v1/auth/register","ConnectionId":"0HNJPKAL8TIUK"}
+[2026-03-03 22:24:31 INF] User login successfully. {"EventId":{"Id":1002,"Name":"LogUserLoggedIn"},"SourceContext":"AuthServiceBanco.Application.Services.AuthService","ActionId":"0952a540-fcf8-4fb8-9d9d-0fe8dc379b35","ActionName":"AuthServiceBanco.Api.Controllers.AuthController.Login (AuthServiceBanco.Api)","RequestId":"0HNJPKAL8TIUK:00000004","RequestPath":"/api/v1/auth/login","ConnectionId":"0HNJPKAL8TIUK"}
+[2026-03-03 22:24:31 INF] HTTP POST /api/v1/auth/login responded 200 in 261.7448 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNJPKAL8TIUK:00000004","ConnectionId":"0HNJPKAL8TIUK"}
+[2026-03-03 22:24:38 INF] HTTP POST /api/v1/admin/users/usr_XuySN4MrrgSE/activate responded 200 in 25.2294 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNJPKAL8TIUK:00000005","ConnectionId":"0HNJPKAL8TIUK"}
+[2026-03-03 22:32:13 WRN] Failed login attempt {"EventId":{"Id":1003,"Name":"LogFailedLoginAttempt"},"SourceContext":"AuthServiceBanco.Application.Services.AuthService","ActionId":"0952a540-fcf8-4fb8-9d9d-0fe8dc379b35","ActionName":"AuthServiceBanco.Api.Controllers.AuthController.Login (AuthServiceBanco.Api)","RequestId":"0HNJPKAL8TIUM:00000001","RequestPath":"/api/v1/auth/login","ConnectionId":"0HNJPKAL8TIUM"}
+[2026-03-03 22:32:13 ERR] An unhandled exception occurred {"SourceContext":"AuthServiceBanco.Api.Middlewares.GlobalExceptionMiddleware","RequestId":"0HNJPKAL8TIUM:00000001","RequestPath":"/api/v1/auth/login","ConnectionId":"0HNJPKAL8TIUM"}
+System.UnauthorizedAccessException: Invalid credentials
+   at AuthServiceBanco.Application.Services.AuthService.LoginAsync(LoginDto loginDto) in /Users/josueboror/Visual/Banco/Sistema-Bancario--SCRUM/src/AuthServiceBanco.Application/Services/AuthService.cs:line 186
+   at AuthServiceBanco.Api.Controllers.AuthController.Login(LoginDto loginDto) in /Users/josueboror/Visual/Banco/Sistema-Bancario--SCRUM/src/AuthServiceBanco.Api/Controllers/AuthController.cs:line 50
+   at lambda_method529(Closure, Object)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.AwaitableObjectResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.RateLimiting.RateLimitingMiddleware.InvokeInternal(HttpContext context, EnableRateLimitingAttribute enableRateLimitingAttribute)
+   at AuthServiceBanco.Api.Middlewares.GlobalExceptionMiddleware.InvokeAsync(HttpContext context) in /Users/josueboror/Visual/Banco/Sistema-Bancario--SCRUM/src/AuthServiceBanco.Api/Middlewares/GlobalExceptionMiddleware.cs:line 18
+[2026-03-03 22:32:13 INF] HTTP POST /api/v1/auth/login responded 401 in 136.2583 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNJPKAL8TIUM:00000001","ConnectionId":"0HNJPKAL8TIUM"}
+[2026-03-03 22:32:19 WRN] Failed login attempt {"EventId":{"Id":1003,"Name":"LogFailedLoginAttempt"},"SourceContext":"AuthServiceBanco.Application.Services.AuthService","ActionId":"0952a540-fcf8-4fb8-9d9d-0fe8dc379b35","ActionName":"AuthServiceBanco.Api.Controllers.AuthController.Login (AuthServiceBanco.Api)","RequestId":"0HNJPKAL8TIUM:00000002","RequestPath":"/api/v1/auth/login","ConnectionId":"0HNJPKAL8TIUM"}
+[2026-03-03 22:32:19 ERR] An unhandled exception occurred {"SourceContext":"AuthServiceBanco.Api.Middlewares.GlobalExceptionMiddleware","RequestId":"0HNJPKAL8TIUM:00000002","RequestPath":"/api/v1/auth/login","ConnectionId":"0HNJPKAL8TIUM"}
+System.UnauthorizedAccessException: Invalid credentials
+   at AuthServiceBanco.Application.Services.AuthService.LoginAsync(LoginDto loginDto) in /Users/josueboror/Visual/Banco/Sistema-Bancario--SCRUM/src/AuthServiceBanco.Application/Services/AuthService.cs:line 186
+   at AuthServiceBanco.Api.Controllers.AuthController.Login(LoginDto loginDto) in /Users/josueboror/Visual/Banco/Sistema-Bancario--SCRUM/src/AuthServiceBanco.Api/Controllers/AuthController.cs:line 50
+   at lambda_method529(Closure, Object)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.AwaitableObjectResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.RateLimiting.RateLimitingMiddleware.InvokeInternal(HttpContext context, EnableRateLimitingAttribute enableRateLimitingAttribute)
+   at AuthServiceBanco.Api.Middlewares.GlobalExceptionMiddleware.InvokeAsync(HttpContext context) in /Users/josueboror/Visual/Banco/Sistema-Bancario--SCRUM/src/AuthServiceBanco.Api/Middlewares/GlobalExceptionMiddleware.cs:line 18
+[2026-03-03 22:32:19 INF] HTTP POST /api/v1/auth/login responded 401 in 95.2155 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNJPKAL8TIUM:00000002","ConnectionId":"0HNJPKAL8TIUM"}
+[2026-03-03 22:32:46 WRN] Failed login attempt {"EventId":{"Id":1003,"Name":"LogFailedLoginAttempt"},"SourceContext":"AuthServiceBanco.Application.Services.AuthService","ActionId":"0952a540-fcf8-4fb8-9d9d-0fe8dc379b35","ActionName":"AuthServiceBanco.Api.Controllers.AuthController.Login (AuthServiceBanco.Api)","RequestId":"0HNJPKAL8TIUM:00000003","RequestPath":"/api/v1/auth/login","ConnectionId":"0HNJPKAL8TIUM"}
+[2026-03-03 22:32:46 ERR] An unhandled exception occurred {"SourceContext":"AuthServiceBanco.Api.Middlewares.GlobalExceptionMiddleware","RequestId":"0HNJPKAL8TIUM:00000003","RequestPath":"/api/v1/auth/login","ConnectionId":"0HNJPKAL8TIUM"}
+System.UnauthorizedAccessException: Invalid credentials
+   at AuthServiceBanco.Application.Services.AuthService.LoginAsync(LoginDto loginDto) in /Users/josueboror/Visual/Banco/Sistema-Bancario--SCRUM/src/AuthServiceBanco.Application/Services/AuthService.cs:line 186
+   at AuthServiceBanco.Api.Controllers.AuthController.Login(LoginDto loginDto) in /Users/josueboror/Visual/Banco/Sistema-Bancario--SCRUM/src/AuthServiceBanco.Api/Controllers/AuthController.cs:line 50
+   at lambda_method529(Closure, Object)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.AwaitableObjectResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.RateLimiting.RateLimitingMiddleware.InvokeInternal(HttpContext context, EnableRateLimitingAttribute enableRateLimitingAttribute)
+   at AuthServiceBanco.Api.Middlewares.GlobalExceptionMiddleware.InvokeAsync(HttpContext context) in /Users/josueboror/Visual/Banco/Sistema-Bancario--SCRUM/src/AuthServiceBanco.Api/Middlewares/GlobalExceptionMiddleware.cs:line 18
+[2026-03-03 22:32:46 INF] HTTP POST /api/v1/auth/login responded 401 in 85.2054 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNJPKAL8TIUM:00000003","ConnectionId":"0HNJPKAL8TIUM"}
+[2026-03-03 22:32:58 WRN] Failed login attempt {"EventId":{"Id":1003,"Name":"LogFailedLoginAttempt"},"SourceContext":"AuthServiceBanco.Application.Services.AuthService","ActionId":"0952a540-fcf8-4fb8-9d9d-0fe8dc379b35","ActionName":"AuthServiceBanco.Api.Controllers.AuthController.Login (AuthServiceBanco.Api)","RequestId":"0HNJPKAL8TIUM:00000004","RequestPath":"/api/v1/auth/login","ConnectionId":"0HNJPKAL8TIUM"}
+[2026-03-03 22:32:58 ERR] An unhandled exception occurred {"SourceContext":"AuthServiceBanco.Api.Middlewares.GlobalExceptionMiddleware","RequestId":"0HNJPKAL8TIUM:00000004","RequestPath":"/api/v1/auth/login","ConnectionId":"0HNJPKAL8TIUM"}
+System.UnauthorizedAccessException: Invalid credentials
+   at AuthServiceBanco.Application.Services.AuthService.LoginAsync(LoginDto loginDto) in /Users/josueboror/Visual/Banco/Sistema-Bancario--SCRUM/src/AuthServiceBanco.Application/Services/AuthService.cs:line 186
+   at AuthServiceBanco.Api.Controllers.AuthController.Login(LoginDto loginDto) in /Users/josueboror/Visual/Banco/Sistema-Bancario--SCRUM/src/AuthServiceBanco.Api/Controllers/AuthController.cs:line 50
+   at lambda_method529(Closure, Object)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.AwaitableObjectResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.RateLimiting.RateLimitingMiddleware.InvokeInternal(HttpContext context, EnableRateLimitingAttribute enableRateLimitingAttribute)
+   at AuthServiceBanco.Api.Middlewares.GlobalExceptionMiddleware.InvokeAsync(HttpContext context) in /Users/josueboror/Visual/Banco/Sistema-Bancario--SCRUM/src/AuthServiceBanco.Api/Middlewares/GlobalExceptionMiddleware.cs:line 18
+[2026-03-03 22:32:58 INF] HTTP POST /api/v1/auth/login responded 401 in 107.3226 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNJPKAL8TIUM:00000004","ConnectionId":"0HNJPKAL8TIUM"}
+[2026-03-03 22:33:15 WRN] Failed login attempt {"EventId":{"Id":1003,"Name":"LogFailedLoginAttempt"},"SourceContext":"AuthServiceBanco.Application.Services.AuthService","ActionId":"0952a540-fcf8-4fb8-9d9d-0fe8dc379b35","ActionName":"AuthServiceBanco.Api.Controllers.AuthController.Login (AuthServiceBanco.Api)","RequestId":"0HNJPKAL8TIUM:00000005","RequestPath":"/api/v1/auth/login","ConnectionId":"0HNJPKAL8TIUM"}
+[2026-03-03 22:33:15 ERR] An unhandled exception occurred {"SourceContext":"AuthServiceBanco.Api.Middlewares.GlobalExceptionMiddleware","RequestId":"0HNJPKAL8TIUM:00000005","RequestPath":"/api/v1/auth/login","ConnectionId":"0HNJPKAL8TIUM"}
+System.UnauthorizedAccessException: Invalid credentials
+   at AuthServiceBanco.Application.Services.AuthService.LoginAsync(LoginDto loginDto) in /Users/josueboror/Visual/Banco/Sistema-Bancario--SCRUM/src/AuthServiceBanco.Application/Services/AuthService.cs:line 186
+   at AuthServiceBanco.Api.Controllers.AuthController.Login(LoginDto loginDto) in /Users/josueboror/Visual/Banco/Sistema-Bancario--SCRUM/src/AuthServiceBanco.Api/Controllers/AuthController.cs:line 50
+   at lambda_method529(Closure, Object)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.AwaitableObjectResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.RateLimiting.RateLimitingMiddleware.InvokeInternal(HttpContext context, EnableRateLimitingAttribute enableRateLimitingAttribute)
+   at AuthServiceBanco.Api.Middlewares.GlobalExceptionMiddleware.InvokeAsync(HttpContext context) in /Users/josueboror/Visual/Banco/Sistema-Bancario--SCRUM/src/AuthServiceBanco.Api/Middlewares/GlobalExceptionMiddleware.cs:line 18
+[2026-03-03 22:33:15 INF] HTTP POST /api/v1/auth/login responded 401 in 86.5374 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNJPKAL8TIUM:00000005","ConnectionId":"0HNJPKAL8TIUM"}
+[2026-03-03 22:33:51 INF] HTTP POST /api/v1/admin/users/usr_XuySN4MrrgSE/activate responded 200 in 19.7324 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNJPKAL8TIUM:00000006","ConnectionId":"0HNJPKAL8TIUM"}
+[2026-03-03 22:33:52 INF] HTTP POST /api/v1/admin/users/usr_XuySN4MrrgSE/activate responded 200 in 11.6503 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNJPKAL8TIUM:00000007","ConnectionId":"0HNJPKAL8TIUM"}
+[2026-03-03 22:33:57 WRN] Failed login attempt {"EventId":{"Id":1003,"Name":"LogFailedLoginAttempt"},"SourceContext":"AuthServiceBanco.Application.Services.AuthService","ActionId":"0952a540-fcf8-4fb8-9d9d-0fe8dc379b35","ActionName":"AuthServiceBanco.Api.Controllers.AuthController.Login (AuthServiceBanco.Api)","RequestId":"0HNJPKAL8TIUM:00000008","RequestPath":"/api/v1/auth/login","ConnectionId":"0HNJPKAL8TIUM"}
+[2026-03-03 22:33:57 ERR] An unhandled exception occurred {"SourceContext":"AuthServiceBanco.Api.Middlewares.GlobalExceptionMiddleware","RequestId":"0HNJPKAL8TIUM:00000008","RequestPath":"/api/v1/auth/login","ConnectionId":"0HNJPKAL8TIUM"}
+System.UnauthorizedAccessException: Invalid credentials
+   at AuthServiceBanco.Application.Services.AuthService.LoginAsync(LoginDto loginDto) in /Users/josueboror/Visual/Banco/Sistema-Bancario--SCRUM/src/AuthServiceBanco.Application/Services/AuthService.cs:line 186
+   at AuthServiceBanco.Api.Controllers.AuthController.Login(LoginDto loginDto) in /Users/josueboror/Visual/Banco/Sistema-Bancario--SCRUM/src/AuthServiceBanco.Api/Controllers/AuthController.cs:line 50
+   at lambda_method529(Closure, Object)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.AwaitableObjectResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.RateLimiting.RateLimitingMiddleware.InvokeInternal(HttpContext context, EnableRateLimitingAttribute enableRateLimitingAttribute)
+   at AuthServiceBanco.Api.Middlewares.GlobalExceptionMiddleware.InvokeAsync(HttpContext context) in /Users/josueboror/Visual/Banco/Sistema-Bancario--SCRUM/src/AuthServiceBanco.Api/Middlewares/GlobalExceptionMiddleware.cs:line 18
+[2026-03-03 22:33:57 INF] HTTP POST /api/v1/auth/login responded 401 in 91.6774 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNJPKAL8TIUM:00000008","ConnectionId":"0HNJPKAL8TIUM"}
+[2026-03-03 22:33:58 WRN] Failed login attempt {"EventId":{"Id":1003,"Name":"LogFailedLoginAttempt"},"SourceContext":"AuthServiceBanco.Application.Services.AuthService","ActionId":"0952a540-fcf8-4fb8-9d9d-0fe8dc379b35","ActionName":"AuthServiceBanco.Api.Controllers.AuthController.Login (AuthServiceBanco.Api)","RequestId":"0HNJPKAL8TIUM:00000009","RequestPath":"/api/v1/auth/login","ConnectionId":"0HNJPKAL8TIUM"}
+[2026-03-03 22:33:58 ERR] An unhandled exception occurred {"SourceContext":"AuthServiceBanco.Api.Middlewares.GlobalExceptionMiddleware","RequestId":"0HNJPKAL8TIUM:00000009","RequestPath":"/api/v1/auth/login","ConnectionId":"0HNJPKAL8TIUM"}
+System.UnauthorizedAccessException: Invalid credentials
+   at AuthServiceBanco.Application.Services.AuthService.LoginAsync(LoginDto loginDto) in /Users/josueboror/Visual/Banco/Sistema-Bancario--SCRUM/src/AuthServiceBanco.Application/Services/AuthService.cs:line 186
+   at AuthServiceBanco.Api.Controllers.AuthController.Login(LoginDto loginDto) in /Users/josueboror/Visual/Banco/Sistema-Bancario--SCRUM/src/AuthServiceBanco.Api/Controllers/AuthController.cs:line 50
+   at lambda_method529(Closure, Object)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.AwaitableObjectResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.RateLimiting.RateLimitingMiddleware.InvokeInternal(HttpContext context, EnableRateLimitingAttribute enableRateLimitingAttribute)
+   at AuthServiceBanco.Api.Middlewares.GlobalExceptionMiddleware.InvokeAsync(HttpContext context) in /Users/josueboror/Visual/Banco/Sistema-Bancario--SCRUM/src/AuthServiceBanco.Api/Middlewares/GlobalExceptionMiddleware.cs:line 18
+[2026-03-03 22:33:58 INF] HTTP POST /api/v1/auth/login responded 401 in 101.4037 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNJPKAL8TIUM:00000009","ConnectionId":"0HNJPKAL8TIUM"}
+[2026-03-03 22:33:59 WRN] Failed login attempt {"EventId":{"Id":1003,"Name":"LogFailedLoginAttempt"},"SourceContext":"AuthServiceBanco.Application.Services.AuthService","ActionId":"0952a540-fcf8-4fb8-9d9d-0fe8dc379b35","ActionName":"AuthServiceBanco.Api.Controllers.AuthController.Login (AuthServiceBanco.Api)","RequestId":"0HNJPKAL8TIUM:0000000A","RequestPath":"/api/v1/auth/login","ConnectionId":"0HNJPKAL8TIUM"}
+[2026-03-03 22:33:59 ERR] An unhandled exception occurred {"SourceContext":"AuthServiceBanco.Api.Middlewares.GlobalExceptionMiddleware","RequestId":"0HNJPKAL8TIUM:0000000A","RequestPath":"/api/v1/auth/login","ConnectionId":"0HNJPKAL8TIUM"}
+System.UnauthorizedAccessException: Invalid credentials
+   at AuthServiceBanco.Application.Services.AuthService.LoginAsync(LoginDto loginDto) in /Users/josueboror/Visual/Banco/Sistema-Bancario--SCRUM/src/AuthServiceBanco.Application/Services/AuthService.cs:line 186
+   at AuthServiceBanco.Api.Controllers.AuthController.Login(LoginDto loginDto) in /Users/josueboror/Visual/Banco/Sistema-Bancario--SCRUM/src/AuthServiceBanco.Api/Controllers/AuthController.cs:line 50
+   at lambda_method529(Closure, Object)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.AwaitableObjectResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.RateLimiting.RateLimitingMiddleware.InvokeInternal(HttpContext context, EnableRateLimitingAttribute enableRateLimitingAttribute)
+   at AuthServiceBanco.Api.Middlewares.GlobalExceptionMiddleware.InvokeAsync(HttpContext context) in /Users/josueboror/Visual/Banco/Sistema-Bancario--SCRUM/src/AuthServiceBanco.Api/Middlewares/GlobalExceptionMiddleware.cs:line 18
+[2026-03-03 22:33:59 INF] HTTP POST /api/v1/auth/login responded 401 in 68.3460 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNJPKAL8TIUM:0000000A","ConnectionId":"0HNJPKAL8TIUM"}
+[2026-03-03 22:33:59 WRN] Failed login attempt {"EventId":{"Id":1003,"Name":"LogFailedLoginAttempt"},"SourceContext":"AuthServiceBanco.Application.Services.AuthService","ActionId":"0952a540-fcf8-4fb8-9d9d-0fe8dc379b35","ActionName":"AuthServiceBanco.Api.Controllers.AuthController.Login (AuthServiceBanco.Api)","RequestId":"0HNJPKAL8TIUM:0000000B","RequestPath":"/api/v1/auth/login","ConnectionId":"0HNJPKAL8TIUM"}
+[2026-03-03 22:33:59 ERR] An unhandled exception occurred {"SourceContext":"AuthServiceBanco.Api.Middlewares.GlobalExceptionMiddleware","RequestId":"0HNJPKAL8TIUM:0000000B","RequestPath":"/api/v1/auth/login","ConnectionId":"0HNJPKAL8TIUM"}
+System.UnauthorizedAccessException: Invalid credentials
+   at AuthServiceBanco.Application.Services.AuthService.LoginAsync(LoginDto loginDto) in /Users/josueboror/Visual/Banco/Sistema-Bancario--SCRUM/src/AuthServiceBanco.Application/Services/AuthService.cs:line 186
+   at AuthServiceBanco.Api.Controllers.AuthController.Login(LoginDto loginDto) in /Users/josueboror/Visual/Banco/Sistema-Bancario--SCRUM/src/AuthServiceBanco.Api/Controllers/AuthController.cs:line 50
+   at lambda_method529(Closure, Object)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.AwaitableObjectResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.RateLimiting.RateLimitingMiddleware.InvokeInternal(HttpContext context, EnableRateLimitingAttribute enableRateLimitingAttribute)
+   at AuthServiceBanco.Api.Middlewares.GlobalExceptionMiddleware.InvokeAsync(HttpContext context) in /Users/josueboror/Visual/Banco/Sistema-Bancario--SCRUM/src/AuthServiceBanco.Api/Middlewares/GlobalExceptionMiddleware.cs:line 18
+[2026-03-03 22:33:59 INF] HTTP POST /api/v1/auth/login responded 401 in 97.8874 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNJPKAL8TIUM:0000000B","ConnectionId":"0HNJPKAL8TIUM"}
+[2026-03-03 22:34:10 INF] HTTP POST /api/v1/auth/login responded 429 in 5.7999 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNJPKAL8TIUM:0000000C","ConnectionId":"0HNJPKAL8TIUM"}
+[2026-03-03 22:34:15 WRN] Failed login attempt {"EventId":{"Id":1003,"Name":"LogFailedLoginAttempt"},"SourceContext":"AuthServiceBanco.Application.Services.AuthService","ActionId":"0952a540-fcf8-4fb8-9d9d-0fe8dc379b35","ActionName":"AuthServiceBanco.Api.Controllers.AuthController.Login (AuthServiceBanco.Api)","RequestId":"0HNJPKAL8TIUM:0000000D","RequestPath":"/api/v1/auth/login","ConnectionId":"0HNJPKAL8TIUM"}
+[2026-03-03 22:34:15 ERR] An unhandled exception occurred {"SourceContext":"AuthServiceBanco.Api.Middlewares.GlobalExceptionMiddleware","RequestId":"0HNJPKAL8TIUM:0000000D","RequestPath":"/api/v1/auth/login","ConnectionId":"0HNJPKAL8TIUM"}
+System.UnauthorizedAccessException: Invalid credentials
+   at AuthServiceBanco.Application.Services.AuthService.LoginAsync(LoginDto loginDto) in /Users/josueboror/Visual/Banco/Sistema-Bancario--SCRUM/src/AuthServiceBanco.Application/Services/AuthService.cs:line 186
+   at AuthServiceBanco.Api.Controllers.AuthController.Login(LoginDto loginDto) in /Users/josueboror/Visual/Banco/Sistema-Bancario--SCRUM/src/AuthServiceBanco.Api/Controllers/AuthController.cs:line 50
+   at lambda_method529(Closure, Object)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.AwaitableObjectResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.RateLimiting.RateLimitingMiddleware.InvokeInternal(HttpContext context, EnableRateLimitingAttribute enableRateLimitingAttribute)
+   at AuthServiceBanco.Api.Middlewares.GlobalExceptionMiddleware.InvokeAsync(HttpContext context) in /Users/josueboror/Visual/Banco/Sistema-Bancario--SCRUM/src/AuthServiceBanco.Api/Middlewares/GlobalExceptionMiddleware.cs:line 18
+[2026-03-03 22:34:15 INF] HTTP POST /api/v1/auth/login responded 401 in 109.5533 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNJPKAL8TIUM:0000000D","ConnectionId":"0HNJPKAL8TIUM"}
+[2026-03-03 22:34:22 WRN] Failed login attempt {"EventId":{"Id":1003,"Name":"LogFailedLoginAttempt"},"SourceContext":"AuthServiceBanco.Application.Services.AuthService","ActionId":"0952a540-fcf8-4fb8-9d9d-0fe8dc379b35","ActionName":"AuthServiceBanco.Api.Controllers.AuthController.Login (AuthServiceBanco.Api)","RequestId":"0HNJPKAL8TIUM:0000000E","RequestPath":"/api/v1/auth/login","ConnectionId":"0HNJPKAL8TIUM"}
+[2026-03-03 22:34:22 ERR] An unhandled exception occurred {"SourceContext":"AuthServiceBanco.Api.Middlewares.GlobalExceptionMiddleware","RequestId":"0HNJPKAL8TIUM:0000000E","RequestPath":"/api/v1/auth/login","ConnectionId":"0HNJPKAL8TIUM"}
+System.UnauthorizedAccessException: Invalid credentials
+   at AuthServiceBanco.Application.Services.AuthService.LoginAsync(LoginDto loginDto) in /Users/josueboror/Visual/Banco/Sistema-Bancario--SCRUM/src/AuthServiceBanco.Application/Services/AuthService.cs:line 165
+   at AuthServiceBanco.Api.Controllers.AuthController.Login(LoginDto loginDto) in /Users/josueboror/Visual/Banco/Sistema-Bancario--SCRUM/src/AuthServiceBanco.Api/Controllers/AuthController.cs:line 50
+   at lambda_method529(Closure, Object)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.AwaitableObjectResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.RateLimiting.RateLimitingMiddleware.InvokeInternal(HttpContext context, EnableRateLimitingAttribute enableRateLimitingAttribute)
+   at AuthServiceBanco.Api.Middlewares.GlobalExceptionMiddleware.InvokeAsync(HttpContext context) in /Users/josueboror/Visual/Banco/Sistema-Bancario--SCRUM/src/AuthServiceBanco.Api/Middlewares/GlobalExceptionMiddleware.cs:line 18
+[2026-03-03 22:34:22 INF] HTTP POST /api/v1/auth/login responded 401 in 6.4312 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNJPKAL8TIUM:0000000E","ConnectionId":"0HNJPKAL8TIUM"}
+[2026-03-03 22:35:14 INF] User pepe registered successfully. {"EventId":{"Id":1001,"Name":"LogUserRegistered"},"SourceContext":"AuthServiceBanco.Application.Services.AuthService","ActionId":"a4f3dd04-6da4-43fa-bf76-e1d7ec746550","ActionName":"AuthServiceBanco.Api.Controllers.AuthController.Register (AuthServiceBanco.Api)","RequestId":"0HNJPKAL8TIUM:0000000F","RequestPath":"/api/v1/auth/register","ConnectionId":"0HNJPKAL8TIUM"}
+[2026-03-03 22:35:14 INF] HTTP POST /api/v1/auth/register responded 201 in 84.9004 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNJPKAL8TIUM:0000000F","ConnectionId":"0HNJPKAL8TIUM"}
+[2026-03-03 22:35:15 INF] Email sent successfully {"SourceContext":"AuthServiceBanco.Application.Services.EmailService","ActionId":"a4f3dd04-6da4-43fa-bf76-e1d7ec746550","ActionName":"AuthServiceBanco.Api.Controllers.AuthController.Register (AuthServiceBanco.Api)","RequestId":"0HNJPKAL8TIUM:0000000F","RequestPath":"/api/v1/auth/register","ConnectionId":"0HNJPKAL8TIUM"}
+[2026-03-03 22:35:15 INF] Email pipeline completed {"SourceContext":"AuthServiceBanco.Application.Services.EmailService","ActionId":"a4f3dd04-6da4-43fa-bf76-e1d7ec746550","ActionName":"AuthServiceBanco.Api.Controllers.AuthController.Register (AuthServiceBanco.Api)","RequestId":"0HNJPKAL8TIUM:0000000F","RequestPath":"/api/v1/auth/register","ConnectionId":"0HNJPKAL8TIUM"}
+[2026-03-03 22:35:15 INF] Email processed {"SourceContext":"AuthServiceBanco.Application.Services.EmailService","ActionId":"a4f3dd04-6da4-43fa-bf76-e1d7ec746550","ActionName":"AuthServiceBanco.Api.Controllers.AuthController.Register (AuthServiceBanco.Api)","RequestId":"0HNJPKAL8TIUM:0000000F","RequestPath":"/api/v1/auth/register","ConnectionId":"0HNJPKAL8TIUM"}
+[2026-03-03 22:35:15 INF] Verification email sent {"SourceContext":"AuthServiceBanco.Application.Services.AuthService","ActionId":"a4f3dd04-6da4-43fa-bf76-e1d7ec746550","ActionName":"AuthServiceBanco.Api.Controllers.AuthController.Register (AuthServiceBanco.Api)","RequestId":"0HNJPKAL8TIUM:0000000F","RequestPath":"/api/v1/auth/register","ConnectionId":"0HNJPKAL8TIUM"}
+[2026-03-03 22:35:29 WRN] Failed login attempt {"EventId":{"Id":1003,"Name":"LogFailedLoginAttempt"},"SourceContext":"AuthServiceBanco.Application.Services.AuthService","ActionId":"0952a540-fcf8-4fb8-9d9d-0fe8dc379b35","ActionName":"AuthServiceBanco.Api.Controllers.AuthController.Login (AuthServiceBanco.Api)","RequestId":"0HNJPKAL8TIUM:00000010","RequestPath":"/api/v1/auth/login","ConnectionId":"0HNJPKAL8TIUM"}
+[2026-03-03 22:35:29 ERR] An unhandled exception occurred {"SourceContext":"AuthServiceBanco.Api.Middlewares.GlobalExceptionMiddleware","RequestId":"0HNJPKAL8TIUM:00000010","RequestPath":"/api/v1/auth/login","ConnectionId":"0HNJPKAL8TIUM"}
+System.UnauthorizedAccessException: Cuenta pendiente de activación
+   at AuthServiceBanco.Application.Services.AuthService.LoginAsync(LoginDto loginDto) in /Users/josueboror/Visual/Banco/Sistema-Bancario--SCRUM/src/AuthServiceBanco.Application/Services/AuthService.cs:line 172
+   at AuthServiceBanco.Api.Controllers.AuthController.Login(LoginDto loginDto) in /Users/josueboror/Visual/Banco/Sistema-Bancario--SCRUM/src/AuthServiceBanco.Api/Controllers/AuthController.cs:line 50
+   at lambda_method529(Closure, Object)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.AwaitableObjectResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.RateLimiting.RateLimitingMiddleware.InvokeInternal(HttpContext context, EnableRateLimitingAttribute enableRateLimitingAttribute)
+   at AuthServiceBanco.Api.Middlewares.GlobalExceptionMiddleware.InvokeAsync(HttpContext context) in /Users/josueboror/Visual/Banco/Sistema-Bancario--SCRUM/src/AuthServiceBanco.Api/Middlewares/GlobalExceptionMiddleware.cs:line 18
+[2026-03-03 22:35:29 INF] HTTP POST /api/v1/auth/login responded 401 in 9.8024 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNJPKAL8TIUM:00000010","ConnectionId":"0HNJPKAL8TIUM"}
+[2026-03-03 22:35:54 INF] HTTP POST /api/v1/admin/users/usr_QfQE85CPwXmj/activate responded 200 in 23.0298 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNJPKAL8TIUM:00000011","ConnectionId":"0HNJPKAL8TIUM"}
+[2026-03-03 22:36:01 WRN] Failed login attempt {"EventId":{"Id":1003,"Name":"LogFailedLoginAttempt"},"SourceContext":"AuthServiceBanco.Application.Services.AuthService","ActionId":"0952a540-fcf8-4fb8-9d9d-0fe8dc379b35","ActionName":"AuthServiceBanco.Api.Controllers.AuthController.Login (AuthServiceBanco.Api)","RequestId":"0HNJPKAL8TIUM:00000012","RequestPath":"/api/v1/auth/login","ConnectionId":"0HNJPKAL8TIUM"}
+[2026-03-03 22:36:01 ERR] An unhandled exception occurred {"SourceContext":"AuthServiceBanco.Api.Middlewares.GlobalExceptionMiddleware","RequestId":"0HNJPKAL8TIUM:00000012","RequestPath":"/api/v1/auth/login","ConnectionId":"0HNJPKAL8TIUM"}
+System.UnauthorizedAccessException: Invalid credentials
+   at AuthServiceBanco.Application.Services.AuthService.LoginAsync(LoginDto loginDto) in /Users/josueboror/Visual/Banco/Sistema-Bancario--SCRUM/src/AuthServiceBanco.Application/Services/AuthService.cs:line 186
+   at AuthServiceBanco.Api.Controllers.AuthController.Login(LoginDto loginDto) in /Users/josueboror/Visual/Banco/Sistema-Bancario--SCRUM/src/AuthServiceBanco.Api/Controllers/AuthController.cs:line 50
+   at lambda_method529(Closure, Object)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.AwaitableObjectResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.RateLimiting.RateLimitingMiddleware.InvokeInternal(HttpContext context, EnableRateLimitingAttribute enableRateLimitingAttribute)
+   at AuthServiceBanco.Api.Middlewares.GlobalExceptionMiddleware.InvokeAsync(HttpContext context) in /Users/josueboror/Visual/Banco/Sistema-Bancario--SCRUM/src/AuthServiceBanco.Api/Middlewares/GlobalExceptionMiddleware.cs:line 18
+[2026-03-03 22:36:01 INF] HTTP POST /api/v1/auth/login responded 401 in 136.9944 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNJPKAL8TIUM:00000012","ConnectionId":"0HNJPKAL8TIUM"}
+[2026-03-03 22:36:20 INF] User login successfully. {"EventId":{"Id":1002,"Name":"LogUserLoggedIn"},"SourceContext":"AuthServiceBanco.Application.Services.AuthService","ActionId":"0952a540-fcf8-4fb8-9d9d-0fe8dc379b35","ActionName":"AuthServiceBanco.Api.Controllers.AuthController.Login (AuthServiceBanco.Api)","RequestId":"0HNJPKAL8TIUM:00000013","RequestPath":"/api/v1/auth/login","ConnectionId":"0HNJPKAL8TIUM"}
+[2026-03-03 22:36:20 INF] HTTP POST /api/v1/auth/login responded 200 in 127.7777 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNJPKAL8TIUM:00000013","ConnectionId":"0HNJPKAL8TIUM"}
+[2026-03-03 22:36:33 INF] User login successfully. {"EventId":{"Id":1002,"Name":"LogUserLoggedIn"},"SourceContext":"AuthServiceBanco.Application.Services.AuthService","ActionId":"0952a540-fcf8-4fb8-9d9d-0fe8dc379b35","ActionName":"AuthServiceBanco.Api.Controllers.AuthController.Login (AuthServiceBanco.Api)","RequestId":"0HNJPKAL8TIUM:00000014","RequestPath":"/api/v1/auth/login","ConnectionId":"0HNJPKAL8TIUM"}
+[2026-03-03 22:36:33 INF] HTTP POST /api/v1/auth/login responded 200 in 110.0325 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNJPKAL8TIUM:00000014","ConnectionId":"0HNJPKAL8TIUM"}
