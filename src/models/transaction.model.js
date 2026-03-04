@@ -34,6 +34,21 @@ const transactionSchema = new Schema({
     default: null
   },
 
+  exchange_rate: {
+    type: Number,
+    default: null
+  },
+
+  currency_from: {
+    type: String,
+    default: null
+  },
+
+  currency_to: {
+    type: String,
+    default: null
+  },
+
   promotion_number: {
     type: String,
     default: null
