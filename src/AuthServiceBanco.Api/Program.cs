@@ -1,14 +1,15 @@
-
 using AuthServiceBanco.Persistence.Data;
 using AuthServiceBanco.Persistence.Seed;
 using AuthServiceBanco.Api.Middlewares;
 using AuthServiceBanco.Api.Extensions;
 using AuthServiceBanco.Api.ModelBinders;
+using AuthServiceBanco.Application.Validators;
 using Serilog;
 using Microsoft.AspNetCore.Hosting.Server;
 using Microsoft.AspNetCore.Hosting.Server.Features;
-using NetEscapades.AspNetCore.SecurityHeaders;
 using System.IdentityModel.Tokens.Jwt;
+using FluentValidation;
+using FluentValidation.AspNetCore;
 
 // Desactivar mapeo automático de claims JWT para preservar "sub" y otros claims estándar
 JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
@@ -29,6 +30,8 @@ builder.Services.AddControllers(options =>
     o.JsonSerializerOptions.PropertyNamingPolicy = System.Text.Json.JsonNamingPolicy.CamelCase;
 });
 
+builder.Services.AddFluentValidationAutoValidation();
+builder.Services.AddValidatorsFromAssemblyContaining<CreateClientDtoValidator>();
 builder.Services.AddApplicationServices(builder.Configuration);
 builder.Services.AddApiDocumentation();
 builder.Services.AddJwtAuthentication(builder.Configuration);
@@ -36,17 +39,14 @@ builder.Services.AddRateLimitingPolicies();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
 }
 
-// Add Serilog request logging
 app.UseSerilogRequestLogging();
 
-// Add Security Headers using NetEscapades package
 app.UseSecurityHeaders(policies => policies
     .AddDefaultSecurityHeaders()
     .RemoveServerHeader()
@@ -70,10 +70,8 @@ app.UseSecurityHeaders(policies => policies
     .AddCustomHeader("Cache-Control", "no-store, no-cache, must-revalidate, private")
 );
 
-// Global exception handling
 app.UseMiddleware<GlobalExceptionMiddleware>();
 
-// Core middlewares
 app.UseHttpsRedirection();
 app.UseCors("DefaultCorsPolicy");
 app.UseRateLimiter();
@@ -81,8 +79,6 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
-
-app.MapHealthChecks("/health");
 
 app.MapGet("/health", () =>
 {
@@ -94,7 +90,6 @@ app.MapGet("/health", () =>
     return Results.Ok(response);
 });
 
-// Startup log: addresses and health endpoint
 var startupLogger = app.Services.GetRequiredService<ILogger<Program>>();
 app.Lifetime.ApplicationStarted.Register(() =>
 {
@@ -123,7 +118,6 @@ app.Lifetime.ApplicationStarted.Register(() =>
     }
 });
 
-// Initialize database and seed data
 using (var scope = app.Services.CreateScope())
 {
     var context = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
@@ -132,16 +126,10 @@ using (var scope = app.Services.CreateScope())
     try
     {
         logger.LogInformation("Checking database connection...");
-
-        // Ensure database is created
         await context.Database.EnsureCreatedAsync();
-
         logger.LogInformation("Database ready. Running seed data...");
         await DataSeeder.SeedAsync(context);
-
-        // 🔽 AQUÍ VA TU ADMIN SEED
         await AdminSeed.InitializeAsync(scope.ServiceProvider);
-
         logger.LogInformation("Database initialization completed successfully");
     }
     catch (Exception ex)
@@ -151,6 +139,4 @@ using (var scope = app.Services.CreateScope())
     }
 }
 
-
 app.Run();
-
