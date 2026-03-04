@@ -1,8 +1,14 @@
+// Importa mongoose para validar ObjectIds y manejar MongoDB
 import mongoose from 'mongoose';
+// Importa el modelo de Cuenta bancaria
 import Account from '../models/account.model.js';
+// Importa el servicio de conversión de moneda
 import { convertCurrency } from '../services/currency.service.js';
+// Importa servicios para verificar usuarios y crear clientes en el servicio de autenticación .NET
 import { verifyUserExists, verifyMonthlyIncome, createClientInAuthService } from '../services/authService.service.js';
+// Importa el modelo de Transacción para registrar movimientos
 import Transaction from '../models/transaction.model.js';
+// Importa axios para hacer peticiones HTTP al servicio de autenticación
 import axios from 'axios';
 
 // Tasa de cambio GTQ a USD (configurable)
@@ -11,42 +17,54 @@ const EXCHANGE_RATE = {
   USD_TO_GTQ: 7.8
 };
 
+// Función helper que verifica si una cuenta está activa
+// Maneja diferentes formatos de estado que puede tener una cuenta
 const isAccountActive = (account) => {
+  // Si el estado viene como string 'ACTIVA'
   if (typeof account?.estado === 'string') {
     return account.estado === 'ACTIVA';
   }
 
+  // Si el estado viene como booleano 'active'
   if (typeof account?.active === 'boolean') {
     return account.active;
   }
 
+  // Si el estado viene como booleano 'is_active'
   if (typeof account?.is_active === 'boolean') {
     return account.is_active;
   }
 
+  // Por defecto retorna true si no encuentra ningún campo
   return true;
 };
 
 
-// ─── ADMIN: Crear cuenta para cualquier usuario por userId ───
+// ADMIN: Crear cuenta para cualquier usuario por userId
 export const createAccount = async (req, res) => {
   try {
+    // Valida que el body no esté vacío
     if (!req.body || Object.keys(req.body).length === 0) {
       return res.status(400).json({ success: false, message: 'Se requiere account_type, currency y opcionalmente balance ' });
     }
 
     const { userId, account_type, currency, balance } = req.body;
+    // Si no se proporciona userId, usa el del usuario autenticado
     const targetUserId = userId || req.user.id;
 
+    // Valida que el tipo de cuenta sea válido
     if (!account_type || !['AHORRO', 'CORRIENTE', 'NOMINA'].includes(account_type)) {
       return res.status(400).json({ success: false, message: 'Tipo de cuenta inválido. Use AHORRO, CORRIENTE o NOMINA' });
     }
 
+    // Valida que la moneda sea válida
     if (!currency || !['GTQ', 'USD'].includes(currency)) {
       return res.status(400).json({ success: false, message: 'Moneda inválida. Use GTQ o USD' });
     }
 
+    // Convierte el balance inicial a número, por defecto 0
     const initialBalance = parseFloat(balance) || 0;
+    // Valida que el saldo inicial no sea negativo
     if (initialBalance < 0) {
       return res.status(400).json({ success: false, message: 'El saldo inicial no puede ser negativo' });
     }
@@ -54,28 +72,33 @@ export const createAccount = async (req, res) => {
     // Verificar que el usuario existe en .NET — usa targetUserId
     const token = req.headers.authorization?.split(' ')[1];
     try {
+      // Llama al servicio de autenticación para verificar que el usuario existe
       await verifyUserExists(targetUserId, token);
     } catch (error) {
       return res.status(404).json({ success: false, message: 'Usuario no encontrado en el sistema' });
     }
 
-    // Generar número de cuenta único
+    // Generar número de cuenta único de 10 dígitos
     let account_number;
     let exists = true;
     while (exists) {
+      // Genera un número aleatorio de 10 dígitos
       account_number = Math.floor(1000000000 + Math.random() * 9000000000).toString();
+      // Verifica que no exista en la base de datos
       exists = await Account.findOne({ account_number });
     }
 
+    // Crea una nueva cuenta con los datos proporcionados
     const account = new Account({
       user_id: targetUserId,
       account_type,
       currency,
       balance: initialBalance,
       account_number,
-      estado: 'ACTIVA'
+      estado: 'ACTIVA' // La cuenta queda activa inmediatamente porque la crea un admin
     });
 
+    // Guarda la cuenta en la base de datos
     await account.save();
 
     res.status(201).json({
@@ -89,28 +112,33 @@ export const createAccount = async (req, res) => {
   }
 };
 
-// ─── USUARIO: Crear su propia cuenta (queda PENDIENTE hasta que admin active) ───
+// USUARIO: Crear su propia cuenta (queda PENDIENTE hasta que admin active)
 export const createMyAccount = async (req, res) => {
   try {
+    // Obtiene el ID del usuario del token JWT
     const userId = req.user.id;
     let { account_type, currency, balance } = req.body;
 
    
 
+    // Convierte el balance a número, por defecto 0
     const initialBalance = parseFloat(balance) || 0;
+    // Valida que el saldo inicial no sea negativo
     if (initialBalance < 0) {
       return res.status(400).json({ success: false, message: 'El saldo inicial no puede ser negativo' });
     }
 
+    // Valida el tipo de cuenta
     if (!['AHORRO', 'CORRIENTE', 'NOMINA'].includes(account_type)) {
       return res.status(400).json({ success: false, message: 'Tipo de cuenta inválido. Use AHORRO, CORRIENTE o NOMINA' });
     }
 
+    // Valida la moneda
     if (!['GTQ', 'USD'].includes(currency)) {
       return res.status(400).json({ success: false, message: 'Moneda inválida. Use GTQ o USD' });
     }
 
-    // Generar número de cuenta único
+    // Generar número de cuenta único de 10 dígitos
     let account_number;
     let exists = true;
     while (exists) {
@@ -118,6 +146,7 @@ export const createMyAccount = async (req, res) => {
       exists = await Account.findOne({ account_number });
     }
 
+    // Crea la cuenta con estado PENDIENTE (requiere aprobación de admin)
     const account = new Account({
       user_id: userId,
       account_type,
@@ -141,20 +170,24 @@ export const createMyAccount = async (req, res) => {
 };
 
 
-// ─── ADMIN: Activar cuenta de un usuario ───
+// ADMIN: Activar cuenta de un usuario
 export const activateAccount = async (req, res) => {
   try {
+    // Obtiene el ID de la cuenta de los parámetros de la URL
     const { accountId } = req.params;
 
+    // Busca la cuenta en la base de datos
     const account = await Account.findById(accountId);
     if (!account) {
       return res.status(404).json({ success: false, message: 'Cuenta no encontrada' });
     }
 
+    // Verifica si la cuenta ya está activa
     if (account.estado === 'ACTIVA') {
       return res.status(400).json({ success: false, message: 'La cuenta ya está activa' });
     }
 
+    // Cambia el estado a ACTIVA
     account.estado = 'ACTIVA';
     await account.save();
 
@@ -169,7 +202,7 @@ export const activateAccount = async (req, res) => {
   }
 };
 
-// Obtener cuentas del usuario
+// Obtener cuentas del usuario autenticado
 export const getMyAccount = async (req, res) => {
   try {
     const userId = req.user.id;
