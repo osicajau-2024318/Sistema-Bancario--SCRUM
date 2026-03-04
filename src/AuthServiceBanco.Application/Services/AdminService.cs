@@ -37,18 +37,18 @@ public class AdminService(
         }
 
         var user = new User
-        {
-            Id = UuidGenerator.GenerateUserId(),
-            Name = dto.Name,
-            Surname = dto.Surname,
-            Username = dto.Username,
-            Email = dto.Email,
-            Password = string.Empty,
-            Status = true,
-            AccountState = Domain.Enums.AccountState.ACTIVA,
-            CreatedAt = DateTime.UtcNow,
-            UpdatedAt = DateTime.UtcNow
-        };
+{
+    Id = UuidGenerator.GenerateUserId(),
+    Name = dto.Name,
+    Surname = dto.Surname,
+    Username = dto.Username,
+    Email = dto.Email,
+    Password = string.Empty,
+    Status = true,
+    AccountState = Domain.Enums.AccountState.ACTIVA,  // <-- esta línea
+    CreatedAt = DateTime.UtcNow,
+    UpdatedAt = DateTime.UtcNow
+};
 
         user.Password = passwordHashService.HashPassword(dto.Password);
 
