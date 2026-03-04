@@ -3,7 +3,8 @@ import {
   createFavorite,
   getMyFavorites,
   updateFavorite,
-  deleteFavorite
+  deleteFavorite,
+  quickTransferFromFavorite
 } from '../controllers/favorite.controller.js';
 
 import { validateJWT } from '../../middlewares/validate-JWT.js';
@@ -18,5 +19,6 @@ router.post('/', validateJWT, validateRole(Roles.USER), validateCreateFavorite, 
 router.get('/', validateJWT, validateRole(Roles.USER), getMyFavorites);
 router.put('/:id', validateJWT, validateRole(Roles.USER), validateFavoriteId, updateFavorite);
 router.delete('/:id', validateJWT, validateRole(Roles.USER), validateFavoriteId, deleteFavorite);
+router.post('/:id/transfer', validateJWT, validateRole(Roles.USER), validateFavoriteId, quickTransferFromFavorite);
 
 export default router;
