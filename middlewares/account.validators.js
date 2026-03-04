@@ -82,8 +82,18 @@ export const validateTransfer = [
     .withMessage('Cuenta destino obligatoria'),
 
   body('amount')
-    .isFloat({ gt: 0 })
-    .withMessage('Monto inválido'),
+    .isFloat({ min: 5, max: 2000 })
+    .withMessage('El monto debe estar entre Q5 y Q2,000'),
+
+  body('currency')
+    .optional()
+    .isIn(['GTQ', 'USD'])
+    .withMessage('Moneda debe ser GTQ o USD'),
+
+  body('description')
+    .optional()
+    .isString()
+    .withMessage('Descripción debe ser texto'),
 
   checkValidators
 ];

@@ -1,7 +1,8 @@
 import { Router } from 'express';
 import { 
   transfer, 
-  getMyTransactions, 
+  getMyTransactions,
+  getAllMyTransactions,
   getTransactionById,
   getAllTransactions 
 } from '../controllers/transaction.controller.js';
@@ -14,11 +15,14 @@ import { validateDeposit, validateTransfer } from '../../middlewares/transaction
 const router = Router();
 
 // ADMIN
-router.post('/deposit', validateJWT, validateRole(Roles.ADMIN), validateDeposit, createDeposit);
 router.get('/all', validateJWT, validateRole(Roles.ADMIN), getAllTransactions);
+
+// PÚBLICO - Depósitos sin autenticación
+router.post('/deposit', validateDeposit, createDeposit);
 
 // CLIENTE - Rutas específicas/raíz primero, dinámicas al final
 router.get('/my-transactions', validateJWT, getMyTransactions);
+router.get('/my-transactionsToken', validateJWT, getAllMyTransactions);
 router.post('/transfer', validateJWT, validateRole(Roles.USER), validateTransfer, transfer);
 router.get('/', validateJWT, getMyTransactions);
 
