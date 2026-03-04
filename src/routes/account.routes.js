@@ -25,7 +25,7 @@ const router = Router();
 // ─── USUARIO ───
 router.get('/my-info', validateJWT, getMyInfo);           // PRIMERO
 router.get('/me', validateJWT, getMyAccount);
-router.post('/my-account', validateJWT, validateRole(Roles.USER), createMyAccount);
+router.post('/my-account', createMyAccount);  // Sin JWT - permite primera cuenta sin token
 router.put('/me', validateJWT, validateRole(Roles.USER), updateAccount);
 router.post('/transfer', validateJWT, validateRole(Roles.USER), validateTransfer, transfer);
 
