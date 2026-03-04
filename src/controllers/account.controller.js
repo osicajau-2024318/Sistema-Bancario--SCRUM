@@ -5,6 +5,12 @@ import { verifyUserExists, verifyMonthlyIncome, createClientInAuthService } from
 import Transaction from '../models/transaction.model.js';
 import axios from 'axios';
 
+// Tasa de cambio GTQ a USD (configurable)
+const EXCHANGE_RATE = {
+  GTQ_TO_USD: 7.8, // 1 USD = 7.8 GTQ
+  USD_TO_GTQ: 7.8
+};
+
 const isAccountActive = (account) => {
   if (typeof account?.estado === 'string') {
     return account.estado === 'ACTIVA';
@@ -195,7 +201,7 @@ export const getMyAccount = async (req, res) => {
 export const transfer = async (req, res) => {
   try {
     const fromUserId = req.user.id;
-    const { toAccount, amount, description } = req.body;
+    const { toAccount, amount, description, currency } = req.body;
 
     // Validar que el monto sea válido
     if (!amount || amount <= 0) {
@@ -245,15 +251,24 @@ export const transfer = async (req, res) => {
       });
     }
 
-    // Verificar límite por transferencia (Q2000)
-    if (amount > fromAccount.single_transfer_limit) {
+    // Determinar moneda de origen
+    const currencyFrom = currency || fromAccount.currency;
+    if (currencyFrom !== 'GTQ' && currencyFrom !== 'USD') {
       return res.status(400).json({
         success: false,
-        message: `Supera el límite por transferencia de Q${fromAccount.single_transfer_limit}`
+        message: 'Moneda debe ser GTQ o USD'
       });
     }
 
-    // Verificar límite diario (Q10,000)
+    // Verificar límite por transferencia (Q2000 o USD equivalente)
+    if (amount > fromAccount.single_transfer_limit) {
+      return res.status(400).json({
+        success: false,
+        message: `Supera el límite por transferencia de ${fromAccount.currency}${fromAccount.single_transfer_limit}`
+      });
+    }
+
+    // Verificar límite diario (Q10,000 o USD equivalente)
     const today = new Date().toDateString();
     const lastDate = fromAccount.last_transfer_date?.toDateString();
 
@@ -266,7 +281,7 @@ export const transfer = async (req, res) => {
       const remaining = fromAccount.daily_transfer_limit - fromAccount.daily_transferred_amount;
       return res.status(400).json({
         success: false,
-        message: `Supera el límite diario de transferencias. Disponible hoy: Q${remaining}`
+        message: `Supera el límite diario de transferencias. Disponible hoy: ${fromAccount.currency}${remaining}`
       });
     }
 
@@ -278,26 +293,49 @@ export const transfer = async (req, res) => {
       });
     }
 
-    // Realizar la transferencia
-    fromAccount.balance -= amount;
-    toAccountData.balance += amount;
+    // Realizar la transferencia con conversión de moneda
+    let debitAmount = amount;
+    let creditAmount = amount;
+    let exchangeUsed = null;
+    let conversionNote = '';
 
-    fromAccount.daily_transferred_amount += amount;
+    // Verificar si hay conversión de moneda
+    if (currencyFrom !== toAccountData.currency) {
+      if (currencyFrom === 'GTQ' && toAccountData.currency === 'USD') {
+        // Convertir de GTQ a USD
+        creditAmount = parseFloat((amount / EXCHANGE_RATE.GTQ_TO_USD).toFixed(2));
+        exchangeUsed = EXCHANGE_RATE.GTQ_TO_USD;
+        conversionNote = `Transferencia de GTQ ${amount} a USD ${creditAmount} (Tasa: ${EXCHANGE_RATE.GTQ_TO_USD})`;
+      } else if (currencyFrom === 'USD' && toAccountData.currency === 'GTQ') {
+        // Convertir de USD a GTQ
+        creditAmount = parseFloat((amount * EXCHANGE_RATE.USD_TO_GTQ).toFixed(2));
+        exchangeUsed = EXCHANGE_RATE.USD_TO_GTQ;
+        conversionNote = `Transferencia de USD ${amount} a GTQ ${creditAmount} (Tasa: ${EXCHANGE_RATE.USD_TO_GTQ})`;
+      }
+    }
+
+    fromAccount.balance -= debitAmount;
+    toAccountData.balance += creditAmount;
+
+    fromAccount.daily_transferred_amount += debitAmount;
 
     await fromAccount.save();
     await toAccountData.save();
 
     // Crear registro de transacción
     const transaction = new Transaction({
-      transaction_name: description || 'Transferencia',
-      transaction_amount: amount,
+      transaction_name: conversionNote || description || 'Transferencia',
+      transaction_amount: creditAmount,
       transaction_type: 'TRANSFERENCIA',
       transaction_method_payment: 'TRANSFERENCIA',
       from_account: fromAccount.account_number,
       to_account: toAccountData.account_number,
       account_id: fromAccount._id,
       user_id: fromUserId,
-      revertible: false
+      revertible: false,
+      exchange_rate: exchangeUsed,
+      currency_from: currencyFrom,
+      currency_to: toAccountData.currency
     });
 
     await transaction.save();
@@ -306,9 +344,14 @@ export const transfer = async (req, res) => {
       success: true,
       message: 'Transferencia realizada exitosamente',
       transaction: {
-        amount,
+        amount_debited: debitAmount,
+        amount_credited: creditAmount,
         from: fromAccount.account_number,
         to: toAccountData.account_number,
+        from_currency: currencyFrom,
+        to_currency: toAccountData.currency,
+        exchange_rate: exchangeUsed,
+        conversion_note: conversionNote || 'Sin conversión',
         newBalance: fromAccount.balance,
         dailyRemaining: fromAccount.daily_transfer_limit - fromAccount.daily_transferred_amount
       }
