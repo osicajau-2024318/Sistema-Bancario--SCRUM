@@ -520,51 +520,59 @@ export const getAllAccounts = async (req, res) => {
   }
 };
 
-// Cliente: Editar cuenta (solo tipo si no hay transacciones)
+// Admin: Editar cuenta por id (actualizaciones parciales). No permite cambiar `balance`.
 export const updateAccount = async (req, res) => {
   try {
-    const userId = req.user.id;
-    const { account_type } = req.body;
+    const { id } = req.params;
 
-    const account = await Account.findOne({ user_id: userId });
-    
+    // Validar formato de ObjectId
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      return res.status(400).json({ success: false, message: 'ID de cuenta inválido' });
+    }
+
+    // Prohibir cambios en balance
+    if (Object.prototype.hasOwnProperty.call(req.body, 'balance')) {
+      return res.status(400).json({ success: false, message: 'No está permitido modificar el balance' });
+    }
+
+    // Campos permitidos para actualizar
+    const allowedFields = ['account_type', 'currency', 'estado', 'account_number', 'single_transfer_limit', 'daily_transfer_limit'];
+    const updates = {};
+
+    for (const key of Object.keys(req.body)) {
+      if (!allowedFields.includes(key)) {
+        return res.status(400).json({ success: false, message: `Campo inválido en la actualización: ${key}` });
+      }
+      updates[key] = req.body[key];
+    }
+
+    if (Object.keys(updates).length === 0) {
+      return res.status(400).json({ success: false, message: 'No se proporcionaron campos válidos para actualizar' });
+    }
+
+    // Validaciones específicas
+    if (updates.account_type && !['AHORRO', 'CORRIENTE', 'NOMINA'].includes(updates.account_type)) {
+      return res.status(400).json({ success: false, message: 'Tipo de cuenta inválido. Use AHORRO, CORRIENTE o NOMINA' });
+    }
+
+    if (updates.currency && !['GTQ', 'USD'].includes(updates.currency)) {
+      return res.status(400).json({ success: false, message: 'Moneda inválida. Use GTQ o USD' });
+    }
+
+    const account = await Account.findById(id);
     if (!account) {
-      return res.status(404).json({
-        success: false,
-        message: 'Cuenta no encontrada'
-      });
+      return res.status(404).json({ success: false, message: 'Cuenta no encontrada' });
     }
 
-    // Verificar si hay transacciones
-    const hasTransactions = await Transaction.findOne({
-      $or: [
-        { from_account: account.account_number },
-        { to_account: account.account_number }
-      ]
-    });
+    // Aplicar actualizaciones parciales
+    Object.keys(updates).forEach((k) => { account[k] = updates[k]; });
 
-    if (hasTransactions) {
-      return res.status(400).json({
-        success: false,
-        message: 'No se puede cambiar el tipo de cuenta si ya tiene transacciones'
-      });
-    }
-
-    account.account_type = account_type;
     await account.save();
 
-    res.json({
-      success: true,
-      message: 'Tipo de cuenta actualizado',
-      account
-    });
+    res.json({ success: true, message: 'Cuenta actualizada correctamente', account });
 
   } catch (error) {
-    res.status(500).json({
-      success: false,
-      message: 'Error al actualizar cuenta',
-      error: error.message
-    });
+    res.status(500).json({ success: false, message: 'Error al actualizar cuenta', error: error.message });
   }
 };
 

@@ -26,7 +26,6 @@ const router = Router();
 router.get('/my-info', validateJWT, getMyInfo);           // PRIMERO
 router.get('/me', validateJWT, getMyAccount);
 router.post('/my-account', validateJWT, validateRole(Roles.USER), createMyAccount);
-router.put('/me', validateJWT, validateRole(Roles.USER), updateAccount);
 router.post('/transfer', validateJWT, validateRole(Roles.USER), validateTransfer, transfer);
 
 // ─── ADMIN ───
@@ -37,6 +36,7 @@ router.get('/by-activity', validateJWT, validateRole(Roles.ADMIN), getAccountsBy
 router.get('/by-balance', validateJWT, validateRole(Roles.ADMIN), getAccountsByBalance);
 router.get('/by-movements', validateJWT, validateRole(Roles.ADMIN), getAccountsByMovements);
 router.get('/:accountId/movements', validateJWT, validateRole(Roles.ADMIN), getAccountMovements);
+router.put('/:id', validateJWT, validateRole(Roles.ADMIN), updateAccount);
 router.get('/:id', validateJWT, validateRole(Roles.ADMIN), getAccountById);  // ÚLTIMO
 
 export default router;
