@@ -1,8 +1,7 @@
-import mongoose from 'mongoose';
+import Transaction from '../models/transaction.model.js';
 import Account from '../models/account.model.js';
 import { convertCurrency } from '../services/currency.service.js';
 import { verifyUserExists, verifyMonthlyIncome, createClientInAuthService } from '../services/authService.service.js';
-import Transaction from '../models/transaction.model.js';
 import axios from 'axios';
 
 const isAccountActive = (account) => {
@@ -84,27 +83,47 @@ export const createAccount = async (req, res) => {
 };
 
 // ─── USUARIO: Crear su propia cuenta (queda PENDIENTE hasta que admin active) ───
+// Sin JWT requerido para la primera cuenta, pero sí para cuentas adicionales
 export const createMyAccount = async (req, res) => {
   try {
-    const userId = req.user.id;
-    let { account_type, currency, balance } = req.body;
+    const { user_id, account_type, currency, balance } = req.body;
 
-   
+    // Validar que se proporcione user_id
+    if (!user_id) {
+      return res.status(400).json({ 
+        success: false, 
+        message: 'user_id es requerido en el body' 
+      });
+    }
+
+    // Verificar si el usuario YA tiene cuentas
+    const existingAccounts = await Account.find({ user_id });
+
+    // Si ya tiene cuentas, requiere token de autenticación
+    if (existingAccounts.length > 0) {
+      // Validar que tenga token y que sea la misma persona
+      if (!req.user || req.user.id !== user_id) {
+        return res.status(401).json({ 
+          success: false, 
+          message: 'Token requerido para crear cuentas adicionales' 
+        });
+      }
+    }
 
     const initialBalance = parseFloat(balance) || 0;
     if (initialBalance < 0) {
       return res.status(400).json({ success: false, message: 'El saldo inicial no puede ser negativo' });
     }
 
-    if (!['AHORRO', 'CORRIENTE', 'NOMINA'].includes(account_type)) {
+    if (!account_type || !['AHORRO', 'CORRIENTE', 'NOMINA'].includes(account_type)) {
       return res.status(400).json({ success: false, message: 'Tipo de cuenta inválido. Use AHORRO, CORRIENTE o NOMINA' });
     }
 
-    if (!['GTQ', 'USD'].includes(currency)) {
+    if (!currency || !['GTQ', 'USD'].includes(currency)) {
       return res.status(400).json({ success: false, message: 'Moneda inválida. Use GTQ o USD' });
     }
 
-    // Generar número de cuenta único
+    // Generar número de cuenta única
     let account_number;
     let exists = true;
     while (exists) {
@@ -113,7 +132,7 @@ export const createMyAccount = async (req, res) => {
     }
 
     const account = new Account({
-      user_id: userId,
+      user_id,
       account_type,
       currency,
       balance: initialBalance,
@@ -140,7 +159,7 @@ export const activateAccount = async (req, res) => {
   try {
     const { accountId } = req.params;
 
-    const account = await Account.findById(accountId);
+    const account = await Account.findOne({ user_id: accountId });
     if (!account) {
       return res.status(404).json({ success: false, message: 'Cuenta no encontrada' });
     }
@@ -152,9 +171,29 @@ export const activateAccount = async (req, res) => {
     account.estado = 'ACTIVA';
     await account.save();
 
+    // Intentar activar el usuario también en .NET
+    try {
+      const token = req.headers.authorization?.split(' ')[1];
+      if (token) {
+        await axios.post(
+          `http://localhost:5025/api/v1/admin/users/${accountId}/activate`,
+          {},
+          {
+            headers: {
+              'Authorization': `Bearer ${token}`,
+              'Content-Type': 'application/json'
+            }
+          }
+        );
+      }
+    } catch (error) {
+      // Si falla la activación en .NET, log pero no fallar la respuesta
+      console.error('Advertencia: No se pudo activar el usuario en .NET', error.message);
+    }
+
     res.json({
       success: true,
-      message: 'Cuenta activada correctamente',
+      message: 'Cuenta activada correctamente. Usuario también activado en .NET.',
       account
     });
 

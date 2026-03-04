@@ -18,3 +18,11 @@ export const validateFavoriteId = [
 
   checkValidators
 ];
+
+export const validateFavoriteTransfer = [
+  body('amount')
+    .isFloat({ gt: 0 })
+    .withMessage('Monto debe ser mayor a 0'),
+
+  checkValidators
+];
