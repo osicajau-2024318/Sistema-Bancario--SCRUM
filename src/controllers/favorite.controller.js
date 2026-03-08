@@ -1,8 +1,7 @@
 import Favorite from '../models/favorite.model.js';
 import Account from '../models/account.model.js';
 import Transaction from '../models/transaction.model.js';
-import mongoose from 'mongoose';
-import { transferFromFavorite } from '../services/favorite.service.js';
+import { transferFromFavorite, findFavoriteByIdOrAlias } from '../services/favorite.service.js';
 
 // Crear favorito
 export const createFavorite = async (req, res) => {
@@ -102,26 +101,16 @@ export const updateFavorite = async (req, res) => {
       });
     }
 
-    // Validar que el ID sea un ObjectId válido
-    if (!mongoose.Types.ObjectId.isValid(id)) {
-      return res.status(400).json({ 
-        success: false,
-        message: 'ID de favorito inválido' 
-      });
-    }
-
-    const favorite = await Favorite.findOneAndUpdate(
-      { _id: id, owner_user_id: userId },
-      { alias },
-      { new: true }
-    );
-
+    const favorite = await findFavoriteByIdOrAlias(id, userId);
     if (!favorite) {
       return res.status(404).json({ 
         success: false,
-        message: 'Favorito no encontrado. Verifique que el ID sea correcto' 
+        message: 'Favorito no encontrado. Verifica el alias o el ID.' 
       });
     }
+
+    favorite.alias = alias;
+    await favorite.save();
 
     res.json({
       success: true,
@@ -145,25 +134,15 @@ export const deleteFavorite = async (req, res) => {
     const { id } = req.params;
     const userId = req.user.id;
 
-    // Validar que el ID sea un ObjectId válido
-    if (!mongoose.Types.ObjectId.isValid(id)) {
-      return res.status(400).json({ 
-        success: false,
-        message: 'ID de favorito inválido' 
-      });
-    }
-
-    const favorite = await Favorite.findOneAndDelete({ 
-      _id: id, 
-      owner_user_id: userId 
-    });
-
+    const favorite = await findFavoriteByIdOrAlias(id, userId);
     if (!favorite) {
       return res.status(404).json({ 
         success: false,
-        message: 'Favorito no encontrado. Verifique que el ID sea correcto' 
+        message: 'Favorito no encontrado. Verifica el alias o el ID.' 
       });
     }
+
+    await Favorite.findByIdAndDelete(favorite._id);
 
     res.json({
       success: true,
@@ -183,7 +162,7 @@ export const deleteFavorite = async (req, res) => {
 // Transferencia rápida desde favorito
 export const quickTransferFromFavorite = async (req, res) => {
   try {
-    const { id } = req.params;
+    const { id } = req.params;  // puede ser ID (ObjectId) o alias del favorito
     const { amount, fromAccount } = req.body;
     const fromUserId = req.user.id;
 
