@@ -1,103 +1,112 @@
 import Favorite from '../models/favorite.model.js';
 import Account from '../models/account.model.js';
 import Transaction from '../models/transaction.model.js';
-import mongoose from 'mongoose';
 
-// Transferencia rápida desde favorito
-export const transferFromFavorite = async (id, amount, fromUserId) => {
-  try {
-    // Validar monto
-    if (!amount || amount <= 0) {
-      throw new Error('Monto inválido');
-    }
-
-    // Obtener el favorito
-    const favorite = await Favorite.findById(id);
-    if (!favorite) {
-      throw new Error('Favorito no encontrado');
-    }
-
-    // Verificar que el favorito pertenece al usuario
-    if (favorite.owner_user_id !== fromUserId) {
-      throw new Error('No tienes permiso para usar este favorito');
-    }
-
-    // Obtener cuenta origen
-    const fromAccount = await Account.findOne({ user_id: fromUserId });
-    if (!fromAccount) {
-      throw new Error('Cuenta origen no existe');
-    }
-
-    // Obtener cuenta destino usando el número de cuenta del favorito
-    const toAccountData = await Account.findOne({ 
-      account_number: favorite.account_number 
-    });
-    
-    if (!toAccountData) {
-      throw new Error('Cuenta destino no existe');
-    }
-
-    // No permitir transferir a propia cuenta
-    if (toAccountData.user_id.toString() === fromUserId) {
-      throw new Error('No puedes transferirte a tu propia cuenta');
-    }
-
-    // Validar que ambas cuentas estén activas
-    if (fromAccount.estado !== 'ACTIVA' || toAccountData.estado !== 'ACTIVA') {
-      throw new Error('Cuenta no activa');
-    }
-
-    // Validar límite de transferencia
-    if (amount > fromAccount.single_transfer_limit) {
-      throw new Error('Límite por transferencia excedido');
-    }
-
-    // Validar saldo
-    if (fromAccount.balance < amount) {
-      throw new Error('Saldo insuficiente');
-    }
-
-    // Realizar transferencia
-    fromAccount.balance -= amount;
-    toAccountData.balance += amount;
-
-    await fromAccount.save();
-    await toAccountData.save();
-
-    // Crear transacciones
-    const debit = new Transaction({
-      transaction_name: `Transferencia enviada a ${favorite.alias}`,
-      transaction_amount: amount,
-      transaction_type: 'DEBITO',
-      transaction_method_payment: 'TRANSFERENCIA',
-      account_id: fromAccount._id,
-      user_id: fromAccount.user_id
-    });
-
-    const credit = new Transaction({
-      transaction_name: 'Transferencia recibida',
-      transaction_amount: amount,
-      transaction_type: 'CREDITO',
-      transaction_method_payment: 'TRANSFERENCIA',
-      account_id: toAccountData._id,
-      user_id: toAccountData.user_id
-    });
-
-    await debit.save();
-    await credit.save();
-
-    return {
-      success: true,
-      message: 'Transferencia rápida realizada',
-      data: {
-        from_account: fromAccount.account_number,
-        to_account: toAccountData.account_number,
-        to_alias: favorite.alias,
-        amount
-      }
-    };
-
-  } catch (error) {
-    throw error;
+/**
+ * Transferencia rápida a un favorito.
+ * Según rúbrica: "desde el cual también podrá transferir de forma rápida".
+ * - :id = ID del favorito (sabemos la cuenta destino por el favorito).
+ * - fromAccount = número de TU cuenta desde la que envías (obligatorio si tienes varias).
+ * - amount = monto a transferir.
+ * Se aplican las mismas reglas que transferencia normal: límite por operación, límite diario, saldo.
+ */
+export const transferFromFavorite = async (favoriteId, amount, fromUserId, fromAccountNumber) => {
+  if (!amount || amount <= 0) {
+    throw new Error('Monto inválido');
   }
+
+  if (!fromAccountNumber || String(fromAccountNumber).trim() === '') {
+    throw new Error('Debes indicar la cuenta origen (fromAccount): el número de tu cuenta desde la que envías');
+  }
+
+  const favorite = await Favorite.findById(favoriteId);
+  if (!favorite) {
+    throw new Error('Favorito no encontrado');
+  }
+
+  if (favorite.owner_user_id !== fromUserId) {
+    throw new Error('No tienes permiso para usar este favorito');
+  }
+
+  const fromAccount = await Account.findOne({
+    user_id: fromUserId,
+    account_number: String(fromAccountNumber).trim()
+  });
+  if (!fromAccount) {
+    throw new Error('Cuenta origen no encontrada o no te pertenece. Verifica fromAccount.');
+  }
+
+  const toAccountData = await Account.findOne({ account_number: favorite.account_number });
+  if (!toAccountData) {
+    throw new Error('Cuenta destino no existe');
+  }
+
+  if (fromAccount.account_number === toAccountData.account_number) {
+    throw new Error('No puedes transferir a la misma cuenta');
+  }
+
+  if (fromAccount.estado !== 'ACTIVA' || toAccountData.estado !== 'ACTIVA') {
+    throw new Error('Cuenta no activa');
+  }
+
+  if (amount > fromAccount.single_transfer_limit) {
+    throw new Error('Límite por transferencia excedido');
+  }
+
+  const today = new Date().toDateString();
+  const lastDate = fromAccount.last_transfer_date?.toDateString();
+  if (today !== lastDate) {
+    fromAccount.daily_transferred_amount = 0;
+    fromAccount.last_transfer_date = new Date();
+  }
+  if (fromAccount.daily_transferred_amount + amount > fromAccount.daily_transfer_limit) {
+    const remaining = fromAccount.daily_transfer_limit - fromAccount.daily_transferred_amount;
+    throw new Error(`Supera el límite diario de transferencias. Disponible hoy: ${fromAccount.currency}${remaining}`);
+  }
+
+  if (fromAccount.balance < amount) {
+    throw new Error('Saldo insuficiente');
+  }
+
+  fromAccount.balance -= amount;
+  toAccountData.balance += amount;
+  fromAccount.daily_transferred_amount += amount;
+
+  await fromAccount.save();
+  await toAccountData.save();
+
+  const debit = new Transaction({
+    transaction_name: `Transferencia rápida a ${favorite.alias}`,
+    transaction_amount: amount,
+    transaction_type: 'DEBITO',
+    transaction_method_payment: 'TRANSFERENCIA',
+    account_id: fromAccount._id,
+    user_id: fromAccount.user_id,
+    from_account: fromAccount.account_number,
+    to_account: toAccountData.account_number
+  });
+  const credit = new Transaction({
+    transaction_name: `Transferencia recibida`,
+    transaction_amount: amount,
+    transaction_type: 'CREDITO',
+    transaction_method_payment: 'TRANSFERENCIA',
+    account_id: toAccountData._id,
+    user_id: toAccountData.user_id,
+    from_account: fromAccount.account_number,
+    to_account: toAccountData.account_number
+  });
+  await debit.save();
+  await credit.save();
+
+  return {
+    success: true,
+    message: 'Transferencia rápida realizada',
+    data: {
+      from_account: fromAccount.account_number,
+      to_account: toAccountData.account_number,
+      to_alias: favorite.alias,
+      amount,
+      daily_remaining: fromAccount.daily_transfer_limit - fromAccount.daily_transferred_amount
+    }
+  };
 };
