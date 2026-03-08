@@ -1,16 +1,27 @@
 import Favorite from '../models/favorite.model.js';
 import Account from '../models/account.model.js';
 import Transaction from '../models/transaction.model.js';
+import mongoose from 'mongoose';
+
+/**
+ * Busca un favorito por ID (ObjectId) o por alias del usuario.
+ * Permite usar en la URL el alias (ej. "Mamá") en lugar del _id.
+ */
+export const findFavoriteByIdOrAlias = async (idOrAlias, ownerUserId) => {
+  if (!idOrAlias || String(idOrAlias).trim() === '') return null;
+  const value = String(idOrAlias).trim();
+  if (mongoose.Types.ObjectId.isValid(value) && value.length === 24) {
+    const byId = await Favorite.findOne({ _id: value, owner_user_id: ownerUserId });
+    if (byId) return byId;
+  }
+  return Favorite.findOne({ owner_user_id: ownerUserId, alias: value });
+};
 
 /**
  * Transferencia rápida a un favorito.
- * Según rúbrica: "desde el cual también podrá transferir de forma rápida".
- * - :id = ID del favorito (sabemos la cuenta destino por el favorito).
- * - fromAccount = número de TU cuenta desde la que envías (obligatorio si tienes varias).
- * - amount = monto a transferir.
- * Se aplican las mismas reglas que transferencia normal: límite por operación, límite diario, saldo.
+ * idOrAlias = ID del favorito (ObjectId) o alias (ej. "Mamá"). La cuenta destino se obtiene del favorito.
  */
-export const transferFromFavorite = async (favoriteId, amount, fromUserId, fromAccountNumber) => {
+export const transferFromFavorite = async (idOrAlias, amount, fromUserId, fromAccountNumber) => {
   if (!amount || amount <= 0) {
     throw new Error('Monto inválido');
   }
@@ -19,13 +30,9 @@ export const transferFromFavorite = async (favoriteId, amount, fromUserId, fromA
     throw new Error('Debes indicar la cuenta origen (fromAccount): el número de tu cuenta desde la que envías');
   }
 
-  const favorite = await Favorite.findById(favoriteId);
+  const favorite = await findFavoriteByIdOrAlias(idOrAlias, fromUserId);
   if (!favorite) {
-    throw new Error('Favorito no encontrado');
-  }
-
-  if (favorite.owner_user_id !== fromUserId) {
-    throw new Error('No tienes permiso para usar este favorito');
+    throw new Error('Favorito no encontrado. Verifica el alias o el ID.');
   }
 
   const fromAccount = await Account.findOne({

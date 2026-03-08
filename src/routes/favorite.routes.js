@@ -14,11 +14,11 @@ import { validateCreateFavorite, validateFavoriteId, validateQuickTransfer } fro
 
 const router = Router();
 
-// CLIENTE
-router.post('/', validateJWT, validateRole(Roles.USER), validateCreateFavorite, createFavorite);
-router.get('/', validateJWT, validateRole(Roles.USER), getMyFavorites);
-router.put('/:id', validateJWT, validateRole(Roles.USER), validateFavoriteId, updateFavorite);
-router.delete('/:id', validateJWT, validateRole(Roles.USER), validateFavoriteId, deleteFavorite);
-router.post('/:id/transfer', validateJWT, validateRole(Roles.USER), validateQuickTransfer, quickTransferFromFavorite);
+// Cliente o admin pueden usar favoritos (agregar, listar, editar alias, eliminar, transferir rápido)
+router.post('/', validateJWT, validateRole(Roles.USER, Roles.ADMIN), validateCreateFavorite, createFavorite);
+router.get('/', validateJWT, validateRole(Roles.USER, Roles.ADMIN), getMyFavorites);
+router.put('/:id', validateJWT, validateRole(Roles.USER, Roles.ADMIN), validateFavoriteId, updateFavorite);
+router.delete('/:id', validateJWT, validateRole(Roles.USER, Roles.ADMIN), validateFavoriteId, deleteFavorite);
+router.post('/:id/transfer', validateJWT, validateRole(Roles.USER, Roles.ADMIN), validateQuickTransfer, quickTransferFromFavorite);
 
 export default router;
