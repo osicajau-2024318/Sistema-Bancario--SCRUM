@@ -84,7 +84,7 @@
                   "bearer": [
                     {
                       "key": "token",
-                      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c3JfQXNHVVpkM0ZiRmo2IiwianRpIjoiNjJmNzI3NzUtNGZhNC00MmU4LTgyN2UtNzVhY2Y4ZDU5MTFhIiwiaWF0IjoxNzcyNTE0NjQwLCJyb2xlIjoiQURNSU5fUk9MRSIsImV4cCI6MTc3MjUxNjQ0MCwiaXNzIjoiQXV0aFNlcnZpY2UiLCJhdWQiOiJBdXRoU2VydmljZSJ9.pn5Eecg3bet12bZHg2UefKDMzsTYbyllTKl4mYttC9k",
+                      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c3JfWVQ1WGtFSDdUaVd5IiwianRpIjoiNTNiYWE1N2EtMWJjNy00ZDEyLTllMDQtNmMzMDQ1MzA1Y2VkIiwiaWF0IjoxNzcyNjM5NDE1LCJyb2xlIjoiQURNSU5fUk9MRSIsImV4cCI6MTc3MjY0MTIxNSwiaXNzIjoiQXV0aFNlcnZpY2UiLCJhdWQiOiJBdXRoU2VydmljZSJ9.VnwMgEf9Qon-vJa5rtB0yX6FnWmCX_FPYw4Iav3Dvnk",
                       "type": "string"
                     }
                   ]
@@ -107,7 +107,7 @@
                   "variable": [
                     {
                       "key": "id",
-                      "value": ""
+                      "value": "69a856ee24bc5c2b3b8355b3"
                     }
                   ]
                 }
@@ -186,47 +186,6 @@
                       "key": "order",
                       "value": "desc"
                     }
-                  ]
-                }
-              },
-              "response": []
-            },
-            {
-              "name": "Deposito a usuario",
-              "request": {
-                "auth": {
-                  "type": "bearer",
-                  "bearer": [
-                    {
-                      "key": "token",
-                      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c3JfQXNHVVpkM0ZiRmo2IiwianRpIjoiZDg3ODFkMDItYjJkOS00MzAyLWFjYTEtYmU1OGUwODc3MjIxIiwiaWF0IjoxNzcyNTE4MjQ3LCJyb2xlIjoiQURNSU5fUk9MRSIsImV4cCI6MTc3MjUyMDA0NywiaXNzIjoiQXV0aFNlcnZpY2UiLCJhdWQiOiJBdXRoU2VydmljZSJ9.P2YxYLi7EnQBr6aEu5xbkiqa-PwG9iKtQYaGsUJPXdw",
-                      "type": "string"
-                    }
-                  ]
-                },
-                "method": "POST",
-                "header": [],
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"accountNumber\": \"5588351995\",\n  \"amount\": 1000,\n  \"description\": \"Deposito por ventanilla\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                },
-                "url": {
-                  "raw": "http://localhost:3000/SistemaBancarioAdmin/v1/transactions/deposit",
-                  "protocol": "http",
-                  "host": [
-                    "localhost"
-                  ],
-                  "port": "3000",
-                  "path": [
-                    "SistemaBancarioAdmin",
-                    "v1",
-                    "transactions",
-                    "deposit"
                   ]
                 }
               },
@@ -327,7 +286,7 @@
                   "bearer": [
                     {
                       "key": "token",
-                      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c3JfYjZTaU53ekh2OXhzIiwianRpIjoiMWUyYzQ2NmMtZmNlYi00MzM0LTgzMzEtNmI2ODJjZDRmYzg2IiwiaWF0IjoxNzcyNTQ5NTA3LCJyb2xlIjoiQURNSU5fUk9MRSIsImV4cCI6MTc3MjU1MTMwNywiaXNzIjoiQXV0aFNlcnZpY2UiLCJhdWQiOiJBdXRoU2VydmljZSJ9.8bNMrmw9m6Ad8eohjx_YbR76FqpTn7Rj-yq1GW7BYXI",
+                      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c3JfUml2cUpKUkdXclZWIiwianRpIjoiMzI0NGZkZTYtMjcxOC00YzI3LThlMWEtMTVjY2RjMTJlY2ZiIiwiaWF0IjoxNzcyNjU5MzIxLCJyb2xlIjoiQURNSU5fUk9MRSIsImV4cCI6MTc3MjY2MTEyMSwiaXNzIjoiQXV0aFNlcnZpY2UiLCJhdWQiOiJBdXRoU2VydmljZSJ9.ALwrbsYfLASvwsVQQ4j7xgZFB5F553u6uZMKwZejkVk",
                       "type": "string"
                     }
                   ]
@@ -351,7 +310,7 @@
                   "variable": [
                     {
                       "key": "accountId",
-                      "value": "usr_mYVMcrqy3Z8q"
+                      "value": "69a8a799196ffce7daf8edb4"
                     }
                   ]
                 }
@@ -366,7 +325,7 @@
                   "bearer": [
                     {
                       "key": "token",
-                      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c3JfYjZTaU53ekh2OXhzIiwianRpIjoiZjA1NDdiZjEtOWFjZS00NDUwLTgxYjYtYjVkYWE1OTBjMjRlIiwiaWF0IjoxNzcyNTUyNjgwLCJyb2xlIjoiQURNSU5fUk9MRSIsImV4cCI6MTc3MjU1NDQ4MCwiaXNzIjoiQXV0aFNlcnZpY2UiLCJhdWQiOiJBdXRoU2VydmljZSJ9.Pt18cca6NCB5NaqN2xPebeUMKsQI56iS0EvxoNcfTFw",
+                      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c3JfWVQ1WGtFSDdUaVd5IiwianRpIjoiZTY0MTViZGYtMzFkMS00Y2JmLTg0MzctNTk0ODQ2OTMwZTNlIiwiaWF0IjoxNzcyNjM5NjU5LCJyb2xlIjoiQURNSU5fUk9MRSIsImV4cCI6MTc3MjY0MTQ1OSwiaXNzIjoiQXV0aFNlcnZpY2UiLCJhdWQiOiJBdXRoU2VydmljZSJ9.UiNjaD15PWbVgPTXmq4G_GRze0NnMM7tHr04lNVOnnQ",
                       "type": "string"
                     }
                   ]
@@ -393,6 +352,47 @@
                     "SistemaBancarioAdmin",
                     "v1",
                     "accounts"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Editar datos",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c3JfYjZTaU53ekh2OXhzIiwianRpIjoiZjk1Y2E2YzYtZWQ3YS00NWE4LWIwZmUtN2JlMzY2NTk1YWRlIiwiaWF0IjoxNzcyNTQwMTI4LCJyb2xlIjoiQURNSU5fUk9MRSIsImV4cCI6MTc3MjU0MTkyOCwiaXNzIjoiQXV0aFNlcnZpY2UiLCJhdWQiOiJBdXRoU2VydmljZSJ9.4xQg6fvN5Toba0j1pL9tNnCe45fd8fA3veJeyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c3JfYkRjNGhBV1hIREp5IiwianRpIjoiNTMzZmQyNzgtYjU2NC00MTE4LTkwZTUtNzYzMzkwYzZlNjBmIiwiaWF0IjoxNzcyNTc2MzA1LCJyb2xlIjoiVVNFUl9ST0xFIiwiZXhwIjoxNzcyNTc4MTA1LCJpc3MiOiJBdXRoU2VydmljZSIsImF1ZCI6IkF1dGhTZXJ2aWNlIn0.d69GBwSLZqowf2Ml6wA90aBEafG69z6zVmLDHWa-qX8ezoOIDY8",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "PUT",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{ \r\n    \"account_type\":\"CORRIENTE\" \r\n }",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:3000/SistemaBancarioAdmin/v1/accounts/me",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3000",
+                  "path": [
+                    "SistemaBancarioAdmin",
+                    "v1",
+                    "accounts",
+                    "me"
                   ]
                 }
               },
@@ -442,7 +442,7 @@
                   "bearer": [
                     {
                       "key": "token",
-                      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c3JfQXNHVVpkM0ZiRmo2IiwianRpIjoiNjJmNzI3NzUtNGZhNC00MmU4LTgyN2UtNzVhY2Y4ZDU5MTFhIiwiaWF0IjoxNzcyNTE0NjQwLCJyb2xlIjoiQURNSU5fUk9MRSIsImV4cCI6MTc3MjUxNjQ0MCwiaXNzIjoiQXV0aFNlcnZpY2UiLCJhdWQiOiJBdXRoU2VydmljZSJ9.pn5Eecg3bet12bZHg2UefKDMzsTYbyllTKl4mYttC9k",
+                      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c3JfUml2cUpKUkdXclZWIiwianRpIjoiMzI0NGZkZTYtMjcxOC00YzI3LThlMWEtMTVjY2RjMTJlY2ZiIiwiaWF0IjoxNzcyNjU5MzIxLCJyb2xlIjoiQURNSU5fUk9MRSIsImV4cCI6MTc3MjY2MTEyMSwiaXNzIjoiQXV0aFNlcnZpY2UiLCJhdWQiOiJBdXRoU2VydmljZSJ9.ALwrbsYfLASvwsVQQ4j7xgZFB5F553u6uZMKwZejkVk",
                       "type": "string"
                     }
                   ]
@@ -476,7 +476,7 @@
               "response": []
             },
             {
-              "name": "Get Users By Role",
+              "name": "Obtener usuarios",
               "protocolProfileBehavior": {
                 "disableBodyPruning": true
               },
@@ -486,7 +486,7 @@
                   "bearer": [
                     {
                       "key": "token",
-                      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c3JfWVQ1WGtFSDdUaVd5IiwianRpIjoiYjUyOTc1MjEtOWE5Yy00MmU0LWI3NzUtYjMyYWIyMmFlZDA2IiwiaWF0IjoxNzcyNTEwMzU2LCJyb2xlIjoiQURNSU5fUk9MRSIsImV4cCI6MTc3MjUxMjE1NiwiaXNzIjoiQXV0aFNlcnZpY2UiLCJhdWQiOiJBdXRoU2VydmljZSJ9.YkgrKQJ1okG6IQWM6CFRgpdcZftosk0ZIeyVtkkG_sc",
+                      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c3JfUml2cUpKUkdXclZWIiwianRpIjoiMzI0NGZkZTYtMjcxOC00YzI3LThlMWEtMTVjY2RjMTJlY2ZiIiwiaWF0IjoxNzcyNjU5MzIxLCJyb2xlIjoiQURNSU5fUk9MRSIsImV4cCI6MTc3MjY2MTEyMSwiaXNzIjoiQXV0aFNlcnZpY2UiLCJhdWQiOiJBdXRoU2VydmljZSJ9.ALwrbsYfLASvwsVQQ4j7xgZFB5F553u6uZMKwZejkVk",
                       "type": "string"
                     }
                   ]
@@ -521,51 +521,6 @@
               "response": []
             },
             {
-              "name": "Get User Roles",
-              "protocolProfileBehavior": {
-                "disableBodyPruning": true
-              },
-              "request": {
-                "auth": {
-                  "type": "bearer",
-                  "bearer": [
-                    {
-                      "key": "token",
-                      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c3JfWVQ1WGtFSDdUaVd5IiwianRpIjoiM2U0NGIwZmEtYjA4Yy00ZWZhLThlNjAtZGQyMmUxN2E3NzUxIiwiaWF0IjoxNzcyNTA4MDA2LCJyb2xlIjoiQURNSU5fUk9MRSIsImV4cCI6MTc3MjUwOTgwNiwiaXNzIjoiQXV0aFNlcnZpY2UiLCJhdWQiOiJBdXRoU2VydmljZSJ9.5PZHbOVujWS6gpfU6uJL8bdhbr7aya4ZNUqfSuH_3lk",
-                      "type": "string"
-                    }
-                  ]
-                },
-                "method": "GET",
-                "header": [],
-                "body": {
-                  "mode": "raw",
-                  "raw": "",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                },
-                "url": {
-                  "raw": "http://localhost:5025/api/v1/users/usr_1gMVazRJNHtV/roles",
-                  "protocol": "http",
-                  "host": [
-                    "localhost"
-                  ],
-                  "port": "5025",
-                  "path": [
-                    "api",
-                    "v1",
-                    "users",
-                    "usr_1gMVazRJNHtV",
-                    "roles"
-                  ]
-                }
-              },
-              "response": []
-            },
-            {
               "name": "Obtener users",
               "request": {
                 "auth": {
@@ -573,7 +528,7 @@
                   "bearer": [
                     {
                       "key": "token",
-                      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c3JfWVQ1WGtFSDdUaVd5IiwianRpIjoiYjUyOTc1MjEtOWE5Yy00MmU0LWI3NzUtYjMyYWIyMmFlZDA2IiwiaWF0IjoxNzcyNTEwMzU2LCJyb2xlIjoiQURNSU5fUk9MRSIsImV4cCI6MTc3MjUxMjE1NiwiaXNzIjoiQXV0aFNlcnZpY2UiLCJhdWQiOiJBdXRoU2VydmljZSJ9.YkgrKQJ1okG6IQWM6CFRgpdcZftosk0ZIeyVtkkG_sc",
+                      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c3JfUml2cUpKUkdXclZWIiwianRpIjoiMzI0NGZkZTYtMjcxOC00YzI3LThlMWEtMTVjY2RjMTJlY2ZiIiwiaWF0IjoxNzcyNjU5MzIxLCJyb2xlIjoiQURNSU5fUk9MRSIsImV4cCI6MTc3MjY2MTEyMSwiaXNzIjoiQXV0aFNlcnZpY2UiLCJhdWQiOiJBdXRoU2VydmljZSJ9.ALwrbsYfLASvwsVQQ4j7xgZFB5F553u6uZMKwZejkVk",
                       "type": "string"
                     }
                   ]
@@ -608,7 +563,7 @@
               "response": []
             },
             {
-              "name": "specific user with id",
+              "name": "Buscar usuario por id",
               "request": {
                 "auth": {
                   "type": "bearer",
@@ -641,7 +596,7 @@
               "response": []
             },
             {
-              "name": "modify specific user with id",
+              "name": "Editar mis datos",
               "request": {
                 "auth": {
                   "type": "bearer",
@@ -657,7 +612,7 @@
                 "header": [],
                 "body": {
                   "mode": "raw",
-                  "raw": "{\r\n  \"name\": \"Juan\",\r\n  \"surname\": \"Perez\",\r\n  \"address\": \"Zona 10\",\r\n  \"phone\": \"87654321\",\r\n  \"workName\": \"Dominos\",\r\n  \"monthlyIncome\": 6000\r\n}",
+                  "raw": "{\r\n  \"name\": \"Juan\",\r\n  \"surname\": \"Pérez\",\r\n  \"phone\": \"44445555\",\r\n  \"address\": \"Zona 5\",\r\n  \"workName\": \"Empresa SA\",\r\n  \"monthlyIncome\": 2500\r\n}",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -665,7 +620,7 @@
                   }
                 },
                 "url": {
-                  "raw": "http://localhost:5025/api/v1/admin/users/usr_YT5XkEH7TiWy",
+                  "raw": "http://localhost:5025/api/v1/users/",
                   "protocol": "http",
                   "host": [
                     "localhost"
@@ -674,9 +629,8 @@
                   "path": [
                     "api",
                     "v1",
-                    "admin",
                     "users",
-                    "usr_YT5XkEH7TiWy"
+                    ""
                   ]
                 }
               },
@@ -690,7 +644,7 @@
                   "bearer": [
                     {
                       "key": "token",
-                      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c3JfWVQ1WGtFSDdUaVd5IiwianRpIjoiYzI0NDczNTMtNmRhZS00MDg2LWI0ZGUtMDkwZTcyYjAxNmM4IiwiaWF0IjoxNzcyNTEwNTM3LCJyb2xlIjoiQURNSU5fUk9MRSIsImV4cCI6MTc3MjUxMjMzNywiaXNzIjoiQXV0aFNlcnZpY2UiLCJhdWQiOiJBdXRoU2VydmljZSJ9.mbA0KXE2DJgniFA8UsTg16HXRVBseta58WLiJSlFOsw",
+                      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c3JfN3U5SE1leFU4YUVqIiwianRpIjoiYzczNDBhZmMtMjNjNy00MjdlLWFiYzQtNDljNWRmYzE0ZjJhIiwiaWF0IjoxNzcyNTczMzk0LCJyb2xlIjoiQURNSU5fUk9MRSIsImV4cCI6MTc3MjU3NTE5NCwiaXNzIjoiQXV0aFNlcnZpY2UiLCJhdWQiOiJBdXRoU2VydmljZSJ9.aMG-ISUnC_meSQktqOKIVsokprL7l_mWC8LfynoEAGw",
                       "type": "string"
                     }
                   ]
@@ -698,7 +652,7 @@
                 "method": "DELETE",
                 "header": [],
                 "url": {
-                  "raw": "http://localhost:5025/api/v1/admin/users/usr_YT5XkEH7TiWy",
+                  "raw": "http://localhost:5025/api/v1/admin/users/:id",
                   "protocol": "http",
                   "host": [
                     "localhost"
@@ -709,7 +663,13 @@
                     "v1",
                     "admin",
                     "users",
-                    "usr_YT5XkEH7TiWy"
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": ""
+                    }
                   ]
                 }
               },
@@ -726,7 +686,7 @@
                   "bearer": [
                     {
                       "key": "token",
-                      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c3JfYjZTaU53ekh2OXhzIiwianRpIjoiZjk1Y2E2YzYtZWQ3YS00NWE4LWIwZmUtN2JlMzY2NTk1YWRlIiwiaWF0IjoxNzcyNTQwMTI4LCJyb2xlIjoiQURNSU5fUk9MRSIsImV4cCI6MTc3MjU0MTkyOCwiaXNzIjoiQXV0aFNlcnZpY2UiLCJhdWQiOiJBdXRoU2VydmljZSJ9.4xQg6fvN5Toba0j1pL9tNnCe45fd8fA3veJezoOIDY8",
+                      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c3JfN3U5SE1leFU4YUVqIiwianRpIjoiYWJkOWNlM2MtOTdjZS00ZjA3LTgyNzctMzA3Yjk4ZDMzY2E1IiwiaWF0IjoxNzcyNTcyNTM2LCJyb2xlIjoiQURNSU5fUk9MRSIsImV4cCI6MTc3MjU3NDMzNiwiaXNzIjoiQXV0aFNlcnZpY2UiLCJhdWQiOiJBdXRoU2VydmljZSJ9.7_eFO5uiqxrh2OQ2hFiWptFXsNerUHRHHM6XQpvXnys",
                       "type": "string"
                     }
                   ]
@@ -762,7 +722,7 @@
                   "bearer": [
                     {
                       "key": "token",
-                      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c3JfYjZTaU53ekh2OXhzIiwianRpIjoiZjk1Y2E2YzYtZWQ3YS00NWE4LWIwZmUtN2JlMzY2NTk1YWRlIiwiaWF0IjoxNzcyNTQwMTI4LCJyb2xlIjoiQURNSU5fUk9MRSIsImV4cCI6MTc3MjU0MTkyOCwiaXNzIjoiQXV0aFNlcnZpY2UiLCJhdWQiOiJBdXRoU2VydmljZSJ9.4xQg6fvN5Toba0j1pL9tNnCe45fd8fA3veJezoOIDY8",
+                      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c3JfUml2cUpKUkdXclZWIiwianRpIjoiMzI0NGZkZTYtMjcxOC00YzI3LThlMWEtMTVjY2RjMTJlY2ZiIiwiaWF0IjoxNzcyNjU5MzIxLCJyb2xlIjoiQURNSU5fUk9MRSIsImV4cCI6MTc3MjY2MTEyMSwiaXNzIjoiQXV0aFNlcnZpY2UiLCJhdWQiOiJBdXRoU2VydmljZSJ9.ALwrbsYfLASvwsVQQ4j7xgZFB5F553u6uZMKwZejkVk",
                       "type": "string"
                     }
                   ]
@@ -787,6 +747,102 @@
                   "variable": [
                     {
                       "key": "userId",
+                      "value": "usr_517vuGfQkbNs"
+                    }
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Actualizar Role",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c3JfUml2cUpKUkdXclZWIiwianRpIjoiMzI0NGZkZTYtMjcxOC00YzI3LThlMWEtMTVjY2RjMTJlY2ZiIiwiaWF0IjoxNzcyNjU5MzIxLCJyb2xlIjoiQURNSU5fUk9MRSIsImV4cCI6MTc3MjY2MTEyMSwiaXNzIjoiQXV0aFNlcnZpY2UiLCJhdWQiOiJBdXRoU2VydmljZSJ9.ALwrbsYfLASvwsVQQ4j7xgZFB5F553u6uZMKwZhjkVk",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "PUT",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"roleName\": \"ADMIN_ROLE\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:5025/api/v1/users/:userId/role",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "5025",
+                  "path": [
+                    "api",
+                    "v1",
+                    "users",
+                    ":userId",
+                    "role"
+                  ],
+                  "variable": [
+                    {
+                      "key": "userId",
+                      "value": "usr_BF353MeKb8W7"
+                    }
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Editar Usuarios por id",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c3JfYjZTaU53ekh2OXhzIiwianRpIjoiZDlmNTlhZTYtNDM0ZC00ODcxLWFlZjEtMjMwNjU5ODVmMGU5IiwiaWF0IjoxNzcyNjQzNTI2LCJyb2xlIjoiQURNSU5fUk9MRSIsImV4cCI6MTc3MjY0NTMyNiwiaXNzIjoiQXV0aFNlcnZpY2UiLCJhdWQiOiJBdXRoU2VydmljZSJ9.OGztjvx_B58XX5qS3E_tykbr8wwJzXHAYcIoy4L9pzE",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "PUT",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Juan\",\n  \"surname\": \"Pérez\",\n  \"phone\": \"44445555\",\n  \"address\": \"Zona 5\",\n  \"workName\": \"Empresa SA\",\n  \"monthlyIncome\": 2500\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:5025/api/v1/admin/users/:id",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "5025",
+                  "path": [
+                    "api",
+                    "v1",
+                    "admin",
+                    "users",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "id",
                       "value": ""
                     }
                   ]
@@ -807,7 +863,7 @@
                   "bearer": [
                     {
                       "key": "token",
-                      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c3JfYjZTaU53ekh2OXhzIiwianRpIjoiNTZiNWNhZjYtZTQ4Mi00ODE0LTgzYWItMmIzYmJjYmVmZDg5IiwiaWF0IjoxNzcyNTM5MTI2LCJyb2xlIjoiQURNSU5fUk9MRSIsImV4cCI6MTc3MjU0MDkyNiwiaXNzIjoiQXV0aFNlcnZpY2UiLCJhdWQiOiJBdXRoU2VydmljZSJ9.hfrtOBJVLIlLI3BxBq56WyJEuTfRpmVnDrAusMwve-o",
+                      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c3JfUml2cUpKUkdXclZWIiwianRpIjoiMmMxOThkYzgtM2ZhNS00Y2E3LTk5YTItYmFmM2E1YjAxOTg2IiwiaWF0IjoxNzcyNjY0MzY5LCJyb2xlIjoiQURNSU5fUk9MRSIsImV4cCI6MTc3MjY2NjE2OSwiaXNzIjoiQXV0aFNlcnZpY2UiLCJhdWQiOiJBdXRoU2VydmljZSJ9.FYk5mJAwPQsBtMXVrP2AdvaVW0QXOCgGAT6JhLYJImM",
                       "type": "string"
                     }
                   ]
@@ -838,7 +894,7 @@
                   "bearer": [
                     {
                       "key": "token",
-                      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c3JfYjZTaU53ekh2OXhzIiwianRpIjoiNTZiNWNhZjYtZTQ4Mi00ODE0LTgzYWItMmIzYmJjYmVmZDg5IiwiaWF0IjoxNzcyNTM5MTI2LCJyb2xlIjoiQURNSU5fUk9MRSIsImV4cCI6MTc3MjU0MDkyNiwiaXNzIjoiQXV0aFNlcnZpY2UiLCJhdWQiOiJBdXRoU2VydmljZSJ9.hfrtOBJVLIlLI3BxBq56WyJEuTfRpmVnDrAusMwve-o",
+                      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c3JfN3U5SE1leFU4YUVqIiwianRpIjoiMzUzNmJmYmUtMGUxYy00MjRhLWEwNWEtNTliYmQ0NDNlZjQyIiwiaWF0IjoxNzcyNjU4OTEyLCJyb2xlIjoiQURNSU5fUk9MRSIsImV4cCI6MTc3MjY2MDcxMiwiaXNzIjoiQXV0aFNlcnZpY2UiLCJhdWQiOiJBdXRoU2VydmljZSJ9.FkGljd5AMIZX_Xpq2iENJDqNnGHgU78-PqW4VcPoF2w",
                       "type": "string"
                     }
                   ]
@@ -847,7 +903,7 @@
                 "header": [],
                 "body": {
                   "mode": "raw",
-                  "raw": "",
+                  "raw": "{\r\n  \"name\": \"Auriculares\",\r\n  \"description\": \"de cable\",\r\n  \"type\": \"PRODUCTO\",   \r\n  \"price\": 123.45\r\n}",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -878,13 +934,22 @@
                   "bearer": [
                     {
                       "key": "token",
-                      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c3JfQXNHVVpkM0ZiRmo2IiwianRpIjoiYWFkNjgzZWMtZjM4OS00NGUyLThhYWMtYzAzMzAzZDk4YzZjIiwiaWF0IjoxNzcyNTM3MDM4LCJyb2xlIjoiQURNSU5fUk9MRSIsImV4cCI6MTc3MjUzODgzOCwiaXNzIjoiQXV0aFNlcnZpY2UiLCJhdWQiOiJBdXRoU2VydmljZSJ9.UtMMQcQboKoXewzDxR4ZkY-mYPHUGNYddFs0dbe-Zus",
+                      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c3JfN3U5SE1leFU4YUVqIiwianRpIjoiMzUzNmJmYmUtMGUxYy00MjRhLWEwNWEtNTliYmQ0NDNlZjQyIiwiaWF0IjoxNzcyNjU4OTEyLCJyb2xlIjoiQURNSU5fUk9MRSIsImV4cCI6MTc3MjY2MDcxMiwiaXNzIjoiQXV0aFNlcnZpY2UiLCJhdWQiOiJBdXRoU2VydmljZSJ9.FkGljd5AMIZX_Xpq2iENJDqNnGHgU78-PqW4VcPoF2w",
                       "type": "string"
                     }
                   ]
                 },
                 "method": "PUT",
                 "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"name\": \"Gasolina\",\r\n  \"description\": \"Gasolina Shell\",\r\n  \"type\": \"SERVICIO\", \r\n  \"price\": 200\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
                 "url": {
                   "raw": "http://localhost:3000/SistemaBancarioAdmin/v1/products/:id",
                   "protocol": "http",
@@ -901,7 +966,7 @@
                   "variable": [
                     {
                       "key": "id",
-                      "value": ""
+                      "value": "69a8a1507c2cc3d07711baa1"
                     }
                   ]
                 }
@@ -909,14 +974,14 @@
               "response": []
             },
             {
-              "name": "New Request",
+              "name": "Eliminar producto",
               "request": {
                 "auth": {
                   "type": "bearer",
                   "bearer": [
                     {
                       "key": "token",
-                      "value": "https://github.com/osicajau-2024318/Sistema-Bancario--SCRUM.git",
+                      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c3JfN3U5SE1leFU4YUVqIiwianRpIjoiMzUzNmJmYmUtMGUxYy00MjRhLWEwNWEtNTliYmQ0NDNlZjQyIiwiaWF0IjoxNzcyNjU4OTEyLCJyb2xlIjoiQURNSU5fUk9MRSIsImV4cCI6MTc3MjY2MDcxMiwiaXNzIjoiQXV0aFNlcnZpY2UiLCJhdWQiOiJBdXRoU2VydmljZSJ9.FkGljd5AMIZX_Xpq2iENJDqNnGHgU78-PqW4VcPoF2w",
                       "type": "string"
                     }
                   ]
@@ -939,7 +1004,7 @@
                   "variable": [
                     {
                       "key": "id",
-                      "value": ""
+                      "value": "69a8a1507c2cc3d07711baa1"
                     }
                   ]
                 }
@@ -976,6 +1041,34 @@
                 }
               },
               "response": []
+            },
+            {
+              "name": "Obtener producto",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:3000/SistemaBancarioAdmin/v1/products/:id",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3000",
+                  "path": [
+                    "SistemaBancarioAdmin",
+                    "v1",
+                    "products",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": ""
+                    }
+                  ]
+                }
+              },
+              "response": []
             }
           ]
         },
@@ -983,7 +1076,7 @@
           "name": "Favoritos",
           "item": [
             {
-              "name": "New Request",
+              "name": "Añadir a favoritos",
               "request": {
                 "auth": {
                   "type": "bearer",
@@ -996,6 +1089,39 @@
                   ]
                 },
                 "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"alias\": \"Cuenta Principal\",\r\n  \"account_number\": \"123456789\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:3000/SistemaBancarioAdmin/v1/favorites",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3000",
+                  "path": [
+                    "SistemaBancarioAdmin",
+                    "v1",
+                    "favorites"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Obtener Favoritos",
+              "request": {
+                "auth": {
+                  "type": "bearer"
+                },
+                "method": "GET",
                 "header": [],
                 "url": {
                   "raw": "http://localhost:3000/SistemaBancarioAdmin/v1/favorites",
@@ -1014,13 +1140,41 @@
               "response": []
             },
             {
-              "name": "Login Copy 2",
+              "name": "Actualizar Favoritos",
+              "request": {
+                "method": "PUT",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:3000/SistemaBancarioAdmin/v1/favorites/:id",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3000",
+                  "path": [
+                    "SistemaBancarioAdmin",
+                    "v1",
+                    "favorites",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": ""
+                    }
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Hacer transferencia",
               "request": {
                 "method": "POST",
                 "header": [],
                 "body": {
                   "mode": "raw",
-                  "raw": "{\r\n    \"emailOrUsername\": \"ADMINB\",\r\n    \"password\": \"ADMINB\"\r\n}",
+                  "raw": "{\r\n  \"amount\": 1000\r\n}",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -1028,17 +1182,64 @@
                   }
                 },
                 "url": {
-                  "raw": "http://localhost:5025/api/v1/auth/login",
+                  "raw": "http://localhost:3000/SistemaBancarioAdmin/v1/favorites/:id/transfer",
                   "protocol": "http",
                   "host": [
                     "localhost"
                   ],
-                  "port": "5025",
+                  "port": "3000",
                   "path": [
-                    "api",
+                    "SistemaBancarioAdmin",
                     "v1",
-                    "auth",
-                    "login"
+                    "favorites",
+                    ":id",
+                    "transfer"
+                  ],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": ""
+                    }
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Eliminar de favoritos",
+              "request": {
+                "auth": {
+                  "type": "bearer"
+                },
+                "method": "DELETE",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:3000/SistemaBancarioAdmin/v1/favorites/:id",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3000",
+                  "path": [
+                    "SistemaBancarioAdmin",
+                    "v1",
+                    "favorites",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": ""
+                    }
                   ]
                 }
               },
@@ -1193,6 +1394,38 @@
                 }
               },
               "response": []
+            },
+            {
+              "name": "Ver todas las transacciones",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c3JfdzVTOEp2RnJINzJUIiwianRpIjoiMjEwMGY3OGYtN2I5Zi00OGYwLWI4M2QtOGIyMmU2NzVjZGU4IiwiaWF0IjoxNzcyNjQxMzk5LCJyb2xlIjoiVVNFUl9ST0xFIiwiZXhwIjoxNzcyNjQzMTk5LCJpc3MiOiJBdXRoU2VydmljZSIsImF1ZCI6IkF1dGhTZXJ2aWNlIn0.3hfUUmXvRxVGcRnrT4aYUHPSEKmLP7OquX6c-CGVtqg",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:3000/SistemaBancarioAdmin/v1/transactions/allToken",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3000",
+                  "path": [
+                    "SistemaBancarioAdmin",
+                    "v1",
+                    "transactions",
+                    "allToken"
+                  ]
+                }
+              },
+              "response": []
             }
           ]
         }
@@ -1224,7 +1457,7 @@
                 "header": [],
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"name\": \"Juan\",\n  \"surname\": \"Perez\",\n  \"username\": \"jperez\",\n  \"email\": \"juan@example.com\",\n  \"password\": \"Password123\",\n  \"phone\": \"12345678\",\n  \"dpi\": \"1234567890123\",\n  \"address\": \"Ciudad de Guatemala\",\n  \"workName\": \"Empresa XYZ\",\n  \"monthlyIncome\": 5000\n}",
+                  "raw": "{\n  \"name\": \"eddy\",\n  \"surname\": \"Tucubal\",\n  \"username\": \"etucubal\",\n  \"email\": \"etucubal-2024505@kinal.edu.gt\",\n  \"password\": \"Password205\",\n  \"phone\": \"21326554\",\n  \"dpi\": \"2132655478981\",\n  \"address\": \"Ciudad de Guatemala\",\n  \"workName\": \"Empresa TEC\",\n  \"monthlyIncome\": 1000\n}",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -1256,7 +1489,7 @@
                 "header": [],
                 "body": {
                   "mode": "raw",
-                  "raw": "{\r\n    \"emailOrUsername\": \"aastral\",\r\n    \"password\": \"12345678\"\r\n}",
+                  "raw": "{\r\n    \"emailOrUsername\": \"Phernandez\",\r\n    \"password\": \"Password204\"\r\n}",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -1300,7 +1533,7 @@
                 "header": [],
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"name\": \"Juan\",\n  \"surname\": \"Perez\",\n  \"username\": \"jperez\",\n  \"email\": \"juan@example.com\",\n  \"password\": \"Password123\",\n  \"phone\": \"12345678\",\n  \"dpi\": \"1234567890123\",\n  \"address\": \"Ciudad de Guatemala\",\n  \"workName\": \"Empresa XYZ\",\n  \"monthlyIncome\": 5000\n}",
+                  "raw": "{\n  \"name\": \"Josue David\",\n  \"surname\": \"Sajche\",\n  \"username\": \"astral910\",\n  \"email\": \"jsajche-2024380@kinal.edu.gt\",\n  \"password\": \"12345678\",\n  \"phone\": \"12345678\",\n  \"dpi\": \"1634567890126\",\n  \"address\": \"Ciudad de Guatemala\",\n  \"workName\": \"Gerente\",\n  \"monthlyIncome\": 5000\n}",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -1322,6 +1555,163 @@
                   ]
                 },
                 "description": "This is a GET request and it is used to \"get\" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have `id=1`).\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."
+              },
+              "response": []
+            },
+            {
+              "name": "Editar",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c3JfbVlWTWNycXkzWjhxIiwianRpIjoiYjJjYTdhMDEtZGJlNi00YzNmLThiZTYtOWQzZTRiOGJmMTM4IiwiaWF0IjoxNzcyNTkyMjAxLCJyb2xlIjoiVVNFUl9ST0xFIiwiZXhwIjoxNzcyNTk0MDAxLCJpc3MiOiJBdXRoU2VydmljZSIsImF1ZCI6IkF1dGhTZXJ2aWNlIn0.EC03UfHSxxokJ8kFY0myyGu1smjnpbNdvUTaxzzgms0",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "PUT",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:5025/api/v1/users/me",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "5025",
+                  "path": [
+                    "api",
+                    "v1",
+                    "users",
+                    "me"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Verify email",
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"token\": \"pHSsvUFvwTveJOFhl7ikFkeU3crcceDXNVVA4LRnnSE\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:5025/api/v1/auth/verify-email",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "5025",
+                  "path": [
+                    "api",
+                    "v1",
+                    "auth",
+                    "verify-email"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Forgot Password",
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"email\": \"jsajche-2024380@kinal.edu.gt\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:5025/api/v1/auth/forgot-password",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "5025",
+                  "path": [
+                    "api",
+                    "v1",
+                    "auth",
+                    "forgot-password"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Reset Password",
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"token\": \"Q9-pIRrriXvjmrjKup5eNZKbeC34-Rhr-FZh3u8HmMQ\",\r\n  \"newPassword\": \"87654321\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:5025/api/v1/auth/reset-password",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "5025",
+                  "path": [
+                    "api",
+                    "v1",
+                    "auth",
+                    "reset-password"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Mis datos",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c3JfbVlWTWNycXkzWjhxIiwianRpIjoiNjNjNDcyMDYtOWQzZi00OGZmLTg4YTMtOTU0MjljZDczNjkyIiwiaWF0IjoxNzcyNTQ5MjQ3LCJyb2xlIjoiVVNFUl9ST0xFIiwiZXhwIjoxNzcyNTUxMDQ3LCJpc3MiOiJBdXRoU2VydmljZSIsImF1ZCI6IkF1dGhTZXJ2aWNlIn0.lwxS0qn7YicPd_ZnPrSTdBw5KnQNn1mqx7HV0z-etKM",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:3000/SistemaBancarioAdmin/v1/accounts/my-info",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3000",
+                  "path": [
+                    "SistemaBancarioAdmin",
+                    "v1",
+                    "accounts",
+                    "my-info"
+                  ]
+                }
               },
               "response": []
             }
@@ -1369,7 +1759,7 @@
                 "header": [],
                 "body": {
                   "mode": "raw",
-                  "raw": "{\r\n    \"emailOrUsername\": \"aastral\",\r\n    \"password\": \"12345678\"\r\n}",
+                  "raw": "{\r\n    \"emailOrUsername\": \"Merida\",\r\n    \"password\": \"Password202\"\r\n}",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -1394,44 +1784,6 @@
               "response": []
             },
             {
-              "name": "Editar datos",
-              "request": {
-                "auth": {
-                  "type": "bearer",
-                  "bearer": [
-                    {
-                      "key": "token",
-                      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c3JfYjZTaU53ekh2OXhzIiwianRpIjoiZjk1Y2E2YzYtZWQ3YS00NWE4LWIwZmUtN2JlMzY2NTk1YWRlIiwiaWF0IjoxNzcyNTQwMTI4LCJyb2xlIjoiQURNSU5fUk9MRSIsImV4cCI6MTc3MjU0MTkyOCwiaXNzIjoiQXV0aFNlcnZpY2UiLCJhdWQiOiJBdXRoU2VydmljZSJ9.4xQg6fvN5Toba0j1pL9tNnCe45fd8fA3veJezoOIDY8",
-                      "type": "string"
-                    }
-                  ]
-                },
-                "method": "PUT",
-                "header": [],
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\r\n    \"emailOrUsername\": \"ADMINB\",\r\n    \"password\": \"ADMINB\"\r\n}"
-                },
-                "url": {
-                  "raw": "http://localhost:5025/api/v1/auth/auth/accounts/me",
-                  "protocol": "http",
-                  "host": [
-                    "localhost"
-                  ],
-                  "port": "5025",
-                  "path": [
-                    "api",
-                    "v1",
-                    "auth",
-                    "auth",
-                    "accounts",
-                    "me"
-                  ]
-                }
-              },
-              "response": []
-            },
-            {
               "name": "Crear Cuenta",
               "request": {
                 "auth": {
@@ -1439,7 +1791,7 @@
                   "bearer": [
                     {
                       "key": "token",
-                      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c3JfbVlWTWNycXkzWjhxIiwianRpIjoiNGJhNDg0YWMtMjFiZS00MGViLTg0MmYtMGQ1N2NkM2QxNGM0IiwiaWF0IjoxNzcyNTQ5MDY1LCJyb2xlIjoiVVNFUl9ST0xFIiwiZXhwIjoxNzcyNTUwODY1LCJpc3MiOiJBdXRoU2VydmljZSIsImF1ZCI6IkF1dGhTZXJ2aWNlIn0.wvb_2TyMESd5qRqb9CAnu9smqxpqHzJ8HcZQVnoewkc",
+                      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c3JfOVJaNjR2RTRRM3dtIiwianRpIjoiMWFlNmQ4ZGItY2UwOC00MTRlLTg4ZjYtNzk4NTQwMTdiMjQwIiwiaWF0IjoxNzcyNjYwNTE2LCJyb2xlIjoiVVNFUl9ST0xFIiwiZXhwIjoxNzcyNjYyMzE2LCJpc3MiOiJBdXRoU2VydmljZSIsImF1ZCI6IkF1dGhTZXJ2aWNlIn0.ce1V8PZaPqUIRYlIleHZg1kDe6LdYq9FvWAeiwWGZW0",
                       "type": "string"
                     }
                   ]
@@ -1448,7 +1800,7 @@
                 "header": [],
                 "body": {
                   "mode": "raw",
-                  "raw": "{\r\n  \"account_type\": \"AHORRO\",\r\n  \"currency\": \"GTQ\",\r\n  \"balance\": 500\r\n}",
+                  "raw": "{\r\n  \"account_type\": \"AHORRO\",\r\n  \"currency\": \"USD\",\r\n  \"balance\": 2300\r\n}",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -1480,7 +1832,7 @@
                   "bearer": [
                     {
                       "key": "token",
-                      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c3JfbVlWTWNycXkzWjhxIiwianRpIjoiNGJhNDg0YWMtMjFiZS00MGViLTg0MmYtMGQ1N2NkM2QxNGM0IiwiaWF0IjoxNzcyNTQ5MDY1LCJyb2xlIjoiVVNFUl9ST0xFIiwiZXhwIjoxNzcyNTUwODY1LCJpc3MiOiJBdXRoU2VydmljZSIsImF1ZCI6IkF1dGhTZXJ2aWNlIn0.wvb_2TyMESd5qRqb9CAnu9smqxpqHzJ8HcZQVnoewkc",
+                      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c3JfOVJaNjR2RTRRM3dtIiwianRpIjoiMWFlNmQ4ZGItY2UwOC00MTRlLTg4ZjYtNzk4NTQwMTdiMjQwIiwiaWF0IjoxNzcyNjYwNTE2LCJyb2xlIjoiVVNFUl9ST0xFIiwiZXhwIjoxNzcyNjYyMzE2LCJpc3MiOiJBdXRoU2VydmljZSIsImF1ZCI6IkF1dGhTZXJ2aWNlIn0.ce1V8PZaPqUIRYlIleHZg1kDe6LdYq9FvWAeiwWGZW0",
                       "type": "string"
                     }
                   ]
@@ -1489,7 +1841,7 @@
                 "header": [],
                 "body": {
                   "mode": "raw",
-                  "raw": "{\r\n  \"account_type\": \"AHORRO\",\r\n  \"currency\": \"GTQ\",\r\n  \"balance\": 500\r\n}",
+                  "raw": "{\r\n  \"account_type\": \"NOMINA\",\r\n  \"currency\": \"GTQ\",\r\n  \"balance\": 100\r\n}",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -1516,12 +1868,82 @@
           ]
         },
         {
-          "name": "Favoritos",
-          "item": []
-        },
-        {
           "name": "Transacciones",
-          "item": []
+          "item": [
+            {
+              "name": "Transferir a un usuario",
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"accountNumber\": \"1403255707\",\r\n  \"amount\": 1000,\r\n  \"description\": \"Deposito por ventanilla\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "localhost:3000/SistemaBancarioAdmin/v1/deposits",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3000",
+                  "path": [
+                    "SistemaBancarioAdmin",
+                    "v1",
+                    "deposits"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "historial de transferencias",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c3JfdzVTOEp2RnJINzJUIiwianRpIjoiMjEwMGY3OGYtN2I5Zi00OGYwLWI4M2QtOGIyMmU2NzVjZGU4IiwiaWF0IjoxNzcyNjQxMzk5LCJyb2xlIjoiVVNFUl9ST0xFIiwiZXhwIjoxNzcyNjQzMTk5LCJpc3MiOiJBdXRoU2VydmljZSIsImF1ZCI6IkF1dGhTZXJ2aWNlIn0.3hfUUmXvRxVGcRnrT4aYUHPSEKmLP7OquX6c-CGVtqg",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:3000/SistemaBancarioAdmin/v1/transactions/my-transactions",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3000",
+                  "path": [
+                    "SistemaBancarioAdmin",
+                    "v1",
+                    "transactions",
+                    "my-transactions"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
         }
       ]
     },
@@ -1573,534 +1995,90 @@
             }
           },
           "response": []
+        },
+        {
+          "name": "Divisa de cliente",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/SistemaBancarioAdmin//api/v1/currency/:accountId?to=USD",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "SistemaBancarioAdmin",
+                "",
+                "api",
+                "v1",
+                "currency",
+                ":accountId"
+              ],
+              "query": [
+                {
+                  "key": "to",
+                  "value": "USD"
+                }
+              ],
+              "variable": [
+                {
+                  "key": "accountId",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "response": []
         }
       ]
     },
     {
-      "name": "Verify Email",
-      "request": {
-        "method": "POST",
-        "header": [],
-        "body": {
-          "mode": "raw",
-          "raw": "{\r\n  \"token\": \"Q2r-8QUjtEnEwnBmyifArNTUL_us0NxRmXDTwP9Ff7Q\"\r\n}",
-          "options": {
-            "raw": {
-              "language": "json"
-            }
-          }
-        },
-        "url": {
-          "raw": "http://localhost:5025/api/v1/auth/verify-email",
-          "protocol": "http",
-          "host": [
-            "localhost"
-          ],
-          "port": "5025",
-          "path": [
-            "api",
-            "v1",
-            "auth",
-            "verify-email"
-          ]
-        }
-      },
-      "response": []
-    },
-    {
-      "name": "Resend Verification",
-      "request": {
-        "method": "POST",
-        "header": [],
-        "body": {
-          "mode": "raw",
-          "raw": "{\r\n  \"email\": \"etucubal-2024505@kinal.edu.gt\"\r\n}",
-          "options": {
-            "raw": {
-              "language": "json"
-            }
-          }
-        },
-        "url": {
-          "raw": "http://localhost:5025/api/v1/auth/resend-verification",
-          "protocol": "http",
-          "host": [
-            "localhost"
-          ],
-          "port": "5025",
-          "path": [
-            "api",
-            "v1",
-            "auth",
-            "resend-verification"
-          ]
-        }
-      },
-      "response": []
-    },
-    {
-      "name": "Forgot Password",
-      "request": {
-        "method": "POST",
-        "header": [],
-        "body": {
-          "mode": "raw",
-          "raw": "{\r\n  \"email\": \"usuario@correo.com\"\r\n}",
-          "options": {
-            "raw": {
-              "language": "json"
-            }
-          }
-        },
-        "url": {
-          "raw": "http://localhost:5025/api/v1/auth/forgot-password",
-          "protocol": "http",
-          "host": [
-            "localhost"
-          ],
-          "port": "5025",
-          "path": [
-            "api",
-            "v1",
-            "auth",
-            "forgot-password"
-          ]
-        }
-      },
-      "response": []
-    },
-    {
-      "name": "Reset Password",
-      "request": {
-        "method": "POST",
-        "header": [],
-        "body": {
-          "mode": "raw",
-          "raw": "{\r\n  \"token\": \"RESET_TOKEN_AQUI\",\r\n  \"newPassword\": \"NuevaPassword123\"\r\n}",
-          "options": {
-            "raw": {
-              "language": "json"
-            }
-          }
-        },
-        "url": {
-          "raw": "http://localhost:5025/api/v1/auth/reset-password",
-          "protocol": "http",
-          "host": [
-            "localhost"
-          ],
-          "port": "5025",
-          "path": [
-            "api",
-            "v1",
-            "auth",
-            "reset-password"
-          ]
-        }
-      },
-      "response": []
-    },
-    {
-      "name": "Get Profile",
-      "request": {
-        "auth": {
-          "type": "bearer",
-          "bearer": [
-            {
-              "key": "token",
-              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c3JfOVl5SjhNQ2h1dkN5IiwianRpIjoiYjZlMTk4ZDMtYjk0MC00OTZjLWI4ZjctYTQ4OTY1YzdhMzJjIiwiaWF0IjoxNzcyMjM3OTcyLCJyb2xlIjoiQURNSU5fUk9MRSIsImV4cCI6MTc3MjIzOTc3MiwiaXNzIjoiQXV0aFNlcnZpY2UiLCJhdWQiOiJBdXRoU2VydmljZSJ9.bzY8nU0T3tEgiSIW-g-OaqG7hFtr3g9nGH-yQdJiFNg",
-              "type": "string"
-            }
-          ]
-        },
-        "method": "GET",
-        "header": [
-          {
-            "key": "Authorization",
-            "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c3JfZ2lQSk5QeHRUaUN1IiwianRpIjoiNDk2NzNmMzAtNjcxYi00MjZhLWEyMWMtZWU1ZDMxYWRhNjc2IiwiaWF0IjoxNzcxMzg4NTMxLCJyb2xlIjoiVVNFUl9ST0xFIiwiZXhwIjoxNzcxMzkwMzMxLCJhdWQiOiJBdXRoU2VydmljZSIsImlzcyI6IkF1dGhTZXJ2aWNlIn0.eTt0Cscu89c6m8G6AId8eR8dE4xod8-lJXU93Xv-Vd4",
-            "type": "text"
-          }
-        ],
-        "url": {
-          "raw": "http://localhost:5025/api/v1/users/profile/me",
-          "protocol": "http",
-          "host": [
-            "localhost"
-          ],
-          "port": "5025",
-          "path": [
-            "api",
-            "v1",
-            "users",
-            "profile",
-            "me"
-          ]
-        }
-      },
-      "response": []
-    },
-    {
-      "name": "Update Profile",
-      "request": {
-        "auth": {
-          "type": "bearer",
-          "bearer": [
-            {
-              "key": "token",
-              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c3JfWGZGUWVLazhqS0FnIiwianRpIjoiZTJmY2UyNDUtZmJhYS00YjM3LWI4YzMtZDlkOTZiYjc4YTdlIiwiaWF0IjoxNzcyMzEyNzQ3LCJyb2xlIjoiQURNSU5fUk9MRSIsImV4cCI6MTc3MjMxNDU0NywiaXNzIjoiQXV0aFNlcnZpY2UiLCJhdWQiOiJBdXRoU2VydmljZSJ9.oxm_ppZHTflmePzUXi7NciRbdX-BrwupbX5MdniPtPw",
-              "type": "string"
-            }
-          ]
-        },
-        "method": "PUT",
-        "header": [
-          {
-            "key": "Authorization",
-            "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c3JfWDVXY3cxSnI3MXRoIiwianRpIjoiYTRlNzcwM2QtYWUwNy00ZmRjLWEzZWMtOGI3MTQyY2JkNTM5IiwiaWF0IjoxNzcxMzkwMjg4LCJyb2xlIjoiQURNSU5fUk9MRSIsImV4cCI6MTc3MTM5MjA4OCwiYXVkIjoiQXV0aFNlcnZpY2UiLCJpc3MiOiJBdXRoU2VydmljZSJ9.67fSsfKR-JnYxHJzqpyeVO7Rekcw5MGIJMxzN0eWG0E",
-            "type": "text"
-          }
-        ],
-        "body": {
-          "mode": "raw",
-          "raw": "{\r\n  \"name\": \"Eddy Daniel\",\r\n  \"surname\": \"Tucubal Sacbajá\",\r\n  \"address\": \"Zona 11, Ciudad de Guatemala\",\r\n  \"phone\": \"87654320\",\r\n  \"workName\": \"No se\",\r\n  \"monthlyIncome\": 6000\r\n}",
-          "options": {
-            "raw": {
-              "language": "json"
-            }
-          }
-        },
-        "url": {
-          "raw": "http://localhost:5025/api/v1/admin/users/usr_qazY4F3Gtknu",
-          "protocol": "http",
-          "host": [
-            "localhost"
-          ],
-          "port": "5025",
-          "path": [
-            "api",
-            "v1",
-            "admin",
-            "users",
-            "usr_qazY4F3Gtknu"
-          ]
-        }
-      },
-      "response": []
-    },
-    {
-      "name": "Accounts max movements",
-      "request": {
-        "auth": {
-          "type": "bearer",
-          "bearer": [
-            {
-              "key": "token",
-              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c3JfWGZGUWVLazhqS0FnIiwianRpIjoiNTg0YmQ5NGYtOTcxMi00ZWQ3LThhZGYtOWVkZjA2OWZlMWNlIiwiaWF0IjoxNzcyMzE0Nzg0LCJyb2xlIjoiQURNSU5fUk9MRSIsImV4cCI6MTc3MjMxNjU4NCwiaXNzIjoiQXV0aFNlcnZpY2UiLCJhdWQiOiJBdXRoU2VydmljZSJ9.zCKB9HhNfLJeTJNrHRQqJKbNw7vox3qw89xKMI3hRc8",
-              "type": "string"
-            }
-          ]
-        },
-        "method": "GET",
-        "header": [],
-        "url": {
-          "raw": "http://localhost:3000/SistemaBancarioAdmin/v1/accounts/by-movements?order=desc",
-          "protocol": "http",
-          "host": [
-            "localhost"
-          ],
-          "port": "3000",
-          "path": [
-            "SistemaBancarioAdmin",
-            "v1",
-            "accounts",
-            "by-movements"
-          ],
-          "query": [
-            {
-              "key": "order",
-              "value": "desc"
-            }
-          ]
-        }
-      },
-      "response": []
-    },
-    {
-      "name": "Movements and mont",
-      "request": {
-        "auth": {
-          "type": "bearer",
-          "bearer": [
-            {
-              "key": "token",
-              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c3JfWGZGUWVLazhqS0FnIiwianRpIjoiZTJmY2UyNDUtZmJhYS00YjM3LWI4YzMtZDlkOTZiYjc4YTdlIiwiaWF0IjoxNzcyMzEyNzQ3LCJyb2xlIjoiQURNSU5fUk9MRSIsImV4cCI6MTc3MjMxNDU0NywiaXNzIjoiQXV0aFNlcnZpY2UiLCJhdWQiOiJBdXRoU2VydmljZSJ9.oxm_ppZHTflmePzUXi7NciRbdX-BrwupbX5MdniPtPw",
-              "type": "string"
-            }
-          ]
-        },
-        "method": "GET",
-        "header": [],
-        "url": {
-          "raw": "http://localhost:3000/SistemaBancarioAdmin/v1/accounts/69a32adedb00307203660bbf/movements",
-          "protocol": "http",
-          "host": [
-            "localhost"
-          ],
-          "port": "3000",
-          "path": [
-            "SistemaBancarioAdmin",
-            "v1",
-            "accounts",
-            "69a32adedb00307203660bbf",
-            "movements"
-          ]
-        }
-      },
-      "response": []
-    },
-    {
-      "name": "Deposit",
-      "request": {
-        "auth": {
-          "type": "bearer",
-          "bearer": [
-            {
-              "key": "token",
-              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c3JfWGZGUWVLazhqS0FnIiwianRpIjoiNTg0YmQ5NGYtOTcxMi00ZWQ3LThhZGYtOWVkZjA2OWZlMWNlIiwiaWF0IjoxNzcyMzE0Nzg0LCJyb2xlIjoiQURNSU5fUk9MRSIsImV4cCI6MTc3MjMxNjU4NCwiaXNzIjoiQXV0aFNlcnZpY2UiLCJhdWQiOiJBdXRoU2VydmljZSJ9.zCKB9HhNfLJeTJNrHRQqJKbNw7vox3qw89xKMI3hRc8",
-              "type": "string"
-            }
-          ]
-        },
-        "method": "POST",
-        "header": [],
-        "body": {
-          "mode": "raw",
-          "raw": "{\r\n  \"accountNumber\": \"3205922231\",\r\n  \"amount\": 1000,\r\n  \"description\": \"Depósito inicial\"\r\n}",
-          "options": {
-            "raw": {
-              "language": "json"
-            }
-          }
-        },
-        "url": {
-          "raw": "http://localhost:3000/SistemaBancarioAdmin/v1/deposits",
-          "protocol": "http",
-          "host": [
-            "localhost"
-          ],
-          "port": "3000",
-          "path": [
-            "SistemaBancarioAdmin",
-            "v1",
-            "deposits"
-          ]
-        }
-      },
-      "response": []
-    },
-    {
-      "name": "Get deposit",
-      "request": {
-        "auth": {
-          "type": "bearer",
-          "bearer": [
-            {
-              "key": "token",
-              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c3JfcWF6WTRGM0d0a251IiwianRpIjoiOTdlODQ1MWYtYTg3MC00ZGJlLWIxZmQtOWYyNWJmN2Q0NDI2IiwiaWF0IjoxNzcyNDEzMTI4LCJyb2xlIjoiVVNFUl9ST0xFIiwiZXhwIjoxNzcyNDE0OTI4LCJpc3MiOiJBdXRoU2VydmljZSIsImF1ZCI6IkF1dGhTZXJ2aWNlIn0.KM5F7L307qJNfZeSAsVeB6jp6_aXpBDcQQl2RzxzhOI",
-              "type": "string"
-            }
-          ]
-        },
-        "method": "GET",
-        "header": [],
-        "url": {
-          "raw": "http://localhost:3000/SistemaBancarioAdmin/v1/transactions/my-transactions?page=1&limit=10&type=DEPOSITO",
-          "protocol": "http",
-          "host": [
-            "localhost"
-          ],
-          "port": "3000",
-          "path": [
-            "SistemaBancarioAdmin",
-            "v1",
-            "transactions",
-            "my-transactions"
-          ],
-          "query": [
-            {
-              "key": "page",
-              "value": "1"
+      "name": "Depositos",
+      "item": [
+        {
+          "name": "Deposito a usuario",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "",
+                  "type": "string"
+                }
+              ]
             },
-            {
-              "key": "limit",
-              "value": "10"
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"accountNumber\": \"1403255707\",\n  \"amount\": 1000,\n  \"description\": \"Deposito por ventanilla\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
             },
-            {
-              "key": "type",
-              "value": "DEPOSITO"
+            "url": {
+              "raw": "http://localhost:3000/SistemaBancarioAdmin/v1/transactions/deposit",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "SistemaBancarioAdmin",
+                "v1",
+                "transactions",
+                "deposit"
+              ]
             }
-          ]
+          },
+          "response": []
         }
-      },
-      "response": []
-    },
-    {
-      "name": "Get my account",
-      "request": {
-        "auth": {
-          "type": "bearer",
-          "bearer": [
-            {
-              "key": "token",
-              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c3JfYjZTaU53ekh2OXhzIiwianRpIjoiYTQwYmVmYzAtNDRmMi00YzY0LTg0NmEtMzJjODdiYTI3Y2M4IiwiaWF0IjoxNzcyNTM5NjcwLCJyb2xlIjoiQURNSU5fUk9MRSIsImV4cCI6MTc3MjU0MTQ3MCwiaXNzIjoiQXV0aFNlcnZpY2UiLCJhdWQiOiJBdXRoU2VydmljZSJ9.bfeEiC27a3EzkO-8BCl3KcZJ8f0OMAi7x62R64x2uUg",
-              "type": "string"
-            }
-          ]
-        },
-        "method": "GET",
-        "header": [],
-        "url": {
-          "raw": "http://localhost:3000/SistemaBancarioAdmin/v1/accounts/me",
-          "protocol": "http",
-          "host": [
-            "localhost"
-          ],
-          "port": "3000",
-          "path": [
-            "SistemaBancarioAdmin",
-            "v1",
-            "accounts",
-            "me"
-          ]
-        }
-      },
-      "response": []
-    },
-    {
-      "name": "Add favorite",
-      "request": {
-        "auth": {
-          "type": "bearer",
-          "bearer": [
-            {
-              "key": "token",
-              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c3JfcWF6WTRGM0d0a251IiwianRpIjoiYzBhZDgxMTMtNjA3OS00OWU1LTk4ZjgtNjU1OTNkYjc5NWYzIiwiaWF0IjoxNzcyNDA4MDY5LCJyb2xlIjoiVVNFUl9ST0xFIiwiZXhwIjoxNzcyNDA5ODY5LCJpc3MiOiJBdXRoU2VydmljZSIsImF1ZCI6IkF1dGhTZXJ2aWNlIn0.-lZsKR_RJm2mDBp4OETpqO8-MfJPOJO2cNm7aqBTKc4",
-              "type": "string"
-            }
-          ]
-        },
-        "method": "POST",
-        "header": [],
-        "body": {
-          "mode": "raw",
-          "raw": "{\r\n  \"account_number\": \"4727464954\",\r\n  \"alias\": \"Mejor amigo\"\r\n}",
-          "options": {
-            "raw": {
-              "language": "json"
-            }
-          }
-        },
-        "url": {
-          "raw": "http://localhost:3000/SistemaBancarioAdmin/v1/favorites",
-          "protocol": "http",
-          "host": [
-            "localhost"
-          ],
-          "port": "3000",
-          "path": [
-            "SistemaBancarioAdmin",
-            "v1",
-            "favorites"
-          ]
-        }
-      },
-      "response": []
-    },
-    {
-      "name": "Transfer",
-      "request": {
-        "auth": {
-          "type": "bearer",
-          "bearer": [
-            {
-              "key": "token",
-              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c3JfYjZTaU53ekh2OXhzIiwianRpIjoiYTQwYmVmYzAtNDRmMi00YzY0LTg0NmEtMzJjODdiYTI3Y2M4IiwiaWF0IjoxNzcyNTM5NjcwLCJyb2xlIjoiQURNSU5fUk9MRSIsImV4cCI6MTc3MjU0MTQ3MCwiaXNzIjoiQXV0aFNlcnZpY2UiLCJhdWQiOiJBdXRoU2VydmljZSJ9.bfeEiC27a3EzkO-8BCl3KcZJ8f0OMAi7x62R64x2uUg",
-              "type": "string"
-            }
-          ]
-        },
-        "method": "POST",
-        "header": [],
-        "body": {
-          "mode": "raw",
-          "raw": "{\r\n  \"toAccount\": \"4727464954\",\r\n  \"amount\": 500,\r\n  \"description\": \"Pago de servicio\"\r\n}",
-          "options": {
-            "raw": {
-              "language": "json"
-            }
-          }
-        },
-        "url": {
-          "raw": "http://localhost:3000/SistemaBancarioAdmin/v1/accounts/transfer",
-          "protocol": "http",
-          "host": [
-            "localhost"
-          ],
-          "port": "3000",
-          "path": [
-            "SistemaBancarioAdmin",
-            "v1",
-            "accounts",
-            "transfer"
-          ]
-        }
-      },
-      "response": []
-    },
-    {
-      "name": "Get Transfer",
-      "request": {
-        "auth": {
-          "type": "bearer",
-          "bearer": [
-            {
-              "key": "token",
-              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c3JfcWF6WTRGM0d0a251IiwianRpIjoiOTdlODQ1MWYtYTg3MC00ZGJlLWIxZmQtOWYyNWJmN2Q0NDI2IiwiaWF0IjoxNzcyNDEzMTI4LCJyb2xlIjoiVVNFUl9ST0xFIiwiZXhwIjoxNzcyNDE0OTI4LCJpc3MiOiJBdXRoU2VydmljZSIsImF1ZCI6IkF1dGhTZXJ2aWNlIn0.KM5F7L307qJNfZeSAsVeB6jp6_aXpBDcQQl2RzxzhOI",
-              "type": "string"
-            }
-          ]
-        },
-        "method": "GET",
-        "header": [],
-        "url": {
-          "raw": "http://localhost:3000/SistemaBancarioAdmin/v1/transactions?page=1&limit=10&type=TRANSFERENCIA",
-          "protocol": "http",
-          "host": [
-            "localhost"
-          ],
-          "port": "3000",
-          "path": [
-            "SistemaBancarioAdmin",
-            "v1",
-            "transactions"
-          ],
-          "query": [
-            {
-              "key": "page",
-              "value": "1"
-            },
-            {
-              "key": "limit",
-              "value": "10"
-            },
-            {
-              "key": "type",
-              "value": "TRANSFERENCIA"
-            }
-          ]
-        }
-      },
-      "response": []
+      ]
     }
   ]
 }
