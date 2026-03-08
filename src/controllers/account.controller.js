@@ -234,7 +234,7 @@ export const getMyAccount = async (req, res) => {
 export const transfer = async (req, res) => {
   try {
     const fromUserId = req.user.id;
-    const { toAccount, amount, description, currency } = req.body;
+    const { fromAccount: fromAccountNumber, toAccount, amount, description, currency } = req.body;
 
     // Validar que el monto sea válido
     if (!amount || amount <= 0) {
@@ -244,12 +244,23 @@ export const transfer = async (req, res) => {
       });
     }
 
-    const fromAccount = await Account.findOne({ user_id: fromUserId });
-    
+    if (!fromAccountNumber) {
+      return res.status(400).json({
+        success: false,
+        message: 'Debes indicar la cuenta origen (fromAccount): el número de tu cuenta desde la que envías'
+      });
+    }
+
+    // Cuenta origen: debe ser del usuario y existir
+    const fromAccount = await Account.findOne({
+      user_id: fromUserId,
+      account_number: String(fromAccountNumber).trim()
+    });
+
     if (!fromAccount) {
       return res.status(404).json({
         success: false,
-        message: 'Cuenta origen no encontrada'
+        message: 'Cuenta origen no encontrada o no te pertenece. Verifica el número de cuenta (fromAccount).'
       });
     }
 

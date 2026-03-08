@@ -35,8 +35,8 @@ router.get('/my-info', validateJWT, getMyInfo);
 router.get('/me', validateJWT, getMyAccount);
 // Crear una nueva cuenta propia (queda pendiente de activación)
 router.post('/my-account', validateJWT, validateRole(Roles.USER), createMyAccount);
-// Realizar una transferencia a otra cuenta
-router.post('/transfer', validateJWT, validateRole(Roles.USER), validateTransfer, transfer);
+// Realizar una transferencia a otra cuenta (cliente o admin pueden transferir desde sus cuentas)
+router.post('/transfer', validateJWT, validateRole(Roles.USER, Roles.ADMIN), validateTransfer, transfer);
 
 // RUTAS DE ADMINISTRADOR (requieren autenticación y rol ADMIN)
 // Crear cuenta para cualquier usuario (queda activa inmediatamente)

@@ -77,6 +77,10 @@ export const validateCreateAccount = [
 ];
 
 export const validateTransfer = [
+  body('fromAccount')
+    .notEmpty()
+    .withMessage('Cuenta origen obligatoria (número de tu cuenta desde la que envías)'),
+
   body('toAccount')
     .notEmpty()
     .withMessage('Cuenta destino obligatoria'),

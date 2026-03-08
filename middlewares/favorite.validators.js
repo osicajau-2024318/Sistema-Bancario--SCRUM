@@ -18,3 +18,14 @@ export const validateFavoriteId = [
 
   checkValidators
 ];
+
+export const validateQuickTransfer = [
+  param('id').isMongoId().withMessage('ID de favorito inválido'),
+  body('amount')
+    .isFloat({ min: 1, max: 2000 })
+    .withMessage('El monto debe estar entre 1 y 2,000'),
+  body('fromAccount')
+    .notEmpty()
+    .withMessage('Cuenta origen obligatoria (fromAccount): número de tu cuenta desde la que envías'),
+  checkValidators
+];
