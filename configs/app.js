@@ -24,8 +24,8 @@ import accountRoutes from '../src/routes/account.routes.js';
 import transactionRoutes from '../src/routes/transaction.routes.js';
 // Importa las rutas de depósitos
 import depositRoutes from '../src/routes/deposit.routes.js';
-// Importa las rutas de productos
-import productRoutes from '../src/routes/product.routes.js';
+// Importa las rutas de servicios del banco (beneficios, solo admin)
+import serviceRoutes from '../src/routes/service.routes.js';
 // Importa las rutas de cuentas favoritas
 import favoriteRoutes from '../src/routes/favorite.routes.js';
 // Importa las rutas de conversión de moneda
@@ -59,8 +59,8 @@ const routes = (app) => {
     app.use(`${BASE_PATH}/transactions`, transactionRoutes);
     // Rutas para depósitos
     app.use(`${BASE_PATH}/deposits`, depositRoutes);
-    // Rutas para productos y servicios del banco
-    app.use(`${BASE_PATH}/products`, productRoutes);
+    // Rutas para servicios/beneficios del banco (solo administrador)
+    app.use(`${BASE_PATH}/services`, serviceRoutes);
     // Rutas para cuentas favoritas del usuario
     app.use(`${BASE_PATH}/favorites`, favoriteRoutes);
     // Rutas para conversión de moneda
