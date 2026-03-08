@@ -13,14 +13,18 @@ export const validateCreateFavorite = [
 
 export const validateFavoriteId = [
   param('id')
-    .isMongoId()
-    .withMessage('ID inválido'),
+    .notEmpty()
+    .trim()
+    .withMessage('Se requiere el ID o el alias del favorito'),
 
   checkValidators
 ];
 
 export const validateQuickTransfer = [
-  param('id').isMongoId().withMessage('ID de favorito inválido'),
+  param('id')
+    .notEmpty()
+    .trim()
+    .withMessage('Se requiere el ID o el alias del favorito'),
   body('amount')
     .isFloat({ min: 1, max: 2000 })
     .withMessage('El monto debe estar entre 1 y 2,000'),
