@@ -63,7 +63,12 @@ public class AdminController(
         if (!await CurrentUserIsAdmin())
             return StatusCode(403, new { success = false, message = "Forbidden" });
 
-        var result = await adminService.UpdateUserAsync(userId, dto);
+        var currentUserId = User.Claims.FirstOrDefault(c => c.Type == "sub")?.Value
+                            ?? User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
+        if (string.IsNullOrEmpty(currentUserId))
+            return Unauthorized(new { success = false, message = "Usuario no autenticado" });
+
+        var result = await adminService.UpdateUserAsync(userId, dto, currentUserId);
         return Ok(new { success = true, data = result, message = "Usuario actualizado correctamente" });
     }
 
