@@ -184,10 +184,10 @@ export const deleteFavorite = async (req, res) => {
 export const quickTransferFromFavorite = async (req, res) => {
   try {
     const { id } = req.params;
-    const { amount } = req.body;
+    const { amount, fromAccount } = req.body;
     const fromUserId = req.user.id;
 
-    const result = await transferFromFavorite(id, amount, fromUserId);
+    const result = await transferFromFavorite(id, amount, fromUserId, fromAccount);
     
     res.json(result);
 
@@ -205,19 +205,22 @@ export const quickTransferFromFavorite = async (req, res) => {
         message: error.message 
       });
     }
-    if (error.message === 'Cuenta origen no existe' || error.message === 'Cuenta destino no existe') {
+    if (error.message === 'Cuenta origen no encontrada o no te pertenece. Verifica fromAccount.' || 
+        error.message === 'Cuenta destino no existe') {
       return res.status(404).json({ 
-        success: false,
+        success: false, 
         message: error.message 
       });
     }
     if (error.message.includes('Monto inválido') || 
-        error.message.includes('No puedes transferirte') || 
+        error.message.includes('Debes indicar la cuenta origen') ||
+        error.message.includes('No puedes transferir') || 
         error.message.includes('Cuenta no activa') ||
         error.message.includes('Límite por transferencia') ||
-        error.message.includes('Saldo insuficiente')) {
+        error.message.includes('Saldo insuficiente') ||
+        error.message.includes('límite diario')) {
       return res.status(400).json({ 
-        success: false,
+        success: false, 
         message: error.message 
       });
     }
