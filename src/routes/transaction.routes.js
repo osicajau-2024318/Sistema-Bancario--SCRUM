@@ -2,11 +2,13 @@
 import { Router } from 'express';
 // Importa controladores de transacciones
 import { 
-  transfer,                  // Realizar transferencia entre cuentas
-  getMyTransactions,         // Obtener transacciones del usuario con filtros
-  getAllMyTransactions,      // Obtener todas las transacciones del usuario
-  getTransactionById,        // Obtener una transacción específica por ID
-  getAllTransactions         // Obtener todas las transacciones del sistema (admin)
+  transfer,
+  getMyTransactions,
+  getAllMyTransactions,
+  getTransactionById,
+  getAllTransactions,
+  getHistoryMe,
+  getHistoryByAccountId
 } from '../controllers/transaction.controller.js';
 // Importa controlador para crear depósitos
 import { createDeposit } from '../controllers/deposit.controller.js';
@@ -22,8 +24,13 @@ import { validateDeposit, validateTransfer } from '../../middlewares/transaction
 const router = Router();
 
 // RUTAS DE ADMINISTRADOR
-// Ver todas las transacciones del sistema con filtros (fecha, tipo, usuario, etc)
 router.get('/all', validateJWT, validateRole(Roles.ADMIN), getAllTransactions);
+
+// Historial de cuenta: depósitos y transferencias en orden fecha/hora
+// Cualquier usuario (cliente o admin) ve su propio historial
+router.get('/history/me', validateJWT, getHistoryMe);
+// Admin ve historial de una cuenta por ID
+router.get('/history/:accountId', validateJWT, validateRole(Roles.ADMIN), getHistoryByAccountId);
 
 // RUTAS PÚBLICAS (sin autenticación)
 // Crear depósito a una cuenta (por ventanilla, queda pendiente de aprobación)
