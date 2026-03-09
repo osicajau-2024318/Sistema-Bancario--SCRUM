@@ -21,7 +21,7 @@
                   "bearer": [
                     {
                       "key": "token",
-                      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c3JfQXNHVVpkM0ZiRmo2IiwianRpIjoiNjJmNzI3NzUtNGZhNC00MmU4LTgyN2UtNzVhY2Y4ZDU5MTFhIiwiaWF0IjoxNzcyNTE0NjQwLCJyb2xlIjoiQURNSU5fUk9MRSIsImV4cCI6MTc3MjUxNjQ0MCwiaXNzIjoiQXV0aFNlcnZpY2UiLCJhdWQiOiJBdXRoU2VydmljZSJ9.pn5Eecg3bet12bZHg2UefKDMzsTYbyllTKl4mYttC9k",
+                      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c3JfYjZTaU53ekh2OXhzIiwianRpIjoiZmYzMDg2YTctOTc0Yi00ODY0LWFlMzctZjczNTczYTU5NTU1IiwiaWF0IjoxNzcyOTQwOTYxLCJyb2xlIjoiQURNSU5fUk9MRSIsImV4cCI6MTc3Mjk0Mjc2MSwiaXNzIjoiQXV0aFNlcnZpY2UiLCJhdWQiOiJBdXRoU2VydmljZSJ9.AQF0EYEk8coKZThds19FjX8tNZ4a7cnWOH_TDz5CNPg",
                       "type": "string"
                     }
                   ]
@@ -242,7 +242,7 @@
                   "bearer": [
                     {
                       "key": "token",
-                      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c3JfYjZTaU53ekh2OXhzIiwianRpIjoiZjk1Y2E2YzYtZWQ3YS00NWE4LWIwZmUtN2JlMzY2NTk1YWRlIiwiaWF0IjoxNzcyNTQwMTI4LCJyb2xlIjoiQURNSU5fUk9MRSIsImV4cCI6MTc3MjU0MTkyOCwiaXNzIjoiQXV0aFNlcnZpY2UiLCJhdWQiOiJBdXRoU2VydmljZSJ9.4xQg6fvN5Toba0j1pL9tNnCe45fd8fA3veJezoOIDY8",
+                      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c3JfYjZTaU53ekh2OXhzIiwianRpIjoiYWYyMzYzYzItOGUwZS00YjgyLTgyNzItODZhODczMDQwNzhkIiwiaWF0IjoxNzcyOTMzNTA2LCJyb2xlIjoiQURNSU5fUk9MRSIsImV4cCI6MTc3MjkzNTMwNiwiaXNzIjoiQXV0aFNlcnZpY2UiLCJhdWQiOiJBdXRoU2VydmljZSJ9.ii7Rr6I9zXnVFggHLNoASinBGnk6Us0Of6zMFwADzx0",
                       "type": "string"
                     }
                   ]
@@ -254,17 +254,15 @@
                   "raw": "{\r\n    \"emailOrUsername\": \"ADMINB\",\r\n    \"password\": \"ADMINB\"\r\n}"
                 },
                 "url": {
-                  "raw": "http://localhost:5025/api/v1/auth/auth/accounts/by-balance?order=desc",
+                  "raw": "http://localhost:3000/SistemaBancarioAdmin/v1/accounts/by-balance?order=desc&order=asc",
                   "protocol": "http",
                   "host": [
                     "localhost"
                   ],
-                  "port": "5025",
+                  "port": "3000",
                   "path": [
-                    "api",
+                    "SistemaBancarioAdmin",
                     "v1",
-                    "auth",
-                    "auth",
                     "accounts",
                     "by-balance"
                   ],
@@ -272,6 +270,11 @@
                     {
                       "key": "order",
                       "value": "desc"
+                    },
+                    {
+                      "key": "order",
+                      "value": "asc",
+                      "type": "text"
                     }
                   ]
                 }
@@ -286,7 +289,7 @@
                   "bearer": [
                     {
                       "key": "token",
-                      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c3JfUml2cUpKUkdXclZWIiwianRpIjoiMzI0NGZkZTYtMjcxOC00YzI3LThlMWEtMTVjY2RjMTJlY2ZiIiwiaWF0IjoxNzcyNjU5MzIxLCJyb2xlIjoiQURNSU5fUk9MRSIsImV4cCI6MTc3MjY2MTEyMSwiaXNzIjoiQXV0aFNlcnZpY2UiLCJhdWQiOiJBdXRoU2VydmljZSJ9.ALwrbsYfLASvwsVQQ4j7xgZFB5F553u6uZMKwZejkVk",
+                      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c3JfYjZTaU53ekh2OXhzIiwianRpIjoiMTRiODA5N2QtZjE1Ny00ZDNkLWE5YjAtMDEzZTQ5ZTkyZDM2IiwiaWF0IjoxNzcyOTM4MjM5LCJyb2xlIjoiQURNSU5fUk9MRSIsImV4cCI6MTc3Mjk0MDAzOSwiaXNzIjoiQXV0aFNlcnZpY2UiLCJhdWQiOiJBdXRoU2VydmljZSJ9.4F23VuKjdABdp4k6er6mvHZLtFM4jrji2bbVqIhfots",
                       "type": "string"
                     }
                   ]
@@ -310,7 +313,7 @@
                   "variable": [
                     {
                       "key": "accountId",
-                      "value": "69a8a799196ffce7daf8edb4"
+                      "value": "69acda8bd4185deb1222e3f8"
                     }
                   ]
                 }
@@ -325,7 +328,7 @@
                   "bearer": [
                     {
                       "key": "token",
-                      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c3JfWVQ1WGtFSDdUaVd5IiwianRpIjoiZTY0MTViZGYtMzFkMS00Y2JmLTg0MzctNTk0ODQ2OTMwZTNlIiwiaWF0IjoxNzcyNjM5NjU5LCJyb2xlIjoiQURNSU5fUk9MRSIsImV4cCI6MTc3MjY0MTQ1OSwiaXNzIjoiQXV0aFNlcnZpY2UiLCJhdWQiOiJBdXRoU2VydmljZSJ9.UiNjaD15PWbVgPTXmq4G_GRze0NnMM7tHr04lNVOnnQ",
+                      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c3JfYjZTaU53ekh2OXhzIiwianRpIjoiOWI3MjU4OTAtM2IwMS00OGUwLTk5MGEtNjJmMjQ2ODFiMmVlIiwiaWF0IjoxNzcyOTM1ODI1LCJyb2xlIjoiQURNSU5fUk9MRSIsImV4cCI6MTc3MjkzNzYyNSwiaXNzIjoiQXV0aFNlcnZpY2UiLCJhdWQiOiJBdXRoU2VydmljZSJ9._GhOAaFzdcl89nLaaDGlhQRJZQ7yQUC1lVkn7HH4c4k",
                       "type": "string"
                     }
                   ]
@@ -334,7 +337,7 @@
                 "header": [],
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"account_type\": \"AHORRO\",\n  \"currency\": \"GTQ\",\n  \"balance\": 1000\n}",
+                  "raw": "{\n  \"account_type\": \"NOMINA\",\n  \"currency\": \"GTQ\",\n  \"balance\": 1000\n}",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -365,7 +368,7 @@
                   "bearer": [
                     {
                       "key": "token",
-                      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c3JfYjZTaU53ekh2OXhzIiwianRpIjoiZjk1Y2E2YzYtZWQ3YS00NWE4LWIwZmUtN2JlMzY2NTk1YWRlIiwiaWF0IjoxNzcyNTQwMTI4LCJyb2xlIjoiQURNSU5fUk9MRSIsImV4cCI6MTc3MjU0MTkyOCwiaXNzIjoiQXV0aFNlcnZpY2UiLCJhdWQiOiJBdXRoU2VydmljZSJ9.4xQg6fvN5Toba0j1pL9tNnCe45fd8fA3veJeyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c3JfYkRjNGhBV1hIREp5IiwianRpIjoiNTMzZmQyNzgtYjU2NC00MTE4LTkwZTUtNzYzMzkwYzZlNjBmIiwiaWF0IjoxNzcyNTc2MzA1LCJyb2xlIjoiVVNFUl9ST0xFIiwiZXhwIjoxNzcyNTc4MTA1LCJpc3MiOiJBdXRoU2VydmljZSIsImF1ZCI6IkF1dGhTZXJ2aWNlIn0.d69GBwSLZqowf2Ml6wA90aBEafG69z6zVmLDHWa-qX8ezoOIDY8",
+                      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c3JfYjZTaU53ekh2OXhzIiwianRpIjoiYWYyMzYzYzItOGUwZS00YjgyLTgyNzItODZhODczMDQwNzhkIiwiaWF0IjoxNzcyOTMzNTA2LCJyb2xlIjoiQURNSU5fUk9MRSIsImV4cCI6MTc3MjkzNTMwNiwiaXNzIjoiQXV0aFNlcnZpY2UiLCJhdWQiOiJBdXRoU2VydmljZSJ9.ii7Rr6I9zXnVFggHLNoASinBGnk6Us0Of6zMFwADzx0",
                       "type": "string"
                     }
                   ]
@@ -381,6 +384,100 @@
                     }
                   }
                 },
+                "url": {
+                  "raw": "http://localhost:3000/SistemaBancarioAdmin/v1/accounts/:idCuenta",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3000",
+                  "path": [
+                    "SistemaBancarioAdmin",
+                    "v1",
+                    "accounts",
+                    ":idCuenta"
+                  ],
+                  "variable": [
+                    {
+                      "key": "idCuenta",
+                      "value": ""
+                    }
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Historial de Una cuenta por ID",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:3000/SistemaBancarioAdmin/v1/transactions/history/{{accountId}}",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3000",
+                  "path": [
+                    "SistemaBancarioAdmin",
+                    "v1",
+                    "transactions",
+                    "history",
+                    "{{accountId}}"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Historial Movimientos",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c3JfYjZTaU53ekh2OXhzIiwianRpIjoiYzYwODNmOTAtMTc3Yy00ZTA5LWFmNjYtNzQ1OGU4YWMyMTIzIiwiaWF0IjoxNzcyOTM1OTk0LCJyb2xlIjoiQURNSU5fUk9MRSIsImV4cCI6MTc3MjkzNzc5NCwiaXNzIjoiQXV0aFNlcnZpY2UiLCJhdWQiOiJBdXRoU2VydmljZSJ9.dh3FX6TZ6po2WQhJZXY6gCOvz0ANaOuTeRmMQVysWAA",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:3000/SistemaBancarioAdmin/v1/transactions/history/me",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3000",
+                  "path": [
+                    "SistemaBancarioAdmin",
+                    "v1",
+                    "transactions",
+                    "history",
+                    "me"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Mis Cuentas",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c3JfYjZTaU53ekh2OXhzIiwianRpIjoiYTIyMzdlYzYtOWJkZS00N2U2LTgxZGEtODM2NTRjYWQwMGM0IiwiaWF0IjoxNzcyOTQyNDE0LCJyb2xlIjoiQURNSU5fUk9MRSIsImV4cCI6MTc3Mjk0NDIxNCwiaXNzIjoiQXV0aFNlcnZpY2UiLCJhdWQiOiJBdXRoU2VydmljZSJ9.DqK4Ccf2IK6t-dKEwGV4_eDvQumQMRYzSGnteVRwjsg",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [],
                 "url": {
                   "raw": "http://localhost:3000/SistemaBancarioAdmin/v1/accounts/me",
                   "protocol": "http",
@@ -853,17 +950,17 @@
           ]
         },
         {
-          "name": "Productos",
+          "name": "Servicios",
           "item": [
             {
-              "name": "Ver Todos los Productos",
+              "name": "Listar Servicios",
               "request": {
                 "auth": {
                   "type": "bearer",
                   "bearer": [
                     {
                       "key": "token",
-                      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c3JfUml2cUpKUkdXclZWIiwianRpIjoiMmMxOThkYzgtM2ZhNS00Y2E3LTk5YTItYmFmM2E1YjAxOTg2IiwiaWF0IjoxNzcyNjY0MzY5LCJyb2xlIjoiQURNSU5fUk9MRSIsImV4cCI6MTc3MjY2NjE2OSwiaXNzIjoiQXV0aFNlcnZpY2UiLCJhdWQiOiJBdXRoU2VydmljZSJ9.FYk5mJAwPQsBtMXVrP2AdvaVW0QXOCgGAT6JhLYJImM",
+                      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c3JfcGFrd2I0RldGRGJYIiwianRpIjoiYWM0Y2RhY2ItZWZmZi00ZmY0LWI3MjktY2ZiNDYzYzlmOGViIiwiaWF0IjoxNzcyOTQyMzgzLCJyb2xlIjoiVVNFUl9ST0xFIiwiZXhwIjoxNzcyOTQ0MTgzLCJpc3MiOiJBdXRoU2VydmljZSIsImF1ZCI6IkF1dGhTZXJ2aWNlIn0.o6B6rsZKqR9cXlewvWSKzdgiei4BSYsTwxbVO1cv34U",
                       "type": "string"
                     }
                   ]
@@ -871,7 +968,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "http://localhost:3000/SistemaBancarioAdmin/v1/products",
+                  "raw": "http://localhost:3000/SistemaBancarioAdmin/v1/services",
                   "protocol": "http",
                   "host": [
                     "localhost"
@@ -880,14 +977,52 @@
                   "path": [
                     "SistemaBancarioAdmin",
                     "v1",
-                    "products"
+                    "services"
                   ]
                 }
               },
               "response": []
             },
             {
-              "name": "Crear un producto",
+              "name": "Ver un servicio",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c3JfN3U5SE1leFU4YUVqIiwianRpIjoiMzUzNmJmYmUtMGUxYy00MjRhLWEwNWEtNTliYmQ0NDNlZjQyIiwiaWF0IjoxNzcyNjU4OTEyLCJyb2xlIjoiQURNSU5fUk9MRSIsImV4cCI6MTc3MjY2MDcxMiwiaXNzIjoiQXV0aFNlcnZpY2UiLCJhdWQiOiJBdXRoU2VydmljZSJ9.FkGljd5AMIZX_Xpq2iENJDqNnGHgU78-PqW4VcPoF2w",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:3000/SistemaBancarioAdmin/v1/services/:id",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3000",
+                  "path": [
+                    "SistemaBancarioAdmin",
+                    "v1",
+                    "services",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": ""
+                    }
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Crear servicio",
               "request": {
                 "auth": {
                   "type": "bearer",
@@ -903,7 +1038,7 @@
                 "header": [],
                 "body": {
                   "mode": "raw",
-                  "raw": "{\r\n  \"name\": \"Auriculares\",\r\n  \"description\": \"de cable\",\r\n  \"type\": \"PRODUCTO\",   \r\n  \"price\": 123.45\r\n}",
+                  "raw": "{\r\n  \"name\": \"Transferencias sin costo\",\r\n  \"description\": \"Hasta 5 transferencias mensuales sin comisión\",\r\n  \"assigned_to\": \"usr_abc123\"\r\n}",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -911,7 +1046,7 @@
                   }
                 },
                 "url": {
-                  "raw": "http://localhost:3000/SistemaBancarioAdmin/v1/products",
+                  "raw": "http://localhost:3000/SistemaBancarioAdmin/v1/services",
                   "protocol": "http",
                   "host": [
                     "localhost"
@@ -920,14 +1055,14 @@
                   "path": [
                     "SistemaBancarioAdmin",
                     "v1",
-                    "products"
+                    "services"
                   ]
                 }
               },
               "response": []
             },
             {
-              "name": "Editar productos",
+              "name": "Actualizar servicios",
               "request": {
                 "auth": {
                   "type": "bearer",
@@ -941,17 +1076,8 @@
                 },
                 "method": "PUT",
                 "header": [],
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\r\n  \"name\": \"Gasolina\",\r\n  \"description\": \"Gasolina Shell\",\r\n  \"type\": \"SERVICIO\", \r\n  \"price\": 200\r\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                },
                 "url": {
-                  "raw": "http://localhost:3000/SistemaBancarioAdmin/v1/products/:id",
+                  "raw": "http://localhost:3000/SistemaBancarioAdmin/v1/services/:id",
                   "protocol": "http",
                   "host": [
                     "localhost"
@@ -960,7 +1086,7 @@
                   "path": [
                     "SistemaBancarioAdmin",
                     "v1",
-                    "products",
+                    "services",
                     ":id"
                   ],
                   "variable": [
@@ -974,47 +1100,9 @@
               "response": []
             },
             {
-              "name": "Eliminar producto",
+              "name": "Eliminar Servicios",
               "request": {
-                "auth": {
-                  "type": "bearer",
-                  "bearer": [
-                    {
-                      "key": "token",
-                      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c3JfN3U5SE1leFU4YUVqIiwianRpIjoiMzUzNmJmYmUtMGUxYy00MjRhLWEwNWEtNTliYmQ0NDNlZjQyIiwiaWF0IjoxNzcyNjU4OTEyLCJyb2xlIjoiQURNSU5fUk9MRSIsImV4cCI6MTc3MjY2MDcxMiwiaXNzIjoiQXV0aFNlcnZpY2UiLCJhdWQiOiJBdXRoU2VydmljZSJ9.FkGljd5AMIZX_Xpq2iENJDqNnGHgU78-PqW4VcPoF2w",
-                      "type": "string"
-                    }
-                  ]
-                },
                 "method": "DELETE",
-                "header": [],
-                "url": {
-                  "raw": "http://localhost:3000/SistemaBancarioAdmin/v1/products/:id",
-                  "protocol": "http",
-                  "host": [
-                    "localhost"
-                  ],
-                  "port": "3000",
-                  "path": [
-                    "SistemaBancarioAdmin",
-                    "v1",
-                    "products",
-                    ":id"
-                  ],
-                  "variable": [
-                    {
-                      "key": "id",
-                      "value": "69a8a1507c2cc3d07711baa1"
-                    }
-                  ]
-                }
-              },
-              "response": []
-            },
-            {
-              "name": "Login Copy",
-              "request": {
-                "method": "POST",
                 "header": [],
                 "body": {
                   "mode": "raw",
@@ -1026,7 +1114,7 @@
                   }
                 },
                 "url": {
-                  "raw": "http://localhost:5025/api/v1/auth/login",
+                  "raw": "http://localhost:5025/api/v1/services/:id",
                   "protocol": "http",
                   "host": [
                     "localhost"
@@ -1035,29 +1123,7 @@
                   "path": [
                     "api",
                     "v1",
-                    "auth",
-                    "login"
-                  ]
-                }
-              },
-              "response": []
-            },
-            {
-              "name": "Obtener producto",
-              "request": {
-                "method": "GET",
-                "header": [],
-                "url": {
-                  "raw": "http://localhost:3000/SistemaBancarioAdmin/v1/products/:id",
-                  "protocol": "http",
-                  "host": [
-                    "localhost"
-                  ],
-                  "port": "3000",
-                  "path": [
-                    "SistemaBancarioAdmin",
-                    "v1",
-                    "products",
+                    "services",
                     ":id"
                   ],
                   "variable": [
@@ -1083,7 +1149,7 @@
                   "bearer": [
                     {
                       "key": "token",
-                      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c3JfQXNHVVpkM0ZiRmo2IiwianRpIjoiZjVmNDlmODgtOGUxZC00MTk2LTkwNjMtZGJmNjM2ODZlNjc0IiwiaWF0IjoxNzcyNTM4NjA1LCJyb2xlIjoiQURNSU5fUk9MRSIsImV4cCI6MTc3MjU0MDQwNSwiaXNzIjoiQXV0aFNlcnZpY2UiLCJhdWQiOiJBdXRoU2VydmljZSJ9.4DQNqUyVhZcmZWbGB8zmZHkEd016iin0MZtzwe2bAtc",
+                      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c3JfYjZTaU53ekh2OXhzIiwianRpIjoiZmYzMDg2YTctOTc0Yi00ODY0LWFlMzctZjczNTczYTU5NTU1IiwiaWF0IjoxNzcyOTQwOTYxLCJyb2xlIjoiQURNSU5fUk9MRSIsImV4cCI6MTc3Mjk0Mjc2MSwiaXNzIjoiQXV0aFNlcnZpY2UiLCJhdWQiOiJBdXRoU2VydmljZSJ9.AQF0EYEk8coKZThds19FjX8tNZ4a7cnWOH_TDz5CNPg",
                       "type": "string"
                     }
                   ]
@@ -1092,7 +1158,7 @@
                 "header": [],
                 "body": {
                   "mode": "raw",
-                  "raw": "{\r\n  \"alias\": \"Cuenta Principal\",\r\n  \"account_number\": \"123456789\"\r\n}",
+                  "raw": "{\r\n  \"alias\": \"Mama\",\r\n  \"account_number\": \"5984503224\"\r\n}",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -1119,7 +1185,14 @@
               "name": "Obtener Favoritos",
               "request": {
                 "auth": {
-                  "type": "bearer"
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c3JfcGFrd2I0RldGRGJYIiwianRpIjoiYWM0Y2RhY2ItZWZmZi00ZmY0LWI3MjktY2ZiNDYzYzlmOGViIiwiaWF0IjoxNzcyOTQyMzgzLCJyb2xlIjoiVVNFUl9ST0xFIiwiZXhwIjoxNzcyOTQ0MTgzLCJpc3MiOiJBdXRoU2VydmljZSIsImF1ZCI6IkF1dGhTZXJ2aWNlIn0.o6B6rsZKqR9cXlewvWSKzdgiei4BSYsTwxbVO1cv34U",
+                      "type": "string"
+                    }
+                  ]
                 },
                 "method": "GET",
                 "header": [],
@@ -1140,8 +1213,18 @@
               "response": []
             },
             {
-              "name": "Actualizar Favoritos",
+              "name": "Actualizar Alias Favoritos",
               "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c3JfYjZTaU53ekh2OXhzIiwianRpIjoiZmYzMDg2YTctOTc0Yi00ODY0LWFlMzctZjczNTczYTU5NTU1IiwiaWF0IjoxNzcyOTQwOTYxLCJyb2xlIjoiQURNSU5fUk9MRSIsImV4cCI6MTc3Mjk0Mjc2MSwiaXNzIjoiQXV0aFNlcnZpY2UiLCJhdWQiOiJBdXRoU2VydmljZSJ9.AQF0EYEk8coKZThds19FjX8tNZ4a7cnWOH_TDz5CNPg",
+                      "type": "string"
+                    }
+                  ]
+                },
                 "method": "PUT",
                 "header": [],
                 "url": {
@@ -1168,13 +1251,70 @@
               "response": []
             },
             {
-              "name": "Hacer transferencia",
+              "name": "Eliminar de favoritos",
               "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c3JfYjZTaU53ekh2OXhzIiwianRpIjoiODlmODIwZTYtMTBmNS00YjZjLTkyZTMtYmY2YTgwZjgwYjAyIiwiaWF0IjoxNzcyOTQyMTUwLCJyb2xlIjoiQURNSU5fUk9MRSIsImV4cCI6MTc3Mjk0Mzk1MCwiaXNzIjoiQXV0aFNlcnZpY2UiLCJhdWQiOiJBdXRoU2VydmljZSJ9.jt8vr9Mhms9bfM0O3eZmdHfoyBQ3FnpQieN0EpK5kN4",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:3000/SistemaBancarioAdmin/v1/favorites/:Alias",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3000",
+                  "path": [
+                    "SistemaBancarioAdmin",
+                    "v1",
+                    "favorites",
+                    ":Alias"
+                  ],
+                  "variable": [
+                    {
+                      "key": "Alias",
+                      "value": ""
+                    }
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Hacer transferencia a favorito",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c3JfYjZTaU53ekh2OXhzIiwianRpIjoiZmYzMDg2YTctOTc0Yi00ODY0LWFlMzctZjczNTczYTU5NTU1IiwiaWF0IjoxNzcyOTQwOTYxLCJyb2xlIjoiQURNSU5fUk9MRSIsImV4cCI6MTc3Mjk0Mjc2MSwiaXNzIjoiQXV0aFNlcnZpY2UiLCJhdWQiOiJBdXRoU2VydmljZSJ9.AQF0EYEk8coKZThds19FjX8tNZ4a7cnWOH_TDz5CNPg",
+                      "type": "string"
+                    }
+                  ]
+                },
                 "method": "POST",
                 "header": [],
                 "body": {
                   "mode": "raw",
-                  "raw": "{\r\n  \"amount\": 1000\r\n}",
+                  "raw": "{\r\n  \"fromAccount\": \"2728375534\",\r\n  \"amount\": 500\r\n}",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -1198,47 +1338,7 @@
                   "variable": [
                     {
                       "key": "id",
-                      "value": ""
-                    }
-                  ]
-                }
-              },
-              "response": []
-            },
-            {
-              "name": "Eliminar de favoritos",
-              "request": {
-                "auth": {
-                  "type": "bearer"
-                },
-                "method": "DELETE",
-                "header": [],
-                "body": {
-                  "mode": "raw",
-                  "raw": "",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                },
-                "url": {
-                  "raw": "http://localhost:3000/SistemaBancarioAdmin/v1/favorites/:id",
-                  "protocol": "http",
-                  "host": [
-                    "localhost"
-                  ],
-                  "port": "3000",
-                  "path": [
-                    "SistemaBancarioAdmin",
-                    "v1",
-                    "favorites",
-                    ":id"
-                  ],
-                  "variable": [
-                    {
-                      "key": "id",
-                      "value": ""
+                      "value": "Mama"
                     }
                   ]
                 }
@@ -1258,7 +1358,7 @@
                   "bearer": [
                     {
                       "key": "token",
-                      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c3JfYjZTaU53ekh2OXhzIiwianRpIjoiYTQwYmVmYzAtNDRmMi00YzY0LTg0NmEtMzJjODdiYTI3Y2M4IiwiaWF0IjoxNzcyNTM5NjcwLCJyb2xlIjoiQURNSU5fUk9MRSIsImV4cCI6MTc3MjU0MTQ3MCwiaXNzIjoiQXV0aFNlcnZpY2UiLCJhdWQiOiJBdXRoU2VydmljZSJ9.bfeEiC27a3EzkO-8BCl3KcZJ8f0OMAi7x62R64x2uUg",
+                      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c3JfYjZTaU53ekh2OXhzIiwianRpIjoiMTRiODA5N2QtZjE1Ny00ZDNkLWE5YjAtMDEzZTQ5ZTkyZDM2IiwiaWF0IjoxNzcyOTM4MjM5LCJyb2xlIjoiQURNSU5fUk9MRSIsImV4cCI6MTc3Mjk0MDAzOSwiaXNzIjoiQXV0aFNlcnZpY2UiLCJhdWQiOiJBdXRoU2VydmljZSJ9.4F23VuKjdABdp4k6er6mvHZLtFM4jrji2bbVqIhfots",
                       "type": "string"
                     }
                   ]
@@ -1267,7 +1367,12 @@
                 "header": [],
                 "body": {
                   "mode": "raw",
-                  "raw": ""
+                  "raw": "{\n  \"fromAccount\": \"3864284443\",\n  \"toAccount\": \"3917307935\",\n  \"amount\": 500,\n  \"description\": \"Pago de servicio\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
                 },
                 "url": {
                   "raw": "http://localhost:3000/SistemaBancarioAdmin/v1/accounts/transfer",
@@ -1336,7 +1441,7 @@
                   "bearer": [
                     {
                       "key": "token",
-                      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c3JfYjZTaU53ekh2OXhzIiwianRpIjoiYTQwYmVmYzAtNDRmMi00YzY0LTg0NmEtMzJjODdiYTI3Y2M4IiwiaWF0IjoxNzcyNTM5NjcwLCJyb2xlIjoiQURNSU5fUk9MRSIsImV4cCI6MTc3MjU0MTQ3MCwiaXNzIjoiQXV0aFNlcnZpY2UiLCJhdWQiOiJBdXRoU2VydmljZSJ9.bfeEiC27a3EzkO-8BCl3KcZJ8f0OMAi7x62R64x2uUg",
+                      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c3JfYjZTaU53ekh2OXhzIiwianRpIjoiM2I0MzY3YzctZjJhOC00ZjVlLThkYzktZjQyMTA0MGQ1MGJiIiwiaWF0IjoxNzcyOTM5MzUwLCJyb2xlIjoiQURNSU5fUk9MRSIsImV4cCI6MTc3Mjk0MTE1MCwiaXNzIjoiQXV0aFNlcnZpY2UiLCJhdWQiOiJBdXRoU2VydmljZSJ9.c0Hoez5bZdznH9fSlrQPzaruf4iYKvLR814r1rtmLgA",
                       "type": "string"
                     }
                   ]
@@ -1390,38 +1495,6 @@
                     "v1",
                     "auth",
                     "login"
-                  ]
-                }
-              },
-              "response": []
-            },
-            {
-              "name": "Ver todas las transacciones",
-              "request": {
-                "auth": {
-                  "type": "bearer",
-                  "bearer": [
-                    {
-                      "key": "token",
-                      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c3JfdzVTOEp2RnJINzJUIiwianRpIjoiMjEwMGY3OGYtN2I5Zi00OGYwLWI4M2QtOGIyMmU2NzVjZGU4IiwiaWF0IjoxNzcyNjQxMzk5LCJyb2xlIjoiVVNFUl9ST0xFIiwiZXhwIjoxNzcyNjQzMTk5LCJpc3MiOiJBdXRoU2VydmljZSIsImF1ZCI6IkF1dGhTZXJ2aWNlIn0.3hfUUmXvRxVGcRnrT4aYUHPSEKmLP7OquX6c-CGVtqg",
-                      "type": "string"
-                    }
-                  ]
-                },
-                "method": "GET",
-                "header": [],
-                "url": {
-                  "raw": "http://localhost:3000/SistemaBancarioAdmin/v1/transactions/allToken",
-                  "protocol": "http",
-                  "host": [
-                    "localhost"
-                  ],
-                  "port": "3000",
-                  "path": [
-                    "SistemaBancarioAdmin",
-                    "v1",
-                    "transactions",
-                    "allToken"
                   ]
                 }
               },
@@ -1791,7 +1864,7 @@
                   "bearer": [
                     {
                       "key": "token",
-                      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c3JfOVJaNjR2RTRRM3dtIiwianRpIjoiMWFlNmQ4ZGItY2UwOC00MTRlLTg4ZjYtNzk4NTQwMTdiMjQwIiwiaWF0IjoxNzcyNjYwNTE2LCJyb2xlIjoiVVNFUl9ST0xFIiwiZXhwIjoxNzcyNjYyMzE2LCJpc3MiOiJBdXRoU2VydmljZSIsImF1ZCI6IkF1dGhTZXJ2aWNlIn0.ce1V8PZaPqUIRYlIleHZg1kDe6LdYq9FvWAeiwWGZW0",
+                      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c3JfcGFrd2I0RldGRGJYIiwianRpIjoiOGY3NDk2OTUtNjYzMi00MzMyLWFkMjktN2QxZTRkNmJkNGNkIiwiaWF0IjoxNzcyOTM1NzczLCJyb2xlIjoiVVNFUl9ST0xFIiwiZXhwIjoxNzcyOTM3NTczLCJpc3MiOiJBdXRoU2VydmljZSIsImF1ZCI6IkF1dGhTZXJ2aWNlIn0.A3HP2_gDltVYL7HmmuYZkI0aW-6FOEQDhvl-s16wS7Y",
                       "type": "string"
                     }
                   ]
@@ -1864,28 +1937,25 @@
                 }
               },
               "response": []
-            }
-          ]
-        },
-        {
-          "name": "Transacciones",
-          "item": [
+            },
             {
-              "name": "Transferir a un usuario",
+              "name": "Historial Movimientos",
               "request": {
-                "method": "POST",
-                "header": [],
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\r\n  \"accountNumber\": \"1403255707\",\r\n  \"amount\": 1000,\r\n  \"description\": \"Deposito por ventanilla\"\r\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c3JfYjZTaU53ekh2OXhzIiwianRpIjoiMTYxYTBiNDAtYWE3Ny00NzVmLWJmNzYtNTFkYjg3MTE0ZDFlIiwiaWF0IjoxNzcyOTMzOTg2LCJyb2xlIjoiQURNSU5fUk9MRSIsImV4cCI6MTc3MjkzNTc4NiwiaXNzIjoiQXV0aFNlcnZpY2UiLCJhdWQiOiJBdXRoU2VydmljZSJ9.93gradAyV_3ZsE2VnmFm7TcoxZsUJ-T9f0yg---GPR4",
+                      "type": "string"
                     }
-                  }
+                  ]
                 },
+                "method": "GET",
+                "header": [],
                 "url": {
-                  "raw": "localhost:3000/SistemaBancarioAdmin/v1/deposits",
+                  "raw": "http://localhost:3000/SistemaBancarioAdmin/v1/transactions/history/me",
+                  "protocol": "http",
                   "host": [
                     "localhost"
                   ],
@@ -1893,14 +1963,84 @@
                   "path": [
                     "SistemaBancarioAdmin",
                     "v1",
-                    "deposits"
+                    "transactions",
+                    "history",
+                    "me"
                   ]
                 }
               },
               "response": []
             },
             {
-              "name": "historial de transferencias",
+              "name": "Mis Cuentas",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c3JfcGFrd2I0RldGRGJYIiwianRpIjoiYWM0Y2RhY2ItZWZmZi00ZmY0LWI3MjktY2ZiNDYzYzlmOGViIiwiaWF0IjoxNzcyOTQyMzgzLCJyb2xlIjoiVVNFUl9ST0xFIiwiZXhwIjoxNzcyOTQ0MTgzLCJpc3MiOiJBdXRoU2VydmljZSIsImF1ZCI6IkF1dGhTZXJ2aWNlIn0.o6B6rsZKqR9cXlewvWSKzdgiei4BSYsTwxbVO1cv34U",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:3000/SistemaBancarioAdmin/v1/accounts/me",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3000",
+                  "path": [
+                    "SistemaBancarioAdmin",
+                    "v1",
+                    "accounts",
+                    "me"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "Transacciones",
+          "item": [
+            {
+              "name": "Transferencia",
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"fromAccount\": \"3864284443\",\r\n  \"toAccount\": \"3917307935\",\r\n  \"amount\": 500,\r\n  \"description\": \"Pago de servicio\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:3000/SistemaBancarioAdmin/v1/accounts/transfer",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3000",
+                  "path": [
+                    "SistemaBancarioAdmin",
+                    "v1",
+                    "accounts",
+                    "transfer"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Historial",
               "protocolProfileBehavior": {
                 "disableBodyPruning": true
               },
@@ -1938,6 +2078,215 @@
                     "v1",
                     "transactions",
                     "my-transactions"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "Favoritos",
+          "item": [
+            {
+              "name": "Añadir a favoritos",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c3JfYjZTaU53ekh2OXhzIiwianRpIjoiZmYzMDg2YTctOTc0Yi00ODY0LWFlMzctZjczNTczYTU5NTU1IiwiaWF0IjoxNzcyOTQwOTYxLCJyb2xlIjoiQURNSU5fUk9MRSIsImV4cCI6MTc3Mjk0Mjc2MSwiaXNzIjoiQXV0aFNlcnZpY2UiLCJhdWQiOiJBdXRoU2VydmljZSJ9.AQF0EYEk8coKZThds19FjX8tNZ4a7cnWOH_TDz5CNPg",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"alias\": \"Mama\",\r\n  \"account_number\": \"5984503224\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:3000/SistemaBancarioAdmin/v1/favorites",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3000",
+                  "path": [
+                    "SistemaBancarioAdmin",
+                    "v1",
+                    "favorites"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Obtener Favoritos",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c3JfYjZTaU53ekh2OXhzIiwianRpIjoiZmYzMDg2YTctOTc0Yi00ODY0LWFlMzctZjczNTczYTU5NTU1IiwiaWF0IjoxNzcyOTQwOTYxLCJyb2xlIjoiQURNSU5fUk9MRSIsImV4cCI6MTc3Mjk0Mjc2MSwiaXNzIjoiQXV0aFNlcnZpY2UiLCJhdWQiOiJBdXRoU2VydmljZSJ9.AQF0EYEk8coKZThds19FjX8tNZ4a7cnWOH_TDz5CNPg",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:3000/SistemaBancarioAdmin/v1/favorites",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3000",
+                  "path": [
+                    "SistemaBancarioAdmin",
+                    "v1",
+                    "favorites"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Actualizar Alias Favoritos",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c3JfYjZTaU53ekh2OXhzIiwianRpIjoiZmYzMDg2YTctOTc0Yi00ODY0LWFlMzctZjczNTczYTU5NTU1IiwiaWF0IjoxNzcyOTQwOTYxLCJyb2xlIjoiQURNSU5fUk9MRSIsImV4cCI6MTc3Mjk0Mjc2MSwiaXNzIjoiQXV0aFNlcnZpY2UiLCJhdWQiOiJBdXRoU2VydmljZSJ9.AQF0EYEk8coKZThds19FjX8tNZ4a7cnWOH_TDz5CNPg",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "PUT",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:3000/SistemaBancarioAdmin/v1/favorites/:id",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3000",
+                  "path": [
+                    "SistemaBancarioAdmin",
+                    "v1",
+                    "favorites",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": ""
+                    }
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Eliminar de favoritos",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c3JfYjZTaU53ekh2OXhzIiwianRpIjoiODlmODIwZTYtMTBmNS00YjZjLTkyZTMtYmY2YTgwZjgwYjAyIiwiaWF0IjoxNzcyOTQyMTUwLCJyb2xlIjoiQURNSU5fUk9MRSIsImV4cCI6MTc3Mjk0Mzk1MCwiaXNzIjoiQXV0aFNlcnZpY2UiLCJhdWQiOiJBdXRoU2VydmljZSJ9.jt8vr9Mhms9bfM0O3eZmdHfoyBQ3FnpQieN0EpK5kN4",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:3000/SistemaBancarioAdmin/v1/favorites/:Alias",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3000",
+                  "path": [
+                    "SistemaBancarioAdmin",
+                    "v1",
+                    "favorites",
+                    ":Alias"
+                  ],
+                  "variable": [
+                    {
+                      "key": "Alias",
+                      "value": ""
+                    }
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Hacer transferencia a favorito",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c3JfYjZTaU53ekh2OXhzIiwianRpIjoiZmYzMDg2YTctOTc0Yi00ODY0LWFlMzctZjczNTczYTU5NTU1IiwiaWF0IjoxNzcyOTQwOTYxLCJyb2xlIjoiQURNSU5fUk9MRSIsImV4cCI6MTc3Mjk0Mjc2MSwiaXNzIjoiQXV0aFNlcnZpY2UiLCJhdWQiOiJBdXRoU2VydmljZSJ9.AQF0EYEk8coKZThds19FjX8tNZ4a7cnWOH_TDz5CNPg",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"fromAccount\": \"1403255707\",\r\n  \"amount\": 500\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:3000/SistemaBancarioAdmin/v1/favorites/:id/transfer",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3000",
+                  "path": [
+                    "SistemaBancarioAdmin",
+                    "v1",
+                    "favorites",
+                    ":id",
+                    "transfer"
+                  ],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": ""
+                    }
                   ]
                 }
               },
@@ -1999,10 +2348,20 @@
         {
           "name": "Divisa de cliente",
           "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c3JfYjZTaU53ekh2OXhzIiwianRpIjoiMTYxYTBiNDAtYWE3Ny00NzVmLWJmNzYtNTFkYjg3MTE0ZDFlIiwiaWF0IjoxNzcyOTMzOTg2LCJyb2xlIjoiQURNSU5fUk9MRSIsImV4cCI6MTc3MjkzNTc4NiwiaXNzIjoiQXV0aFNlcnZpY2UiLCJhdWQiOiJBdXRoU2VydmljZSJ9.93gradAyV_3ZsE2VnmFm7TcoxZsUJ-T9f0yg---GPR4",
+                  "type": "string"
+                }
+              ]
+            },
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "http://localhost:3000/SistemaBancarioAdmin//api/v1/currency/:accountId?to=USD",
+              "raw": "http://localhost:3000/SistemaBancarioAdmin/v1/currency/:accountId?to=USD",
               "protocol": "http",
               "host": [
                 "localhost"
@@ -2010,8 +2369,6 @@
               "port": "3000",
               "path": [
                 "SistemaBancarioAdmin",
-                "",
-                "api",
                 "v1",
                 "currency",
                 ":accountId"
@@ -2054,7 +2411,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"accountNumber\": \"1403255707\",\n  \"amount\": 1000,\n  \"description\": \"Deposito por ventanilla\"\n}",
+              "raw": "{\n  \"accountNumber\": \"1403255707\",\n  \"amount\": 1000,\n  \"description\": \"Deposito por ventanilla\",\n  \"currency\": \"GTQ\"\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -2062,7 +2419,7 @@
               }
             },
             "url": {
-              "raw": "http://localhost:3000/SistemaBancarioAdmin/v1/transactions/deposit",
+              "raw": "http://localhost:3000/SistemaBancarioAdmin/v1/deposits",
               "protocol": "http",
               "host": [
                 "localhost"
@@ -2071,8 +2428,7 @@
               "path": [
                 "SistemaBancarioAdmin",
                 "v1",
-                "transactions",
-                "deposit"
+                "deposits"
               ]
             }
           },

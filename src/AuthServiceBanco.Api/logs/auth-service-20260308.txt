@@ -1,0 +1,303 @@
+[2026-03-08 21:11:24 INF] Checking database connection... {"SourceContext":"Program"}
+[2026-03-08 21:11:24 INF] Database ready. Running seed data... {"SourceContext":"Program"}
+[2026-03-08 21:11:25 INF] Database initialization completed successfully {"SourceContext":"Program"}
+[2026-03-08 21:11:25 INF] AuthService API is running at http://localhost:5025. Health endpoint: http://localhost:5025/health {"SourceContext":"Program"}
+[2026-03-08 21:11:29 WRN] Failed to determine the https port for redirect. {"EventId":{"Id":3,"Name":"FailedToDeterminePort"},"SourceContext":"Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware","RequestId":"0HNJTH67IHV76:00000001","RequestPath":"/api/v1/auth/login","ConnectionId":"0HNJTH67IHV76"}
+[2026-03-08 21:11:30 INF] User login successfully. {"EventId":{"Id":1002,"Name":"LogUserLoggedIn"},"SourceContext":"AuthServiceBanco.Application.Services.AuthService","ActionId":"53bc0b55-5a39-4cf6-aaeb-cb237ff2dc7c","ActionName":"AuthServiceBanco.Api.Controllers.AuthController.Login (AuthServiceBanco.Api)","RequestId":"0HNJTH67IHV76:00000001","RequestPath":"/api/v1/auth/login","ConnectionId":"0HNJTH67IHV76"}
+[2026-03-08 21:11:30 INF] HTTP POST /api/v1/auth/login responded 200 in 204.4302 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNJTH67IHV76:00000001","ConnectionId":"0HNJTH67IHV76"}
+[2026-03-08 21:12:51 ERR] An unhandled exception occurred {"SourceContext":"AuthServiceBanco.Api.Middlewares.GlobalExceptionMiddleware","RequestId":"0HNJTH67IHV77:00000001","RequestPath":"/api/v1/users/aklwejjklawlej/exists","ConnectionId":"0HNJTH67IHV77"}
+System.InvalidOperationException: User with id aklwejjklawlej not found.
+   at AuthServiceBanco.Persistence.Repositories.UserRepository.GetByIdAsync(String id) in /Users/josueboror/Visual/Banco/Sistema-Bancario--SCRUM/src/AuthServiceBanco.Persistence/Repositories/UserRepository.cs:line 21
+   at AuthServiceBanco.Application.Services.UserManagementService.GetUserByIdAsync(String userId) in /Users/josueboror/Visual/Banco/Sistema-Bancario--SCRUM/src/AuthServiceBanco.Application/Services/UserManagementService.cs:line 65
+   at AuthServiceBanco.Api.Controllers.UserProfileController.UserExists(String userId) in /Users/josueboror/Visual/Banco/Sistema-Bancario--SCRUM/src/AuthServiceBanco.Api/Controllers/UserProfileController.cs:line 18
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at AuthServiceBanco.Api.Middlewares.GlobalExceptionMiddleware.InvokeAsync(HttpContext context) in /Users/josueboror/Visual/Banco/Sistema-Bancario--SCRUM/src/AuthServiceBanco.Api/Middlewares/GlobalExceptionMiddleware.cs:line 18
+[2026-03-08 21:12:51 INF] HTTP GET /api/v1/users/aklwejjklawlej/exists responded 404 in 76.2632 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNJTH67IHV77:00000001","ConnectionId":"0HNJTH67IHV77"}
+[2026-03-08 21:13:19 ERR] An unhandled exception occurred {"SourceContext":"AuthServiceBanco.Api.Middlewares.GlobalExceptionMiddleware","RequestId":"0HNJTH67IHV78:00000001","RequestPath":"/api/v1/users/123456879/exists","ConnectionId":"0HNJTH67IHV78"}
+System.InvalidOperationException: User with id 123456879 not found.
+   at AuthServiceBanco.Persistence.Repositories.UserRepository.GetByIdAsync(String id) in /Users/josueboror/Visual/Banco/Sistema-Bancario--SCRUM/src/AuthServiceBanco.Persistence/Repositories/UserRepository.cs:line 21
+   at AuthServiceBanco.Application.Services.UserManagementService.GetUserByIdAsync(String userId) in /Users/josueboror/Visual/Banco/Sistema-Bancario--SCRUM/src/AuthServiceBanco.Application/Services/UserManagementService.cs:line 65
+   at AuthServiceBanco.Api.Controllers.UserProfileController.UserExists(String userId) in /Users/josueboror/Visual/Banco/Sistema-Bancario--SCRUM/src/AuthServiceBanco.Api/Controllers/UserProfileController.cs:line 18
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at AuthServiceBanco.Api.Middlewares.GlobalExceptionMiddleware.InvokeAsync(HttpContext context) in /Users/josueboror/Visual/Banco/Sistema-Bancario--SCRUM/src/AuthServiceBanco.Api/Middlewares/GlobalExceptionMiddleware.cs:line 18
+[2026-03-08 21:13:19 INF] HTTP GET /api/v1/users/123456879/exists responded 404 in 20.4988 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNJTH67IHV78:00000001","ConnectionId":"0HNJTH67IHV78"}
+[2026-03-08 21:13:21 ERR] An unhandled exception occurred {"SourceContext":"AuthServiceBanco.Api.Middlewares.GlobalExceptionMiddleware","RequestId":"0HNJTH67IHV78:00000002","RequestPath":"/api/v1/users/123456879/exists","ConnectionId":"0HNJTH67IHV78"}
+System.InvalidOperationException: User with id 123456879 not found.
+   at AuthServiceBanco.Persistence.Repositories.UserRepository.GetByIdAsync(String id) in /Users/josueboror/Visual/Banco/Sistema-Bancario--SCRUM/src/AuthServiceBanco.Persistence/Repositories/UserRepository.cs:line 21
+   at AuthServiceBanco.Application.Services.UserManagementService.GetUserByIdAsync(String userId) in /Users/josueboror/Visual/Banco/Sistema-Bancario--SCRUM/src/AuthServiceBanco.Application/Services/UserManagementService.cs:line 65
+   at AuthServiceBanco.Api.Controllers.UserProfileController.UserExists(String userId) in /Users/josueboror/Visual/Banco/Sistema-Bancario--SCRUM/src/AuthServiceBanco.Api/Controllers/UserProfileController.cs:line 18
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at AuthServiceBanco.Api.Middlewares.GlobalExceptionMiddleware.InvokeAsync(HttpContext context) in /Users/josueboror/Visual/Banco/Sistema-Bancario--SCRUM/src/AuthServiceBanco.Api/Middlewares/GlobalExceptionMiddleware.cs:line 18
+[2026-03-08 21:13:21 INF] HTTP GET /api/v1/users/123456879/exists responded 404 in 11.8841 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNJTH67IHV78:00000002","ConnectionId":"0HNJTH67IHV78"}
+[2026-03-08 21:13:21 ERR] An unhandled exception occurred {"SourceContext":"AuthServiceBanco.Api.Middlewares.GlobalExceptionMiddleware","RequestId":"0HNJTH67IHV78:00000003","RequestPath":"/api/v1/users/123456879/exists","ConnectionId":"0HNJTH67IHV78"}
+System.InvalidOperationException: User with id 123456879 not found.
+   at AuthServiceBanco.Persistence.Repositories.UserRepository.GetByIdAsync(String id) in /Users/josueboror/Visual/Banco/Sistema-Bancario--SCRUM/src/AuthServiceBanco.Persistence/Repositories/UserRepository.cs:line 21
+   at AuthServiceBanco.Application.Services.UserManagementService.GetUserByIdAsync(String userId) in /Users/josueboror/Visual/Banco/Sistema-Bancario--SCRUM/src/AuthServiceBanco.Application/Services/UserManagementService.cs:line 65
+   at AuthServiceBanco.Api.Controllers.UserProfileController.UserExists(String userId) in /Users/josueboror/Visual/Banco/Sistema-Bancario--SCRUM/src/AuthServiceBanco.Api/Controllers/UserProfileController.cs:line 18
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at AuthServiceBanco.Api.Middlewares.GlobalExceptionMiddleware.InvokeAsync(HttpContext context) in /Users/josueboror/Visual/Banco/Sistema-Bancario--SCRUM/src/AuthServiceBanco.Api/Middlewares/GlobalExceptionMiddleware.cs:line 18
+[2026-03-08 21:13:21 INF] HTTP GET /api/v1/users/123456879/exists responded 404 in 8.2983 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNJTH67IHV78:00000003","ConnectionId":"0HNJTH67IHV78"}
+[2026-03-08 21:13:22 ERR] An unhandled exception occurred {"SourceContext":"AuthServiceBanco.Api.Middlewares.GlobalExceptionMiddleware","RequestId":"0HNJTH67IHV78:00000004","RequestPath":"/api/v1/users/123456879/exists","ConnectionId":"0HNJTH67IHV78"}
+System.InvalidOperationException: User with id 123456879 not found.
+   at AuthServiceBanco.Persistence.Repositories.UserRepository.GetByIdAsync(String id) in /Users/josueboror/Visual/Banco/Sistema-Bancario--SCRUM/src/AuthServiceBanco.Persistence/Repositories/UserRepository.cs:line 21
+   at AuthServiceBanco.Application.Services.UserManagementService.GetUserByIdAsync(String userId) in /Users/josueboror/Visual/Banco/Sistema-Bancario--SCRUM/src/AuthServiceBanco.Application/Services/UserManagementService.cs:line 65
+   at AuthServiceBanco.Api.Controllers.UserProfileController.UserExists(String userId) in /Users/josueboror/Visual/Banco/Sistema-Bancario--SCRUM/src/AuthServiceBanco.Api/Controllers/UserProfileController.cs:line 18
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at AuthServiceBanco.Api.Middlewares.GlobalExceptionMiddleware.InvokeAsync(HttpContext context) in /Users/josueboror/Visual/Banco/Sistema-Bancario--SCRUM/src/AuthServiceBanco.Api/Middlewares/GlobalExceptionMiddleware.cs:line 18
+[2026-03-08 21:13:22 INF] HTTP GET /api/v1/users/123456879/exists responded 404 in 7.9398 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNJTH67IHV78:00000004","ConnectionId":"0HNJTH67IHV78"}
+[2026-03-08 21:13:23 ERR] An unhandled exception occurred {"SourceContext":"AuthServiceBanco.Api.Middlewares.GlobalExceptionMiddleware","RequestId":"0HNJTH67IHV78:00000005","RequestPath":"/api/v1/users/123456879/exists","ConnectionId":"0HNJTH67IHV78"}
+System.InvalidOperationException: User with id 123456879 not found.
+   at AuthServiceBanco.Persistence.Repositories.UserRepository.GetByIdAsync(String id) in /Users/josueboror/Visual/Banco/Sistema-Bancario--SCRUM/src/AuthServiceBanco.Persistence/Repositories/UserRepository.cs:line 21
+   at AuthServiceBanco.Application.Services.UserManagementService.GetUserByIdAsync(String userId) in /Users/josueboror/Visual/Banco/Sistema-Bancario--SCRUM/src/AuthServiceBanco.Application/Services/UserManagementService.cs:line 65
+   at AuthServiceBanco.Api.Controllers.UserProfileController.UserExists(String userId) in /Users/josueboror/Visual/Banco/Sistema-Bancario--SCRUM/src/AuthServiceBanco.Api/Controllers/UserProfileController.cs:line 18
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at AuthServiceBanco.Api.Middlewares.GlobalExceptionMiddleware.InvokeAsync(HttpContext context) in /Users/josueboror/Visual/Banco/Sistema-Bancario--SCRUM/src/AuthServiceBanco.Api/Middlewares/GlobalExceptionMiddleware.cs:line 18
+[2026-03-08 21:13:23 INF] HTTP GET /api/v1/users/123456879/exists responded 404 in 8.3155 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNJTH67IHV78:00000005","ConnectionId":"0HNJTH67IHV78"}
+[2026-03-08 21:13:23 ERR] An unhandled exception occurred {"SourceContext":"AuthServiceBanco.Api.Middlewares.GlobalExceptionMiddleware","RequestId":"0HNJTH67IHV78:00000006","RequestPath":"/api/v1/users/123456879/exists","ConnectionId":"0HNJTH67IHV78"}
+System.InvalidOperationException: User with id 123456879 not found.
+   at AuthServiceBanco.Persistence.Repositories.UserRepository.GetByIdAsync(String id) in /Users/josueboror/Visual/Banco/Sistema-Bancario--SCRUM/src/AuthServiceBanco.Persistence/Repositories/UserRepository.cs:line 21
+   at AuthServiceBanco.Application.Services.UserManagementService.GetUserByIdAsync(String userId) in /Users/josueboror/Visual/Banco/Sistema-Bancario--SCRUM/src/AuthServiceBanco.Application/Services/UserManagementService.cs:line 65
+   at AuthServiceBanco.Api.Controllers.UserProfileController.UserExists(String userId) in /Users/josueboror/Visual/Banco/Sistema-Bancario--SCRUM/src/AuthServiceBanco.Api/Controllers/UserProfileController.cs:line 18
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at AuthServiceBanco.Api.Middlewares.GlobalExceptionMiddleware.InvokeAsync(HttpContext context) in /Users/josueboror/Visual/Banco/Sistema-Bancario--SCRUM/src/AuthServiceBanco.Api/Middlewares/GlobalExceptionMiddleware.cs:line 18
+[2026-03-08 21:13:23 INF] HTTP GET /api/v1/users/123456879/exists responded 404 in 8.0553 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNJTH67IHV78:00000006","ConnectionId":"0HNJTH67IHV78"}
+[2026-03-08 21:14:03 ERR] An unhandled exception occurred {"SourceContext":"AuthServiceBanco.Api.Middlewares.GlobalExceptionMiddleware","RequestId":"0HNJTH67IHV79:00000001","RequestPath":"/api/v1/users/123456879/exists","ConnectionId":"0HNJTH67IHV79"}
+System.InvalidOperationException: User with id 123456879 not found.
+   at AuthServiceBanco.Persistence.Repositories.UserRepository.GetByIdAsync(String id) in /Users/josueboror/Visual/Banco/Sistema-Bancario--SCRUM/src/AuthServiceBanco.Persistence/Repositories/UserRepository.cs:line 21
+   at AuthServiceBanco.Application.Services.UserManagementService.GetUserByIdAsync(String userId) in /Users/josueboror/Visual/Banco/Sistema-Bancario--SCRUM/src/AuthServiceBanco.Application/Services/UserManagementService.cs:line 65
+   at AuthServiceBanco.Api.Controllers.UserProfileController.UserExists(String userId) in /Users/josueboror/Visual/Banco/Sistema-Bancario--SCRUM/src/AuthServiceBanco.Api/Controllers/UserProfileController.cs:line 18
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at AuthServiceBanco.Api.Middlewares.GlobalExceptionMiddleware.InvokeAsync(HttpContext context) in /Users/josueboror/Visual/Banco/Sistema-Bancario--SCRUM/src/AuthServiceBanco.Api/Middlewares/GlobalExceptionMiddleware.cs:line 18
+[2026-03-08 21:14:03 INF] HTTP GET /api/v1/users/123456879/exists responded 404 in 20.6620 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNJTH67IHV79:00000001","ConnectionId":"0HNJTH67IHV79"}
+[2026-03-08 21:14:33 ERR] An unhandled exception occurred {"SourceContext":"AuthServiceBanco.Api.Middlewares.GlobalExceptionMiddleware","RequestId":"0HNJTH67IHV7A:00000001","RequestPath":"/api/v1/users/123456879/exists","ConnectionId":"0HNJTH67IHV7A"}
+System.InvalidOperationException: User with id 123456879 not found.
+   at AuthServiceBanco.Persistence.Repositories.UserRepository.GetByIdAsync(String id) in /Users/josueboror/Visual/Banco/Sistema-Bancario--SCRUM/src/AuthServiceBanco.Persistence/Repositories/UserRepository.cs:line 21
+   at AuthServiceBanco.Application.Services.UserManagementService.GetUserByIdAsync(String userId) in /Users/josueboror/Visual/Banco/Sistema-Bancario--SCRUM/src/AuthServiceBanco.Application/Services/UserManagementService.cs:line 65
+   at AuthServiceBanco.Api.Controllers.UserProfileController.UserExists(String userId) in /Users/josueboror/Visual/Banco/Sistema-Bancario--SCRUM/src/AuthServiceBanco.Api/Controllers/UserProfileController.cs:line 18
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at AuthServiceBanco.Api.Middlewares.GlobalExceptionMiddleware.InvokeAsync(HttpContext context) in /Users/josueboror/Visual/Banco/Sistema-Bancario--SCRUM/src/AuthServiceBanco.Api/Middlewares/GlobalExceptionMiddleware.cs:line 18
+[2026-03-08 21:14:33 INF] HTTP GET /api/v1/users/123456879/exists responded 404 in 9.6037 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNJTH67IHV7A:00000001","ConnectionId":"0HNJTH67IHV7A"}
+[2026-03-08 21:14:34 ERR] An unhandled exception occurred {"SourceContext":"AuthServiceBanco.Api.Middlewares.GlobalExceptionMiddleware","RequestId":"0HNJTH67IHV7A:00000002","RequestPath":"/api/v1/users/123456879/exists","ConnectionId":"0HNJTH67IHV7A"}
+System.InvalidOperationException: User with id 123456879 not found.
+   at AuthServiceBanco.Persistence.Repositories.UserRepository.GetByIdAsync(String id) in /Users/josueboror/Visual/Banco/Sistema-Bancario--SCRUM/src/AuthServiceBanco.Persistence/Repositories/UserRepository.cs:line 21
+   at AuthServiceBanco.Application.Services.UserManagementService.GetUserByIdAsync(String userId) in /Users/josueboror/Visual/Banco/Sistema-Bancario--SCRUM/src/AuthServiceBanco.Application/Services/UserManagementService.cs:line 65
+   at AuthServiceBanco.Api.Controllers.UserProfileController.UserExists(String userId) in /Users/josueboror/Visual/Banco/Sistema-Bancario--SCRUM/src/AuthServiceBanco.Api/Controllers/UserProfileController.cs:line 18
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at AuthServiceBanco.Api.Middlewares.GlobalExceptionMiddleware.InvokeAsync(HttpContext context) in /Users/josueboror/Visual/Banco/Sistema-Bancario--SCRUM/src/AuthServiceBanco.Api/Middlewares/GlobalExceptionMiddleware.cs:line 18
+[2026-03-08 21:14:34 INF] HTTP GET /api/v1/users/123456879/exists responded 404 in 6.5984 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNJTH67IHV7A:00000002","ConnectionId":"0HNJTH67IHV7A"}
+[2026-03-08 21:15:04 INF] HTTP GET /api/v1/users/usr_xSHYMCjHFAwU/exists responded 200 in 34.0359 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNJTH67IHV7B:00000001","ConnectionId":"0HNJTH67IHV7B"}
+[2026-03-08 21:15:09 INF] HTTP GET /api/v1/users/usr_xSHYMCjHFAwU/exists responded 200 in 7.5886 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNJTH67IHV7C:00000001","ConnectionId":"0HNJTH67IHV7C"}
+[2026-03-08 21:15:10 INF] HTTP GET /api/v1/users/usr_xSHYMCjHFAwU/exists responded 200 in 2.9040 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNJTH67IHV7C:00000002","ConnectionId":"0HNJTH67IHV7C"}
+[2026-03-08 21:15:12 ERR] An unhandled exception occurred {"SourceContext":"AuthServiceBanco.Api.Middlewares.GlobalExceptionMiddleware","RequestId":"0HNJTH67IHV7C:00000003","RequestPath":"/api/v1/users/usr_xSHYMCjHFAswU/exists","ConnectionId":"0HNJTH67IHV7C"}
+System.InvalidOperationException: User with id usr_xSHYMCjHFAswU not found.
+   at AuthServiceBanco.Persistence.Repositories.UserRepository.GetByIdAsync(String id) in /Users/josueboror/Visual/Banco/Sistema-Bancario--SCRUM/src/AuthServiceBanco.Persistence/Repositories/UserRepository.cs:line 21
+   at AuthServiceBanco.Application.Services.UserManagementService.GetUserByIdAsync(String userId) in /Users/josueboror/Visual/Banco/Sistema-Bancario--SCRUM/src/AuthServiceBanco.Application/Services/UserManagementService.cs:line 65
+   at AuthServiceBanco.Api.Controllers.UserProfileController.UserExists(String userId) in /Users/josueboror/Visual/Banco/Sistema-Bancario--SCRUM/src/AuthServiceBanco.Api/Controllers/UserProfileController.cs:line 18
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at AuthServiceBanco.Api.Middlewares.GlobalExceptionMiddleware.InvokeAsync(HttpContext context) in /Users/josueboror/Visual/Banco/Sistema-Bancario--SCRUM/src/AuthServiceBanco.Api/Middlewares/GlobalExceptionMiddleware.cs:line 18
+[2026-03-08 21:15:12 INF] HTTP GET /api/v1/users/usr_xSHYMCjHFAswU/exists responded 404 in 9.1133 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNJTH67IHV7C:00000003","ConnectionId":"0HNJTH67IHV7C"}
+[2026-03-08 21:15:36 INF] HTTP GET /api/v1/users/usr_b6SiNwzHv9xs/exists responded 200 in 10.0595 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNJTH67IHV7D:00000001","ConnectionId":"0HNJTH67IHV7D"}
+[2026-03-08 21:15:37 INF] HTTP GET /api/v1/users/usr_b6SiNwzHv9xs/exists responded 200 in 5.8267 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNJTH67IHV7D:00000002","ConnectionId":"0HNJTH67IHV7D"}
+[2026-03-08 21:15:38 INF] HTTP GET /api/v1/users/usr_b6SiNwzHv9xs/exists responded 200 in 3.8478 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNJTH67IHV7D:00000003","ConnectionId":"0HNJTH67IHV7D"}
+[2026-03-08 21:15:39 INF] HTTP GET /api/v1/users/usr_b6SiNwzHv9xs/exists responded 200 in 6.1012 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNJTH67IHV7D:00000004","ConnectionId":"0HNJTH67IHV7D"}
+[2026-03-08 21:15:39 INF] HTTP GET /api/v1/users/usr_b6SiNwzHv9xs/exists responded 200 in 6.6508 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNJTH67IHV7D:00000005","ConnectionId":"0HNJTH67IHV7D"}
+[2026-03-08 21:15:54 ERR] An unhandled exception occurred {"SourceContext":"AuthServiceBanco.Api.Middlewares.GlobalExceptionMiddleware","RequestId":"0HNJTH67IHV7E:00000001","RequestPath":"/api/v1/users/usr_xSHYMCjHFAswU0/exists","ConnectionId":"0HNJTH67IHV7E"}
+System.InvalidOperationException: User with id usr_xSHYMCjHFAswU0 not found.
+   at AuthServiceBanco.Persistence.Repositories.UserRepository.GetByIdAsync(String id) in /Users/josueboror/Visual/Banco/Sistema-Bancario--SCRUM/src/AuthServiceBanco.Persistence/Repositories/UserRepository.cs:line 21
+   at AuthServiceBanco.Application.Services.UserManagementService.GetUserByIdAsync(String userId) in /Users/josueboror/Visual/Banco/Sistema-Bancario--SCRUM/src/AuthServiceBanco.Application/Services/UserManagementService.cs:line 65
+   at AuthServiceBanco.Api.Controllers.UserProfileController.UserExists(String userId) in /Users/josueboror/Visual/Banco/Sistema-Bancario--SCRUM/src/AuthServiceBanco.Api/Controllers/UserProfileController.cs:line 18
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at AuthServiceBanco.Api.Middlewares.GlobalExceptionMiddleware.InvokeAsync(HttpContext context) in /Users/josueboror/Visual/Banco/Sistema-Bancario--SCRUM/src/AuthServiceBanco.Api/Middlewares/GlobalExceptionMiddleware.cs:line 18
+[2026-03-08 21:15:54 INF] HTTP GET /api/v1/users/usr_xSHYMCjHFAswU0/exists responded 404 in 9.2656 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNJTH67IHV7E:00000001","ConnectionId":"0HNJTH67IHV7E"}
+[2026-03-08 21:15:57 ERR] An unhandled exception occurred {"SourceContext":"AuthServiceBanco.Api.Middlewares.GlobalExceptionMiddleware","RequestId":"0HNJTH67IHV7E:00000002","RequestPath":"/api/v1/users/usr_xSHYMCjHFAs0/exists","ConnectionId":"0HNJTH67IHV7E"}
+System.InvalidOperationException: User with id usr_xSHYMCjHFAs0 not found.
+   at AuthServiceBanco.Persistence.Repositories.UserRepository.GetByIdAsync(String id) in /Users/josueboror/Visual/Banco/Sistema-Bancario--SCRUM/src/AuthServiceBanco.Persistence/Repositories/UserRepository.cs:line 21
+   at AuthServiceBanco.Application.Services.UserManagementService.GetUserByIdAsync(String userId) in /Users/josueboror/Visual/Banco/Sistema-Bancario--SCRUM/src/AuthServiceBanco.Application/Services/UserManagementService.cs:line 65
+   at AuthServiceBanco.Api.Controllers.UserProfileController.UserExists(String userId) in /Users/josueboror/Visual/Banco/Sistema-Bancario--SCRUM/src/AuthServiceBanco.Api/Controllers/UserProfileController.cs:line 18
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at AuthServiceBanco.Api.Middlewares.GlobalExceptionMiddleware.InvokeAsync(HttpContext context) in /Users/josueboror/Visual/Banco/Sistema-Bancario--SCRUM/src/AuthServiceBanco.Api/Middlewares/GlobalExceptionMiddleware.cs:line 18
+[2026-03-08 21:15:57 INF] HTTP GET /api/v1/users/usr_xSHYMCjHFAs0/exists responded 404 in 8.3584 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNJTH67IHV7E:00000002","ConnectionId":"0HNJTH67IHV7E"}
+[2026-03-08 21:15:58 ERR] An unhandled exception occurred {"SourceContext":"AuthServiceBanco.Api.Middlewares.GlobalExceptionMiddleware","RequestId":"0HNJTH67IHV7E:00000003","RequestPath":"/api/v1/users/usr_xSHYMCjHFAs0/exists","ConnectionId":"0HNJTH67IHV7E"}
+System.InvalidOperationException: User with id usr_xSHYMCjHFAs0 not found.
+   at AuthServiceBanco.Persistence.Repositories.UserRepository.GetByIdAsync(String id) in /Users/josueboror/Visual/Banco/Sistema-Bancario--SCRUM/src/AuthServiceBanco.Persistence/Repositories/UserRepository.cs:line 21
+   at AuthServiceBanco.Application.Services.UserManagementService.GetUserByIdAsync(String userId) in /Users/josueboror/Visual/Banco/Sistema-Bancario--SCRUM/src/AuthServiceBanco.Application/Services/UserManagementService.cs:line 65
+   at AuthServiceBanco.Api.Controllers.UserProfileController.UserExists(String userId) in /Users/josueboror/Visual/Banco/Sistema-Bancario--SCRUM/src/AuthServiceBanco.Api/Controllers/UserProfileController.cs:line 18
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at AuthServiceBanco.Api.Middlewares.GlobalExceptionMiddleware.InvokeAsync(HttpContext context) in /Users/josueboror/Visual/Banco/Sistema-Bancario--SCRUM/src/AuthServiceBanco.Api/Middlewares/GlobalExceptionMiddleware.cs:line 18
+[2026-03-08 21:15:58 INF] HTTP GET /api/v1/users/usr_xSHYMCjHFAs0/exists responded 404 in 10.9870 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNJTH67IHV7E:00000003","ConnectionId":"0HNJTH67IHV7E"}
+[2026-03-08 21:16:00 ERR] An unhandled exception occurred {"SourceContext":"AuthServiceBanco.Api.Middlewares.GlobalExceptionMiddleware","RequestId":"0HNJTH67IHV7E:00000004","RequestPath":"/api/v1/users/usr_xSHYMCjHAs0/exists","ConnectionId":"0HNJTH67IHV7E"}
+System.InvalidOperationException: User with id usr_xSHYMCjHAs0 not found.
+   at AuthServiceBanco.Persistence.Repositories.UserRepository.GetByIdAsync(String id) in /Users/josueboror/Visual/Banco/Sistema-Bancario--SCRUM/src/AuthServiceBanco.Persistence/Repositories/UserRepository.cs:line 21
+   at AuthServiceBanco.Application.Services.UserManagementService.GetUserByIdAsync(String userId) in /Users/josueboror/Visual/Banco/Sistema-Bancario--SCRUM/src/AuthServiceBanco.Application/Services/UserManagementService.cs:line 65
+   at AuthServiceBanco.Api.Controllers.UserProfileController.UserExists(String userId) in /Users/josueboror/Visual/Banco/Sistema-Bancario--SCRUM/src/AuthServiceBanco.Api/Controllers/UserProfileController.cs:line 18
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at AuthServiceBanco.Api.Middlewares.GlobalExceptionMiddleware.InvokeAsync(HttpContext context) in /Users/josueboror/Visual/Banco/Sistema-Bancario--SCRUM/src/AuthServiceBanco.Api/Middlewares/GlobalExceptionMiddleware.cs:line 18
+[2026-03-08 21:16:00 INF] HTTP GET /api/v1/users/usr_xSHYMCjHAs0/exists responded 404 in 6.9738 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNJTH67IHV7E:00000004","ConnectionId":"0HNJTH67IHV7E"}
+[2026-03-08 21:16:01 ERR] An unhandled exception occurred {"SourceContext":"AuthServiceBanco.Api.Middlewares.GlobalExceptionMiddleware","RequestId":"0HNJTH67IHV7E:00000005","RequestPath":"/api/v1/users/usr_xSHYMCjHAs0/exists","ConnectionId":"0HNJTH67IHV7E"}
+System.InvalidOperationException: User with id usr_xSHYMCjHAs0 not found.
+   at AuthServiceBanco.Persistence.Repositories.UserRepository.GetByIdAsync(String id) in /Users/josueboror/Visual/Banco/Sistema-Bancario--SCRUM/src/AuthServiceBanco.Persistence/Repositories/UserRepository.cs:line 21
+   at AuthServiceBanco.Application.Services.UserManagementService.GetUserByIdAsync(String userId) in /Users/josueboror/Visual/Banco/Sistema-Bancario--SCRUM/src/AuthServiceBanco.Application/Services/UserManagementService.cs:line 65
+   at AuthServiceBanco.Api.Controllers.UserProfileController.UserExists(String userId) in /Users/josueboror/Visual/Banco/Sistema-Bancario--SCRUM/src/AuthServiceBanco.Api/Controllers/UserProfileController.cs:line 18
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at AuthServiceBanco.Api.Middlewares.GlobalExceptionMiddleware.InvokeAsync(HttpContext context) in /Users/josueboror/Visual/Banco/Sistema-Bancario--SCRUM/src/AuthServiceBanco.Api/Middlewares/GlobalExceptionMiddleware.cs:line 18
+[2026-03-08 21:16:01 INF] HTTP GET /api/v1/users/usr_xSHYMCjHAs0/exists responded 404 in 6.8061 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNJTH67IHV7E:00000005","ConnectionId":"0HNJTH67IHV7E"}

@@ -31,7 +31,7 @@ router.get('/history/me', validateJWT, getHistoryMe);
 router.get('/history/:accountId', validateJWT, validateRole(Roles.ADMIN), getHistoryByAccountId);
 
 // RUTAS PÚBLICAS (sin autenticación)
-// Crear depósito a una cuenta (por ventanilla, queda pendiente de aprobación)
+// Crear depósito a una cuenta (no requiere token; mismo comportamiento que POST /deposits)
 router.post('/deposit', validateDeposit, createDeposit);
 
 // RUTAS DE CLIENTE (requieren autenticación)

@@ -31,7 +31,6 @@ import favoriteRoutes from '../src/routes/favorite.routes.js';
 // Importa las rutas de conversión de moneda
 import currencyRoutes from '../src/routes/currency.routes.js';
 
-
 // Ruta base para todos los endpoints de la API
 const BASE_PATH = '/SistemaBancarioAdmin/v1';
 
@@ -66,7 +65,7 @@ const routes = (app) => {
     // Rutas para conversión de moneda
     app.use(`${BASE_PATH}/currency`, currencyRoutes);
     // Endpoint de health check para verificar que el servidor está funcionando
-    app.get(`${BASE_PATH}/Health`, (request, response) => {
+    app.get(`${BASE_PATH}/health`, (request, response) => {
         response.status(200).json({
             status: 'Healthy',
             timestamp: new Date().toISOString(),

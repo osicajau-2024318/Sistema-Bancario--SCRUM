@@ -72,10 +72,9 @@ export const createAccount = async (req, res) => {
     // Verificar que el usuario existe en .NET — usa targetUserId
     const token = req.headers.authorization?.split(' ')[1];
     try {
-      // Llama al servicio de autenticación para verificar que el usuario existe
       await verifyUserExists(targetUserId, token);
     } catch (error) {
-      return res.status(404).json({ success: false, message: 'Usuario no encontrado en el sistema' });
+      return res.status(404).json({ success: false, message: 'Ese id de usuario no existe' });
     }
 
     // Generar número de cuenta único de 10 dígitos
