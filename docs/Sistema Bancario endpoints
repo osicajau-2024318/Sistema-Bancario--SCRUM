@@ -1,849 +1,711 @@
+# Sistema Bancario — Documentación de endpoints
+
+Base URLs:
+- **Servicio .NET (Auth):** `http://localhost:5025/api/v1`
+- **Servicio Node.js (Bancario):** `http://localhost:3000/SistemaBancarioAdmin/v1`
+
+**Autenticación:** En los endpoints que requieren token, enviar en el header:  
+`Authorization: Bearer <tu_token_jwt>`
+
+---
+
+## Índice
+1. [Servicio .NET — Health y Auth](#1-servicio-net--health-y-auth)
+2. [Servicio .NET — Admin](#2-servicio-net--admin)
+3. [Servicio .NET — Users](#3-servicio-net--users)
+4. [Servicio Node.js — General](#4-servicio-nodejs--general)
+5. [Servicio Node.js — Accounts](#5-servicio-nodejs--accounts)
+6. [Servicio Node.js — Transactions](#6-servicio-nodejs--transactions)
+7. [Servicio Node.js — Deposits](#7-servicio-nodejs--deposits)
+8. [Servicio Node.js — Services](#8-servicio-nodejs--services)
+9. [Servicio Node.js — Favorites](#9-servicio-nodejs--favorites)
+10. [Servicio Node.js — Currency](#10-servicio-nodejs--currency)
+
+---
+
+## 1. Servicio .NET — Health y Auth
+
+### GET /health
+- **URL:** `http://localhost:5025/api/v1/health`
+- **Token:** No requiere
+- **Descripción:** Verifica que el servicio de autenticación esté en ejecución.
+- **Body:** Ninguno
+- **Respuesta esperada:** 200 OK con estado del servicio
+
+---
+
+### POST /auth/register
+- **URL:** `http://localhost:5025/api/v1/auth/register`
+- **Token:** No requiere
+- **Descripción:** Registro público. Crea usuario con cuenta inactiva (pendiente de activación por admin).
+- **Body (ejemplo):**
+```json
 {
-  "info": {
-    "_postman_id": "790c2557-6b7b-4c24-aa42-674cead4bae0",
-    "name": "AuthService",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "_exporter_id": "48445328",
-    "_collection_link": "https://go.postman.co/collection/48445328-790c2557-6b7b-4c24-aa42-674cead4bae0?source=collection_link"
-  },
-  "item": [
-    {
-      "name": "Register",
-      "event": [
-        {
-          "listen": "test",
-          "script": {
-            "exec": [
-              "pm.test(\"Status code is 200\", function () {",
-              "    pm.response.to.have.status(200);",
-              "});"
-            ],
-            "type": "text/javascript",
-            "packages": {},
-            "requests": {}
-          }
-        }
-      ],
-      "request": {
-        "method": "POST",
-        "header": [],
-        "body": {
-          "mode": "formdata",
-          "formdata": [
-            {
-              "key": "name",
-              "value": "Eddy",
-              "type": "text",
-              "uuid": "5a725091-9ebd-48b6-a09c-84e3eaf671bf"
-            },
-            {
-              "key": "surname",
-              "value": "Tucubal",
-              "type": "text",
-              "uuid": "670c222b-a861-42ed-ae2a-53c9eb6861e0"
-            },
-            {
-              "key": "username",
-              "value": "etucubal\n",
-              "type": "text",
-              "uuid": "368da939-0048-46a7-91a1-b923360d317b"
-            },
-            {
-              "key": "dpi",
-              "value": "1234567890101",
-              "type": "text",
-              "uuid": "f1405a0e-94ff-409a-baba-6a5ce8887c86"
-            },
-            {
-              "key": "addres",
-              "value": "Calle Falsa 123",
-              "type": "text",
-              "uuid": "591876b1-ad5c-4c2c-b75e-5b5b97bbd2c2"
-            },
-            {
-              "key": "phone",
-              "value": "20306981",
-              "type": "text",
-              "uuid": "a515858c-0f51-4a94-bc3c-dacdf68a834d"
-            },
-            {
-              "key": "email",
-              "value": "etucubal-2024505@kinal.edu.gt",
-              "type": "text",
-              "uuid": "9741edc5-cc2f-4282-a19f-285adad7dbdd"
-            },
-            {
-              "key": "password",
-              "value": "123456789",
-              "type": "text",
-              "uuid": "9b5ce121-dfd4-44e9-8523-6b7bec012263"
-            },
-            {
-              "key": "workName",
-              "value": "Kinal",
-              "type": "text",
-              "uuid": "6320f9ee-a6be-43d8-a03d-fa9f232951d8"
-            },
-            {
-              "key": "monthlyIncome",
-              "value": "5500.50",
-              "type": "text",
-              "uuid": "1d9e0b5d-ec01-44f3-bf73-75617a27919c"
-            },
-            {
-              "key": "profilePicture",
-              "type": "file",
-              "uuid": "540fdfdf-9438-4d6c-b0a1-1862164d0f39",
-              "src": "/C:/Users/edy14/OneDrive/Imágenes/ferrari spa2.jpg"
-            }
-          ]
-        },
-        "url": {
-          "raw": "http://localhost:5025/api/v1/auth/register",
-          "protocol": "http",
-          "host": [
-            "localhost"
-          ],
-          "port": "5025",
-          "path": [
-            "api",
-            "v1",
-            "auth",
-            "register"
-          ]
-        },
-        "description": "This is a GET request and it is used to \"get\" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have `id=1`).\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."
-      },
-      "response": []
-    },
-    {
-      "name": "Verify Email",
-      "request": {
-        "method": "POST",
-        "header": [],
-        "body": {
-          "mode": "raw",
-          "raw": "{\r\n  \"token\": \"Q2r-8QUjtEnEwnBmyifArNTUL_us0NxRmXDTwP9Ff7Q\"\r\n}",
-          "options": {
-            "raw": {
-              "language": "json"
-            }
-          }
-        },
-        "url": {
-          "raw": "http://localhost:5025/api/v1/auth/verify-email",
-          "protocol": "http",
-          "host": [
-            "localhost"
-          ],
-          "port": "5025",
-          "path": [
-            "api",
-            "v1",
-            "auth",
-            "verify-email"
-          ]
-        }
-      },
-      "response": []
-    },
-    {
-      "name": "Resend Verification",
-      "request": {
-        "method": "POST",
-        "header": [],
-        "body": {
-          "mode": "raw",
-          "raw": "{\r\n  \"email\": \"etucubal-2024505@kinal.edu.gt\"\r\n}",
-          "options": {
-            "raw": {
-              "language": "json"
-            }
-          }
-        },
-        "url": {
-          "raw": "http://localhost:5025/api/v1/auth/resend-verification",
-          "protocol": "http",
-          "host": [
-            "localhost"
-          ],
-          "port": "5025",
-          "path": [
-            "api",
-            "v1",
-            "auth",
-            "resend-verification"
-          ]
-        }
-      },
-      "response": []
-    },
-    {
-      "name": "Forgot Password",
-      "request": {
-        "method": "POST",
-        "header": [],
-        "body": {
-          "mode": "raw",
-          "raw": "{\r\n  \"email\": \"usuario@correo.com\"\r\n}",
-          "options": {
-            "raw": {
-              "language": "json"
-            }
-          }
-        },
-        "url": {
-          "raw": "http://localhost:5025/api/v1/auth/forgot-password",
-          "protocol": "http",
-          "host": [
-            "localhost"
-          ],
-          "port": "5025",
-          "path": [
-            "api",
-            "v1",
-            "auth",
-            "forgot-password"
-          ]
-        }
-      },
-      "response": []
-    },
-    {
-      "name": "Reset Password",
-      "request": {
-        "method": "POST",
-        "header": [],
-        "body": {
-          "mode": "raw",
-          "raw": "{\r\n  \"token\": \"RESET_TOKEN_AQUI\",\r\n  \"newPassword\": \"NuevaPassword123\"\r\n}",
-          "options": {
-            "raw": {
-              "language": "json"
-            }
-          }
-        },
-        "url": {
-          "raw": "http://localhost:5025/api/v1/auth/reset-password",
-          "protocol": "http",
-          "host": [
-            "localhost"
-          ],
-          "port": "5025",
-          "path": [
-            "api",
-            "v1",
-            "auth",
-            "reset-password"
-          ]
-        }
-      },
-      "response": []
-    },
-    {
-      "name": "Get Profile",
-      "request": {
-        "auth": {
-          "type": "bearer",
-          "bearer": [
-            {
-              "key": "token",
-              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c3JfOVl5SjhNQ2h1dkN5IiwianRpIjoiYjZlMTk4ZDMtYjk0MC00OTZjLWI4ZjctYTQ4OTY1YzdhMzJjIiwiaWF0IjoxNzcyMjM3OTcyLCJyb2xlIjoiQURNSU5fUk9MRSIsImV4cCI6MTc3MjIzOTc3MiwiaXNzIjoiQXV0aFNlcnZpY2UiLCJhdWQiOiJBdXRoU2VydmljZSJ9.bzY8nU0T3tEgiSIW-g-OaqG7hFtr3g9nGH-yQdJiFNg",
-              "type": "string"
-            }
-          ]
-        },
-        "method": "GET",
-        "header": [
-          {
-            "key": "Authorization",
-            "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c3JfZ2lQSk5QeHRUaUN1IiwianRpIjoiNDk2NzNmMzAtNjcxYi00MjZhLWEyMWMtZWU1ZDMxYWRhNjc2IiwiaWF0IjoxNzcxMzg4NTMxLCJyb2xlIjoiVVNFUl9ST0xFIiwiZXhwIjoxNzcxMzkwMzMxLCJhdWQiOiJBdXRoU2VydmljZSIsImlzcyI6IkF1dGhTZXJ2aWNlIn0.eTt0Cscu89c6m8G6AId8eR8dE4xod8-lJXU93Xv-Vd4",
-            "type": "text"
-          }
-        ],
-        "url": {
-          "raw": "http://localhost:5025/api/v1/users/profile/me",
-          "protocol": "http",
-          "host": [
-            "localhost"
-          ],
-          "port": "5025",
-          "path": [
-            "api",
-            "v1",
-            "users",
-            "profile",
-            "me"
-          ]
-        }
-      },
-      "response": []
-    },
-    {
-      "name": "Update Profile",
-      "request": {
-        "auth": {
-          "type": "bearer",
-          "bearer": [
-            {
-              "key": "token",
-              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c3JfWGZGUWVLazhqS0FnIiwianRpIjoiZTJmY2UyNDUtZmJhYS00YjM3LWI4YzMtZDlkOTZiYjc4YTdlIiwiaWF0IjoxNzcyMzEyNzQ3LCJyb2xlIjoiQURNSU5fUk9MRSIsImV4cCI6MTc3MjMxNDU0NywiaXNzIjoiQXV0aFNlcnZpY2UiLCJhdWQiOiJBdXRoU2VydmljZSJ9.oxm_ppZHTflmePzUXi7NciRbdX-BrwupbX5MdniPtPw",
-              "type": "string"
-            }
-          ]
-        },
-        "method": "PUT",
-        "header": [
-          {
-            "key": "Authorization",
-            "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c3JfWDVXY3cxSnI3MXRoIiwianRpIjoiYTRlNzcwM2QtYWUwNy00ZmRjLWEzZWMtOGI3MTQyY2JkNTM5IiwiaWF0IjoxNzcxMzkwMjg4LCJyb2xlIjoiQURNSU5fUk9MRSIsImV4cCI6MTc3MTM5MjA4OCwiYXVkIjoiQXV0aFNlcnZpY2UiLCJpc3MiOiJBdXRoU2VydmljZSJ9.67fSsfKR-JnYxHJzqpyeVO7Rekcw5MGIJMxzN0eWG0E",
-            "type": "text"
-          }
-        ],
-        "body": {
-          "mode": "raw",
-          "raw": "{\r\n  \"name\": \"Eddy Daniel\",\r\n  \"surname\": \"Tucubal Sacbajá\",\r\n  \"address\": \"Zona 11, Ciudad de Guatemala\",\r\n  \"phone\": \"87654320\",\r\n  \"workName\": \"No se\",\r\n  \"monthlyIncome\": 6000\r\n}",
-          "options": {
-            "raw": {
-              "language": "json"
-            }
-          }
-        },
-        "url": {
-          "raw": "http://localhost:5025/api/v1/admin/users/usr_qazY4F3Gtknu",
-          "protocol": "http",
-          "host": [
-            "localhost"
-          ],
-          "port": "5025",
-          "path": [
-            "api",
-            "v1",
-            "admin",
-            "users",
-            "usr_qazY4F3Gtknu"
-          ]
-        }
-      },
-      "response": []
-    },
-    {
-      "name": "Get User Roles",
-      "protocolProfileBehavior": {
-        "disableBodyPruning": true
-      },
-      "request": {
-        "auth": {
-          "type": "bearer",
-          "bearer": [
-            {
-              "key": "token",
-              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c3JfQ2ZqQ01CUkM1dzZBIiwianRpIjoiOWE5MzY5ZjgtNmQ1Mi00MzY3LThmOTktMzcyMDcyOTAxMGE1IiwiaWF0IjoxNzcyMjMzNzM3LCJyb2xlIjoiVVNFUl9ST0xFIiwiZXhwIjoxNzcyMjM1NTM3LCJpc3MiOiJBdXRoU2VydmljZSIsImF1ZCI6IkF1dGhTZXJ2aWNlIn0.w9D9rE30ghgGZY9WTAgTDldYcgDS4OWdQrbf2gd1Ck4",
-              "type": "string"
-            }
-          ]
-        },
-        "method": "GET",
-        "header": [],
-        "body": {
-          "mode": "raw",
-          "raw": "",
-          "options": {
-            "raw": {
-              "language": "json"
-            }
-          }
-        },
-        "url": {
-          "raw": "http://localhost:5025/api/v1/users/usr_CfjCMBRC5w6A/roles",
-          "protocol": "http",
-          "host": [
-            "localhost"
-          ],
-          "port": "5025",
-          "path": [
-            "api",
-            "v1",
-            "users",
-            "usr_CfjCMBRC5w6A",
-            "roles"
-          ]
-        }
-      },
-      "response": []
-    },
-    {
-      "name": "Get Users By Role",
-      "protocolProfileBehavior": {
-        "disableBodyPruning": true
-      },
-      "request": {
-        "auth": {
-          "type": "bearer",
-          "bearer": [
-            {
-              "key": "token",
-              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c3JfQ2ZqQ01CUkM1dzZBIiwianRpIjoiOWE5MzY5ZjgtNmQ1Mi00MzY3LThmOTktMzcyMDcyOTAxMGE1IiwiaWF0IjoxNzcyMjMzNzM3LCJyb2xlIjoiVVNFUl9ST0xFIiwiZXhwIjoxNzcyMjM1NTM3LCJpc3MiOiJBdXRoU2VydmljZSIsImF1ZCI6IkF1dGhTZXJ2aWNlIn0.w9D9rE30ghgGZY9WTAgTDldYcgDS4OWdQrbf2gd1Ck4",
-              "type": "string"
-            }
-          ]
-        },
-        "method": "GET",
-        "header": [],
-        "body": {
-          "mode": "raw",
-          "raw": "",
-          "options": {
-            "raw": {
-              "language": "json"
-            }
-          }
-        },
-        "url": {
-          "raw": "http://localhost:5025/api/v1/users/by-role/USER_ROLE",
-          "protocol": "http",
-          "host": [
-            "localhost"
-          ],
-          "port": "5025",
-          "path": [
-            "api",
-            "v1",
-            "users",
-            "by-role",
-            "USER_ROLE"
-          ]
-        }
-      },
-      "response": []
-    },
-    {
-      "name": "Login",
-      "request": {
-        "method": "POST",
-        "header": [],
-        "body": {
-          "mode": "raw",
-          "raw": "{\r\n    \"emailOrUsername\": \"etucubal-2024505@kinal.edu.gt\",\r\n    \"password\": \"123456789\"\r\n}",
-          "options": {
-            "raw": {
-              "language": "json"
-            }
-          }
-        },
-        "url": {
-          "raw": "http://localhost:5025/api/v1/auth/login",
-          "protocol": "http",
-          "host": [
-            "localhost"
-          ],
-          "port": "5025",
-          "path": [
-            "api",
-            "v1",
-            "auth",
-            "login"
-          ]
-        }
-      },
-      "response": []
-    },
-    {
-      "name": "Crear User",
-      "request": {
-        "auth": {
-          "type": "bearer",
-          "bearer": [
-            {
-              "key": "token",
-              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c3JfWGZGUWVLazhqS0FnIiwianRpIjoiOTdjZjUwZmQtZmI2Yy00NjFmLTk3ODItZTIwODJlZWE5ZmQ3IiwiaWF0IjoxNzcyMzEzODM0LCJyb2xlIjoiQURNSU5fUk9MRSIsImV4cCI6MTc3MjMxNTYzNCwiaXNzIjoiQXV0aFNlcnZpY2UiLCJhdWQiOiJBdXRoU2VydmljZSJ9.jbrVTAPMRFEQmqPfOU5Tj0biGT16FmXC-DR0EUzHDOI",
-              "type": "string"
-            }
-          ]
-        },
-        "method": "POST",
-        "header": [],
-        "body": {
-          "mode": "raw",
-          "raw": "{\r\n    \"name\": \"Daniel\",\r\n    \"surname\": \"Sacbajá\",\r\n    \"username\": \"sacc\",\r\n    \"email\": \"18tsqj@gmail.com\",\r\n    \"password\": \"123456789\",\r\n    \"phone\": \"12345618\",\r\n    \"dpi\": \"1234567090123\",\r\n    \"address\": \"Ciudad de Guatemala\",\r\n    \"workName\": \"Kinal\",\r\n    \"monthlyIncome\": 7000,\r\n    \"account_type\": \"AHORRO\"\r\n  }",
-          "options": {
-            "raw": {
-              "language": "json"
-            }
-          }
-        },
-        "url": {
-          "raw": "http://localhost:3000/SistemaBancarioAdmin/v1/accounts",
-          "protocol": "http",
-          "host": [
-            "localhost"
-          ],
-          "port": "3000",
-          "path": [
-            "SistemaBancarioAdmin",
-            "v1",
-            "accounts"
-          ]
-        }
-      },
-      "response": []
-    },
-    {
-      "name": "Obtener users",
-      "request": {
-        "auth": {
-          "type": "bearer",
-          "bearer": [
-            {
-              "key": "token",
-              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c3JfWGZGUWVLazhqS0FnIiwianRpIjoiNTg0YmQ5NGYtOTcxMi00ZWQ3LThhZGYtOWVkZjA2OWZlMWNlIiwiaWF0IjoxNzcyMzE0Nzg0LCJyb2xlIjoiQURNSU5fUk9MRSIsImV4cCI6MTc3MjMxNjU4NCwiaXNzIjoiQXV0aFNlcnZpY2UiLCJhdWQiOiJBdXRoU2VydmljZSJ9.zCKB9HhNfLJeTJNrHRQqJKbNw7vox3qw89xKMI3hRc8",
-              "type": "string"
-            }
-          ]
-        },
-        "method": "GET",
-        "header": [],
-        "url": {
-          "raw": "http://localhost:5025/api/v1/admin/users?page=1&pageSize=10",
-          "protocol": "http",
-          "host": [
-            "localhost"
-          ],
-          "port": "5025",
-          "path": [
-            "api",
-            "v1",
-            "admin",
-            "users"
-          ],
-          "query": [
-            {
-              "key": "page",
-              "value": "1"
-            },
-            {
-              "key": "pageSize",
-              "value": "10"
-            }
-          ]
-        }
-      },
-      "response": []
-    },
-    {
-      "name": "Accounts max movements",
-      "request": {
-        "auth": {
-          "type": "bearer",
-          "bearer": [
-            {
-              "key": "token",
-              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c3JfWGZGUWVLazhqS0FnIiwianRpIjoiNTg0YmQ5NGYtOTcxMi00ZWQ3LThhZGYtOWVkZjA2OWZlMWNlIiwiaWF0IjoxNzcyMzE0Nzg0LCJyb2xlIjoiQURNSU5fUk9MRSIsImV4cCI6MTc3MjMxNjU4NCwiaXNzIjoiQXV0aFNlcnZpY2UiLCJhdWQiOiJBdXRoU2VydmljZSJ9.zCKB9HhNfLJeTJNrHRQqJKbNw7vox3qw89xKMI3hRc8",
-              "type": "string"
-            }
-          ]
-        },
-        "method": "GET",
-        "header": [],
-        "url": {
-          "raw": "http://localhost:3000/SistemaBancarioAdmin/v1/accounts/by-movements?order=desc",
-          "protocol": "http",
-          "host": [
-            "localhost"
-          ],
-          "port": "3000",
-          "path": [
-            "SistemaBancarioAdmin",
-            "v1",
-            "accounts",
-            "by-movements"
-          ],
-          "query": [
-            {
-              "key": "order",
-              "value": "desc"
-            }
-          ]
-        }
-      },
-      "response": []
-    },
-    {
-      "name": "Movements and mont",
-      "request": {
-        "auth": {
-          "type": "bearer",
-          "bearer": [
-            {
-              "key": "token",
-              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c3JfWGZGUWVLazhqS0FnIiwianRpIjoiZTJmY2UyNDUtZmJhYS00YjM3LWI4YzMtZDlkOTZiYjc4YTdlIiwiaWF0IjoxNzcyMzEyNzQ3LCJyb2xlIjoiQURNSU5fUk9MRSIsImV4cCI6MTc3MjMxNDU0NywiaXNzIjoiQXV0aFNlcnZpY2UiLCJhdWQiOiJBdXRoU2VydmljZSJ9.oxm_ppZHTflmePzUXi7NciRbdX-BrwupbX5MdniPtPw",
-              "type": "string"
-            }
-          ]
-        },
-        "method": "GET",
-        "header": [],
-        "url": {
-          "raw": "http://localhost:3000/SistemaBancarioAdmin/v1/accounts/69a32adedb00307203660bbf/movements",
-          "protocol": "http",
-          "host": [
-            "localhost"
-          ],
-          "port": "3000",
-          "path": [
-            "SistemaBancarioAdmin",
-            "v1",
-            "accounts",
-            "69a32adedb00307203660bbf",
-            "movements"
-          ]
-        }
-      },
-      "response": []
-    },
-    {
-      "name": "Deposit",
-      "request": {
-        "auth": {
-          "type": "bearer",
-          "bearer": [
-            {
-              "key": "token",
-              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c3JfWGZGUWVLazhqS0FnIiwianRpIjoiNTg0YmQ5NGYtOTcxMi00ZWQ3LThhZGYtOWVkZjA2OWZlMWNlIiwiaWF0IjoxNzcyMzE0Nzg0LCJyb2xlIjoiQURNSU5fUk9MRSIsImV4cCI6MTc3MjMxNjU4NCwiaXNzIjoiQXV0aFNlcnZpY2UiLCJhdWQiOiJBdXRoU2VydmljZSJ9.zCKB9HhNfLJeTJNrHRQqJKbNw7vox3qw89xKMI3hRc8",
-              "type": "string"
-            }
-          ]
-        },
-        "method": "POST",
-        "header": [],
-        "body": {
-          "mode": "raw",
-          "raw": "{\r\n  \"accountNumber\": \"3205922231\",\r\n  \"amount\": 1000,\r\n  \"description\": \"Depósito inicial\"\r\n}",
-          "options": {
-            "raw": {
-              "language": "json"
-            }
-          }
-        },
-        "url": {
-          "raw": "http://localhost:3000/SistemaBancarioAdmin/v1/deposits",
-          "protocol": "http",
-          "host": [
-            "localhost"
-          ],
-          "port": "3000",
-          "path": [
-            "SistemaBancarioAdmin",
-            "v1",
-            "deposits"
-          ]
-        }
-      },
-      "response": []
-    },
-    {
-      "name": "Get deposit",
-      "request": {
-        "auth": {
-          "type": "bearer",
-          "bearer": [
-            {
-              "key": "token",
-              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c3JfcWF6WTRGM0d0a251IiwianRpIjoiOTdlODQ1MWYtYTg3MC00ZGJlLWIxZmQtOWYyNWJmN2Q0NDI2IiwiaWF0IjoxNzcyNDEzMTI4LCJyb2xlIjoiVVNFUl9ST0xFIiwiZXhwIjoxNzcyNDE0OTI4LCJpc3MiOiJBdXRoU2VydmljZSIsImF1ZCI6IkF1dGhTZXJ2aWNlIn0.KM5F7L307qJNfZeSAsVeB6jp6_aXpBDcQQl2RzxzhOI",
-              "type": "string"
-            }
-          ]
-        },
-        "method": "GET",
-        "header": [],
-        "url": {
-          "raw": "http://localhost:3000/SistemaBancarioAdmin/v1/transactions/my-transactions?page=1&limit=10&type=DEPOSITO",
-          "protocol": "http",
-          "host": [
-            "localhost"
-          ],
-          "port": "3000",
-          "path": [
-            "SistemaBancarioAdmin",
-            "v1",
-            "transactions",
-            "my-transactions"
-          ],
-          "query": [
-            {
-              "key": "page",
-              "value": "1"
-            },
-            {
-              "key": "limit",
-              "value": "10"
-            },
-            {
-              "key": "type",
-              "value": "DEPOSITO"
-            }
-          ]
-        }
-      },
-      "response": []
-    },
-    {
-      "name": "Get my account",
-      "request": {
-        "auth": {
-          "type": "bearer",
-          "bearer": [
-            {
-              "key": "token",
-              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c3JfcWF6WTRGM0d0a251IiwianRpIjoiZjdiYjg2YzUtZGIzNy00NmU3LTkyMWItMGMzZDc5Mzc1OTQxIiwiaWF0IjoxNzcyNDA1Njk0LCJyb2xlIjoiVVNFUl9ST0xFIiwiZXhwIjoxNzcyNDA3NDk0LCJpc3MiOiJBdXRoU2VydmljZSIsImF1ZCI6IkF1dGhTZXJ2aWNlIn0.U5yq9MsCkmIVeTrAUTXToXBRmXsgfqQXP07z-7tZuTU",
-              "type": "string"
-            }
-          ]
-        },
-        "method": "GET",
-        "header": [],
-        "url": {
-          "raw": "http://localhost:3000/SistemaBancarioAdmin/v1/accounts/me",
-          "protocol": "http",
-          "host": [
-            "localhost"
-          ],
-          "port": "3000",
-          "path": [
-            "SistemaBancarioAdmin",
-            "v1",
-            "accounts",
-            "me"
-          ]
-        }
-      },
-      "response": []
-    },
-    {
-      "name": "Add favorite",
-      "request": {
-        "auth": {
-          "type": "bearer",
-          "bearer": [
-            {
-              "key": "token",
-              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c3JfcWF6WTRGM0d0a251IiwianRpIjoiYzBhZDgxMTMtNjA3OS00OWU1LTk4ZjgtNjU1OTNkYjc5NWYzIiwiaWF0IjoxNzcyNDA4MDY5LCJyb2xlIjoiVVNFUl9ST0xFIiwiZXhwIjoxNzcyNDA5ODY5LCJpc3MiOiJBdXRoU2VydmljZSIsImF1ZCI6IkF1dGhTZXJ2aWNlIn0.-lZsKR_RJm2mDBp4OETpqO8-MfJPOJO2cNm7aqBTKc4",
-              "type": "string"
-            }
-          ]
-        },
-        "method": "POST",
-        "header": [],
-        "body": {
-          "mode": "raw",
-          "raw": "{\r\n  \"account_number\": \"4727464954\",\r\n  \"alias\": \"Mejor amigo\"\r\n}",
-          "options": {
-            "raw": {
-              "language": "json"
-            }
-          }
-        },
-        "url": {
-          "raw": "http://localhost:3000/SistemaBancarioAdmin/v1/favorites",
-          "protocol": "http",
-          "host": [
-            "localhost"
-          ],
-          "port": "3000",
-          "path": [
-            "SistemaBancarioAdmin",
-            "v1",
-            "favorites"
-          ]
-        }
-      },
-      "response": []
-    },
-    {
-      "name": "Transfer",
-      "request": {
-        "auth": {
-          "type": "bearer",
-          "bearer": [
-            {
-              "key": "token",
-              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c3JfcWF6WTRGM0d0a251IiwianRpIjoiZDU3ZGViZDctN2Q1Ni00Zjk0LWE5MmUtNDkyODJiNzIxMDcwIiwiaWF0IjoxNzcyNDEwMDQ0LCJyb2xlIjoiVVNFUl9ST0xFIiwiZXhwIjoxNzcyNDExODQ0LCJpc3MiOiJBdXRoU2VydmljZSIsImF1ZCI6IkF1dGhTZXJ2aWNlIn0.x3hCrWmksLWXhtbaWrUA8ufgzLUWqsPeLUgwEp83fxU",
-              "type": "string"
-            }
-          ]
-        },
-        "method": "POST",
-        "header": [],
-        "body": {
-          "mode": "raw",
-          "raw": "{\r\n  \"toAccount\": \"4727464954\",\r\n  \"amount\": 500,\r\n  \"description\": \"Pago de servicio\"\r\n}",
-          "options": {
-            "raw": {
-              "language": "json"
-            }
-          }
-        },
-        "url": {
-          "raw": "http://localhost:3000/SistemaBancarioAdmin/v1/accounts/transfer",
-          "protocol": "http",
-          "host": [
-            "localhost"
-          ],
-          "port": "3000",
-          "path": [
-            "SistemaBancarioAdmin",
-            "v1",
-            "accounts",
-            "transfer"
-          ]
-        }
-      },
-      "response": []
-    },
-    {
-      "name": "Get Transfer",
-      "request": {
-        "auth": {
-          "type": "bearer",
-          "bearer": [
-            {
-              "key": "token",
-              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c3JfcWF6WTRGM0d0a251IiwianRpIjoiOTdlODQ1MWYtYTg3MC00ZGJlLWIxZmQtOWYyNWJmN2Q0NDI2IiwiaWF0IjoxNzcyNDEzMTI4LCJyb2xlIjoiVVNFUl9ST0xFIiwiZXhwIjoxNzcyNDE0OTI4LCJpc3MiOiJBdXRoU2VydmljZSIsImF1ZCI6IkF1dGhTZXJ2aWNlIn0.KM5F7L307qJNfZeSAsVeB6jp6_aXpBDcQQl2RzxzhOI",
-              "type": "string"
-            }
-          ]
-        },
-        "method": "GET",
-        "header": [],
-        "url": {
-          "raw": "http://localhost:3000/SistemaBancarioAdmin/v1/transactions?page=1&limit=10&type=TRANSFERENCIA",
-          "protocol": "http",
-          "host": [
-            "localhost"
-          ],
-          "port": "3000",
-          "path": [
-            "SistemaBancarioAdmin",
-            "v1",
-            "transactions"
-          ],
-          "query": [
-            {
-              "key": "page",
-              "value": "1"
-            },
-            {
-              "key": "limit",
-              "value": "10"
-            },
-            {
-              "key": "type",
-              "value": "TRANSFERENCIA"
-            }
-          ]
-        }
-      },
-      "response": []
-    }
-  ]
+  "name": "Juan",
+  "surname": "Pérez",
+  "username": "jperez",
+  "email": "juan@ejemplo.com",
+  "password": "MiPassword123",
+  "phone": "12345678",
+  "dpi": "1234567890123",
+  "address": "Ciudad de Guatemala",
+  "workName": "Empresa SA",
+  "monthlyIncome": 5000
 }
+```
+- **Nota:** `monthlyIncome` mínimo Q100. DPI 13 dígitos, phone 8 dígitos.
+
+---
+
+### POST /auth/login
+- **URL:** `http://localhost:5025/api/v1/auth/login`
+- **Token:** No requiere
+- **Descripción:** Inicio de sesión. Devuelve el token JWT para usar en el resto de endpoints.
+- **Body (ejemplo):**
+```json
+{
+  "emailOrUsername": "ADMINB",
+  "password": "ADMINB"
+}
+```
+
+---
+
+### GET /auth/profile
+- **URL:** `http://localhost:5025/api/v1/auth/profile`
+- **Token:** Sí (user o admin)
+- **Descripción:** Perfil completo del usuario autenticado.
+- **Body:** Ninguno
+
+---
+
+### POST /auth/verify-email
+- **URL:** `http://localhost:5025/api/v1/auth/verify-email`
+- **Token:** No requiere
+- **Body (ejemplo):**
+```json
+{
+  "token": "TOKEN_DE_VERIFICACION_RECIBIDO_POR_CORREO"
+}
+```
+
+---
+
+### POST /auth/resend-verification
+- **URL:** `http://localhost:5025/api/v1/auth/resend-verification`
+- **Token:** No requiere
+- **Body (ejemplo):**
+```json
+{
+  "email": "usuario@correo.com"
+}
+```
+
+---
+
+### POST /auth/forgot-password
+- **URL:** `http://localhost:5025/api/v1/auth/forgot-password`
+- **Token:** No requiere
+- **Body (ejemplo):**
+```json
+{
+  "email": "usuario@correo.com"
+}
+```
+
+---
+
+### POST /auth/reset-password
+- **URL:** `http://localhost:5025/api/v1/auth/reset-password`
+- **Token:** No requiere
+- **Body (ejemplo):**
+```json
+{
+  "token": "TOKEN_RESET_RECIBIDO_POR_CORREO",
+  "newPassword": "NuevaPassword123"
+}
+```
+
+---
+
+## 2. Servicio .NET — Admin
+
+### POST /admin/create-client
+- **URL:** `http://localhost:5025/api/v1/admin/create-client`
+- **Token:** Sí (admin)
+- **Descripción:** Crea un cliente directamente activo (Status=true, EmailVerified=true). No pasa por registro público.
+- **Body (ejemplo):**
+```json
+{
+  "name": "María",
+  "surname": "López",
+  "username": "mlopez",
+  "email": "maria@ejemplo.com",
+  "password": "Password123",
+  "phone": "87654321",
+  "dpi": "1234567890123",
+  "address": "Zona 10",
+  "workName": "Empresa XYZ",
+  "monthlyIncome": 6000
+}
+```
+
+---
+
+### GET /admin/users
+- **URL:** `http://localhost:5025/api/v1/admin/users?page=1&pageSize=10&searchTerm=juan&role=USER_ROLE`
+- **Token:** Sí (admin)
+- **Descripción:** Lista usuarios con paginación y filtros.
+- **Query params:** `page`, `pageSize`, `searchTerm` (opcional), `role` (opcional: USER_ROLE, ADMIN_ROLE)
+- **Body:** Ninguno
+
+---
+
+### GET /admin/users/{userId}
+- **URL:** `http://localhost:5025/api/v1/admin/users/usr_abc123`
+- **Token:** Sí (admin)
+- **Descripción:** Detalle de un usuario por su ID.
+- **Body:** Ninguno
+
+---
+
+### PUT /admin/users/{userId}
+- **URL:** `http://localhost:5025/api/v1/admin/users/usr_abc123`
+- **Token:** Sí (admin)
+- **Descripción:** Actualiza datos del usuario. No permite modificar DPI ni contraseña.
+- **Body (ejemplo):**
+```json
+{
+  "name": "Juan Carlos",
+  "surname": "Pérez López",
+  "address": "Zona 10",
+  "phone": "87654321",
+  "workName": "Nueva Empresa",
+  "monthlyIncome": 6000
+}
+```
+
+---
+
+### DELETE /admin/users/{userId}
+- **URL:** `http://localhost:5025/api/v1/admin/users/usr_abc123`
+- **Token:** Sí (admin)
+- **Descripción:** Elimina el usuario. No permite eliminar a otro administrador.
+- **Body:** Ninguno
+
+---
+
+### POST /admin/users/{userId}/activate
+- **URL:** `http://localhost:5025/api/v1/admin/users/usr_abc123/activate`
+- **Token:** Sí (admin)
+- **Descripción:** Activa la cuenta del usuario (Status=true, AccountState=ACTIVA, EmailVerified=true). El usuario ya puede iniciar sesión.
+- **Body:** Ninguno
+
+---
+
+## 3. Servicio .NET — Users
+
+### GET /users/{userId}/exists
+- **URL:** `http://localhost:5025/api/v1/users/usr_abc123/exists`
+- **Token:** No requiere
+- **Descripción:** Verifica si un usuario existe. Respuesta: `{ "exists": true }` o `{ "exists": false }`
+- **Body:** Ninguno
+
+---
+
+### GET /users/{userId}/profile
+- **URL:** `http://localhost:5025/api/v1/users/usr_abc123/profile`
+- **Token:** Sí (el propio usuario o admin)
+- **Descripción:** Perfil de un usuario por ID.
+- **Body:** Ninguno
+
+---
+
+### GET /users/me
+- **URL:** `http://localhost:5025/api/v1/users/me`
+- **Token:** Sí (user o admin)
+- **Descripción:** Perfil del usuario autenticado (el “yo” del token).
+- **Body:** Ninguno
+
+---
+
+### PUT /users/me
+- **URL:** `http://localhost:5025/api/v1/users/me`
+- **Token:** Sí (user o admin)
+- **Descripción:** Actualiza el perfil del usuario autenticado (nombre, apellido, dirección, teléfono, trabajo, ingresos).
+- **Body (ejemplo):**
+```json
+{
+  "name": "Eddy",
+  "surname": "Tucubal",
+  "address": "Nueva dirección",
+  "workName": "Mi empresa",
+  "monthlyIncome": 5500
+}
+```
+
+---
+
+### PUT /users/{userId}/role
+- **URL:** `http://localhost:5025/api/v1/users/usr_abc123/role`
+- **Token:** Sí (admin)
+- **Descripción:** Cambia el rol del usuario.
+- **Body (ejemplo):**
+```json
+{
+  "roleName": "ADMIN_ROLE"
+}
+```
+- **Valores:** `USER_ROLE` o `ADMIN_ROLE`
+
+---
+
+### GET /users/{userId}/roles
+- **URL:** `http://localhost:5025/api/v1/users/usr_abc123/roles`
+- **Token:** Sí (user o admin)
+- **Descripción:** Lista los roles del usuario.
+- **Body:** Ninguno
+
+---
+
+### GET /users/by-role/{roleName}
+- **URL:** `http://localhost:5025/api/v1/users/by-role/USER_ROLE`
+- **Token:** Sí (admin)
+- **Descripción:** Lista usuarios por rol.
+- **Body:** Ninguno
+
+---
+
+## 4. Servicio Node.js — General
+
+### GET /health
+- **URL:** `http://localhost:3000/SistemaBancarioAdmin/v1/health`
+- **Token:** No requiere
+- **Descripción:** Health check del servicio bancario.
+- **Body:** Ninguno
+
+---
+
+## 5. Servicio Node.js — Accounts
+
+### POST /accounts
+- **URL:** `http://localhost:3000/SistemaBancarioAdmin/v1/accounts`
+- **Token:** Sí (admin)
+- **Descripción:** Crear cuenta bancaria. Sin `userId`: se crea para el admin autenticado. Con `userId`: para otro usuario (debe existir en .NET; si no existe responde 404 "Ese id de usuario no existe"). La cuenta queda ACTIVA.
+- **Body (ejemplo — crear para otro usuario):**
+```json
+{
+  "userId": "usr_abc123",
+  "account_type": "AHORRO",
+  "currency": "GTQ",
+  "balance": 0
+}
+```
+- **Body (ejemplo — crear para uno mismo, admin):** omitir `userId` o no enviarlo.
+- **Valores:** `account_type`: AHORRO | CORRIENTE | NOMINA. `currency`: GTQ | USD. `balance` opcional, ≥ 0.
+
+---
+
+### GET /accounts/my-info
+- **URL:** `http://localhost:3000/SistemaBancarioAdmin/v1/accounts/my-info`
+- **Token:** Sí (user o admin)
+- **Descripción:** Información completa del usuario autenticado (perfil desde .NET + todas sus cuentas bancarias).
+- **Body:** Ninguno
+
+---
+
+### GET /accounts/me
+- **URL:** `http://localhost:3000/SistemaBancarioAdmin/v1/accounts/me`
+- **Token:** Sí (user o admin)
+- **Descripción:** Lista todas las cuentas bancarias del usuario autenticado.
+- **Body:** Ninguno
+
+---
+
+### POST /accounts/my-account
+- **URL:** `http://localhost:3000/SistemaBancarioAdmin/v1/accounts/my-account`
+- **Token:** Sí (user)
+- **Descripción:** El usuario crea su propia cuenta. Queda en estado PENDIENTE hasta que un admin la active con POST /accounts/:accountId/activate.
+- **Body (ejemplo):**
+```json
+{
+  "account_type": "AHORRO",
+  "currency": "GTQ",
+  "balance": 0
+}
+```
+
+---
+
+### POST /accounts/transfer
+- **URL:** `http://localhost:3000/SistemaBancarioAdmin/v1/accounts/transfer`
+- **Token:** Sí (user o admin)
+- **Descripción:** Transferencia entre cuentas. La cuenta origen (`fromAccount`) debe ser del usuario autenticado. Límites: Q2,000 por transferencia y Q10,000 por día (por cuenta).
+- **Body (ejemplo):**
+```json
+{
+  "fromAccount": "1234567890",
+  "toAccount": "9876543210",
+  "amount": 100,
+  "currency": "GTQ",
+  "description": "Pago de servicio"
+}
+```
+- **Obligatorios:** `fromAccount`, `toAccount`, `amount` (entre 5 y 2000). **Opcionales:** `currency` (GTQ | USD), `description`.
+
+---
+
+### POST /accounts/{accountId}/activate
+- **URL:** `http://localhost:3000/SistemaBancarioAdmin/v1/accounts/69a32adedb00307203660bbf/activate`
+- **Token:** Sí (admin)
+- **Descripción:** Activa una cuenta en estado PENDIENTE. Reemplaza `{accountId}` por el ID MongoDB de la cuenta.
+- **Body:** Ninguno
+
+---
+
+### GET /accounts/all
+- **URL:** `http://localhost:3000/SistemaBancarioAdmin/v1/accounts/all`
+- **Token:** Sí (admin)
+- **Descripción:** Lista todas las cuentas del sistema.
+- **Body:** Ninguno
+
+---
+
+### GET /accounts/by-activity
+- **URL:** `http://localhost:3000/SistemaBancarioAdmin/v1/accounts/by-activity?active=true`
+- **Token:** Sí (admin)
+- **Descripción:** Cuentas filtradas por actividad. Query: `active=true` o `active=false`.
+- **Body:** Ninguno
+
+---
+
+### GET /accounts/by-balance
+- **URL:** `http://localhost:3000/SistemaBancarioAdmin/v1/accounts/by-balance?order=desc`
+- **Token:** Sí (admin)
+- **Descripción:** Cuentas ordenadas por saldo. Query: `order=asc` o `order=desc`.
+- **Body:** Ninguno
+
+---
+
+### GET /accounts/by-movements
+- **URL:** `http://localhost:3000/SistemaBancarioAdmin/v1/accounts/by-movements?order=desc`
+- **Token:** Sí (admin)
+- **Descripción:** Cuentas ordenadas por cantidad de movimientos. Query: `order=asc` o `order=desc`.
+- **Body:** Ninguno
+
+---
+
+### GET /accounts/{accountId}/movements
+- **URL:** `http://localhost:3000/SistemaBancarioAdmin/v1/accounts/69a32adedb00307203660bbf/movements`
+- **Token:** Sí (admin)
+- **Descripción:** Últimos 5 movimientos de una cuenta y su saldo actual.
+- **Body:** Ninguno
+
+---
+
+### PUT /accounts/{id}
+- **URL:** `http://localhost:3000/SistemaBancarioAdmin/v1/accounts/69a32adedb00307203660bbf`
+- **Token:** Sí (admin)
+- **Descripción:** Actualiza una cuenta. No permite modificar el saldo. Solo campos permitidos en el body.
+- **Body (ejemplo):**
+```json
+{
+  "account_type": "CORRIENTE",
+  "currency": "USD",
+  "estado": "ACTIVA",
+  "single_transfer_limit": 2000,
+  "daily_transfer_limit": 10000
+}
+```
+- **Campos permitidos:** `account_type`, `currency`, `estado`, `account_number`, `single_transfer_limit`, `daily_transfer_limit`.
+
+---
+
+### GET /accounts/{id}
+- **URL:** `http://localhost:3000/SistemaBancarioAdmin/v1/accounts/69a32adedb00307203660bbf`
+- **Token:** Sí (admin)
+- **Descripción:** Detalle de una cuenta por ID. Opcional: query `?currency=USD` para ver saldo convertido.
+- **Body:** Ninguno
+
+---
+
+## 6. Servicio Node.js — Transactions
+
+### GET /transactions/my-transactions
+- **URL:** `http://localhost:3000/SistemaBancarioAdmin/v1/transactions/my-transactions?page=1&limit=10&type=TRANSFERENCIA&from_date=2026-01-01&to_date=2026-12-31`
+- **Token:** Sí (user o admin)
+- **Descripción:** Historial de transacciones del usuario autenticado con paginación y filtros.
+- **Query params:** `page`, `limit`, `type` (opcional: DEPOSITO, TRANSFERENCIA, etc.), `from_date`, `to_date` (opcionales, formato YYYY-MM-DD).
+- **Body:** Ninguno
+
+---
+
+### GET /transactions
+- **URL:** `http://localhost:3000/SistemaBancarioAdmin/v1/transactions?page=1&limit=10&type=TRANSFERENCIA`
+- **Token:** Sí (user o admin)
+- **Descripción:** Alias de /transactions/my-transactions (mismo comportamiento).
+- **Body:** Ninguno
+
+---
+
+### GET /transactions/all
+- **URL:** `http://localhost:3000/SistemaBancarioAdmin/v1/transactions/all?page=1&limit=20&type=DEPOSITO&user_id=usr_xxx&from_date=2026-01-01&to_date=2026-12-31`
+- **Token:** Sí (admin)
+- **Descripción:** Todas las transacciones del sistema con paginación y filtros.
+- **Query params:** `page`, `limit`, `type`, `user_id`, `from_date`, `to_date` (todos opcionales).
+- **Body:** Ninguno
+
+---
+
+### GET /transactions/history/me
+- **URL:** `http://localhost:3000/SistemaBancarioAdmin/v1/transactions/history/me`
+- **Token:** Sí (user o admin)
+- **Descripción:** Historial de depósitos y transferencias del usuario en orden cronológico.
+- **Body:** Ninguno
+
+---
+
+### GET /transactions/history/{accountId}
+- **URL:** `http://localhost:3000/SistemaBancarioAdmin/v1/transactions/history/69a32adedb00307203660bbf`
+- **Token:** Sí (admin)
+- **Descripción:** Historial de una cuenta por ID.
+- **Body:** Ninguno
+
+---
+
+### POST /transactions/deposit
+- **URL:** `http://localhost:3000/SistemaBancarioAdmin/v1/transactions/deposit`
+- **Token:** No requiere
+- **Descripción:** Depósito a una cuenta (público). Mismo comportamiento que POST /deposits. Ej.: ventanilla.
+- **Body (ejemplo):**
+```json
+{
+  "accountNumber": "1234567890",
+  "amount": 1000,
+  "currency": "GTQ",
+  "description": "Depósito por ventanilla"
+}
+```
+- **Obligatorios:** `accountNumber`, `amount` (≥ 1). **Opcionales:** `currency` (GTQ | USD), `description`.
+
+---
+
+### GET /transactions/{id}
+- **URL:** `http://localhost:3000/SistemaBancarioAdmin/v1/transactions/67c2f9f2c8f2b7f1d2a1b123`
+- **Token:** Sí (user o admin)
+- **Descripción:** Detalle de una transacción por ID.
+- **Body:** Ninguno
+
+---
+
+## 7. Servicio Node.js — Deposits
+
+### POST /deposits
+- **URL:** `http://localhost:3000/SistemaBancarioAdmin/v1/deposits`
+- **Token:** No requiere
+- **Descripción:** Depósito a una cuenta. Público (cualquiera puede depositar; no es necesario tener cuenta ni estar logueado). Ej.: ventanilla, terceros.
+- **Body (ejemplo):**
+```json
+{
+  "accountNumber": "1234567890",
+  "amount": 1000,
+  "currency": "GTQ",
+  "description": "Depósito inicial"
+}
+```
+- **Obligatorios:** `accountNumber`, `amount` (≥ 1). **Opcionales:** `currency`, `description`. Límite diario por cuenta: Q10,000.
+
+---
+
+### GET /deposits/pending
+- **URL:** `http://localhost:3000/SistemaBancarioAdmin/v1/deposits/pending`
+- **Token:** Sí (admin)
+- **Descripción:** Lista depósitos revertibles (realizados hace menos de 60 segundos) con segundos restantes para revertir.
+- **Body:** Ninguno
+
+---
+
+### POST /deposits/revert
+- **URL:** `http://localhost:3000/SistemaBancarioAdmin/v1/deposits/revert`
+- **Token:** Sí (admin)
+- **Descripción:** Revierte un depósito. Solo si no han pasado más de 60 segundos desde el depósito.
+- **Body (ejemplo):**
+```json
+{
+  "transactionId": "67c2f9f2c8f2b7f1d2a1b123"
+}
+```
+- **Nota:** `transactionId` es el _id de la transacción de tipo DEPOSITO.
+
+---
+
+### PUT /deposits/{id}
+- **URL:** `http://localhost:3000/SistemaBancarioAdmin/v1/deposits/67c2f9f2c8f2b7f1d2a1b123`
+- **Token:** Sí (admin)
+- **Descripción:** Modifica el monto de un depósito existente. Recalcula y ajusta el saldo de la cuenta. No aplica a depósitos ya revertidos.
+- **Body (ejemplo):**
+```json
+{
+  "amount": 1500
+}
+```
+- **Nota:** `id` en la URL es el ID de la transacción (MongoDB) de tipo DEPOSITO.
+
+---
+
+## 8. Servicio Node.js — Services
+
+### GET /services
+- **URL:** `http://localhost:3000/SistemaBancarioAdmin/v1/services?is_active=true&assigned_to=usr_abc123`
+- **Token:** Sí (admin)
+- **Descripción:** Lista servicios/beneficios del banco. Query opcionales: `is_active`, `assigned_to`.
+- **Body:** Ninguno
+
+---
+
+### GET /services/{id}
+- **URL:** `http://localhost:3000/SistemaBancarioAdmin/v1/services/69a32adedb00307203660bbf`
+- **Token:** Sí (admin)
+- **Descripción:** Detalle de un servicio por ID.
+- **Body:** Ninguno
+
+---
+
+### POST /services
+- **URL:** `http://localhost:3000/SistemaBancarioAdmin/v1/services`
+- **Token:** Sí (admin)
+- **Descripción:** Crea un servicio/beneficio del banco.
+- **Body (ejemplo):**
+```json
+{
+  "name": "Transferencias sin costo",
+  "description": "Hasta 5 transferencias mensuales sin comisión",
+  "assigned_to": "usr_abc123"
+}
+```
+- **Opcional:** `assigned_to` (ID de usuario).
+
+---
+
+### PUT /services/{id}
+- **URL:** `http://localhost:3000/SistemaBancarioAdmin/v1/services/69a32adedb00307203660bbf`
+- **Token:** Sí (admin)
+- **Descripción:** Actualiza un servicio.
+- **Body (ejemplo):**
+```json
+{
+  "name": "Transferencias sin costo - Premium",
+  "description": "Hasta 10 transferencias",
+  "is_active": true,
+  "assigned_to": "usr_xyz"
+}
+```
+
+---
+
+### DELETE /services/{id}
+- **URL:** `http://localhost:3000/SistemaBancarioAdmin/v1/services/69a32adedb00307203660bbf`
+- **Token:** Sí (admin)
+- **Descripción:** Elimina un servicio.
+- **Body:** Ninguno
+
+---
+
+## 9. Servicio Node.js — Favorites
+
+### POST /favorites
+- **URL:** `http://localhost:3000/SistemaBancarioAdmin/v1/favorites`
+- **Token:** Sí (user o admin)
+- **Descripción:** Agrega una cuenta a favoritos. La cuenta debe existir; el tipo de cuenta se obtiene automáticamente.
+- **Body (ejemplo):**
+```json
+{
+  "alias": "Cuenta de María",
+  "account_number": "9876543210"
+}
+```
+- **Restricciones:** No duplicar el mismo `account_number` ni el mismo `alias` para el mismo usuario.
+
+---
+
+### GET /favorites
+- **URL:** `http://localhost:3000/SistemaBancarioAdmin/v1/favorites`
+- **Token:** Sí (user o admin)
+- **Descripción:** Lista los favoritos del usuario autenticado.
+- **Body:** Ninguno
+
+---
+
+### PUT /favorites/{id}
+- **URL:** `http://localhost:3000/SistemaBancarioAdmin/v1/favorites/69a32adedb00307203660bbf`
+- **Token:** Sí (user o admin)
+- **Descripción:** Actualiza el alias de un favorito. El `id` puede ser el ID MongoDB del favorito o el alias.
+- **Body (ejemplo):**
+```json
+{
+  "alias": "María - Cuenta ahorro"
+}
+```
+
+---
+
+### DELETE /favorites/{id}
+- **URL:** `http://localhost:3000/SistemaBancarioAdmin/v1/favorites/69a32adedb00307203660bbf`
+- **Token:** Sí (user o admin)
+- **Descripción:** Elimina un favorito. El `id` puede ser el ID MongoDB del favorito o el alias.
+- **Body:** Ninguno
+
+---
+
+### POST /favorites/{id}/transfer
+- **URL:** `http://localhost:3000/SistemaBancarioAdmin/v1/favorites/69a32adedb00307203660bbf/transfer`
+- **Token:** Sí (user o admin)
+- **Descripción:** Transferencia rápida a un favorito. El `id` es el ID del favorito o su alias. Límites: igual que transferencia normal (Q2,000 por operación, Q10,000/día).
+- **Body (ejemplo):**
+```json
+{
+  "fromAccount": "1234567890",
+  "amount": 100
+}
+```
+- **Obligatorios:** `fromAccount` (tu cuenta origen), `amount` (entre 1 y 2000).
+
+---
+
+## 10. Servicio Node.js — Currency
+
+### GET /currency/convert
+- **URL:** `http://localhost:3000/SistemaBancarioAdmin/v1/currency/convert?from=GTQ&to=USD&amount=100`
+- **Token:** Sí (user o admin)
+- **Descripción:** Convierte un monto entre monedas usando API externa.
+- **Query params:** `from` (GTQ o USD), `to` (GTQ o USD), `amount` (≥ 0.01).
+- **Body:** Ninguno
+
+---
+
+### GET /currency/{accountId}
+- **URL:** `http://localhost:3000/SistemaBancarioAdmin/v1/currency/69a32adedb00307203660bbf?to=USD`
+- **Token:** Sí (user o admin)
+- **Descripción:** Convierte el saldo de una cuenta a otra moneda. Query opcional: `to=USD` o `to=GTQ`.
+- **Body:** Ninguno
+
+---
+
+## Resumen de códigos HTTP
+
+| Código | Significado |
+|--------|-------------|
+| 200 | OK — operación exitosa (GET, PUT, etc.) |
+| 201 | Created — recurso creado (POST) |
+| 400 | Bad Request — validación fallida o datos incorrectos |
+| 401 | Unauthorized — token faltante, inválido o expirado |
+| 403 | Forbidden — sin permiso (rol insuficiente) |
+| 404 | Not Found — recurso no encontrado (ej. usuario/cuenta inexistente) |
+| 500 | Internal Server Error — error del servidor |
+
+---
+
+## Colección Postman
+
+Para probar todos los endpoints puede usarse la colección:  
+**`docs/AuthService Bank.postman_collection.json`**
