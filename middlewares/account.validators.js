@@ -109,3 +109,32 @@ export const validateAccountIdParam = [
 
   checkValidators
 ];
+
+/** Validación para admin: crear cuenta (userId opcional, account_type, currency, balance opcional). */
+export const validateCreateAccountAdmin = [
+  body('account_type')
+    .notEmpty()
+    .withMessage('Tipo de cuenta es obligatorio')
+    .bail()
+    .isIn(['AHORRO', 'CORRIENTE', 'NOMINA'])
+    .withMessage('Tipo de cuenta inválido. Use AHORRO, CORRIENTE o NOMINA'),
+
+  body('currency')
+    .notEmpty()
+    .withMessage('Moneda es obligatoria')
+    .bail()
+    .isIn(['GTQ', 'USD'])
+    .withMessage('Moneda debe ser GTQ o USD'),
+
+  body('userId')
+    .optional()
+    .isString()
+    .withMessage('userId debe ser texto'),
+
+  body('balance')
+    .optional()
+    .isFloat({ min: 0 })
+    .withMessage('El saldo inicial no puede ser negativo'),
+
+  checkValidators
+];

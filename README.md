@@ -134,7 +134,7 @@ Validate token (admin)
 
 ## Node.js - General
 
-GET http://localhost:3000/SistemaBancarioAdmin/v1/Health
+GET http://localhost:3000/SistemaBancarioAdmin/v1/health
 No requiere token
 
 ---
@@ -143,37 +143,37 @@ No requiere token
 
 POST http://localhost:3000/SistemaBancarioAdmin/v1/accounts
 Validate token (admin)
-Si lleva JSON
+Body: userId es opcional (id de un usuario en el sistema). Si no se envía, se usa el id del admin. Si se envía un userId que no existe, responde 404 "Ese id de usuario no existe".
 {
-  "name": "Juan",
-  "surname": "Perez",
-  "username": "jperez",
-  "email": "juan@example.com",
-  "password": "Password123",
-  "phone": "12345678",
-  "dpi": "1234567890123",
-  "address": "Ciudad de Guatemala",
-  "workName": "Empresa XYZ",
-  "monthlyIncome": 5000,
-  "account_type": "AHORRO"
+  "userId": "usr_abc123",
+  "account_type": "AHORRO",
+  "currency": "GTQ",
+  "balance": 0
 }
+
+GET http://localhost:3000/SistemaBancarioAdmin/v1/accounts/my-info
+Validate token (user o admin)
 
 GET http://localhost:3000/SistemaBancarioAdmin/v1/accounts/me
 Validate token (user o admin)
 
-PUT http://localhost:3000/SistemaBancarioAdmin/v1/accounts/me
+POST http://localhost:3000/SistemaBancarioAdmin/v1/accounts/my-account
 Validate token (user)
-Si lleva JSON
+Body:
 {
-  "account_type": "AHORRO"
+  "account_type": "AHORRO",
+  "currency": "GTQ",
+  "balance": 0
 }
 
 POST http://localhost:3000/SistemaBancarioAdmin/v1/accounts/transfer
-Validate token (user)
-Si lleva JSON
+Validate token (user o admin)
+Body:
 {
+  "fromAccount": "1234567890",
   "toAccount": "9876543210",
   "amount": 100,
+  "currency": "GTQ",
   "description": "Pago"
 }
 
@@ -192,8 +192,12 @@ Validate token (admin)
 GET http://localhost:3000/SistemaBancarioAdmin/v1/accounts/{accountId}/movements
 Validate token (admin)
 
+PUT http://localhost:3000/SistemaBancarioAdmin/v1/accounts/{id}
+Validate token (admin)
+Body (solo campos permitidos): account_type, currency, estado, account_number, single_transfer_limit, daily_transfer_limit
+
 GET http://localhost:3000/SistemaBancarioAdmin/v1/accounts/{id}
-Validate token (user o admin)
+Validate token (admin)
 
 ---
 
@@ -211,33 +215,28 @@ Validate token (user o admin)
 GET http://localhost:3000/SistemaBancarioAdmin/v1/transactions/all?page=1&limit=20&type=DEPOSITO&user_id=usr_xxx&from_date=2026-01-01&to_date=2026-12-31
 Validate token (admin)
 
-POST http://localhost:3000/SistemaBancarioAdmin/v1/transactions/transfer
-Validate token (user)
-Si lleva JSON
-{
-  "toAccount": "9876543210",
-  "amount": 100
-}
-
 POST http://localhost:3000/SistemaBancarioAdmin/v1/transactions/deposit
-Validate token (admin)
-Si lleva JSON
+No requiere token (cualquiera puede depositar a una cuenta, ej. ventanilla)
+Body (depósito; mismo que POST /deposits):
 {
   "accountNumber": "1234567890",
   "amount": 1000,
+  "currency": "GTQ",
   "description": "Deposito por ventanilla"
 }
+Nota: La transferencia entre cuentas es POST .../accounts/transfer, no bajo /transactions.
 
 ---
 
 ## Node.js - Deposits
 
 POST http://localhost:3000/SistemaBancarioAdmin/v1/deposits
-Validate token (user o admin)
-Si lleva JSON
+No requiere token (cualquiera puede depositar a una cuenta; no es necesario tener cuenta bancaria)
+Body:
 {
   "accountNumber": "1234567890",
   "amount": 1000,
+  "currency": "GTQ",
   "description": "Deposito inicial"
 }
 
@@ -246,45 +245,48 @@ Validate token (admin)
 
 POST http://localhost:3000/SistemaBancarioAdmin/v1/deposits/revert
 Validate token (admin)
-Si lleva JSON
+Body:
 {
   "transactionId": "67c2f9f2c8f2b7f1d2a1b123"
 }
 
+PUT http://localhost:3000/SistemaBancarioAdmin/v1/deposits/{id}
+Validate token (admin)
+Body (id = ID de la transacción de tipo DEPOSITO):
+{
+  "amount": 1500
+}
+
 ---
 
-## Node.js - Products
+## Node.js - Services (servicios/beneficios del banco, solo admin)
 
-GET http://localhost:3000/SistemaBancarioAdmin/v1/products
-No requiere token
+GET http://localhost:3000/SistemaBancarioAdmin/v1/services
+Validate token (admin)
+Query opcional: ?is_active=true&assigned_to=userId
 
-GET http://localhost:3000/SistemaBancarioAdmin/v1/products?type=PRODUCTO&is_active=true
-No requiere token
+GET http://localhost:3000/SistemaBancarioAdmin/v1/services/{id}
+Validate token (admin)
 
-GET http://localhost:3000/SistemaBancarioAdmin/v1/products/{id}
-No requiere token
-
-POST http://localhost:3000/SistemaBancarioAdmin/v1/products
+POST http://localhost:3000/SistemaBancarioAdmin/v1/services
 Validate token (admin)
 Si lleva JSON
 {
-  "name": "Zapatos Deportivos",
-  "description": "Exclusivos para clientes",
-  "type": "PRODUCTO",
-  "price": 500
+  "name": "Transferencias sin costo",
+  "description": "Hasta 5 transferencias mensuales sin comisión",
+  "assigned_to": "usr_abc123"
 }
 
-PUT http://localhost:3000/SistemaBancarioAdmin/v1/products/{id}
+PUT http://localhost:3000/SistemaBancarioAdmin/v1/services/{id}
 Validate token (admin)
 Si lleva JSON
 {
-  "name": "Zapatos Premium",
-  "description": "Actualizado",
-  "price": 650,
-  "is_active": true
+  "name": "Transferencias sin costo - Premium",
+  "is_active": true,
+  "assigned_to": "usr_xyz"
 }
 
-DELETE http://localhost:3000/SistemaBancarioAdmin/v1/products/{id}
+DELETE http://localhost:3000/SistemaBancarioAdmin/v1/services/{id}
 Validate token (admin)
 
 ---
@@ -292,29 +294,40 @@ Validate token (admin)
 ## Node.js - Favorites
 
 POST http://localhost:3000/SistemaBancarioAdmin/v1/favorites
-Validate token (user)
-Si lleva JSON
+Validate token (user o admin)
+Body (account_type se obtiene de la cuenta; solo alias y account_number):
 {
   "alias": "Cuenta de Maria",
   "account_number": "9876543210"
 }
 
+POST http://localhost:3000/SistemaBancarioAdmin/v1/favorites/{id}/transfer
+Validate token (user o admin)
+Body:
+{
+  "fromAccount": "1234567890",
+  "amount": 100
+}
+
 GET http://localhost:3000/SistemaBancarioAdmin/v1/favorites
-Validate token (user)
+Validate token (user o admin)
 
 PUT http://localhost:3000/SistemaBancarioAdmin/v1/favorites/{id}
-Validate token (user)
-Si lleva JSON
+Validate token (user o admin)
+Body:
 {
   "alias": "Maria - Cuenta ahorro"
 }
 
 DELETE http://localhost:3000/SistemaBancarioAdmin/v1/favorites/{id}
-Validate token (user)
+Validate token (user o admin)
 
 ---
 
 ## Node.js - Currency
 
 GET http://localhost:3000/SistemaBancarioAdmin/v1/currency/convert?from=GTQ&to=USD&amount=100
+Validate token (user o admin)
+
+GET http://localhost:3000/SistemaBancarioAdmin/v1/currency/{accountId}
 Validate token (user o admin)
