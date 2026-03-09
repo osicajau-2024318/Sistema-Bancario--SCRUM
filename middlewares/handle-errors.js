@@ -1,5 +1,5 @@
 // Middleware global para manejar errores en toda la aplicación
-export const errorHandler = (err, req, res) => {
+export const errorHandler = (err, req, res, next) => {
     // Registra el error en la consola para debugging
     console.error(`Error in Admin Server: ${err.message}`);
     console.error(`Stack trace: ${err.stack}`);

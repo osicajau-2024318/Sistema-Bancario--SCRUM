@@ -22,8 +22,8 @@ import { validateJWT } from '../../middlewares/validate-JWT.js';
 import { validateRole } from '../../middlewares/validate-role.js';
 // Importa constantes de roles
 import { Roles } from '../constants/roles.js';
-// Importa validadores de transferencia
-import { validateTransfer } from '../../middlewares/account.validators.js';
+// Importa validadores de transferencia y cuenta
+import { validateTransfer, validateCreateAccountAdmin, validateAccountIdParam } from '../../middlewares/account.validators.js';
 
 
 const router = Router();
@@ -40,7 +40,7 @@ router.post('/transfer', validateJWT, validateRole(Roles.USER, Roles.ADMIN), val
 
 // RUTAS DE ADMINISTRADOR (requieren autenticación y rol ADMIN)
 // Crear cuenta para cualquier usuario (queda activa inmediatamente)
-router.post('/', validateJWT, validateRole(Roles.ADMIN), createAccount);
+router.post('/', validateJWT, validateRole(Roles.ADMIN), validateCreateAccountAdmin, createAccount);
 // Activar una cuenta que está en estado PENDIENTE
 router.post('/:accountId/activate', validateJWT, validateRole(Roles.ADMIN), activateAccount);
 // Ver todas las cuentas del sistema
@@ -54,8 +54,8 @@ router.get('/by-movements', validateJWT, validateRole(Roles.ADMIN), getAccountsB
 // Ver los últimos movimientos de una cuenta específica
 router.get('/:accountId/movements', validateJWT, validateRole(Roles.ADMIN), getAccountMovements);
 // Actualizar información de una cuenta (no permite modificar el saldo)
-router.put('/:id', validateJWT, validateRole(Roles.ADMIN), updateAccount);
+router.put('/:id', validateJWT, validateRole(Roles.ADMIN), validateAccountIdParam, updateAccount);
 // Obtener detalles de una cuenta por su ID (debe ir al final por ser ruta dinámica)
-router.get('/:id', validateJWT, validateRole(Roles.ADMIN), getAccountById);
+router.get('/:id', validateJWT, validateRole(Roles.ADMIN), validateAccountIdParam, getAccountById);
 
 export default router;
