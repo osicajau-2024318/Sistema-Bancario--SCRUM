@@ -1,13 +1,16 @@
-export const errorHandler = (err, req, res) => {
+// Middleware global para manejar errores en toda la aplicación
+export const errorHandler = (err, req, res, next) => {
+    // Registra el error en la consola para debugging
     console.error(`Error in Admin Server: ${err.message}`);
     console.error(`Stack trace: ${err.stack}`);
     console.error(`Request: ${req.method} ${req.path}`);
 
-    // Error de validación de Mongoose
+    // Error de validación de Mongoose (campos requeridos, tipos incorrectos, etc)
     if (err.name === 'ValidationError') {
+        // Extrae todos los errores de validación
         const errors = Object.values(err.errors).map((error) => ({
-            field: error.path,
-            message: error.message,
+            field: error.path,      // Campo que falló
+            message: error.message, // Mensaje del error
         }));
 
         return res.status(400).json({
@@ -17,9 +20,9 @@ export const errorHandler = (err, req, res) => {
         });
     }
 
-    // Error de duplicado de Mongoose
+    // Error de duplicado de Mongoose (violación de índice único)
     if (err.code === 11000) {
-        const field = Object.keys(err.keyValue)[0];
+        const field = Object.keys(err.keyValue)[0]; // Campo duplicado
         return res.status(400).json({
             success: false,
             message: `${field} ya existe`,
@@ -27,7 +30,7 @@ export const errorHandler = (err, req, res) => {
         });
     }
 
-    // Error de cast de Mongoose (ID inválido)
+    // Error de cast de Mongoose (ID inválido, formato incorrecto)
     if (err.name === 'CastError') {
         return res.status(400).json({
             success: false,
@@ -36,7 +39,8 @@ export const errorHandler = (err, req, res) => {
         });
     }
 
-    // JWT errors
+    // Errores relacionados con JWT (tokens)
+    // Token mal formado o firma inválida
     if (err.name === 'JsonWebTokenError') {
         return res.status(401).json({
             success: false,
@@ -45,6 +49,7 @@ export const errorHandler = (err, req, res) => {
         });
     }
 
+    // Token expirado
     if (err.name === 'TokenExpiredError') {
         return res.status(401).json({
             success: false,
@@ -53,7 +58,7 @@ export const errorHandler = (err, req, res) => {
         });
     }
 
-    // Error personalizado con status
+    // Error personalizado con código de estado específico
     if (err.statusCode) {
         return res.status(err.statusCode).json({
             success: false,

@@ -1,11 +1,11 @@
 using System.Data;
-using AuthServiceIN6BV.Application.Services;
-using AuthServiceIN6BV.Domain.Entities;
-using AuthServiceIN6BV.Domain.Interfaces;
-using AuthServiceIN6BV.Persistence.Data;
+using AuthServiceBanco.Application.Services;
+using AuthServiceBanco.Domain.Entities;
+using AuthServiceBanco.Domain.Interfaces;
+using AuthServiceBanco.Persistence.Data;
 using Microsoft.EntityFrameworkCore;
 
-namespace AuthServiceIN6BV.Persistence.Repositories;
+namespace AuthServiceBanco.Persistence.Repositories;
 
 public class UserRepository(ApplicationDbContext context) : IUserRepository
 {
@@ -69,9 +69,15 @@ public class UserRepository(ApplicationDbContext context) : IUserRepository
                                     u.UserPasswordReset.PasswordResetTokenExpiry > DateTime.UtcNow);
     }
 
-    public async Task<User> CreateAsync(User user)
+    public async Task<User> CreateAsync(User user, UserProfile? profile = null, UserEmail? email = null, UserRole? userRole = null)
     {
         context.Users.Add(user);
+        if (profile != null)
+            context.UserProfiles.Add(profile);
+        if (email != null)
+            context.UserEmails.Add(email);
+        if (userRole != null)
+            context.UserRoles.Add(userRole);
         await context.SaveChangesAsync();
         return await GetByIdAsync(user.Id);
     }
@@ -102,6 +108,12 @@ public class UserRepository(ApplicationDbContext context) : IUserRepository
             .AnyAsync(u => EF.Functions.ILike(u.Username, username));
     }
 
+    public async Task<bool> ExistsByDpiAsync(string dpi)
+    {
+        return await context.UserProfiles
+            .AnyAsync(up => EF.Functions.ILike(up.Dpi, dpi));
+    }
+
     public async Task UpdateUserRoleAsync(string userId, string roleId)
     {
         var existingRoles = await context.UserRoles
@@ -121,5 +133,41 @@ public class UserRepository(ApplicationDbContext context) : IUserRepository
 
         context.UserRoles.Add(newUserRole);
         await context.SaveChangesAsync();
+    }
+
+    public async Task<(IReadOnlyList<User> Users, int TotalCount)> GetAllPagedAsync(int page, int pageSize, string? searchTerm = null, string? role = null)
+    {
+        var query = context.Users
+            .Include(u => u.UserProfile)
+            .Include(u => u.UserEmail)
+            .Include(u => u.UserRoles)
+                .ThenInclude(ur => ur.Role)
+            .AsQueryable();
+
+        // Filtro de búsqueda
+        if (!string.IsNullOrWhiteSpace(searchTerm))
+        {
+            query = query.Where(u => 
+                EF.Functions.ILike(u.Name, $"%{searchTerm}%") ||
+                EF.Functions.ILike(u.Surname, $"%{searchTerm}%") ||
+                EF.Functions.ILike(u.Username, $"%{searchTerm}%") ||
+                EF.Functions.ILike(u.Email, $"%{searchTerm}%"));
+        }
+
+        // Filtro por rol
+        if (!string.IsNullOrWhiteSpace(role))
+        {
+            query = query.Where(u => u.UserRoles.Any(ur => EF.Functions.ILike(ur.Role.Name, role)));
+        }
+
+        var totalCount = await query.CountAsync();
+
+        var users = await query
+            .OrderByDescending(u => u.CreatedAt)
+            .Skip((page - 1) * pageSize)
+            .Take(pageSize)
+            .ToListAsync();
+
+        return (users, totalCount);
     }
 }

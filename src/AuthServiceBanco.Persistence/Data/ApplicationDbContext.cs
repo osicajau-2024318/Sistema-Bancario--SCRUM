@@ -75,6 +75,10 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
                 .HasMaxLength(255);
             entity.Property(e => e.Status)
                 .HasDefaultValue(false);
+            entity.Property(e => e.AccountState)
+                .IsRequired()
+                .HasConversion<int>()
+                .HasDefaultValue(null);
             entity.Property(e => e.CreatedAt)
                 .IsRequired();
             entity.Property(e => e.UpdatedAt)

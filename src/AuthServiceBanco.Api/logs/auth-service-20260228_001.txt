@@ -1,0 +1,56 @@
+[2026-02-28 02:10:53 INF] Checking database connection... {"SourceContext":"Program"}
+[2026-02-28 02:10:57 INF] Database ready. Running seed data... {"SourceContext":"Program"}
+[2026-02-28 02:10:58 INF] Database initialization completed successfully {"SourceContext":"Program"}
+[2026-02-28 02:10:58 ERR] Hosting failed to start {"EventId":{"Id":11,"Name":"HostedServiceStartupFaulted"},"SourceContext":"Microsoft.Extensions.Hosting.Internal.Host"}
+System.IO.IOException: Failed to bind to address http://127.0.0.1:5025: address already in use.
+ ---> Microsoft.AspNetCore.Connections.AddressInUseException: Solo se permite un uso de cada dirección de socket (protocolo/dirección de red/puerto)
+ ---> System.Net.Sockets.SocketException (10048): Solo se permite un uso de cada dirección de socket (protocolo/dirección de red/puerto)
+   at System.Net.Sockets.Socket.UpdateStatusAfterSocketErrorAndThrowException(SocketError error, Boolean disconnectOnFailure, String callerName)
+   at System.Net.Sockets.Socket.DoBind(EndPoint endPointSnapshot, SocketAddress socketAddress)
+   at System.Net.Sockets.Socket.Bind(EndPoint localEP)
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketTransportOptions.CreateDefaultBoundListenSocket(EndPoint endpoint)
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketConnectionListener.Bind()
+   --- End of inner exception stack trace ---
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketConnectionListener.Bind()
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketTransportFactory.BindAsync(EndPoint endpoint, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Infrastructure.TransportManager.BindAsync(EndPoint endPoint, ConnectionDelegate connectionDelegate, EndpointConfig endpointConfig, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerImpl.<>c__DisplayClass28_0`1.<<StartAsync>g__OnBind|0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.BindEndpointAsync(ListenOptions endpoint, AddressBindContext context, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.BindEndpointAsync(ListenOptions endpoint, AddressBindContext context, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.LocalhostListenOptions.BindAsync(AddressBindContext context, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.AddressesStrategy.BindAsync(AddressBindContext context, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.BindAsync(ListenOptions[] listenOptions, AddressBindContext context, Func`2 useHttps, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerImpl.BindAsync(CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerImpl.StartAsync[TContext](IHttpApplication`1 application, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Hosting.GenericWebHostService.StartAsync(CancellationToken cancellationToken)
+   at Microsoft.Extensions.Hosting.Internal.Host.<StartAsync>b__15_1(IHostedService service, CancellationToken token)
+   at Microsoft.Extensions.Hosting.Internal.Host.ForeachService[T](IEnumerable`1 services, CancellationToken token, Boolean concurrent, Boolean abortOnFirstException, List`1 exceptions, Func`3 operation)
+[2026-02-28 02:13:07 INF] Checking database connection... {"SourceContext":"Program"}
+[2026-02-28 02:13:09 INF] Database ready. Running seed data... {"SourceContext":"Program"}
+[2026-02-28 02:13:10 INF] Database initialization completed successfully {"SourceContext":"Program"}
+[2026-02-28 02:13:10 INF] AuthService API is running at http://localhost:5025. Health endpoint: http://localhost:5025/health {"SourceContext":"Program"}
+[2026-02-28 02:18:48 WRN] Failed to determine the https port for redirect. {"EventId":{"Id":3,"Name":"FailedToDeterminePort"},"SourceContext":"Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware","RequestId":"0HNJMK7VJDR1G:00000001","RequestPath":"/api/v1/auth/register","ConnectionId":"0HNJMK7VJDR1G"}
+[2026-02-28 02:18:51 INF] User etucubal
+ registered successfully. {"EventId":{"Id":1001,"Name":"LogUserRegistered"},"SourceContext":"AuthServiceBanco.Application.Services.AuthService","ActionId":"41f4f114-de64-48ba-998d-be3f28d60283","ActionName":"AuthServiceBanco.Api.Controllers.AuthController.Register (AuthServiceBanco.Api)","RequestId":"0HNJMK7VJDR1G:00000001","RequestPath":"/api/v1/auth/register","ConnectionId":"0HNJMK7VJDR1G"}
+[2026-02-28 02:18:51 INF] HTTP POST /api/v1/auth/register responded 201 in 3097.0631 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNJMK7VJDR1G:00000001","ConnectionId":"0HNJMK7VJDR1G"}
+[2026-02-28 02:18:54 INF] Email sent successfully {"SourceContext":"AuthServiceBanco.Application.Services.EmailService","ActionId":"41f4f114-de64-48ba-998d-be3f28d60283","ActionName":"AuthServiceBanco.Api.Controllers.AuthController.Register (AuthServiceBanco.Api)","RequestId":"0HNJMK7VJDR1G:00000001","RequestPath":"/api/v1/auth/register","ConnectionId":"0HNJMK7VJDR1G"}
+[2026-02-28 02:18:54 INF] Email pipeline completed {"SourceContext":"AuthServiceBanco.Application.Services.EmailService","ActionId":"41f4f114-de64-48ba-998d-be3f28d60283","ActionName":"AuthServiceBanco.Api.Controllers.AuthController.Register (AuthServiceBanco.Api)","RequestId":"0HNJMK7VJDR1G:00000001","RequestPath":"/api/v1/auth/register","ConnectionId":"0HNJMK7VJDR1G"}
+[2026-02-28 02:18:54 INF] Email processed {"SourceContext":"AuthServiceBanco.Application.Services.EmailService","ActionId":"41f4f114-de64-48ba-998d-be3f28d60283","ActionName":"AuthServiceBanco.Api.Controllers.AuthController.Register (AuthServiceBanco.Api)","RequestId":"0HNJMK7VJDR1G:00000001","RequestPath":"/api/v1/auth/register","ConnectionId":"0HNJMK7VJDR1G"}
+[2026-02-28 02:18:54 INF] Verification email sent {"SourceContext":"AuthServiceBanco.Application.Services.AuthService","ActionId":"41f4f114-de64-48ba-998d-be3f28d60283","ActionName":"AuthServiceBanco.Api.Controllers.AuthController.Register (AuthServiceBanco.Api)","RequestId":"0HNJMK7VJDR1G:00000001","RequestPath":"/api/v1/auth/register","ConnectionId":"0HNJMK7VJDR1G"}
+[2026-02-28 02:26:52 INF] Email sent successfully {"SourceContext":"AuthServiceBanco.Application.Services.EmailService","ActionId":"61ec294e-4887-4735-964c-9a11b81b7f95","ActionName":"AuthServiceBanco.Api.Controllers.AuthController.VerifyEmail (AuthServiceBanco.Api)","RequestId":"0HNJMK7VJDR1I:00000001","RequestPath":"/api/v1/auth/verify-email","ConnectionId":"0HNJMK7VJDR1I"}
+[2026-02-28 02:26:52 INF] Email pipeline completed {"SourceContext":"AuthServiceBanco.Application.Services.EmailService","ActionId":"61ec294e-4887-4735-964c-9a11b81b7f95","ActionName":"AuthServiceBanco.Api.Controllers.AuthController.VerifyEmail (AuthServiceBanco.Api)","RequestId":"0HNJMK7VJDR1I:00000001","RequestPath":"/api/v1/auth/verify-email","ConnectionId":"0HNJMK7VJDR1I"}
+[2026-02-28 02:26:52 INF] Email processed {"SourceContext":"AuthServiceBanco.Application.Services.EmailService","ActionId":"61ec294e-4887-4735-964c-9a11b81b7f95","ActionName":"AuthServiceBanco.Api.Controllers.AuthController.VerifyEmail (AuthServiceBanco.Api)","RequestId":"0HNJMK7VJDR1I:00000001","RequestPath":"/api/v1/auth/verify-email","ConnectionId":"0HNJMK7VJDR1I"}
+[2026-02-28 02:26:52 INF] Email verified successfully for user etucubal
+ {"SourceContext":"AuthServiceBanco.Application.Services.AuthService","ActionId":"61ec294e-4887-4735-964c-9a11b81b7f95","ActionName":"AuthServiceBanco.Api.Controllers.AuthController.VerifyEmail (AuthServiceBanco.Api)","RequestId":"0HNJMK7VJDR1I:00000001","RequestPath":"/api/v1/auth/verify-email","ConnectionId":"0HNJMK7VJDR1I"}
+[2026-02-28 02:26:52 INF] HTTP POST /api/v1/auth/verify-email responded 200 in 3599.9975 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNJMK7VJDR1I:00000001","ConnectionId":"0HNJMK7VJDR1I"}
+[2026-02-28 02:27:25 INF] User login successfully. {"EventId":{"Id":1002,"Name":"LogUserLoggedIn"},"SourceContext":"AuthServiceBanco.Application.Services.AuthService","ActionId":"882e53db-ed37-42b6-b15e-7e252d95ae11","ActionName":"AuthServiceBanco.Api.Controllers.AuthController.Login (AuthServiceBanco.Api)","RequestId":"0HNJMK7VJDR1I:00000002","RequestPath":"/api/v1/auth/login","ConnectionId":"0HNJMK7VJDR1I"}
+[2026-02-28 02:27:25 INF] HTTP POST /api/v1/auth/login responded 200 in 1156.3379 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNJMK7VJDR1I:00000002","ConnectionId":"0HNJMK7VJDR1I"}
+[2026-02-28 02:28:49 INF] HTTP GET /api/v1/auth/profile responded 401 in 219.3403 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNJMK7VJDR1K:00000001","ConnectionId":"0HNJMK7VJDR1K"}
+[2026-02-28 02:30:07 INF] HTTP GET /api/v1/users/usr_Gdn15Rz6jB6g/roles responded 401 in 56.8057 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNJMK7VJDR1M:00000001","ConnectionId":"0HNJMK7VJDR1M"}
+[2026-02-28 02:30:27 INF] HTTP GET /api/v1/users/usr_Gdn15Rz6jB6g/roles responded 401 in 13.9466 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNJMK7VJDR1M:00000002","ConnectionId":"0HNJMK7VJDR1M"}
+[2026-02-28 02:32:01 INF] HTTP GET /api/v1/users/usr_Gdn15Rz6jB6g/roles responded 200 in 1544.3575 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNJMK7VJDR1O:00000001","ConnectionId":"0HNJMK7VJDR1O"}
+[2026-02-28 02:32:39 INF] User login successfully. {"EventId":{"Id":1002,"Name":"LogUserLoggedIn"},"SourceContext":"AuthServiceBanco.Application.Services.AuthService","ActionId":"882e53db-ed37-42b6-b15e-7e252d95ae11","ActionName":"AuthServiceBanco.Api.Controllers.AuthController.Login (AuthServiceBanco.Api)","RequestId":"0HNJMK7VJDR1O:00000002","RequestPath":"/api/v1/auth/login","ConnectionId":"0HNJMK7VJDR1O"}
+[2026-02-28 02:32:39 INF] HTTP POST /api/v1/auth/login responded 200 in 561.4151 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNJMK7VJDR1O:00000002","ConnectionId":"0HNJMK7VJDR1O"}
+[2026-02-28 02:33:42 INF] HTTP POST /api/v1/admin/create-client responded 403 in 289.0229 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNJMK7VJDR1Q:00000001","ConnectionId":"0HNJMK7VJDR1Q"}
