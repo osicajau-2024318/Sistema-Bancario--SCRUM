@@ -1,7 +1,7 @@
 import Favorite from '../models/favorite.model.js';
 import Account from '../models/account.model.js';
 import Transaction from '../models/transaction.model.js';
-import mongoose from 'mongoose';
+import { transferFromFavorite, findFavoriteByIdOrAlias } from '../services/favorite.service.js';
 
 // Crear favorito
 export const createFavorite = async (req, res) => {
@@ -9,9 +9,20 @@ export const createFavorite = async (req, res) => {
     const { alias, account_number } = req.body;
     const userId = req.user.id;
 
+    // Validar que el alias y número de cuenta estén presentes
+    if (!alias || !account_number) {
+      return res.status(400).json({ 
+        success: false,
+        message: 'El alias y número de cuenta son requeridos' 
+      });
+    }
+
     const account = await Account.findOne({ account_number });
     if (!account) {
-      return res.status(404).json({ message: 'Cuenta no existe' });
+      return res.status(404).json({ 
+        success: false,
+        message: `No se encontró cuenta con número ${account_number}` 
+      });
     }
 
     const exists = await Favorite.findOne({ 
@@ -20,7 +31,10 @@ export const createFavorite = async (req, res) => {
     });
 
     if (exists) {
-      return res.status(400).json({ message: 'Cuenta ya está en favoritos' });
+      return res.status(400).json({ 
+        success: false,
+        message: `La cuenta ${account_number} ya está guardada en tus favoritos` 
+      });
     }
 
     const favorite = new Favorite({
@@ -34,198 +48,167 @@ export const createFavorite = async (req, res) => {
 
     res.status(201).json({
       success: true,
-      message: 'Favorito agregado',
+      message: 'Favorito agregado exitosamente',
       favorite
     });
 
   } catch (error) {
-    res.status(500).json({ message: 'Error al crear favorito', error: error.message });
+    console.error('Error al crear favorito:', error);
+    res.status(500).json({ 
+      success: false,
+      message: 'Error al agregar favorito. Por favor intente nuevamente',
+      error: process.env.NODE_ENV === 'development' ? error.message : undefined
+    });
   }
 };
 
 // Obtener mis favoritos
 export const getMyFavorites = async (req, res) => {
-  const userId = req.user.id;
+  try {
+    const userId = req.user.id;
 
-  const favorites = await Favorite.find({ owner_user_id: userId });
+    const favorites = await Favorite.find({ owner_user_id: userId });
 
-  res.json({
-    success: true,
-    total: favorites.length,
-    favorites
-  });
+    res.json({
+      success: true,
+      total: favorites.length,
+      message: favorites.length === 0 ? 'No tienes favoritos guardados' : undefined,
+      favorites
+    });
+
+  } catch (error) {
+    console.error('Error al obtener favoritos:', error);
+    res.status(500).json({ 
+      success: false,
+      message: 'Error al obtener tus favoritos. Por favor intente nuevamente',
+      error: process.env.NODE_ENV === 'development' ? error.message : undefined
+    });
+  }
 };
 
 // Actualizar alias
 export const updateFavorite = async (req, res) => {
-  const { id } = req.params;
-  const userId = req.user.id;
+  try {
+    const { id } = req.params;
+    const userId = req.user.id;
+    const { alias } = req.body;
 
-  const favorite = await Favorite.findOneAndUpdate(
-    { _id: id, owner_user_id: userId },
-    { alias: req.body.alias },
-    { new: true }
-  );
+    // Validar que el alias esté presente
+    if (!alias || alias.trim() === '') {
+      return res.status(400).json({ 
+        success: false,
+        message: 'El alias no puede estar vacío' 
+      });
+    }
 
-  if (!favorite) {
-    return res.status(404).json({ message: 'Favorito no encontrado' });
+    const favorite = await findFavoriteByIdOrAlias(id, userId);
+    if (!favorite) {
+      return res.status(404).json({ 
+        success: false,
+        message: 'Favorito no encontrado. Verifica el alias o el ID.' 
+      });
+    }
+
+    favorite.alias = alias;
+    await favorite.save();
+
+    res.json({
+      success: true,
+      message: 'Alias del favorito actualizado exitosamente',
+      favorite
+    });
+
+  } catch (error) {
+    console.error('Error al actualizar favorito:', error);
+    res.status(500).json({ 
+      success: false,
+      message: 'Error al actualizar el favorito. Por favor intente nuevamente',
+      error: process.env.NODE_ENV === 'development' ? error.message : undefined
+    });
   }
-
-  res.json({
-    success: true,
-    message: 'Favorito actualizado',
-    favorite
-  });
 };
 
 // Eliminar favorito
 export const deleteFavorite = async (req, res) => {
-  const { id } = req.params;
-  const userId = req.user.id;
+  try {
+    const { id } = req.params;
+    const userId = req.user.id;
 
-  const favorite = await Favorite.findOneAndDelete({ 
-    _id: id, 
-    owner_user_id: userId 
-  });
+    const favorite = await findFavoriteByIdOrAlias(id, userId);
+    if (!favorite) {
+      return res.status(404).json({ 
+        success: false,
+        message: 'Favorito no encontrado. Verifica el alias o el ID.' 
+      });
+    }
 
-  if (!favorite) {
-    return res.status(404).json({ message: 'Favorito no encontrado' });
+    await Favorite.findByIdAndDelete(favorite._id);
+
+    res.json({
+      success: true,
+      message: 'Favorito eliminado exitosamente'
+    });
+
+  } catch (error) {
+    console.error('Error al eliminar favorito:', error);
+    res.status(500).json({ 
+      success: false,
+      message: 'Error al eliminar el favorito. Por favor intente nuevamente',
+      error: process.env.NODE_ENV === 'development' ? error.message : undefined
+    });
   }
-
-  res.json({
-    success: true,
-    message: 'Favorito eliminado'
-  });
 };
 
 // Transferencia rápida desde favorito
 export const quickTransferFromFavorite = async (req, res) => {
-  const session = await mongoose.startSession();
-  session.startTransaction();
-
   try {
-    const { id } = req.params;
-    const { amount } = req.body;
+    const { id } = req.params;  // puede ser ID (ObjectId) o alias del favorito
+    const { amount, fromAccount } = req.body;
     const fromUserId = req.user.id;
 
-    // Validar monto
-    if (!amount || amount <= 0) {
-      await session.abortTransaction();
-      session.endSession();
-      return res.status(400).json({ message: 'Monto inválido' });
-    }
-
-    // Obtener el favorito
-    const favorite = await Favorite.findById(id).session(session);
-    if (!favorite) {
-      await session.abortTransaction();
-      session.endSession();
-      return res.status(404).json({ message: 'Favorito no encontrado' });
-    }
-
-    // Verificar que el favorito pertenece al usuario
-    if (favorite.owner_user_id !== fromUserId) {
-      await session.abortTransaction();
-      session.endSession();
-      return res.status(403).json({ message: 'No tienes permiso para usar este favorito' });
-    }
-
-    // Obtener cuenta origen
-    const fromAccount = await Account.findOne({ user_id: fromUserId }).session(session);
-    if (!fromAccount) {
-      await session.abortTransaction();
-      session.endSession();
-      return res.status(404).json({ message: 'Cuenta origen no existe' });
-    }
-
-    // Obtener cuenta destino usando el número de cuenta del favorito
-    const toAccountData = await Account.findOne({ 
-      account_number: favorite.account_number 
-    }).session(session);
+    const result = await transferFromFavorite(id, amount, fromUserId, fromAccount);
     
-    if (!toAccountData) {
-      await session.abortTransaction();
-      session.endSession();
-      return res.status(404).json({ message: 'Cuenta destino no existe' });
-    }
-
-    // No permitir transferir a propia cuenta
-    if (toAccountData.user_id.toString() === fromUserId) {
-      await session.abortTransaction();
-      session.endSession();
-      return res.status(400).json({ message: 'No puedes transferirte a tu propia cuenta' });
-    }
-
-    // Validar que ambas cuentas estén activas
-    if (fromAccount.estado !== 'ACTIVA' || toAccountData.estado !== 'ACTIVA') {
-      await session.abortTransaction();
-      session.endSession();
-      return res.status(400).json({ message: 'Cuenta no activa' });
-    }
-
-    // Validar límite de transferencia
-    if (amount > fromAccount.single_transfer_limit) {
-      await session.abortTransaction();
-      session.endSession();
-      return res.status(400).json({ message: 'Límite por transferencia excedido' });
-    }
-
-    // Validar saldo
-    if (fromAccount.balance < amount) {
-      await session.abortTransaction();
-      session.endSession();
-      return res.status(400).json({ message: 'Saldo insuficiente' });
-    }
-
-    // Realizar transferencia
-    fromAccount.balance -= amount;
-    toAccountData.balance += amount;
-
-    await fromAccount.save({ session });
-    await toAccountData.save({ session });
-
-    // Crear transacciones
-    const debit = new Transaction({
-      transaction_name: `Transferencia enviada a ${favorite.alias}`,
-      transaction_amount: amount,
-      transaction_type: 'DEBITO',
-      transaction_method_payment: 'TRANSFERENCIA',
-      account_id: fromAccount._id,
-      user_id: fromAccount.user_id
-    });
-
-    const credit = new Transaction({
-      transaction_name: 'Transferencia recibida',
-      transaction_amount: amount,
-      transaction_type: 'CREDITO',
-      transaction_method_payment: 'TRANSFERENCIA',
-      account_id: toAccountData._id,
-      user_id: toAccountData.user_id
-    });
-
-    await debit.save({ session });
-    await credit.save({ session });
-
-    await session.commitTransaction();
-    session.endSession();
-
-    res.json({
-      success: true,
-      message: 'Transferencia rápida realizada',
-      data: {
-        from_account: fromAccount.account_number,
-        to_account: toAccountData.account_number,
-        to_alias: favorite.alias,
-        amount
-      }
-    });
+    res.json(result);
 
   } catch (error) {
-    await session.abortTransaction();
-    session.endSession();
+    // Mapear errores a códigos HTTP apropiados
+    if (error.message === 'Favorito no encontrado') {
+      return res.status(404).json({ 
+        success: false,
+        message: error.message 
+      });
+    }
+    if (error.message === 'No tienes permiso para usar este favorito') {
+      return res.status(403).json({ 
+        success: false,
+        message: error.message 
+      });
+    }
+    if (error.message === 'Cuenta origen no encontrada o no te pertenece. Verifica fromAccount.' || 
+        error.message === 'Cuenta destino no existe') {
+      return res.status(404).json({ 
+        success: false, 
+        message: error.message 
+      });
+    }
+    if (error.message.includes('Monto inválido') || 
+        error.message.includes('Debes indicar la cuenta origen') ||
+        error.message.includes('No puedes transferir') || 
+        error.message.includes('Cuenta no activa') ||
+        error.message.includes('Límite por transferencia') ||
+        error.message.includes('Saldo insuficiente') ||
+        error.message.includes('límite diario')) {
+      return res.status(400).json({ 
+        success: false, 
+        message: error.message 
+      });
+    }
+    
+    console.error('Error en transferencia rápida:', error);
     res.status(500).json({ 
-      message: 'Error en transferencia rápida', 
-      error: error.message 
+      success: false,
+      message: 'Error en transferencia rápida. Por favor intente nuevamente',
+      error: process.env.NODE_ENV === 'development' ? error.message : undefined
     });
   }
 };

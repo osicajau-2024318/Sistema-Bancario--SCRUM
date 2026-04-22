@@ -1,20 +1,78 @@
 import Transaction from '../models/transaction.model.js';
 import Account from '../models/account.model.js';
+import mongoose from 'mongoose';
 
-// Obtener historial de transacciones con paginación
+const HISTORY_TYPES = ['DEPOSITO', 'DEBITO', 'CREDITO', 'TRANSFERENCIA'];
+
+export const getHistoryMe = async (req, res) => {
+  try {
+    const userId = req.user.id;
+    const accounts = await Account.find({ user_id: userId });
+    const accountIds = accounts.map(acc => acc._id);
+    const accountNumbers = accounts.map(acc => acc.account_number);
+    const filter = {
+      transaction_type: { $in: HISTORY_TYPES },
+      $or: [
+        { account_id: { $in: accountIds } },
+        { from_account: { $in: accountNumbers } },
+        { to_account: { $in: accountNumbers } }
+      ]
+    };
+    const history = await Transaction.find(filter)
+      .sort({ createdAt: -1 })
+      .populate('account_id', 'account_number account_type currency')
+      .lean();
+    res.json({ success: true, total_records: history.length, history });
+  } catch (error) {
+    res.status(500).json({ success: false, message: 'Error al obtener historial', error: error.message });
+  }
+};
+
+export const getHistoryByAccountId = async (req, res) => {
+  try {
+    const { accountId } = req.params;
+    if (!mongoose.Types.ObjectId.isValid(accountId)) {
+      return res.status(400).json({ success: false, message: 'ID de cuenta inválido' });
+    }
+    const account = await Account.findById(accountId);
+    if (!account) {
+      return res.status(404).json({ success: false, message: 'Cuenta no encontrada' });
+    }
+    const filter = {
+      transaction_type: { $in: HISTORY_TYPES },
+      $or: [
+        { account_id: account._id },
+        { from_account: account.account_number },
+        { to_account: account.account_number }
+      ]
+    };
+    const history = await Transaction.find(filter)
+      .sort({ createdAt: -1 })
+      .populate('account_id', 'account_number account_type currency')
+      .lean();
+    res.json({
+      success: true,
+      accountId: account._id,
+      account_number: account.account_number,
+      total_records: history.length,
+      history
+    });
+  } catch (error) {
+    res.status(500).json({ success: false, message: 'Error al obtener historial de la cuenta', error: error.message });
+  }
+};
+
 export const getMyTransactions = async (req, res) => {
   try {
     const userId = req.user.id;
     const page = parseInt(req.query.page) || 1;
     const limit = parseInt(req.query.limit) || 10;
     const skip = (page - 1) * limit;
-
-    // Buscar las cuentas del usuario
+    const sortBy = req.query.sortBy || 'date';
+    const order = req.query.order === 'asc' ? 1 : -1;
     const accounts = await Account.find({ user_id: userId });
     const accountIds = accounts.map(acc => acc._id);
     const accountNumbers = accounts.map(acc => acc.account_number);
-
-    // Filtros opcionales
     const filter = {
       $or: [
         { account_id: { $in: accountIds } },
@@ -22,80 +80,61 @@ export const getMyTransactions = async (req, res) => {
         { to_account: { $in: accountNumbers } }
       ]
     };
-
-    if (req.query.type) {
-      filter.transaction_type = req.query.type;
-    }
-
+    if (req.query.type) filter.transaction_type = req.query.type;
+    if (req.query.method) filter.transaction_method_payment = req.query.method;
     if (req.query.from_date && req.query.to_date) {
-      filter.createdAt = {
-        $gte: new Date(req.query.from_date),
-        $lte: new Date(req.query.to_date)
-      };
+      filter.createdAt = { $gte: new Date(req.query.from_date), $lte: new Date(req.query.to_date) };
     }
-
+    if (req.query.min_amount || req.query.max_amount) {
+      filter.transaction_amount = {};
+      if (req.query.min_amount) filter.transaction_amount.$gte = parseFloat(req.query.min_amount);
+      if (req.query.max_amount) filter.transaction_amount.$lte = parseFloat(req.query.max_amount);
+    }
+    if (req.query.search) filter.transaction_name = { $regex: req.query.search, $options: 'i' };
+    let sortObj = { createdAt: -1 };
+    if (sortBy === 'amount') sortObj = { transaction_amount: order };
+    else if (sortBy === 'type') sortObj = { transaction_type: order };
     const total = await Transaction.countDocuments(filter);
-    const transactions = await Transaction.find(filter)
-      .sort({ createdAt: -1 })
-      .skip(skip)
-      .limit(limit)
-      .populate('account_id');
-
+    const transactions = await Transaction.find(filter).sort(sortObj).skip(skip).limit(limit).populate('account_id');
+    const allForSummary = await Transaction.find(filter).select('transaction_amount transaction_type');
+    let typesSummary = {};
+    let totalAmount = 0;
+    allForSummary.forEach(tx => {
+      totalAmount += tx.transaction_amount || 0;
+      const type = tx.transaction_type;
+      if (!typesSummary[type]) typesSummary[type] = { count: 0, total: 0 };
+      typesSummary[type].count++;
+      typesSummary[type].total += tx.transaction_amount || 0;
+    });
     res.json({
       success: true,
       transactions,
-      pagination: {
-        total,
-        page,
-        pages: Math.ceil(total / limit),
-        limit
-      }
+      summary: { total_transactions: total, total_amount: totalAmount, by_type: typesSummary },
+      pagination: { total, page, pages: Math.ceil(total / limit), limit }
     });
-
   } catch (error) {
-    res.status(500).json({
-      success: false,
-      message: 'Error al obtener transacciones',
-      error: error.message
-    });
+    res.status(500).json({ success: false, message: 'Error al obtener transacciones', error: error.message });
   }
 };
 
-// Obtener una transacción específica
 export const getTransactionById = async (req, res) => {
   try {
     const { id } = req.params;
     const userId = req.user.id;
-
-    const transaction = await Transaction.findById(id).populate('account_id');
-
-    if (!transaction) {
-      return res.status(404).json({
-        success: false,
-        message: 'Transacción no encontrada'
-      });
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      return res.status(400).json({ success: false, message: 'ID de transacción inválido' });
     }
-
-    // Verificar que la transacción pertenece al usuario
+    const transaction = await Transaction.findById(id).populate('account_id');
+    if (!transaction) {
+      return res.status(404).json({ success: false, message: 'Transacción no encontrada' });
+    }
     const txUserId = transaction.user_id?.toString ? transaction.user_id.toString() : transaction.user_id;
     if (txUserId !== userId) {
-      return res.status(403).json({
-        success: false,
-        message: 'No tienes permiso para ver esta transacción'
-      });
+      return res.status(403).json({ success: false, message: 'No tienes permiso para ver esta transacción' });
     }
-
-    res.json({
-      success: true,
-      transaction
-    });
-
+    res.json({ success: true, transaction });
   } catch (error) {
-    res.status(500).json({
-      success: false,
-      message: 'Error al obtener transacción',
-      error: error.message
-    });
+    res.status(500).json({ success: false, message: 'Error al obtener transacción', error: error.message });
   }
 };
 
@@ -147,75 +186,5 @@ export const getAllTransactions = async (req, res) => {
       message: 'Error al obtener transacciones',
       error: error.message
     });
-  }
-};
-
-export const transfer = async (req, res) => {
-  const session = await mongoose.startSession();
-  session.startTransaction();
-
-  try {
-    const { toAccount, amount } = req.body;
-    const fromUserId = req.user.id;
-
-    if (!amount || amount <= 0)
-      return res.status(400).json({ message: 'Monto inválido' });
-
-    const fromAccount = await Account.findOne({ user_id: fromUserId }).session(session);
-    if (!fromAccount)
-      return res.status(404).json({ message: 'Cuenta origen no existe' });
-
-    const toAccountData = await Account.findOne({ account_number: toAccount }).session(session);
-    if (!toAccountData)
-      return res.status(404).json({ message: 'Cuenta destino no existe' });
-
-    if (toAccountData.user_id.toString() === fromUserId)
-      return res.status(400).json({ message: 'No puedes transferirte a tu propia cuenta' });
-
-    if (fromAccount.estado !== 'ACTIVA' || toAccountData.estado !== 'ACTIVA')
-      return res.status(400).json({ message: 'Cuenta no activa' });
-
-    if (amount > fromAccount.single_transfer_limit)
-      return res.status(400).json({ message: 'Límite por transferencia excedido' });
-
-    if (fromAccount.balance < amount)
-      return res.status(400).json({ message: 'Saldo insuficiente' });
-
-    fromAccount.balance -= amount;
-    toAccountData.balance += amount;
-
-    await fromAccount.save({ session });
-    await toAccountData.save({ session });
-
-    const debit = new Transaction({
-      transaction_name: 'Transferencia enviada',
-      transaction_amount: amount,
-      transaction_type: 'DEBITO',
-      transaction_method_payment: 'TRANSFERENCIA',
-      account_id: fromAccount._id,
-      user_id: fromAccount.user_id
-    });
-
-    const credit = new Transaction({
-      transaction_name: 'Transferencia recibida',
-      transaction_amount: amount,
-      transaction_type: 'CREDITO',
-      transaction_method_payment: 'TRANSFERENCIA',
-      account_id: toAccountData._id,
-      user_id: toAccountData.user_id
-    });
-
-    await debit.save({ session });
-    await credit.save({ session });
-
-    await session.commitTransaction();
-    session.endSession();
-
-    res.json({ success: true, message: 'Transferencia realizada' });
-
-  } catch (error) {
-    await session.abortTransaction();
-    session.endSession();
-    res.status(500).json({ message: 'Error en transferencia', error: error.message });
   }
 };

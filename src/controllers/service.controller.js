@@ -1,167 +1,157 @@
-import Product from '../models/product.model.js';
+import Service from '../models/service.model.js';
 import mongoose from 'mongoose';
 
-// Crear producto/servicio (solo admin)
-export const createProduct = async (req, res) => {
+export const createService = async (req, res) => {
   try {
-    const { name, description, type, price } = req.body;
+    const { name, description, assigned_to } = req.body;
     const created_by = req.user.id;
 
-    const product = new Product({
+    const service = new Service({
       name,
-      description: description || undefined,
-      type,
-      price,
-      created_by
+      description: description || '',
+      created_by,
+      assigned_to: assigned_to || null
     });
 
-    await product.save();
+    await service.save();
 
     res.status(201).json({
       success: true,
-      message: 'Producto creado correctamente',
-      product
+      message: 'Servicio creado correctamente',
+      service
     });
   } catch (error) {
     if (error.name === 'ValidationError') {
       return res.status(400).json({
         success: false,
-        message: 'Datos de producto inválidos',
+        message: 'Datos de servicio inválidos',
         error: error.message
       });
     }
     res.status(500).json({
       success: false,
-      message: 'Error al crear producto',
+      message: 'Error al crear servicio',
       error: process.env.NODE_ENV === 'development' ? error.message : undefined
     });
   }
 };
 
-// Obtener todos los productos/servicios
-export const getProducts = async (req, res) => {
+export const getServices = async (req, res) => {
   try {
-    const { type, is_active } = req.query;
-
+    const { is_active, assigned_to } = req.query;
     const filter = {};
-    if (type && ['PRODUCTO', 'SERVICIO'].includes(type)) filter.type = type;
     if (is_active !== undefined) filter.is_active = is_active === 'true';
+    if (assigned_to) filter.assigned_to = assigned_to;
 
-    const products = await Product.find(filter).sort({ createdAt: -1 });
+    const services = await Service.find(filter).sort({ createdAt: -1 });
 
     res.json({
       success: true,
-      total: products.length,
-      products
+      total: services.length,
+      services
     });
   } catch (error) {
     res.status(500).json({
       success: false,
-      message: 'Error al obtener productos',
+      message: 'Error al obtener servicios',
       error: process.env.NODE_ENV === 'development' ? error.message : undefined
     });
   }
 };
 
-// Obtener producto por ID (público)
-export const getProductById = async (req, res) => {
+export const getServiceById = async (req, res) => {
   try {
     const { id } = req.params;
     if (!mongoose.Types.ObjectId.isValid(id)) {
       return res.status(400).json({
         success: false,
-        message: 'ID de producto inválido'
+        message: 'ID de servicio inválido'
       });
     }
 
-    const product = await Product.findById(id);
-
-    if (!product) {
+    const service = await Service.findById(id);
+    if (!service) {
       return res.status(404).json({
         success: false,
-        message: 'Producto no encontrado'
+        message: 'Servicio no encontrado'
       });
     }
 
     res.json({
       success: true,
-      product
+      service
     });
   } catch (error) {
     res.status(500).json({
       success: false,
-      message: 'Error al obtener producto',
+      message: 'Error al obtener servicio',
       error: process.env.NODE_ENV === 'development' ? error.message : undefined
     });
   }
 };
 
-// Actualizar producto/servicio (solo admin)
-export const updateProduct = async (req, res) => {
+export const updateService = async (req, res) => {
   try {
     const { id } = req.params;
-    const { name, description, price, is_active } = req.body;
+    const { name, description, is_active, assigned_to } = req.body;
 
     const update = {};
     if (name !== undefined) update.name = name;
     if (description !== undefined) update.description = description;
-    if (price !== undefined) update.price = price;
     if (is_active !== undefined) update.is_active = is_active;
+    if (assigned_to !== undefined) update.assigned_to = assigned_to || null;
 
-    const product = await Product.findByIdAndUpdate(
+    const service = await Service.findByIdAndUpdate(
       id,
       update,
       { new: true, runValidators: true }
     );
 
-    if (!product) {
+    if (!service) {
       return res.status(404).json({
         success: false,
-        message: 'Producto no encontrado'
+        message: 'Servicio no encontrado'
       });
     }
 
     res.json({
       success: true,
-      message: 'Producto actualizado correctamente',
-      product
+      message: 'Servicio actualizado correctamente',
+      service
     });
   } catch (error) {
     if (error.name === 'ValidationError') {
       return res.status(400).json({
         success: false,
-        message: 'Datos de producto inválidos',
+        message: 'Datos de servicio inválidos',
         error: error.message
       });
     }
     res.status(500).json({
       success: false,
-      message: 'Error al actualizar producto',
+      message: 'Error al actualizar servicio',
       error: process.env.NODE_ENV === 'development' ? error.message : undefined
     });
   }
 };
 
-// Eliminar producto/servicio (solo admin)
-export const deleteProduct = async (req, res) => {
+export const deleteService = async (req, res) => {
   try {
-    const product = await Product.findByIdAndDelete(req.params.id);
-
-    if (!product) {
+    const service = await Service.findByIdAndDelete(req.params.id);
+    if (!service) {
       return res.status(404).json({
         success: false,
-        message: 'Producto no encontrado'
+        message: 'Servicio no encontrado'
       });
     }
-
     res.json({
       success: true,
-      message: 'Producto eliminado correctamente'
+      message: 'Servicio eliminado correctamente'
     });
   } catch (error) {
     res.status(500).json({
       success: false,
-      message: 'Error al eliminar producto',
+      message: 'Error al eliminar servicio',
       error: process.env.NODE_ENV === 'development' ? error.message : undefined
     });
   }

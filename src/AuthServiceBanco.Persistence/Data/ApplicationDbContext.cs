@@ -76,7 +76,9 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
             entity.Property(e => e.Status)
                 .HasDefaultValue(false);
             entity.Property(e => e.AccountState)
-                .HasDefaultValue(Domain.Enums.AccountState.PENDIENTE);
+                .IsRequired()
+                .HasConversion<int>()
+                .HasDefaultValue(null);
             entity.Property(e => e.CreatedAt)
                 .IsRequired();
             entity.Property(e => e.UpdatedAt)

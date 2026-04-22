@@ -9,15 +9,21 @@ import {
 import { validateJWT } from '../../middlewares/validate-JWT.js';
 import { validateRole } from '../../middlewares/validate-role.js';
 import { Roles } from '../constants/roles.js';
+import {
+  validateProductId,
+  validateCreateProduct,
+  validateUpdateProduct
+} from '../../middlewares/product.validators.js';
 
 const router = Router();
 
-router.get('/', validateJWT, getProducts);
-router.get('/:id', validateJWT, getProductById);
+// Público 
+router.get('/', getProducts);
+router.get('/:id', validateProductId, getProductById);
 
-// Solo admin  validateRole recibe string directo, NO array
-router.post('/', validateJWT, validateRole(Roles.ADMIN), createProduct);
-router.put('/:id', validateJWT, validateRole(Roles.ADMIN), updateProduct);
-router.delete('/:id', validateJWT, validateRole(Roles.ADMIN), deleteProduct);
+// Solo admin
+router.post('/', validateJWT, validateRole(Roles.ADMIN), validateCreateProduct, createProduct);
+router.put('/:id', validateJWT, validateRole(Roles.ADMIN), validateUpdateProduct, updateProduct);
+router.delete('/:id', validateJWT, validateRole(Roles.ADMIN), validateProductId, deleteProduct);
 
 export default router;

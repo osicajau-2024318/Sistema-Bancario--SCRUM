@@ -3,10 +3,15 @@ import Account from '../models/account.model.js';
 import Transaction from '../models/transaction.model.js';
 import { Roles } from '../constants/roles.js';
 
+// Tasa de cambio GTQ a USD (configurable)
+const EXCHANGE_RATE = {
+  GTQ_TO_USD: 7.8, // 1 USD = 7.8 GTQ
+  USD_TO_GTQ: 7.8
+};
+
 export const createDeposit = async (req, res) => {
   try {
-    const { accountNumber, amount, description } = req.body;
-    const userId = req.user.id; // Obtener userId del token JWT
+    const { accountNumber, amount, description, currency } = req.body;
 
     if (!amount || amount <= 0)
       return res.status(400).json({ success: false, message: 'Monto inválido' });
@@ -23,15 +28,34 @@ export const createDeposit = async (req, res) => {
     const account = await Account.findOne({ account_number: accountNumber });
     if (!account) return res.status(404).json({ success: false, message: 'Cuenta no encontrada' });
 
-    // Validar que la cuenta pertenece al usuario autenticado (permitir a Admins)
-    if (req.user.role !== Roles.ADMIN) {
-      if (account.user_id.toString() !== userId) {
-        return res.status(403).json({ success: false, message: 'No tienes permiso para depositar en esta cuenta' });
-      }
+    // Validar que la moneda coincida o sea compatible
+    const currencyToUse = currency || account.currency;
+    if (currencyToUse !== 'GTQ' && currencyToUse !== 'USD') {
+      return res.status(400).json({ success: false, message: 'Moneda debe ser GTQ o USD' });
     }
 
     if (account.estado !== 'ACTIVA')
       return res.status(400).json({ success: false, message: 'Cuenta no activa' });
+
+    // Determinar monto a depositar con conversión de moneda
+    let depositAmount = amount;
+    let exchangeUsed = null;
+    let conversionNote = '';
+
+    if (currencyToUse !== account.currency) {
+      // Hay conversión de moneda
+      if (currencyToUse === 'GTQ' && account.currency === 'USD') {
+        // Convertir de GTQ a USD
+        depositAmount = parseFloat((amount / EXCHANGE_RATE.GTQ_TO_USD).toFixed(2));
+        exchangeUsed = EXCHANGE_RATE.GTQ_TO_USD;
+        conversionNote = `Depósito de GTQ ${amount} convertido a USD ${depositAmount} (Tasa: ${EXCHANGE_RATE.GTQ_TO_USD})`;
+      } else if (currencyToUse === 'USD' && account.currency === 'GTQ') {
+        // Convertir de USD a GTQ
+        depositAmount = parseFloat((amount * EXCHANGE_RATE.USD_TO_GTQ).toFixed(2));
+        exchangeUsed = EXCHANGE_RATE.USD_TO_GTQ;
+        conversionNote = `Depósito de USD ${amount} convertido a GTQ ${depositAmount} (Tasa: ${EXCHANGE_RATE.USD_TO_GTQ})`;
+      }
+    }
 
     // Límite de depósito diario (ejemplo 10,000 por día)
     const today = new Date();
@@ -43,30 +67,45 @@ export const createDeposit = async (req, res) => {
     ]);
 
     const totalDeposited = depositsToday[0]?.total || 0;
-    if (totalDeposited + amount > 10000) {
+    if (totalDeposited + depositAmount > 10000) {
       return res.status(400).json({ success: false, message: 'Se excede el límite diario de depósitos' });
     }
 
     // Crear transacción
     const transaction = new Transaction({
-      transaction_name: description || 'Depósito',
-      transaction_amount: amount,
+      transaction_name: conversionNote || description || 'Depósito',
+      transaction_amount: depositAmount,
       transaction_type: 'DEPOSITO',
+      transaction_method_payment: 'DEPOSITO',
       account_id: account._id,
-      user_id: userId,
-      revertible: true
+      user_id: account.user_id,
+      revertible: true,
+      currency_from: currencyToUse,
+      currency_to: account.currency,
+      exchange_rate: exchangeUsed
     });
     await transaction.save();
 
     // Actualizar saldo
-    account.balance += amount;
+    account.balance += depositAmount;
     await account.save();
 
     res.status(201).json({
       success: true,
       message: 'Depósito realizado exitosamente',
-      transaction,
-      balance: account.balance
+      data: {
+        transaction_id: transaction._id,
+        account_number: account.account_number,
+        amount_deposited: amount,
+        amount_credited: depositAmount,
+        currency_from: currencyToUse,
+        currency_to: account.currency,
+        exchange_rate: exchangeUsed,
+        description: description || 'Depósito',
+        new_balance: account.balance,
+        conversion_note: conversionNote || 'Sin conversión',
+        timestamp: transaction.createdAt
+      }
     });
 
   } catch (error) {
