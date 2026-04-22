@@ -1,45 +1,70 @@
-import Transaction from '../models/transaction.model.js';
+// Importa mongoose para validar ObjectIds y manejar MongoDB
+import mongoose from 'mongoose';
+// Importa el modelo de Cuenta bancaria
 import Account from '../models/account.model.js';
+// Importa el servicio de conversión de moneda
 import { convertCurrency } from '../services/currency.service.js';
+// Importa servicios para verificar usuarios y crear clientes en el servicio de autenticación .NET
 import { verifyUserExists, verifyMonthlyIncome, createClientInAuthService } from '../services/authService.service.js';
+// Importa el modelo de Transacción para registrar movimientos
+import Transaction from '../models/transaction.model.js';
+// Importa axios para hacer peticiones HTTP al servicio de autenticación
 import axios from 'axios';
 
+// Tasa de cambio GTQ a USD (configurable)
+const EXCHANGE_RATE = {
+  GTQ_TO_USD: 7.8, // 1 USD = 7.8 GTQ
+  USD_TO_GTQ: 7.8
+};
+
+// Función helper que verifica si una cuenta está activa
+// Maneja diferentes formatos de estado que puede tener una cuenta
 const isAccountActive = (account) => {
+  // Si el estado viene como string 'ACTIVA'
   if (typeof account?.estado === 'string') {
     return account.estado === 'ACTIVA';
   }
 
+  // Si el estado viene como booleano 'active'
   if (typeof account?.active === 'boolean') {
     return account.active;
   }
 
+  // Si el estado viene como booleano 'is_active'
   if (typeof account?.is_active === 'boolean') {
     return account.is_active;
   }
 
+  // Por defecto retorna true si no encuentra ningún campo
   return true;
 };
 
 
-// ─── ADMIN: Crear cuenta para cualquier usuario por userId ───
+// ADMIN: Crear cuenta para cualquier usuario por userId
 export const createAccount = async (req, res) => {
   try {
+    // Valida que el body no esté vacío
     if (!req.body || Object.keys(req.body).length === 0) {
       return res.status(400).json({ success: false, message: 'Se requiere account_type, currency y opcionalmente balance ' });
     }
 
     const { userId, account_type, currency, balance } = req.body;
+    // Si no se proporciona userId, usa el del usuario autenticado
     const targetUserId = userId || req.user.id;
 
+    // Valida que el tipo de cuenta sea válido
     if (!account_type || !['AHORRO', 'CORRIENTE', 'NOMINA'].includes(account_type)) {
       return res.status(400).json({ success: false, message: 'Tipo de cuenta inválido. Use AHORRO, CORRIENTE o NOMINA' });
     }
 
+    // Valida que la moneda sea válida
     if (!currency || !['GTQ', 'USD'].includes(currency)) {
       return res.status(400).json({ success: false, message: 'Moneda inválida. Use GTQ o USD' });
     }
 
+    // Convierte el balance inicial a número, por defecto 0
     const initialBalance = parseFloat(balance) || 0;
+    // Valida que el saldo inicial no sea negativo
     if (initialBalance < 0) {
       return res.status(400).json({ success: false, message: 'El saldo inicial no puede ser negativo' });
     }
@@ -49,26 +74,30 @@ export const createAccount = async (req, res) => {
     try {
       await verifyUserExists(targetUserId, token);
     } catch (error) {
-      return res.status(404).json({ success: false, message: 'Usuario no encontrado en el sistema' });
+      return res.status(404).json({ success: false, message: 'Ese id de usuario no existe' });
     }
 
-    // Generar número de cuenta único
+    // Generar número de cuenta único de 10 dígitos
     let account_number;
     let exists = true;
     while (exists) {
+      // Genera un número aleatorio de 10 dígitos
       account_number = Math.floor(1000000000 + Math.random() * 9000000000).toString();
+      // Verifica que no exista en la base de datos
       exists = await Account.findOne({ account_number });
     }
 
+    // Crea una nueva cuenta con los datos proporcionados
     const account = new Account({
       user_id: targetUserId,
       account_type,
       currency,
       balance: initialBalance,
       account_number,
-      estado: 'ACTIVA'
+      estado: 'ACTIVA' // La cuenta queda activa inmediatamente porque la crea un admin
     });
 
+    // Guarda la cuenta en la base de datos
     await account.save();
 
     res.status(201).json({
@@ -82,48 +111,33 @@ export const createAccount = async (req, res) => {
   }
 };
 
-// ─── USUARIO: Crear su propia cuenta (queda PENDIENTE hasta que admin active) ───
-// Sin JWT requerido para la primera cuenta, pero sí para cuentas adicionales
+// USUARIO: Crear su propia cuenta (queda PENDIENTE hasta que admin active)
 export const createMyAccount = async (req, res) => {
   try {
-    const { user_id, account_type, currency, balance } = req.body;
+    // Obtiene el ID del usuario del token JWT
+    const userId = req.user.id;
+    let { account_type, currency, balance } = req.body;
 
-    // Validar que se proporcione user_id
-    if (!user_id) {
-      return res.status(400).json({ 
-        success: false, 
-        message: 'user_id es requerido en el body' 
-      });
-    }
+   
 
-    // Verificar si el usuario YA tiene cuentas
-    const existingAccounts = await Account.find({ user_id });
-
-    // Si ya tiene cuentas, requiere token de autenticación
-    if (existingAccounts.length > 0) {
-      // Validar que tenga token y que sea la misma persona
-      if (!req.user || req.user.id !== user_id) {
-        return res.status(401).json({ 
-          success: false, 
-          message: 'Token requerido para crear cuentas adicionales' 
-        });
-      }
-    }
-
+    // Convierte el balance a número, por defecto 0
     const initialBalance = parseFloat(balance) || 0;
+    // Valida que el saldo inicial no sea negativo
     if (initialBalance < 0) {
       return res.status(400).json({ success: false, message: 'El saldo inicial no puede ser negativo' });
     }
 
-    if (!account_type || !['AHORRO', 'CORRIENTE', 'NOMINA'].includes(account_type)) {
+    // Valida el tipo de cuenta
+    if (!['AHORRO', 'CORRIENTE', 'NOMINA'].includes(account_type)) {
       return res.status(400).json({ success: false, message: 'Tipo de cuenta inválido. Use AHORRO, CORRIENTE o NOMINA' });
     }
 
-    if (!currency || !['GTQ', 'USD'].includes(currency)) {
+    // Valida la moneda
+    if (!['GTQ', 'USD'].includes(currency)) {
       return res.status(400).json({ success: false, message: 'Moneda inválida. Use GTQ o USD' });
     }
 
-    // Generar número de cuenta única
+    // Generar número de cuenta único de 10 dígitos
     let account_number;
     let exists = true;
     while (exists) {
@@ -131,8 +145,9 @@ export const createMyAccount = async (req, res) => {
       exists = await Account.findOne({ account_number });
     }
 
+    // Crea la cuenta con estado PENDIENTE (requiere aprobación de admin)
     const account = new Account({
-      user_id,
+      user_id: userId,
       account_type,
       currency,
       balance: initialBalance,
@@ -154,46 +169,30 @@ export const createMyAccount = async (req, res) => {
 };
 
 
-// ─── ADMIN: Activar cuenta de un usuario ───
+// ADMIN: Activar cuenta de un usuario
 export const activateAccount = async (req, res) => {
   try {
+    // Obtiene el ID de la cuenta de los parámetros de la URL
     const { accountId } = req.params;
 
-    const account = await Account.findOne({ user_id: accountId });
+    // Busca la cuenta en la base de datos
+    const account = await Account.findById(accountId);
     if (!account) {
       return res.status(404).json({ success: false, message: 'Cuenta no encontrada' });
     }
 
+    // Verifica si la cuenta ya está activa
     if (account.estado === 'ACTIVA') {
       return res.status(400).json({ success: false, message: 'La cuenta ya está activa' });
     }
 
+    // Cambia el estado a ACTIVA
     account.estado = 'ACTIVA';
     await account.save();
 
-    // Intentar activar el usuario también en .NET
-    try {
-      const token = req.headers.authorization?.split(' ')[1];
-      if (token) {
-        await axios.post(
-          `http://localhost:5025/api/v1/admin/users/${accountId}/activate`,
-          {},
-          {
-            headers: {
-              'Authorization': `Bearer ${token}`,
-              'Content-Type': 'application/json'
-            }
-          }
-        );
-      }
-    } catch (error) {
-      // Si falla la activación en .NET, log pero no fallar la respuesta
-      console.error('Advertencia: No se pudo activar el usuario en .NET', error.message);
-    }
-
     res.json({
       success: true,
-      message: 'Cuenta activada correctamente. Usuario también activado en .NET.',
+      message: 'Cuenta activada correctamente',
       account
     });
 
@@ -202,7 +201,7 @@ export const activateAccount = async (req, res) => {
   }
 };
 
-// Obtener cuentas del usuario
+// Obtener cuentas del usuario autenticado
 export const getMyAccount = async (req, res) => {
   try {
     const userId = req.user.id;
@@ -234,7 +233,7 @@ export const getMyAccount = async (req, res) => {
 export const transfer = async (req, res) => {
   try {
     const fromUserId = req.user.id;
-    const { toAccount, amount, description } = req.body;
+    const { fromAccount: fromAccountNumber, toAccount, amount, description, currency } = req.body;
 
     // Validar que el monto sea válido
     if (!amount || amount <= 0) {
@@ -244,12 +243,23 @@ export const transfer = async (req, res) => {
       });
     }
 
-    const fromAccount = await Account.findOne({ user_id: fromUserId });
-    
+    if (!fromAccountNumber) {
+      return res.status(400).json({
+        success: false,
+        message: 'Debes indicar la cuenta origen (fromAccount): el número de tu cuenta desde la que envías'
+      });
+    }
+
+    // Cuenta origen: debe ser del usuario y existir
+    const fromAccount = await Account.findOne({
+      user_id: fromUserId,
+      account_number: String(fromAccountNumber).trim()
+    });
+
     if (!fromAccount) {
       return res.status(404).json({
         success: false,
-        message: 'Cuenta origen no encontrada'
+        message: 'Cuenta origen no encontrada o no te pertenece. Verifica el número de cuenta (fromAccount).'
       });
     }
 
@@ -284,15 +294,24 @@ export const transfer = async (req, res) => {
       });
     }
 
-    // Verificar límite por transferencia (Q2000)
-    if (amount > fromAccount.single_transfer_limit) {
+    // Determinar moneda de origen
+    const currencyFrom = currency || fromAccount.currency;
+    if (currencyFrom !== 'GTQ' && currencyFrom !== 'USD') {
       return res.status(400).json({
         success: false,
-        message: `Supera el límite por transferencia de Q${fromAccount.single_transfer_limit}`
+        message: 'Moneda debe ser GTQ o USD'
       });
     }
 
-    // Verificar límite diario (Q10,000)
+    // Verificar límite por transferencia (Q2000 o USD equivalente)
+    if (amount > fromAccount.single_transfer_limit) {
+      return res.status(400).json({
+        success: false,
+        message: `Supera el límite por transferencia de ${fromAccount.currency}${fromAccount.single_transfer_limit}`
+      });
+    }
+
+    // Verificar límite diario (Q10,000 o USD equivalente)
     const today = new Date().toDateString();
     const lastDate = fromAccount.last_transfer_date?.toDateString();
 
@@ -305,7 +324,7 @@ export const transfer = async (req, res) => {
       const remaining = fromAccount.daily_transfer_limit - fromAccount.daily_transferred_amount;
       return res.status(400).json({
         success: false,
-        message: `Supera el límite diario de transferencias. Disponible hoy: Q${remaining}`
+        message: `Supera el límite diario de transferencias. Disponible hoy: ${fromAccount.currency}${remaining}`
       });
     }
 
@@ -317,26 +336,49 @@ export const transfer = async (req, res) => {
       });
     }
 
-    // Realizar la transferencia
-    fromAccount.balance -= amount;
-    toAccountData.balance += amount;
+    // Realizar la transferencia con conversión de moneda
+    let debitAmount = amount;
+    let creditAmount = amount;
+    let exchangeUsed = null;
+    let conversionNote = '';
 
-    fromAccount.daily_transferred_amount += amount;
+    // Verificar si hay conversión de moneda
+    if (currencyFrom !== toAccountData.currency) {
+      if (currencyFrom === 'GTQ' && toAccountData.currency === 'USD') {
+        // Convertir de GTQ a USD
+        creditAmount = parseFloat((amount / EXCHANGE_RATE.GTQ_TO_USD).toFixed(2));
+        exchangeUsed = EXCHANGE_RATE.GTQ_TO_USD;
+        conversionNote = `Transferencia de GTQ ${amount} a USD ${creditAmount} (Tasa: ${EXCHANGE_RATE.GTQ_TO_USD})`;
+      } else if (currencyFrom === 'USD' && toAccountData.currency === 'GTQ') {
+        // Convertir de USD a GTQ
+        creditAmount = parseFloat((amount * EXCHANGE_RATE.USD_TO_GTQ).toFixed(2));
+        exchangeUsed = EXCHANGE_RATE.USD_TO_GTQ;
+        conversionNote = `Transferencia de USD ${amount} a GTQ ${creditAmount} (Tasa: ${EXCHANGE_RATE.USD_TO_GTQ})`;
+      }
+    }
+
+    fromAccount.balance -= debitAmount;
+    toAccountData.balance += creditAmount;
+
+    fromAccount.daily_transferred_amount += debitAmount;
 
     await fromAccount.save();
     await toAccountData.save();
 
     // Crear registro de transacción
     const transaction = new Transaction({
-      transaction_name: description || 'Transferencia',
-      transaction_amount: amount,
+      transaction_name: conversionNote || description || 'Transferencia',
+      transaction_amount: creditAmount,
       transaction_type: 'TRANSFERENCIA',
       transaction_method_payment: 'TRANSFERENCIA',
       from_account: fromAccount.account_number,
       to_account: toAccountData.account_number,
       account_id: fromAccount._id,
       user_id: fromUserId,
-      revertible: false
+      revertible: false,
+      exchange_rate: exchangeUsed,
+      currency_from: currencyFrom,
+      currency_to: toAccountData.currency
     });
 
     await transaction.save();
@@ -345,9 +387,14 @@ export const transfer = async (req, res) => {
       success: true,
       message: 'Transferencia realizada exitosamente',
       transaction: {
-        amount,
+        amount_debited: debitAmount,
+        amount_credited: creditAmount,
         from: fromAccount.account_number,
         to: toAccountData.account_number,
+        from_currency: currencyFrom,
+        to_currency: toAccountData.currency,
+        exchange_rate: exchangeUsed,
+        conversion_note: conversionNote || 'Sin conversión',
         newBalance: fromAccount.balance,
         dailyRemaining: fromAccount.daily_transfer_limit - fromAccount.daily_transferred_amount
       }
@@ -559,51 +606,59 @@ export const getAllAccounts = async (req, res) => {
   }
 };
 
-// Cliente: Editar cuenta (solo tipo si no hay transacciones)
+// Admin: Editar cuenta por id (actualizaciones parciales). No permite cambiar `balance`.
 export const updateAccount = async (req, res) => {
   try {
-    const userId = req.user.id;
-    const { account_type } = req.body;
+    const { id } = req.params;
 
-    const account = await Account.findOne({ user_id: userId });
-    
+    // Validar formato de ObjectId
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      return res.status(400).json({ success: false, message: 'ID de cuenta inválido' });
+    }
+
+    // Prohibir cambios en balance
+    if (Object.prototype.hasOwnProperty.call(req.body, 'balance')) {
+      return res.status(400).json({ success: false, message: 'No está permitido modificar el balance' });
+    }
+
+    // Campos permitidos para actualizar
+    const allowedFields = ['account_type', 'currency', 'estado', 'account_number', 'single_transfer_limit', 'daily_transfer_limit'];
+    const updates = {};
+
+    for (const key of Object.keys(req.body)) {
+      if (!allowedFields.includes(key)) {
+        return res.status(400).json({ success: false, message: `Campo inválido en la actualización: ${key}` });
+      }
+      updates[key] = req.body[key];
+    }
+
+    if (Object.keys(updates).length === 0) {
+      return res.status(400).json({ success: false, message: 'No se proporcionaron campos válidos para actualizar' });
+    }
+
+    // Validaciones específicas
+    if (updates.account_type && !['AHORRO', 'CORRIENTE', 'NOMINA'].includes(updates.account_type)) {
+      return res.status(400).json({ success: false, message: 'Tipo de cuenta inválido. Use AHORRO, CORRIENTE o NOMINA' });
+    }
+
+    if (updates.currency && !['GTQ', 'USD'].includes(updates.currency)) {
+      return res.status(400).json({ success: false, message: 'Moneda inválida. Use GTQ o USD' });
+    }
+
+    const account = await Account.findById(id);
     if (!account) {
-      return res.status(404).json({
-        success: false,
-        message: 'Cuenta no encontrada'
-      });
+      return res.status(404).json({ success: false, message: 'Cuenta no encontrada' });
     }
 
-    // Verificar si hay transacciones
-    const hasTransactions = await Transaction.findOne({
-      $or: [
-        { from_account: account.account_number },
-        { to_account: account.account_number }
-      ]
-    });
+    // Aplicar actualizaciones parciales
+    Object.keys(updates).forEach((k) => { account[k] = updates[k]; });
 
-    if (hasTransactions) {
-      return res.status(400).json({
-        success: false,
-        message: 'No se puede cambiar el tipo de cuenta si ya tiene transacciones'
-      });
-    }
-
-    account.account_type = account_type;
     await account.save();
 
-    res.json({
-      success: true,
-      message: 'Tipo de cuenta actualizado',
-      account
-    });
+    res.json({ success: true, message: 'Cuenta actualizada correctamente', account });
 
   } catch (error) {
-    res.status(500).json({
-      success: false,
-      message: 'Error al actualizar cuenta',
-      error: error.message
-    });
+    res.status(500).json({ success: false, message: 'Error al actualizar cuenta', error: error.message });
   }
 };
 

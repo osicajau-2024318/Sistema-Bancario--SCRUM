@@ -37,18 +37,18 @@ public class AdminService(
         }
 
         var user = new User
-        {
-            Id = UuidGenerator.GenerateUserId(),
-            Name = dto.Name,
-            Surname = dto.Surname,
-            Username = dto.Username,
-            Email = dto.Email,
-            Password = string.Empty,
-            Status = true,
-            AccountState = Domain.Enums.AccountState.ACTIVA,
-            CreatedAt = DateTime.UtcNow,
-            UpdatedAt = DateTime.UtcNow
-        };
+{
+    Id = UuidGenerator.GenerateUserId(),
+    Name = dto.Name,
+    Surname = dto.Surname,
+    Username = dto.Username,
+    Email = dto.Email,
+    Password = string.Empty,
+    Status = true,
+    AccountState = Domain.Enums.AccountState.ACTIVA,  // <-- esta línea
+    CreatedAt = DateTime.UtcNow,
+    UpdatedAt = DateTime.UtcNow
+};
 
         user.Password = passwordHashService.HashPassword(dto.Password);
 
@@ -175,9 +175,16 @@ public class AdminService(
         };
     }
 
-    public async Task<UserResponseDto> UpdateUserAsync(string userId, UpdateUserDto dto)
+    public async Task<UserResponseDto> UpdateUserAsync(string userId, UpdateUserDto dto, string currentUserId)
     {
         var user = await users.GetByIdAsync(userId);
+
+        // Un administrador solo puede editar su propio perfil; no puede editar a otro administrador
+        var targetIsAdmin = user.UserRoles.Any(ur => ur.Role?.Name == RoleConstants.ADMIN_ROLE);
+        if (targetIsAdmin && !string.Equals(currentUserId, userId, StringComparison.Ordinal))
+        {
+            throw new InvalidOperationException("No se puede editar a otro administrador. Solo puede editar su propio perfil.");
+        }
 
         // No permitir editar DPI ni contraseña (según requerimientos)
         // Actualizar datos básicos del usuario

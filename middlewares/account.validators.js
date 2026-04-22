@@ -77,13 +77,27 @@ export const validateCreateAccount = [
 ];
 
 export const validateTransfer = [
+  body('fromAccount')
+    .notEmpty()
+    .withMessage('Cuenta origen obligatoria (número de tu cuenta desde la que envías)'),
+
   body('toAccount')
     .notEmpty()
     .withMessage('Cuenta destino obligatoria'),
 
   body('amount')
-    .isFloat({ gt: 0 })
-    .withMessage('Monto inválido'),
+    .isFloat({ min: 5, max: 2000 })
+    .withMessage('El monto debe estar entre Q5 y Q2,000'),
+
+  body('currency')
+    .optional()
+    .isIn(['GTQ', 'USD'])
+    .withMessage('Moneda debe ser GTQ o USD'),
+
+  body('description')
+    .optional()
+    .isString()
+    .withMessage('Descripción debe ser texto'),
 
   checkValidators
 ];
@@ -92,6 +106,35 @@ export const validateAccountIdParam = [
   param('id')
     .isMongoId()
     .withMessage('ID inválido'),
+
+  checkValidators
+];
+
+/** Validación para admin: crear cuenta (userId opcional, account_type, currency, balance opcional). */
+export const validateCreateAccountAdmin = [
+  body('account_type')
+    .notEmpty()
+    .withMessage('Tipo de cuenta es obligatorio')
+    .bail()
+    .isIn(['AHORRO', 'CORRIENTE', 'NOMINA'])
+    .withMessage('Tipo de cuenta inválido. Use AHORRO, CORRIENTE o NOMINA'),
+
+  body('currency')
+    .notEmpty()
+    .withMessage('Moneda es obligatoria')
+    .bail()
+    .isIn(['GTQ', 'USD'])
+    .withMessage('Moneda debe ser GTQ o USD'),
+
+  body('userId')
+    .optional()
+    .isString()
+    .withMessage('userId debe ser texto'),
+
+  body('balance')
+    .optional()
+    .isFloat({ min: 0 })
+    .withMessage('El saldo inicial no puede ser negativo'),
 
   checkValidators
 ];

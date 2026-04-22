@@ -34,9 +34,10 @@ public class CreateClientDtoValidator : AbstractValidator<CreateClientDto>
             .Matches(@"^\d{8}$").WithMessage("El teléfono debe tener 8 dígitos");
 
         RuleFor(x => x.Email)
-            .NotEmpty().WithMessage("El email es requerido")
-            .EmailAddress().WithMessage("El formato del email no es válido")
-            .MaximumLength(100).WithMessage("El email no puede exceder 100 caracteres");
+    .NotEmpty().WithMessage("El email es requerido")
+    .EmailAddress(FluentValidation.Validators.EmailValidationMode.AspNetCoreCompatible)
+    .WithMessage("El formato del email no es válido")
+    .MaximumLength(100).WithMessage("El email no puede exceder 100 caracteres");
 
         RuleFor(x => x.Password)
             .NotEmpty().WithMessage("La contraseña es requerida")

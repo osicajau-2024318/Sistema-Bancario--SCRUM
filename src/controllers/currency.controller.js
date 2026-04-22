@@ -5,6 +5,8 @@
  * @param {number} amount - Monto a convertir
  * @returns {Promise<number>} - Monto convertido
  */
+import Account from '../models/account.model.js';
+
 export const convertCurrency = async (from, to, amount) => {
   try {
     const response = await fetch(`https://api.exchangerate.host/convert?from=${from}&to=${to}&amount=${amount}`);
@@ -44,10 +46,8 @@ export const convertMoney = async (req, res) => {
 
 /**
  * Controlador para convertir moneda de una cuenta
- * Endpoint: GET /api/v1/currency/:accountId?to=USD
+ * Endpoint: GET /SistemaBancarioAdmin/v1/currency/:accountId?to=USD
  */
-import Account from '../models/account.model.js';
-
 export const convertAccountCurrency = async (req, res) => {
   try {
     const { accountId } = req.params;

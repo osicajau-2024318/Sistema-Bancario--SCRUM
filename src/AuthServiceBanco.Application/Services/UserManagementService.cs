@@ -103,6 +103,9 @@ public class UserManagementService(IUserRepository users, IRoleRepository roles,
 
         if (dto.Surname != null)
             user.Surname = dto.Surname;
+            
+        if (dto.Phone != null)
+           user.UserProfile.Phone = dto.Phone;
 
         user.UpdatedAt = DateTime.UtcNow;
 
