@@ -1,0 +1,257 @@
+[2026-03-01 16:54:30 INF] Checking database connection... {"SourceContext":"Program"}
+[2026-03-01 16:54:34 INF] Database ready. Running seed data... {"SourceContext":"Program"}
+[2026-03-01 16:54:37 INF] Database initialization completed successfully {"SourceContext":"Program"}
+[2026-03-01 16:54:38 INF] AuthService API is running at http://localhost:5025. Health endpoint: http://localhost:5025/health {"SourceContext":"Program"}
+[2026-03-01 16:54:50 WRN] Failed to determine the https port for redirect. {"EventId":{"Id":3,"Name":"FailedToDeterminePort"},"SourceContext":"Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware","RequestId":"0HNJNSM5LNMO1:00000001","RequestPath":"/api/v1/auth/login","ConnectionId":"0HNJNSM5LNMO1"}
+[2026-03-01 16:54:54 INF] User login successfully. {"EventId":{"Id":1002,"Name":"LogUserLoggedIn"},"SourceContext":"AuthServiceBanco.Application.Services.AuthService","ActionId":"37a76405-79b4-4205-978f-5bfa50fc3a4a","ActionName":"AuthServiceBanco.Api.Controllers.AuthController.Login (AuthServiceBanco.Api)","RequestId":"0HNJNSM5LNMO1:00000001","RequestPath":"/api/v1/auth/login","ConnectionId":"0HNJNSM5LNMO1"}
+[2026-03-01 16:54:55 INF] HTTP POST /api/v1/auth/login responded 200 in 4549.8158 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNJNSM5LNMO1:00000001","ConnectionId":"0HNJNSM5LNMO1"}
+[2026-03-01 16:55:42 INF] HTTP GET /api/v1/auth/profile responded 200 in 1245.6426 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNJNSM5LNMO1:00000002","ConnectionId":"0HNJNSM5LNMO1"}
+[2026-03-01 17:15:30 INF] Checking database connection... {"SourceContext":"Program"}
+[2026-03-01 17:15:33 INF] Database ready. Running seed data... {"SourceContext":"Program"}
+[2026-03-01 17:15:36 INF] Database initialization completed successfully {"SourceContext":"Program"}
+[2026-03-01 17:15:36 INF] AuthService API is running at http://localhost:5025. Health endpoint: http://localhost:5025/health {"SourceContext":"Program"}
+[2026-03-01 17:17:32 WRN] Failed to determine the https port for redirect. {"EventId":{"Id":3,"Name":"FailedToDeterminePort"},"SourceContext":"Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware","RequestId":"0HNJNT2RG9OOD:00000001","RequestPath":"/api/v1/auth/login","ConnectionId":"0HNJNT2RG9OOD"}
+[2026-03-01 17:17:34 INF] User login successfully. {"EventId":{"Id":1002,"Name":"LogUserLoggedIn"},"SourceContext":"AuthServiceBanco.Application.Services.AuthService","ActionId":"a39eeab2-3e29-4e94-b135-30cda6fb7925","ActionName":"AuthServiceBanco.Api.Controllers.AuthController.Login (AuthServiceBanco.Api)","RequestId":"0HNJNT2RG9OOD:00000001","RequestPath":"/api/v1/auth/login","ConnectionId":"0HNJNT2RG9OOD"}
+[2026-03-01 17:17:34 INF] HTTP POST /api/v1/auth/login responded 200 in 2065.4689 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNJNT2RG9OOD:00000001","ConnectionId":"0HNJNT2RG9OOD"}
+[2026-03-01 17:34:29 INF] User login successfully. {"EventId":{"Id":1002,"Name":"LogUserLoggedIn"},"SourceContext":"AuthServiceBanco.Application.Services.AuthService","ActionId":"a39eeab2-3e29-4e94-b135-30cda6fb7925","ActionName":"AuthServiceBanco.Api.Controllers.AuthController.Login (AuthServiceBanco.Api)","RequestId":"0HNJNT2RG9OOF:00000001","RequestPath":"/api/v1/auth/login","ConnectionId":"0HNJNT2RG9OOF"}
+[2026-03-01 17:34:29 INF] HTTP POST /api/v1/auth/login responded 200 in 3094.8632 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNJNT2RG9OOF:00000001","ConnectionId":"0HNJNT2RG9OOF"}
+[2026-03-01 18:04:50 INF] Checking database connection... {"SourceContext":"Program"}
+[2026-03-01 18:04:55 INF] Database ready. Running seed data... {"SourceContext":"Program"}
+[2026-03-01 18:04:56 INF] Database initialization completed successfully {"SourceContext":"Program"}
+[2026-03-01 18:04:57 INF] AuthService API is running at http://localhost:5025. Health endpoint: http://localhost:5025/health {"SourceContext":"Program"}
+[2026-03-01 18:07:19 WRN] Failed to determine the https port for redirect. {"EventId":{"Id":3,"Name":"FailedToDeterminePort"},"SourceContext":"Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware","RequestId":"0HNJNTULE8LN4:00000001","RequestPath":"/api/v1/auth/login","ConnectionId":"0HNJNTULE8LN4"}
+[2026-03-01 18:07:24 INF] User login successfully. {"EventId":{"Id":1002,"Name":"LogUserLoggedIn"},"SourceContext":"AuthServiceBanco.Application.Services.AuthService","ActionId":"38df5802-bba3-4830-abad-eb4e2c4d8644","ActionName":"AuthServiceBanco.Api.Controllers.AuthController.Login (AuthServiceBanco.Api)","RequestId":"0HNJNTULE8LN4:00000001","RequestPath":"/api/v1/auth/login","ConnectionId":"0HNJNTULE8LN4"}
+[2026-03-01 18:07:26 INF] HTTP POST /api/v1/auth/login responded 200 in 7376.1131 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNJNTULE8LN4:00000001","ConnectionId":"0HNJNTULE8LN4"}
+[2026-03-01 18:54:58 INF] Checking database connection... {"SourceContext":"Program"}
+[2026-03-01 18:55:02 INF] Database ready. Running seed data... {"SourceContext":"Program"}
+[2026-03-01 18:55:03 INF] Database initialization completed successfully {"SourceContext":"Program"}
+[2026-03-01 18:55:04 INF] AuthService API is running at http://localhost:5025. Health endpoint: http://localhost:5025/health {"SourceContext":"Program"}
+[2026-03-01 18:58:44 WRN] Failed to determine the https port for redirect. {"EventId":{"Id":3,"Name":"FailedToDeterminePort"},"SourceContext":"Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware","RequestId":"0HNJNURD12M3C:00000001","RequestPath":"/api/v1/auth/login","ConnectionId":"0HNJNURD12M3C"}
+[2026-03-01 18:58:48 INF] User login successfully. {"EventId":{"Id":1002,"Name":"LogUserLoggedIn"},"SourceContext":"AuthServiceBanco.Application.Services.AuthService","ActionId":"48b11413-d92b-4681-807a-abfbf5316909","ActionName":"AuthServiceBanco.Api.Controllers.AuthController.Login (AuthServiceBanco.Api)","RequestId":"0HNJNURD12M3C:00000001","RequestPath":"/api/v1/auth/login","ConnectionId":"0HNJNURD12M3C"}
+[2026-03-01 18:58:48 INF] HTTP POST /api/v1/auth/login responded 200 in 4051.6927 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNJNURD12M3C:00000001","ConnectionId":"0HNJNURD12M3C"}
+[2026-03-01 19:17:45 WRN] Failed login attempt {"EventId":{"Id":1003,"Name":"LogFailedLoginAttempt"},"SourceContext":"AuthServiceBanco.Application.Services.AuthService","ActionId":"48b11413-d92b-4681-807a-abfbf5316909","ActionName":"AuthServiceBanco.Api.Controllers.AuthController.Login (AuthServiceBanco.Api)","RequestId":"0HNJNURD12M3E:00000001","RequestPath":"/api/v1/auth/login","ConnectionId":"0HNJNURD12M3E"}
+[2026-03-01 19:17:45 ERR] An unhandled exception occurred {"SourceContext":"AuthServiceBanco.Api.Middlewares.GlobalExceptionMiddleware","RequestId":"0HNJNURD12M3E:00000001","RequestPath":"/api/v1/auth/login","ConnectionId":"0HNJNURD12M3E"}
+System.UnauthorizedAccessException: Invalid credentials
+   at AuthServiceBanco.Application.Services.AuthService.LoginAsync(LoginDto loginDto) in C:\2024505\Sistema-Bancario--SCRUM\src\AuthServiceBanco.Application\Services\AuthService.cs:line 181
+   at AuthServiceBanco.Api.Controllers.AuthController.Login(LoginDto loginDto) in C:\2024505\Sistema-Bancario--SCRUM\src\AuthServiceBanco.Api\Controllers\AuthController.cs:line 53
+   at lambda_method255(Closure, Object)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.AwaitableObjectResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.RateLimiting.RateLimitingMiddleware.InvokeInternal(HttpContext context, EnableRateLimitingAttribute enableRateLimitingAttribute)
+   at AuthServiceBanco.Api.Middlewares.GlobalExceptionMiddleware.InvokeAsync(HttpContext context) in C:\2024505\Sistema-Bancario--SCRUM\src\AuthServiceBanco.Api\Middlewares\GlobalExceptionMiddleware.cs:line 18
+[2026-03-01 19:17:45 INF] HTTP POST /api/v1/auth/login responded 401 in 1322.2602 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNJNURD12M3E:00000001","ConnectionId":"0HNJNURD12M3E"}
+[2026-03-01 19:22:23 WRN] Failed login attempt {"EventId":{"Id":1003,"Name":"LogFailedLoginAttempt"},"SourceContext":"AuthServiceBanco.Application.Services.AuthService","ActionId":"48b11413-d92b-4681-807a-abfbf5316909","ActionName":"AuthServiceBanco.Api.Controllers.AuthController.Login (AuthServiceBanco.Api)","RequestId":"0HNJNURD12M3G:00000001","RequestPath":"/api/v1/auth/login","ConnectionId":"0HNJNURD12M3G"}
+[2026-03-01 19:22:23 ERR] An unhandled exception occurred {"SourceContext":"AuthServiceBanco.Api.Middlewares.GlobalExceptionMiddleware","RequestId":"0HNJNURD12M3G:00000001","RequestPath":"/api/v1/auth/login","ConnectionId":"0HNJNURD12M3G"}
+System.UnauthorizedAccessException: Invalid credentials
+   at AuthServiceBanco.Application.Services.AuthService.LoginAsync(LoginDto loginDto) in C:\2024505\Sistema-Bancario--SCRUM\src\AuthServiceBanco.Application\Services\AuthService.cs:line 181
+   at AuthServiceBanco.Api.Controllers.AuthController.Login(LoginDto loginDto) in C:\2024505\Sistema-Bancario--SCRUM\src\AuthServiceBanco.Api\Controllers\AuthController.cs:line 53
+   at lambda_method255(Closure, Object)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.AwaitableObjectResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.RateLimiting.RateLimitingMiddleware.InvokeInternal(HttpContext context, EnableRateLimitingAttribute enableRateLimitingAttribute)
+   at AuthServiceBanco.Api.Middlewares.GlobalExceptionMiddleware.InvokeAsync(HttpContext context) in C:\2024505\Sistema-Bancario--SCRUM\src\AuthServiceBanco.Api\Middlewares\GlobalExceptionMiddleware.cs:line 18
+[2026-03-01 19:22:23 INF] HTTP POST /api/v1/auth/login responded 401 in 444.9481 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNJNURD12M3G:00000001","ConnectionId":"0HNJNURD12M3G"}
+[2026-03-01 19:24:15 INF] User login successfully. {"EventId":{"Id":1002,"Name":"LogUserLoggedIn"},"SourceContext":"AuthServiceBanco.Application.Services.AuthService","ActionId":"48b11413-d92b-4681-807a-abfbf5316909","ActionName":"AuthServiceBanco.Api.Controllers.AuthController.Login (AuthServiceBanco.Api)","RequestId":"0HNJNURD12M3I:00000001","RequestPath":"/api/v1/auth/login","ConnectionId":"0HNJNURD12M3I"}
+[2026-03-01 19:24:15 INF] HTTP POST /api/v1/auth/login responded 200 in 1095.0642 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNJNURD12M3I:00000001","ConnectionId":"0HNJNURD12M3I"}
+[2026-03-01 23:01:39 INF] Checking database connection... {"SourceContext":"Program"}
+[2026-03-01 23:01:42 INF] Database ready. Running seed data... {"SourceContext":"Program"}
+[2026-03-01 23:01:43 INF] Database initialization completed successfully {"SourceContext":"Program"}
+[2026-03-01 23:01:44 INF] AuthService API is running at http://localhost:5025. Health endpoint: http://localhost:5025/health {"SourceContext":"Program"}
+[2026-03-01 23:05:07 WRN] Failed to determine the https port for redirect. {"EventId":{"Id":3,"Name":"FailedToDeterminePort"},"SourceContext":"Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware","RequestId":"0HNJO352NTSUT:00000001","RequestPath":"/api/v1/auth/login","ConnectionId":"0HNJO352NTSUT"}
+[2026-03-01 23:05:10 INF] User login successfully. {"EventId":{"Id":1002,"Name":"LogUserLoggedIn"},"SourceContext":"AuthServiceBanco.Application.Services.AuthService","ActionId":"58e4e685-3fc6-4023-9603-db51d34da1d0","ActionName":"AuthServiceBanco.Api.Controllers.AuthController.Login (AuthServiceBanco.Api)","RequestId":"0HNJO352NTSUT:00000001","RequestPath":"/api/v1/auth/login","ConnectionId":"0HNJO352NTSUT"}
+[2026-03-01 23:05:10 INF] HTTP POST /api/v1/auth/login responded 200 in 2819.0068 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNJO352NTSUT:00000001","ConnectionId":"0HNJO352NTSUT"}
+[2026-03-01 23:05:41 ERR] Failed executing DbCommand (99ms) [Parameters=[@p0='?', @p1='?' (DbType = DateTime), @p2='?', @p3='?', @p4='?', @p5='?' (DbType = Boolean), @p6='?', @p7='?' (DbType = DateTime), @p8='?', @p9='?', @p10='?', @p11='?' (DbType = DateTime), @p12='?' (DbType = Boolean), @p13='?', @p14='?', @p15='?', @p16='?', @p17='?' (DbType = Decimal), @p18='?', @p19='?', @p20='?', @p21='?', @p22='?', @p23='?' (DbType = DateTime), @p24='?', @p25='?' (DbType = DateTime), @p26='?'], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "user" (id, created_at, email, name, password, status, surname, updated_at, username)
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8);
+INSERT INTO user_email (id, email_verification_token, email_verification_token_expiry, email_verified, user_id)
+VALUES (@p9, @p10, @p11, @p12, @p13);
+INSERT INTO user_profile (id, address, dpi, monthly_income, phone, profile_picture, user_id, work_name)
+VALUES (@p14, @p15, @p16, @p17, @p18, @p19, @p20, @p21);
+INSERT INTO user_role (id, created_at, role_id, updated_at, user_id)
+VALUES (@p22, @p23, @p24, @p25, @p26); {"EventId":{"Id":20102,"Name":"Microsoft.EntityFrameworkCore.Database.Command.CommandError"},"SourceContext":"Microsoft.EntityFrameworkCore.Database.Command","ActionId":"504fab13-cd46-4120-be47-d6e541f954a2","ActionName":"AuthServiceBanco.Api.Controllers.AdminController.CreateClient (AuthServiceBanco.Api)","RequestId":"0HNJO352NTSUU:00000001","RequestPath":"/api/v1/admin/create-client","ConnectionId":"0HNJO352NTSUU"}
+[2026-03-01 23:05:41 ERR] An exception occurred in the database while saving changes for context type 'AuthServiceBanco.Persistence.Data.ApplicationDbContext'.
+Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
+ ---> Npgsql.PostgresException (0x80004005): 23505: duplicate key value violates unique constraint "ix_user_email"
+
+DETAIL: Detail redacted as it may contain sensitive data. Specify 'Include Error Detail' in the connection string to include this information.
+   at Npgsql.Internal.NpgsqlConnector.ReadMessageLong(Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+  Exception data:
+    Severity: ERROR
+    SqlState: 23505
+    MessageText: duplicate key value violates unique constraint "ix_user_email"
+    Detail: Detail redacted as it may contain sensitive data. Specify 'Include Error Detail' in the connection string to include this information.
+    SchemaName: public
+    TableName: user
+    ConstraintName: ix_user_email
+    File: nbtinsert.c
+    Line: 666
+    Routine: _bt_check_unique
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(StateManager stateManager, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken) {"EventId":{"Id":10000,"Name":"Microsoft.EntityFrameworkCore.Update.SaveChangesFailed"},"SourceContext":"Microsoft.EntityFrameworkCore.Update","ActionId":"504fab13-cd46-4120-be47-d6e541f954a2","ActionName":"AuthServiceBanco.Api.Controllers.AdminController.CreateClient (AuthServiceBanco.Api)","RequestId":"0HNJO352NTSUU:00000001","RequestPath":"/api/v1/admin/create-client","ConnectionId":"0HNJO352NTSUU"}
+Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
+ ---> Npgsql.PostgresException (0x80004005): 23505: duplicate key value violates unique constraint "ix_user_email"
+
+DETAIL: Detail redacted as it may contain sensitive data. Specify 'Include Error Detail' in the connection string to include this information.
+   at Npgsql.Internal.NpgsqlConnector.ReadMessageLong(Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+  Exception data:
+    Severity: ERROR
+    SqlState: 23505
+    MessageText: duplicate key value violates unique constraint "ix_user_email"
+    Detail: Detail redacted as it may contain sensitive data. Specify 'Include Error Detail' in the connection string to include this information.
+    SchemaName: public
+    TableName: user
+    ConstraintName: ix_user_email
+    File: nbtinsert.c
+    Line: 666
+    Routine: _bt_check_unique
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(StateManager stateManager, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+[2026-03-01 23:05:41 ERR] An unhandled exception occurred {"SourceContext":"AuthServiceBanco.Api.Middlewares.GlobalExceptionMiddleware","RequestId":"0HNJO352NTSUU:00000001","RequestPath":"/api/v1/admin/create-client","ConnectionId":"0HNJO352NTSUU"}
+Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
+ ---> Npgsql.PostgresException (0x80004005): 23505: duplicate key value violates unique constraint "ix_user_email"
+
+DETAIL: Detail redacted as it may contain sensitive data. Specify 'Include Error Detail' in the connection string to include this information.
+   at Npgsql.Internal.NpgsqlConnector.ReadMessageLong(Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+  Exception data:
+    Severity: ERROR
+    SqlState: 23505
+    MessageText: duplicate key value violates unique constraint "ix_user_email"
+    Detail: Detail redacted as it may contain sensitive data. Specify 'Include Error Detail' in the connection string to include this information.
+    SchemaName: public
+    TableName: user
+    ConstraintName: ix_user_email
+    File: nbtinsert.c
+    Line: 666
+    Routine: _bt_check_unique
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(StateManager stateManager, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at AuthServiceBanco.Persistence.Repositories.UserRepository.CreateAsync(User user, UserProfile profile, UserEmail email, UserRole userRole) in C:\2024505\Sistema-Bancario--SCRUM\src\AuthServiceBanco.Persistence\Repositories\UserRepository.cs:line 81
+   at AuthServiceBanco.Application.Services.AdminService.CreateClientAsync(CreateClientDto dto) in C:\2024505\Sistema-Bancario--SCRUM\src\AuthServiceBanco.Application\Services\AdminService.cs:line 72
+   at AuthServiceBanco.Api.Controllers.AdminController.CreateClient(CreateClientDto dto) in C:\2024505\Sistema-Bancario--SCRUM\src\AuthServiceBanco.Api\Controllers\AdminController.cs:line 32
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at AuthServiceBanco.Api.Middlewares.GlobalExceptionMiddleware.InvokeAsync(HttpContext context) in C:\2024505\Sistema-Bancario--SCRUM\src\AuthServiceBanco.Api\Middlewares\GlobalExceptionMiddleware.cs:line 18
+[2026-03-01 23:05:41 ERR] HTTP POST /api/v1/admin/create-client responded 500 in 1786.1200 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNJO352NTSUU:00000001","ConnectionId":"0HNJO352NTSUU"}
+[2026-03-01 23:08:50 INF] User login successfully. {"EventId":{"Id":1002,"Name":"LogUserLoggedIn"},"SourceContext":"AuthServiceBanco.Application.Services.AuthService","ActionId":"58e4e685-3fc6-4023-9603-db51d34da1d0","ActionName":"AuthServiceBanco.Api.Controllers.AuthController.Login (AuthServiceBanco.Api)","RequestId":"0HNJO352NTSV0:00000001","RequestPath":"/api/v1/auth/login","ConnectionId":"0HNJO352NTSV0"}
+[2026-03-01 23:08:50 INF] HTTP POST /api/v1/auth/login responded 200 in 1116.7774 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNJO352NTSV0:00000001","ConnectionId":"0HNJO352NTSV0"}
+[2026-03-01 23:09:17 INF] HTTP POST /api/v1/admin/create-client responded 400 in 307.7427 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNJO352NTSV1:00000001","ConnectionId":"0HNJO352NTSV1"}
+[2026-03-01 23:09:42 INF] HTTP POST /api/v1/admin/create-client responded 200 in 543.9770 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNJO352NTSV2:00000001","ConnectionId":"0HNJO352NTSV2"}
+[2026-03-01 23:10:11 INF] HTTP GET /api/v1/admin/users responded 200 in 322.5007 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNJO352NTSV0:00000002","ConnectionId":"0HNJO352NTSV0"}
+[2026-03-01 23:11:44 INF] User login successfully. {"EventId":{"Id":1002,"Name":"LogUserLoggedIn"},"SourceContext":"AuthServiceBanco.Application.Services.AuthService","ActionId":"58e4e685-3fc6-4023-9603-db51d34da1d0","ActionName":"AuthServiceBanco.Api.Controllers.AuthController.Login (AuthServiceBanco.Api)","RequestId":"0HNJO352NTSV0:00000003","RequestPath":"/api/v1/auth/login","ConnectionId":"0HNJO352NTSV0"}
+[2026-03-01 23:11:44 INF] HTTP POST /api/v1/auth/login responded 200 in 630.2698 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNJO352NTSV0:00000003","ConnectionId":"0HNJO352NTSV0"}
+[2026-03-01 23:17:25 INF] Checking database connection... {"SourceContext":"Program"}
+[2026-03-01 23:17:26 INF] Database ready. Running seed data... {"SourceContext":"Program"}
+[2026-03-01 23:17:27 INF] Database initialization completed successfully {"SourceContext":"Program"}
+[2026-03-01 23:17:27 INF] AuthService API is running at http://localhost:5025. Health endpoint: http://localhost:5025/health {"SourceContext":"Program"}
+[2026-03-01 23:19:29 WRN] Failed to determine the https port for redirect. {"EventId":{"Id":3,"Name":"FailedToDeterminePort"},"SourceContext":"Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware","RequestId":"0HNJO3D3HA2H7:00000001","RequestPath":"/api/v1/auth/login","ConnectionId":"0HNJO3D3HA2H7"}
+[2026-03-01 23:19:30 WRN] Failed login attempt {"EventId":{"Id":1003,"Name":"LogFailedLoginAttempt"},"SourceContext":"AuthServiceBanco.Application.Services.AuthService","ActionId":"f12d5c83-90da-4729-ae2c-42c7fff6a9b9","ActionName":"AuthServiceBanco.Api.Controllers.AuthController.Login (AuthServiceBanco.Api)","RequestId":"0HNJO3D3HA2H7:00000001","RequestPath":"/api/v1/auth/login","ConnectionId":"0HNJO3D3HA2H7"}
+[2026-03-01 23:19:30 ERR] An unhandled exception occurred {"SourceContext":"AuthServiceBanco.Api.Middlewares.GlobalExceptionMiddleware","RequestId":"0HNJO3D3HA2H7:00000001","RequestPath":"/api/v1/auth/login","ConnectionId":"0HNJO3D3HA2H7"}
+System.UnauthorizedAccessException: Invalid credentials
+   at AuthServiceBanco.Application.Services.AuthService.LoginAsync(LoginDto loginDto) in C:\2024505\Sistema-Bancario--SCRUM\src\AuthServiceBanco.Application\Services\AuthService.cs:line 181
+   at AuthServiceBanco.Api.Controllers.AuthController.Login(LoginDto loginDto) in C:\2024505\Sistema-Bancario--SCRUM\src\AuthServiceBanco.Api\Controllers\AuthController.cs:line 53
+   at lambda_method255(Closure, Object)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.AwaitableObjectResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.RateLimiting.RateLimitingMiddleware.InvokeInternal(HttpContext context, EnableRateLimitingAttribute enableRateLimitingAttribute)
+   at AuthServiceBanco.Api.Middlewares.GlobalExceptionMiddleware.InvokeAsync(HttpContext context) in C:\2024505\Sistema-Bancario--SCRUM\src\AuthServiceBanco.Api\Middlewares\GlobalExceptionMiddleware.cs:line 18
+[2026-03-01 23:19:30 INF] HTTP POST /api/v1/auth/login responded 401 in 1059.5804 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNJO3D3HA2H7:00000001","ConnectionId":"0HNJO3D3HA2H7"}
+[2026-03-01 23:19:42 INF] User login successfully. {"EventId":{"Id":1002,"Name":"LogUserLoggedIn"},"SourceContext":"AuthServiceBanco.Application.Services.AuthService","ActionId":"f12d5c83-90da-4729-ae2c-42c7fff6a9b9","ActionName":"AuthServiceBanco.Api.Controllers.AuthController.Login (AuthServiceBanco.Api)","RequestId":"0HNJO3D3HA2H7:00000002","RequestPath":"/api/v1/auth/login","ConnectionId":"0HNJO3D3HA2H7"}
+[2026-03-01 23:19:42 INF] HTTP POST /api/v1/auth/login responded 200 in 980.8124 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNJO3D3HA2H7:00000002","ConnectionId":"0HNJO3D3HA2H7"}
+[2026-03-01 23:20:05 INF] HTTP POST /api/v1/admin/create-client responded 200 in 1427.7279 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNJO3D3HA2H8:00000001","ConnectionId":"0HNJO3D3HA2H8"}
+[2026-03-01 23:20:31 INF] HTTP GET /api/v1/admin/users responded 200 in 498.3654 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNJO3D3HA2H7:00000003","ConnectionId":"0HNJO3D3HA2H7"}
+[2026-03-01 23:22:12 INF] User login successfully. {"EventId":{"Id":1002,"Name":"LogUserLoggedIn"},"SourceContext":"AuthServiceBanco.Application.Services.AuthService","ActionId":"f12d5c83-90da-4729-ae2c-42c7fff6a9b9","ActionName":"AuthServiceBanco.Api.Controllers.AuthController.Login (AuthServiceBanco.Api)","RequestId":"0HNJO3D3HA2H7:00000004","RequestPath":"/api/v1/auth/login","ConnectionId":"0HNJO3D3HA2H7"}
+[2026-03-01 23:22:12 INF] HTTP POST /api/v1/auth/login responded 200 in 489.2212 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNJO3D3HA2H7:00000004","ConnectionId":"0HNJO3D3HA2H7"}
+[2026-03-01 23:23:32 INF] User login successfully. {"EventId":{"Id":1002,"Name":"LogUserLoggedIn"},"SourceContext":"AuthServiceBanco.Application.Services.AuthService","ActionId":"f12d5c83-90da-4729-ae2c-42c7fff6a9b9","ActionName":"AuthServiceBanco.Api.Controllers.AuthController.Login (AuthServiceBanco.Api)","RequestId":"0HNJO3D3HA2HA:00000001","RequestPath":"/api/v1/auth/login","ConnectionId":"0HNJO3D3HA2HA"}
+[2026-03-01 23:23:32 INF] HTTP POST /api/v1/auth/login responded 200 in 520.4888 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNJO3D3HA2HA:00000001","ConnectionId":"0HNJO3D3HA2HA"}
+[2026-03-01 23:24:02 INF] HTTP GET /api/v1/auth/profile responded 200 in 94.2280 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNJO3D3HA2HA:00000002","ConnectionId":"0HNJO3D3HA2HA"}
+[2026-03-01 23:24:51 INF] User login successfully. {"EventId":{"Id":1002,"Name":"LogUserLoggedIn"},"SourceContext":"AuthServiceBanco.Application.Services.AuthService","ActionId":"f12d5c83-90da-4729-ae2c-42c7fff6a9b9","ActionName":"AuthServiceBanco.Api.Controllers.AuthController.Login (AuthServiceBanco.Api)","RequestId":"0HNJO3D3HA2HA:00000003","RequestPath":"/api/v1/auth/login","ConnectionId":"0HNJO3D3HA2HA"}
+[2026-03-01 23:24:51 INF] HTTP POST /api/v1/auth/login responded 200 in 311.7903 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNJO3D3HA2HA:00000003","ConnectionId":"0HNJO3D3HA2HA"}
+[2026-03-01 23:26:12 INF] User login successfully. {"EventId":{"Id":1002,"Name":"LogUserLoggedIn"},"SourceContext":"AuthServiceBanco.Application.Services.AuthService","ActionId":"f12d5c83-90da-4729-ae2c-42c7fff6a9b9","ActionName":"AuthServiceBanco.Api.Controllers.AuthController.Login (AuthServiceBanco.Api)","RequestId":"0HNJO3D3HA2HA:00000004","RequestPath":"/api/v1/auth/login","ConnectionId":"0HNJO3D3HA2HA"}
+[2026-03-01 23:26:12 INF] HTTP POST /api/v1/auth/login responded 200 in 787.8985 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNJO3D3HA2HA:00000004","ConnectionId":"0HNJO3D3HA2HA"}
+[2026-03-01 23:38:52 INF] User login successfully. {"EventId":{"Id":1002,"Name":"LogUserLoggedIn"},"SourceContext":"AuthServiceBanco.Application.Services.AuthService","ActionId":"f12d5c83-90da-4729-ae2c-42c7fff6a9b9","ActionName":"AuthServiceBanco.Api.Controllers.AuthController.Login (AuthServiceBanco.Api)","RequestId":"0HNJO3D3HA2HC:00000001","RequestPath":"/api/v1/auth/login","ConnectionId":"0HNJO3D3HA2HC"}
+[2026-03-01 23:38:52 INF] HTTP POST /api/v1/auth/login responded 200 in 1089.2033 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNJO3D3HA2HC:00000001","ConnectionId":"0HNJO3D3HA2HC"}

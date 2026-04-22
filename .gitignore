@@ -1,16 +1,13 @@
 # Node.js
 node_modules/
-
+/node_modules/
+npm-debug.log*          
 # Logs
 *.log
 
 # Compilados .NET
 bin/
 obj/
-
-# Frontend (Vite/React)
-dist/
-build/
 
 # Sistema operativo
 .DS_Store
