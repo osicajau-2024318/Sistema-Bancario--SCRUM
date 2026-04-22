@@ -30,6 +30,8 @@ import serviceRoutes from '../src/routes/service.routes.js';
 import favoriteRoutes from '../src/routes/favorite.routes.js';
 // Importa las rutas de conversión de moneda
 import currencyRoutes from '../src/routes/currency.routes.js';
+// Importa la configuración de Swagger
+import { registerSwagger } from '../docs/swagger.js';
 
 // Ruta base para todos los endpoints de la API
 const BASE_PATH = '/SistemaBancarioAdmin/v1';
@@ -72,14 +74,6 @@ const routes = (app) => {
             service: 'Sistema Bancario Server'
         })
     })
-
-    // Maneja rutas no encontradas (404)
-    app.use((req, res) => {
-        res.status(404).json({
-            success: false,
-            message: 'Endpoint no encontrado en Admin Api'
-        })
-    })
 }
 
 // Función principal que inicializa el servidor Express
@@ -97,6 +91,16 @@ export const initServer = async () => {
         middlewares(app);
         // Registra todas las rutas de la API
         routes(app);
+        // Registra la documentación Swagger
+        registerSwagger(app);
+
+        // Maneja rutas no encontradas (404)
+        app.use((req, res) => {
+            res.status(404).json({
+                success: false,
+                message: 'Endpoint no encontrado en Admin Api'
+            })
+        });
 
         // Aplica el manejador de errores al final de todo
         app.use(errorHandler);
