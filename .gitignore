@@ -9,10 +9,12 @@ npm-debug.log*
 dist/
 build/
 
+# Compilados .NET
+bin/
+obj/
+
 # Sistema operativo
 .DS_Store
 Thumbs.db
-bin/
-obj/
 *.cache
 *.log

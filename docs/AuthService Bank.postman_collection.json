@@ -1,0 +1,2440 @@
+{
+  "info": {
+    "_postman_id": "7a4ae801-5bfc-47e6-b874-5b25d2840b8a",
+    "name": "AuthService Bank",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "48119170",
+    "_collection_link": "https://go.postman.co/collection/48119170-7a4ae801-5bfc-47e6-b874-5b25d2840b8a?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "Admin",
+      "item": [
+        {
+          "name": "Cuentas",
+          "item": [
+            {
+              "name": "Listar",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c3JfYjZTaU53ekh2OXhzIiwianRpIjoiZmYzMDg2YTctOTc0Yi00ODY0LWFlMzctZjczNTczYTU5NTU1IiwiaWF0IjoxNzcyOTQwOTYxLCJyb2xlIjoiQURNSU5fUk9MRSIsImV4cCI6MTc3Mjk0Mjc2MSwiaXNzIjoiQXV0aFNlcnZpY2UiLCJhdWQiOiJBdXRoU2VydmljZSJ9.AQF0EYEk8coKZThds19FjX8tNZ4a7cnWOH_TDz5CNPg",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:3000/SistemaBancarioAdmin/v1/accounts/all",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3000",
+                  "path": [
+                    "SistemaBancarioAdmin",
+                    "v1",
+                    "accounts",
+                    "all"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Login",
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"emailOrUsername\": \"ADMINB\",\r\n    \"password\": \"ADMINB\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:5025/api/v1/auth/login",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "5025",
+                  "path": [
+                    "api",
+                    "v1",
+                    "auth",
+                    "login"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Ver Saldo Cuenta",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c3JfWVQ1WGtFSDdUaVd5IiwianRpIjoiNTNiYWE1N2EtMWJjNy00ZDEyLTllMDQtNmMzMDQ1MzA1Y2VkIiwiaWF0IjoxNzcyNjM5NDE1LCJyb2xlIjoiQURNSU5fUk9MRSIsImV4cCI6MTc3MjY0MTIxNSwiaXNzIjoiQXV0aFNlcnZpY2UiLCJhdWQiOiJBdXRoU2VydmljZSJ9.VnwMgEf9Qon-vJa5rtB0yX6FnWmCX_FPYw4Iav3Dvnk",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:3000/SistemaBancarioAdmin/v1/accounts/:id",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3000",
+                  "path": [
+                    "SistemaBancarioAdmin",
+                    "v1",
+                    "accounts",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": "69a856ee24bc5c2b3b8355b3"
+                    }
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Ver 5 ultimos movimientos",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c3JfQXNHVVpkM0ZiRmo2IiwianRpIjoiYjVkZmU2ZTAtZGIxOC00OTFmLWJhMTItNzRjNDNiZjk3NzczIiwiaWF0IjoxNzcyNTE3NzgxLCJyb2xlIjoiQURNSU5fUk9MRSIsImV4cCI6MTc3MjUxOTU4MSwiaXNzIjoiQXV0aFNlcnZpY2UiLCJhdWQiOiJBdXRoU2VydmljZSJ9.b4dRpCRPu0fsXgzrfmUwiq9ktuFkEJI77EWGE4rHu4Q",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:3000/SistemaBancarioAdmin/v1/accounts/:id/movements",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3000",
+                  "path": [
+                    "SistemaBancarioAdmin",
+                    "v1",
+                    "accounts",
+                    ":id",
+                    "movements"
+                  ],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": "69a6797c8807b7f562c326b1"
+                    }
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Ver Cuentas Ordenadas Descendente",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c3JfQXNHVVpkM0ZiRmo2IiwianRpIjoiYjVkZmU2ZTAtZGIxOC00OTFmLWJhMTItNzRjNDNiZjk3NzczIiwiaWF0IjoxNzcyNTE3NzgxLCJyb2xlIjoiQURNSU5fUk9MRSIsImV4cCI6MTc3MjUxOTU4MSwiaXNzIjoiQXV0aFNlcnZpY2UiLCJhdWQiOiJBdXRoU2VydmljZSJ9.b4dRpCRPu0fsXgzrfmUwiq9ktuFkEJI77EWGE4rHu4Q",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:3000/SistemaBancarioAdmin/v1/accounts/by-movements?order=desc",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3000",
+                  "path": [
+                    "SistemaBancarioAdmin",
+                    "v1",
+                    "accounts",
+                    "by-movements"
+                  ],
+                  "query": [
+                    {
+                      "key": "order",
+                      "value": "desc"
+                    }
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Crear cuenta para usuario",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c3JfYjZTaU53ekh2OXhzIiwianRpIjoiNWM3Yjk5YzItYjM3Ni00ZTdjLTg0NzgtNTM3YWZmMTU4ODhiIiwiaWF0IjoxNzcyNTQ5Njc1LCJyb2xlIjoiQURNSU5fUk9MRSIsImV4cCI6MTc3MjU1MTQ3NSwiaXNzIjoiQXV0aFNlcnZpY2UiLCJhdWQiOiJBdXRoU2VydmljZSJ9.Dr05hpa2VobnrKOnhknCnMXhcniD8pO0x-L3z6hiObs",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"userId\": \"usr_xSHYMCjHFAwU\",\n  \"account_type\": \"AHORRO\",\n  \"currency\": \"GTQ\",\n  \"balance\": 500\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:3000/SistemaBancarioAdmin/v1/accounts",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3000",
+                  "path": [
+                    "SistemaBancarioAdmin",
+                    "v1",
+                    "accounts"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Cuentas ordenadas por saldo",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c3JfYjZTaU53ekh2OXhzIiwianRpIjoiYWYyMzYzYzItOGUwZS00YjgyLTgyNzItODZhODczMDQwNzhkIiwiaWF0IjoxNzcyOTMzNTA2LCJyb2xlIjoiQURNSU5fUk9MRSIsImV4cCI6MTc3MjkzNTMwNiwiaXNzIjoiQXV0aFNlcnZpY2UiLCJhdWQiOiJBdXRoU2VydmljZSJ9.ii7Rr6I9zXnVFggHLNoASinBGnk6Us0Of6zMFwADzx0",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"emailOrUsername\": \"ADMINB\",\r\n    \"password\": \"ADMINB\"\r\n}"
+                },
+                "url": {
+                  "raw": "http://localhost:3000/SistemaBancarioAdmin/v1/accounts/by-balance?order=desc&order=asc",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3000",
+                  "path": [
+                    "SistemaBancarioAdmin",
+                    "v1",
+                    "accounts",
+                    "by-balance"
+                  ],
+                  "query": [
+                    {
+                      "key": "order",
+                      "value": "desc"
+                    },
+                    {
+                      "key": "order",
+                      "value": "asc",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Activar Cuenta",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c3JfYjZTaU53ekh2OXhzIiwianRpIjoiMTRiODA5N2QtZjE1Ny00ZDNkLWE5YjAtMDEzZTQ5ZTkyZDM2IiwiaWF0IjoxNzcyOTM4MjM5LCJyb2xlIjoiQURNSU5fUk9MRSIsImV4cCI6MTc3Mjk0MDAzOSwiaXNzIjoiQXV0aFNlcnZpY2UiLCJhdWQiOiJBdXRoU2VydmljZSJ9.4F23VuKjdABdp4k6er6mvHZLtFM4jrji2bbVqIhfots",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:3000/SistemaBancarioAdmin/v1/accounts/:accountId/activate",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3000",
+                  "path": [
+                    "SistemaBancarioAdmin",
+                    "v1",
+                    "accounts",
+                    ":accountId",
+                    "activate"
+                  ],
+                  "variable": [
+                    {
+                      "key": "accountId",
+                      "value": "69acda8bd4185deb1222e3f8"
+                    }
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Crear Cuenta",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c3JfYjZTaU53ekh2OXhzIiwianRpIjoiOWI3MjU4OTAtM2IwMS00OGUwLTk5MGEtNjJmMjQ2ODFiMmVlIiwiaWF0IjoxNzcyOTM1ODI1LCJyb2xlIjoiQURNSU5fUk9MRSIsImV4cCI6MTc3MjkzNzYyNSwiaXNzIjoiQXV0aFNlcnZpY2UiLCJhdWQiOiJBdXRoU2VydmljZSJ9._GhOAaFzdcl89nLaaDGlhQRJZQ7yQUC1lVkn7HH4c4k",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"account_type\": \"NOMINA\",\n  \"currency\": \"GTQ\",\n  \"balance\": 1000\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:3000/SistemaBancarioAdmin/v1/accounts",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3000",
+                  "path": [
+                    "SistemaBancarioAdmin",
+                    "v1",
+                    "accounts"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Editar datos",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c3JfYjZTaU53ekh2OXhzIiwianRpIjoiYWYyMzYzYzItOGUwZS00YjgyLTgyNzItODZhODczMDQwNzhkIiwiaWF0IjoxNzcyOTMzNTA2LCJyb2xlIjoiQURNSU5fUk9MRSIsImV4cCI6MTc3MjkzNTMwNiwiaXNzIjoiQXV0aFNlcnZpY2UiLCJhdWQiOiJBdXRoU2VydmljZSJ9.ii7Rr6I9zXnVFggHLNoASinBGnk6Us0Of6zMFwADzx0",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "PUT",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{ \r\n    \"account_type\":\"CORRIENTE\" \r\n }",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:3000/SistemaBancarioAdmin/v1/accounts/:idCuenta",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3000",
+                  "path": [
+                    "SistemaBancarioAdmin",
+                    "v1",
+                    "accounts",
+                    ":idCuenta"
+                  ],
+                  "variable": [
+                    {
+                      "key": "idCuenta",
+                      "value": ""
+                    }
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Historial de Una cuenta por ID",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:3000/SistemaBancarioAdmin/v1/transactions/history/{{accountId}}",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3000",
+                  "path": [
+                    "SistemaBancarioAdmin",
+                    "v1",
+                    "transactions",
+                    "history",
+                    "{{accountId}}"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Historial Movimientos",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c3JfYjZTaU53ekh2OXhzIiwianRpIjoiYzYwODNmOTAtMTc3Yy00ZTA5LWFmNjYtNzQ1OGU4YWMyMTIzIiwiaWF0IjoxNzcyOTM1OTk0LCJyb2xlIjoiQURNSU5fUk9MRSIsImV4cCI6MTc3MjkzNzc5NCwiaXNzIjoiQXV0aFNlcnZpY2UiLCJhdWQiOiJBdXRoU2VydmljZSJ9.dh3FX6TZ6po2WQhJZXY6gCOvz0ANaOuTeRmMQVysWAA",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:3000/SistemaBancarioAdmin/v1/transactions/history/me",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3000",
+                  "path": [
+                    "SistemaBancarioAdmin",
+                    "v1",
+                    "transactions",
+                    "history",
+                    "me"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Mis Cuentas",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c3JfYjZTaU53ekh2OXhzIiwianRpIjoiYTIyMzdlYzYtOWJkZS00N2U2LTgxZGEtODM2NTRjYWQwMGM0IiwiaWF0IjoxNzcyOTQyNDE0LCJyb2xlIjoiQURNSU5fUk9MRSIsImV4cCI6MTc3Mjk0NDIxNCwiaXNzIjoiQXV0aFNlcnZpY2UiLCJhdWQiOiJBdXRoU2VydmljZSJ9.DqK4Ccf2IK6t-dKEwGV4_eDvQumQMRYzSGnteVRwjsg",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:3000/SistemaBancarioAdmin/v1/accounts/me",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3000",
+                  "path": [
+                    "SistemaBancarioAdmin",
+                    "v1",
+                    "accounts",
+                    "me"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "CRUD",
+          "item": [
+            {
+              "name": "Login",
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"emailOrUsername\": \"ADMINB\",\r\n    \"password\": \"ADMINB\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:5025/api/v1/auth/login",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "5025",
+                  "path": [
+                    "api",
+                    "v1",
+                    "auth",
+                    "login"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Crear User",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c3JfUml2cUpKUkdXclZWIiwianRpIjoiMzI0NGZkZTYtMjcxOC00YzI3LThlMWEtMTVjY2RjMTJlY2ZiIiwiaWF0IjoxNzcyNjU5MzIxLCJyb2xlIjoiQURNSU5fUk9MRSIsImV4cCI6MTc3MjY2MTEyMSwiaXNzIjoiQXV0aFNlcnZpY2UiLCJhdWQiOiJBdXRoU2VydmljZSJ9.ALwrbsYfLASvwsVQQ4j7xgZFB5F553u6uZMKwZejkVk",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"name\": \"oscar\",\r\n    \"surname\": \"sicajau\",\r\n    \"username\": \"osica\",\r\n    \"email\": \"osicajau-2024318@kinal.edu.gt\",\r\n    \"password\": \"12345678900\",\r\n    \"phone\": \"12345619\",\r\n    \"dpi\": \"1234567090128\",\r\n    \"address\": \"Ciudad de Guatemala\",\r\n    \"workName\": \"Kinal\",\r\n    \"monthlyIncome\": 7000,\r\n    \"account_type\": \"AHORRO\"\r\n  }",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:5025/api/v1/admin/create-client",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "5025",
+                  "path": [
+                    "api",
+                    "v1",
+                    "admin",
+                    "create-client"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Obtener usuarios",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c3JfUml2cUpKUkdXclZWIiwianRpIjoiMzI0NGZkZTYtMjcxOC00YzI3LThlMWEtMTVjY2RjMTJlY2ZiIiwiaWF0IjoxNzcyNjU5MzIxLCJyb2xlIjoiQURNSU5fUk9MRSIsImV4cCI6MTc3MjY2MTEyMSwiaXNzIjoiQXV0aFNlcnZpY2UiLCJhdWQiOiJBdXRoU2VydmljZSJ9.ALwrbsYfLASvwsVQQ4j7xgZFB5F553u6uZMKwZejkVk",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:5025/api/v1/users/by-role/USER_ROLE",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "5025",
+                  "path": [
+                    "api",
+                    "v1",
+                    "users",
+                    "by-role",
+                    "USER_ROLE"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Obtener users",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c3JfUml2cUpKUkdXclZWIiwianRpIjoiMzI0NGZkZTYtMjcxOC00YzI3LThlMWEtMTVjY2RjMTJlY2ZiIiwiaWF0IjoxNzcyNjU5MzIxLCJyb2xlIjoiQURNSU5fUk9MRSIsImV4cCI6MTc3MjY2MTEyMSwiaXNzIjoiQXV0aFNlcnZpY2UiLCJhdWQiOiJBdXRoU2VydmljZSJ9.ALwrbsYfLASvwsVQQ4j7xgZFB5F553u6uZMKwZejkVk",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:5025/api/v1/admin/users?page=1&pageSize=10",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "5025",
+                  "path": [
+                    "api",
+                    "v1",
+                    "admin",
+                    "users"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "10"
+                    }
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Buscar usuario por id",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c3JfWVQ1WGtFSDdUaVd5IiwianRpIjoiM2U0NGIwZmEtYjA4Yy00ZWZhLThlNjAtZGQyMmUxN2E3NzUxIiwiaWF0IjoxNzcyNTA4MDA2LCJyb2xlIjoiQURNSU5fUk9MRSIsImV4cCI6MTc3MjUwOTgwNiwiaXNzIjoiQXV0aFNlcnZpY2UiLCJhdWQiOiJBdXRoU2VydmljZSJ9.5PZHbOVujWS6gpfU6uJL8bdhbr7aya4ZNUqfSuH_3lk",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:5025/api/v1/admin/users/usr_NqYvUS6y7RtS",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "5025",
+                  "path": [
+                    "api",
+                    "v1",
+                    "admin",
+                    "users",
+                    "usr_NqYvUS6y7RtS"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Editar mis datos",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c3JfWVQ1WGtFSDdUaVd5IiwianRpIjoiYzI0NDczNTMtNmRhZS00MDg2LWI0ZGUtMDkwZTcyYjAxNmM4IiwiaWF0IjoxNzcyNTEwNTM3LCJyb2xlIjoiQURNSU5fUk9MRSIsImV4cCI6MTc3MjUxMjMzNywiaXNzIjoiQXV0aFNlcnZpY2UiLCJhdWQiOiJBdXRoU2VydmljZSJ9.mbA0KXE2DJgniFA8UsTg16HXRVBseta58WLiJSlFOsw",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "PUT",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"name\": \"Juan\",\r\n  \"surname\": \"Pérez\",\r\n  \"phone\": \"44445555\",\r\n  \"address\": \"Zona 5\",\r\n  \"workName\": \"Empresa SA\",\r\n  \"monthlyIncome\": 2500\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:5025/api/v1/users/",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "5025",
+                  "path": [
+                    "api",
+                    "v1",
+                    "users",
+                    ""
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Delete user",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c3JfN3U5SE1leFU4YUVqIiwianRpIjoiYzczNDBhZmMtMjNjNy00MjdlLWFiYzQtNDljNWRmYzE0ZjJhIiwiaWF0IjoxNzcyNTczMzk0LCJyb2xlIjoiQURNSU5fUk9MRSIsImV4cCI6MTc3MjU3NTE5NCwiaXNzIjoiQXV0aFNlcnZpY2UiLCJhdWQiOiJBdXRoU2VydmljZSJ9.aMG-ISUnC_meSQktqOKIVsokprL7l_mWC8LfynoEAGw",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:5025/api/v1/admin/users/:id",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "5025",
+                  "path": [
+                    "api",
+                    "v1",
+                    "admin",
+                    "users",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": ""
+                    }
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Mis datos",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c3JfN3U5SE1leFU4YUVqIiwianRpIjoiYWJkOWNlM2MtOTdjZS00ZjA3LTgyNzctMzA3Yjk4ZDMzY2E1IiwiaWF0IjoxNzcyNTcyNTM2LCJyb2xlIjoiQURNSU5fUk9MRSIsImV4cCI6MTc3MjU3NDMzNiwiaXNzIjoiQXV0aFNlcnZpY2UiLCJhdWQiOiJBdXRoU2VydmljZSJ9.7_eFO5uiqxrh2OQ2hFiWptFXsNerUHRHHM6XQpvXnys",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": ""
+                },
+                "url": {
+                  "raw": "http://localhost:3000/SistemaBancarioAdmin/v1/accounts/my-info",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3000",
+                  "path": [
+                    "SistemaBancarioAdmin",
+                    "v1",
+                    "accounts",
+                    "my-info"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Activar usuario",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c3JfUml2cUpKUkdXclZWIiwianRpIjoiMzI0NGZkZTYtMjcxOC00YzI3LThlMWEtMTVjY2RjMTJlY2ZiIiwiaWF0IjoxNzcyNjU5MzIxLCJyb2xlIjoiQURNSU5fUk9MRSIsImV4cCI6MTc3MjY2MTEyMSwiaXNzIjoiQXV0aFNlcnZpY2UiLCJhdWQiOiJBdXRoU2VydmljZSJ9.ALwrbsYfLASvwsVQQ4j7xgZFB5F553u6uZMKwZejkVk",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:5025/api/v1/admin/users/:userId/activate",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "5025",
+                  "path": [
+                    "api",
+                    "v1",
+                    "admin",
+                    "users",
+                    ":userId",
+                    "activate"
+                  ],
+                  "variable": [
+                    {
+                      "key": "userId",
+                      "value": "usr_517vuGfQkbNs"
+                    }
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Actualizar Role",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c3JfUml2cUpKUkdXclZWIiwianRpIjoiMzI0NGZkZTYtMjcxOC00YzI3LThlMWEtMTVjY2RjMTJlY2ZiIiwiaWF0IjoxNzcyNjU5MzIxLCJyb2xlIjoiQURNSU5fUk9MRSIsImV4cCI6MTc3MjY2MTEyMSwiaXNzIjoiQXV0aFNlcnZpY2UiLCJhdWQiOiJBdXRoU2VydmljZSJ9.ALwrbsYfLASvwsVQQ4j7xgZFB5F553u6uZMKwZhjkVk",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "PUT",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"roleName\": \"ADMIN_ROLE\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:5025/api/v1/users/:userId/role",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "5025",
+                  "path": [
+                    "api",
+                    "v1",
+                    "users",
+                    ":userId",
+                    "role"
+                  ],
+                  "variable": [
+                    {
+                      "key": "userId",
+                      "value": "usr_BF353MeKb8W7"
+                    }
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Editar Usuarios por id",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c3JfYjZTaU53ekh2OXhzIiwianRpIjoiZDlmNTlhZTYtNDM0ZC00ODcxLWFlZjEtMjMwNjU5ODVmMGU5IiwiaWF0IjoxNzcyNjQzNTI2LCJyb2xlIjoiQURNSU5fUk9MRSIsImV4cCI6MTc3MjY0NTMyNiwiaXNzIjoiQXV0aFNlcnZpY2UiLCJhdWQiOiJBdXRoU2VydmljZSJ9.OGztjvx_B58XX5qS3E_tykbr8wwJzXHAYcIoy4L9pzE",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "PUT",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Juan\",\n  \"surname\": \"Pérez\",\n  \"phone\": \"44445555\",\n  \"address\": \"Zona 5\",\n  \"workName\": \"Empresa SA\",\n  \"monthlyIncome\": 2500\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:5025/api/v1/admin/users/:id",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "5025",
+                  "path": [
+                    "api",
+                    "v1",
+                    "admin",
+                    "users",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": ""
+                    }
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "Servicios",
+          "item": [
+            {
+              "name": "Listar Servicios",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c3JfcGFrd2I0RldGRGJYIiwianRpIjoiYWM0Y2RhY2ItZWZmZi00ZmY0LWI3MjktY2ZiNDYzYzlmOGViIiwiaWF0IjoxNzcyOTQyMzgzLCJyb2xlIjoiVVNFUl9ST0xFIiwiZXhwIjoxNzcyOTQ0MTgzLCJpc3MiOiJBdXRoU2VydmljZSIsImF1ZCI6IkF1dGhTZXJ2aWNlIn0.o6B6rsZKqR9cXlewvWSKzdgiei4BSYsTwxbVO1cv34U",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:3000/SistemaBancarioAdmin/v1/services",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3000",
+                  "path": [
+                    "SistemaBancarioAdmin",
+                    "v1",
+                    "services"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Ver un servicio",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c3JfN3U5SE1leFU4YUVqIiwianRpIjoiMzUzNmJmYmUtMGUxYy00MjRhLWEwNWEtNTliYmQ0NDNlZjQyIiwiaWF0IjoxNzcyNjU4OTEyLCJyb2xlIjoiQURNSU5fUk9MRSIsImV4cCI6MTc3MjY2MDcxMiwiaXNzIjoiQXV0aFNlcnZpY2UiLCJhdWQiOiJBdXRoU2VydmljZSJ9.FkGljd5AMIZX_Xpq2iENJDqNnGHgU78-PqW4VcPoF2w",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:3000/SistemaBancarioAdmin/v1/services/:id",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3000",
+                  "path": [
+                    "SistemaBancarioAdmin",
+                    "v1",
+                    "services",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": ""
+                    }
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Crear servicio",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c3JfN3U5SE1leFU4YUVqIiwianRpIjoiMzUzNmJmYmUtMGUxYy00MjRhLWEwNWEtNTliYmQ0NDNlZjQyIiwiaWF0IjoxNzcyNjU4OTEyLCJyb2xlIjoiQURNSU5fUk9MRSIsImV4cCI6MTc3MjY2MDcxMiwiaXNzIjoiQXV0aFNlcnZpY2UiLCJhdWQiOiJBdXRoU2VydmljZSJ9.FkGljd5AMIZX_Xpq2iENJDqNnGHgU78-PqW4VcPoF2w",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"name\": \"Transferencias sin costo\",\r\n  \"description\": \"Hasta 5 transferencias mensuales sin comisión\",\r\n  \"assigned_to\": \"usr_abc123\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:3000/SistemaBancarioAdmin/v1/services",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3000",
+                  "path": [
+                    "SistemaBancarioAdmin",
+                    "v1",
+                    "services"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Actualizar servicios",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c3JfN3U5SE1leFU4YUVqIiwianRpIjoiMzUzNmJmYmUtMGUxYy00MjRhLWEwNWEtNTliYmQ0NDNlZjQyIiwiaWF0IjoxNzcyNjU4OTEyLCJyb2xlIjoiQURNSU5fUk9MRSIsImV4cCI6MTc3MjY2MDcxMiwiaXNzIjoiQXV0aFNlcnZpY2UiLCJhdWQiOiJBdXRoU2VydmljZSJ9.FkGljd5AMIZX_Xpq2iENJDqNnGHgU78-PqW4VcPoF2w",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "PUT",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:3000/SistemaBancarioAdmin/v1/services/:id",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3000",
+                  "path": [
+                    "SistemaBancarioAdmin",
+                    "v1",
+                    "services",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": "69a8a1507c2cc3d07711baa1"
+                    }
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Eliminar Servicios",
+              "request": {
+                "method": "DELETE",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"emailOrUsername\": \"ADMINB\",\r\n    \"password\": \"ADMINB\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:5025/api/v1/services/:id",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "5025",
+                  "path": [
+                    "api",
+                    "v1",
+                    "services",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": ""
+                    }
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "Favoritos",
+          "item": [
+            {
+              "name": "Añadir a favoritos",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c3JfYjZTaU53ekh2OXhzIiwianRpIjoiZmYzMDg2YTctOTc0Yi00ODY0LWFlMzctZjczNTczYTU5NTU1IiwiaWF0IjoxNzcyOTQwOTYxLCJyb2xlIjoiQURNSU5fUk9MRSIsImV4cCI6MTc3Mjk0Mjc2MSwiaXNzIjoiQXV0aFNlcnZpY2UiLCJhdWQiOiJBdXRoU2VydmljZSJ9.AQF0EYEk8coKZThds19FjX8tNZ4a7cnWOH_TDz5CNPg",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"alias\": \"Mama\",\r\n  \"account_number\": \"5984503224\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:3000/SistemaBancarioAdmin/v1/favorites",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3000",
+                  "path": [
+                    "SistemaBancarioAdmin",
+                    "v1",
+                    "favorites"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Obtener Favoritos",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c3JfcGFrd2I0RldGRGJYIiwianRpIjoiYWM0Y2RhY2ItZWZmZi00ZmY0LWI3MjktY2ZiNDYzYzlmOGViIiwiaWF0IjoxNzcyOTQyMzgzLCJyb2xlIjoiVVNFUl9ST0xFIiwiZXhwIjoxNzcyOTQ0MTgzLCJpc3MiOiJBdXRoU2VydmljZSIsImF1ZCI6IkF1dGhTZXJ2aWNlIn0.o6B6rsZKqR9cXlewvWSKzdgiei4BSYsTwxbVO1cv34U",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:3000/SistemaBancarioAdmin/v1/favorites",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3000",
+                  "path": [
+                    "SistemaBancarioAdmin",
+                    "v1",
+                    "favorites"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Actualizar Alias Favoritos",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c3JfYjZTaU53ekh2OXhzIiwianRpIjoiZmYzMDg2YTctOTc0Yi00ODY0LWFlMzctZjczNTczYTU5NTU1IiwiaWF0IjoxNzcyOTQwOTYxLCJyb2xlIjoiQURNSU5fUk9MRSIsImV4cCI6MTc3Mjk0Mjc2MSwiaXNzIjoiQXV0aFNlcnZpY2UiLCJhdWQiOiJBdXRoU2VydmljZSJ9.AQF0EYEk8coKZThds19FjX8tNZ4a7cnWOH_TDz5CNPg",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "PUT",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:3000/SistemaBancarioAdmin/v1/favorites/:id",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3000",
+                  "path": [
+                    "SistemaBancarioAdmin",
+                    "v1",
+                    "favorites",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": ""
+                    }
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Eliminar de favoritos",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c3JfYjZTaU53ekh2OXhzIiwianRpIjoiODlmODIwZTYtMTBmNS00YjZjLTkyZTMtYmY2YTgwZjgwYjAyIiwiaWF0IjoxNzcyOTQyMTUwLCJyb2xlIjoiQURNSU5fUk9MRSIsImV4cCI6MTc3Mjk0Mzk1MCwiaXNzIjoiQXV0aFNlcnZpY2UiLCJhdWQiOiJBdXRoU2VydmljZSJ9.jt8vr9Mhms9bfM0O3eZmdHfoyBQ3FnpQieN0EpK5kN4",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:3000/SistemaBancarioAdmin/v1/favorites/:Alias",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3000",
+                  "path": [
+                    "SistemaBancarioAdmin",
+                    "v1",
+                    "favorites",
+                    ":Alias"
+                  ],
+                  "variable": [
+                    {
+                      "key": "Alias",
+                      "value": ""
+                    }
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Hacer transferencia a favorito",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c3JfYjZTaU53ekh2OXhzIiwianRpIjoiZmYzMDg2YTctOTc0Yi00ODY0LWFlMzctZjczNTczYTU5NTU1IiwiaWF0IjoxNzcyOTQwOTYxLCJyb2xlIjoiQURNSU5fUk9MRSIsImV4cCI6MTc3Mjk0Mjc2MSwiaXNzIjoiQXV0aFNlcnZpY2UiLCJhdWQiOiJBdXRoU2VydmljZSJ9.AQF0EYEk8coKZThds19FjX8tNZ4a7cnWOH_TDz5CNPg",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"fromAccount\": \"2728375534\",\r\n  \"amount\": 500\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:3000/SistemaBancarioAdmin/v1/favorites/:id/transfer",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3000",
+                  "path": [
+                    "SistemaBancarioAdmin",
+                    "v1",
+                    "favorites",
+                    ":id",
+                    "transfer"
+                  ],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": "Mama"
+                    }
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "Transacciones",
+          "item": [
+            {
+              "name": "Transferencia",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c3JfYjZTaU53ekh2OXhzIiwianRpIjoiMTRiODA5N2QtZjE1Ny00ZDNkLWE5YjAtMDEzZTQ5ZTkyZDM2IiwiaWF0IjoxNzcyOTM4MjM5LCJyb2xlIjoiQURNSU5fUk9MRSIsImV4cCI6MTc3Mjk0MDAzOSwiaXNzIjoiQXV0aFNlcnZpY2UiLCJhdWQiOiJBdXRoU2VydmljZSJ9.4F23VuKjdABdp4k6er6mvHZLtFM4jrji2bbVqIhfots",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"fromAccount\": \"3864284443\",\n  \"toAccount\": \"3917307935\",\n  \"amount\": 500,\n  \"description\": \"Pago de servicio\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:3000/SistemaBancarioAdmin/v1/accounts/transfer",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3000",
+                  "path": [
+                    "SistemaBancarioAdmin",
+                    "v1",
+                    "accounts",
+                    "transfer"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Historial",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c3JfYjZTaU53ekh2OXhzIiwianRpIjoiYTQwYmVmYzAtNDRmMi00YzY0LTg0NmEtMzJjODdiYTI3Y2M4IiwiaWF0IjoxNzcyNTM5NjcwLCJyb2xlIjoiQURNSU5fUk9MRSIsImV4cCI6MTc3MjU0MTQ3MCwiaXNzIjoiQXV0aFNlcnZpY2UiLCJhdWQiOiJBdXRoU2VydmljZSJ9.bfeEiC27a3EzkO-8BCl3KcZJ8f0OMAi7x62R64x2uUg",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": ""
+                },
+                "url": {
+                  "raw": "http://localhost:3000/SistemaBancarioAdmin/v1/transactions/my-transactions",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3000",
+                  "path": [
+                    "SistemaBancarioAdmin",
+                    "v1",
+                    "transactions",
+                    "my-transactions"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Transacciones del sistema",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c3JfYjZTaU53ekh2OXhzIiwianRpIjoiM2I0MzY3YzctZjJhOC00ZjVlLThkYzktZjQyMTA0MGQ1MGJiIiwiaWF0IjoxNzcyOTM5MzUwLCJyb2xlIjoiQURNSU5fUk9MRSIsImV4cCI6MTc3Mjk0MTE1MCwiaXNzIjoiQXV0aFNlcnZpY2UiLCJhdWQiOiJBdXRoU2VydmljZSJ9.c0Hoez5bZdznH9fSlrQPzaruf4iYKvLR814r1rtmLgA",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": ""
+                },
+                "url": {
+                  "raw": "http://localhost:3000/SistemaBancarioAdmin/v1/transactions/all",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3000",
+                  "path": [
+                    "SistemaBancarioAdmin",
+                    "v1",
+                    "transactions",
+                    "all"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Login Copy 3",
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"emailOrUsername\": \"ADMINB\",\r\n    \"password\": \"ADMINB\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:5025/api/v1/auth/login",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "5025",
+                  "path": [
+                    "api",
+                    "v1",
+                    "auth",
+                    "login"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Cliente",
+      "item": [
+        {
+          "name": "CRUD",
+          "item": [
+            {
+              "name": "Register",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      ""
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"eddy\",\n  \"surname\": \"Tucubal\",\n  \"username\": \"etucubal\",\n  \"email\": \"etucubal-2024505@kinal.edu.gt\",\n  \"password\": \"Password205\",\n  \"phone\": \"21326554\",\n  \"dpi\": \"2132655478981\",\n  \"address\": \"Ciudad de Guatemala\",\n  \"workName\": \"Empresa TEC\",\n  \"monthlyIncome\": 1000\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:5025/api/v1/auth/register",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "5025",
+                  "path": [
+                    "api",
+                    "v1",
+                    "auth",
+                    "register"
+                  ]
+                },
+                "description": "This is a GET request and it is used to \"get\" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have `id=1`).\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."
+              },
+              "response": []
+            },
+            {
+              "name": "Login",
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"emailOrUsername\": \"Phernandez\",\r\n    \"password\": \"Password204\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:5025/api/v1/auth/login",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "5025",
+                  "path": [
+                    "api",
+                    "v1",
+                    "auth",
+                    "login"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Register 2",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      ""
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Josue David\",\n  \"surname\": \"Sajche\",\n  \"username\": \"astral910\",\n  \"email\": \"jsajche-2024380@kinal.edu.gt\",\n  \"password\": \"12345678\",\n  \"phone\": \"12345678\",\n  \"dpi\": \"1634567890126\",\n  \"address\": \"Ciudad de Guatemala\",\n  \"workName\": \"Gerente\",\n  \"monthlyIncome\": 5000\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:5025/api/v1/auth/register",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "5025",
+                  "path": [
+                    "api",
+                    "v1",
+                    "auth",
+                    "register"
+                  ]
+                },
+                "description": "This is a GET request and it is used to \"get\" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have `id=1`).\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."
+              },
+              "response": []
+            },
+            {
+              "name": "Editar",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c3JfbVlWTWNycXkzWjhxIiwianRpIjoiYjJjYTdhMDEtZGJlNi00YzNmLThiZTYtOWQzZTRiOGJmMTM4IiwiaWF0IjoxNzcyNTkyMjAxLCJyb2xlIjoiVVNFUl9ST0xFIiwiZXhwIjoxNzcyNTk0MDAxLCJpc3MiOiJBdXRoU2VydmljZSIsImF1ZCI6IkF1dGhTZXJ2aWNlIn0.EC03UfHSxxokJ8kFY0myyGu1smjnpbNdvUTaxzzgms0",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "PUT",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:5025/api/v1/users/me",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "5025",
+                  "path": [
+                    "api",
+                    "v1",
+                    "users",
+                    "me"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Verify email",
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"token\": \"pHSsvUFvwTveJOFhl7ikFkeU3crcceDXNVVA4LRnnSE\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:5025/api/v1/auth/verify-email",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "5025",
+                  "path": [
+                    "api",
+                    "v1",
+                    "auth",
+                    "verify-email"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Forgot Password",
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"email\": \"jsajche-2024380@kinal.edu.gt\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:5025/api/v1/auth/forgot-password",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "5025",
+                  "path": [
+                    "api",
+                    "v1",
+                    "auth",
+                    "forgot-password"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Reset Password",
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"token\": \"Q9-pIRrriXvjmrjKup5eNZKbeC34-Rhr-FZh3u8HmMQ\",\r\n  \"newPassword\": \"87654321\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:5025/api/v1/auth/reset-password",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "5025",
+                  "path": [
+                    "api",
+                    "v1",
+                    "auth",
+                    "reset-password"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Mis datos",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c3JfbVlWTWNycXkzWjhxIiwianRpIjoiNjNjNDcyMDYtOWQzZi00OGZmLTg4YTMtOTU0MjljZDczNjkyIiwiaWF0IjoxNzcyNTQ5MjQ3LCJyb2xlIjoiVVNFUl9ST0xFIiwiZXhwIjoxNzcyNTUxMDQ3LCJpc3MiOiJBdXRoU2VydmljZSIsImF1ZCI6IkF1dGhTZXJ2aWNlIn0.lwxS0qn7YicPd_ZnPrSTdBw5KnQNn1mqx7HV0z-etKM",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:3000/SistemaBancarioAdmin/v1/accounts/my-info",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3000",
+                  "path": [
+                    "SistemaBancarioAdmin",
+                    "v1",
+                    "accounts",
+                    "my-info"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "Cuentas",
+          "item": [
+            {
+              "name": "Mis datos",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c3JfbVlWTWNycXkzWjhxIiwianRpIjoiNjNjNDcyMDYtOWQzZi00OGZmLTg4YTMtOTU0MjljZDczNjkyIiwiaWF0IjoxNzcyNTQ5MjQ3LCJyb2xlIjoiVVNFUl9ST0xFIiwiZXhwIjoxNzcyNTUxMDQ3LCJpc3MiOiJBdXRoU2VydmljZSIsImF1ZCI6IkF1dGhTZXJ2aWNlIn0.lwxS0qn7YicPd_ZnPrSTdBw5KnQNn1mqx7HV0z-etKM",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:3000/SistemaBancarioAdmin/v1/accounts/my-info",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3000",
+                  "path": [
+                    "SistemaBancarioAdmin",
+                    "v1",
+                    "accounts",
+                    "my-info"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Login",
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"emailOrUsername\": \"Merida\",\r\n    \"password\": \"Password202\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:5025/api/v1/auth/login",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "5025",
+                  "path": [
+                    "api",
+                    "v1",
+                    "auth",
+                    "login"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Crear Cuenta",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c3JfcGFrd2I0RldGRGJYIiwianRpIjoiOGY3NDk2OTUtNjYzMi00MzMyLWFkMjktN2QxZTRkNmJkNGNkIiwiaWF0IjoxNzcyOTM1NzczLCJyb2xlIjoiVVNFUl9ST0xFIiwiZXhwIjoxNzcyOTM3NTczLCJpc3MiOiJBdXRoU2VydmljZSIsImF1ZCI6IkF1dGhTZXJ2aWNlIn0.A3HP2_gDltVYL7HmmuYZkI0aW-6FOEQDhvl-s16wS7Y",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"account_type\": \"AHORRO\",\r\n  \"currency\": \"USD\",\r\n  \"balance\": 2300\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:3000/SistemaBancarioAdmin/v1/accounts/my-account",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3000",
+                  "path": [
+                    "SistemaBancarioAdmin",
+                    "v1",
+                    "accounts",
+                    "my-account"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Crear Cuenta 2",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c3JfOVJaNjR2RTRRM3dtIiwianRpIjoiMWFlNmQ4ZGItY2UwOC00MTRlLTg4ZjYtNzk4NTQwMTdiMjQwIiwiaWF0IjoxNzcyNjYwNTE2LCJyb2xlIjoiVVNFUl9ST0xFIiwiZXhwIjoxNzcyNjYyMzE2LCJpc3MiOiJBdXRoU2VydmljZSIsImF1ZCI6IkF1dGhTZXJ2aWNlIn0.ce1V8PZaPqUIRYlIleHZg1kDe6LdYq9FvWAeiwWGZW0",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"account_type\": \"NOMINA\",\r\n  \"currency\": \"GTQ\",\r\n  \"balance\": 100\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:3000/SistemaBancarioAdmin/v1/accounts/my-account",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3000",
+                  "path": [
+                    "SistemaBancarioAdmin",
+                    "v1",
+                    "accounts",
+                    "my-account"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Historial Movimientos",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c3JfYjZTaU53ekh2OXhzIiwianRpIjoiMTYxYTBiNDAtYWE3Ny00NzVmLWJmNzYtNTFkYjg3MTE0ZDFlIiwiaWF0IjoxNzcyOTMzOTg2LCJyb2xlIjoiQURNSU5fUk9MRSIsImV4cCI6MTc3MjkzNTc4NiwiaXNzIjoiQXV0aFNlcnZpY2UiLCJhdWQiOiJBdXRoU2VydmljZSJ9.93gradAyV_3ZsE2VnmFm7TcoxZsUJ-T9f0yg---GPR4",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:3000/SistemaBancarioAdmin/v1/transactions/history/me",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3000",
+                  "path": [
+                    "SistemaBancarioAdmin",
+                    "v1",
+                    "transactions",
+                    "history",
+                    "me"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Mis Cuentas",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c3JfcGFrd2I0RldGRGJYIiwianRpIjoiYWM0Y2RhY2ItZWZmZi00ZmY0LWI3MjktY2ZiNDYzYzlmOGViIiwiaWF0IjoxNzcyOTQyMzgzLCJyb2xlIjoiVVNFUl9ST0xFIiwiZXhwIjoxNzcyOTQ0MTgzLCJpc3MiOiJBdXRoU2VydmljZSIsImF1ZCI6IkF1dGhTZXJ2aWNlIn0.o6B6rsZKqR9cXlewvWSKzdgiei4BSYsTwxbVO1cv34U",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:3000/SistemaBancarioAdmin/v1/accounts/me",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3000",
+                  "path": [
+                    "SistemaBancarioAdmin",
+                    "v1",
+                    "accounts",
+                    "me"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "Transacciones",
+          "item": [
+            {
+              "name": "Transferencia",
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"fromAccount\": \"3864284443\",\r\n  \"toAccount\": \"3917307935\",\r\n  \"amount\": 500,\r\n  \"description\": \"Pago de servicio\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:3000/SistemaBancarioAdmin/v1/accounts/transfer",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3000",
+                  "path": [
+                    "SistemaBancarioAdmin",
+                    "v1",
+                    "accounts",
+                    "transfer"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Historial",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c3JfdzVTOEp2RnJINzJUIiwianRpIjoiMjEwMGY3OGYtN2I5Zi00OGYwLWI4M2QtOGIyMmU2NzVjZGU4IiwiaWF0IjoxNzcyNjQxMzk5LCJyb2xlIjoiVVNFUl9ST0xFIiwiZXhwIjoxNzcyNjQzMTk5LCJpc3MiOiJBdXRoU2VydmljZSIsImF1ZCI6IkF1dGhTZXJ2aWNlIn0.3hfUUmXvRxVGcRnrT4aYUHPSEKmLP7OquX6c-CGVtqg",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:3000/SistemaBancarioAdmin/v1/transactions/my-transactions",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3000",
+                  "path": [
+                    "SistemaBancarioAdmin",
+                    "v1",
+                    "transactions",
+                    "my-transactions"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "Favoritos",
+          "item": [
+            {
+              "name": "Añadir a favoritos",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c3JfYjZTaU53ekh2OXhzIiwianRpIjoiZmYzMDg2YTctOTc0Yi00ODY0LWFlMzctZjczNTczYTU5NTU1IiwiaWF0IjoxNzcyOTQwOTYxLCJyb2xlIjoiQURNSU5fUk9MRSIsImV4cCI6MTc3Mjk0Mjc2MSwiaXNzIjoiQXV0aFNlcnZpY2UiLCJhdWQiOiJBdXRoU2VydmljZSJ9.AQF0EYEk8coKZThds19FjX8tNZ4a7cnWOH_TDz5CNPg",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"alias\": \"Mama\",\r\n  \"account_number\": \"5984503224\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:3000/SistemaBancarioAdmin/v1/favorites",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3000",
+                  "path": [
+                    "SistemaBancarioAdmin",
+                    "v1",
+                    "favorites"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Obtener Favoritos",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c3JfYjZTaU53ekh2OXhzIiwianRpIjoiZmYzMDg2YTctOTc0Yi00ODY0LWFlMzctZjczNTczYTU5NTU1IiwiaWF0IjoxNzcyOTQwOTYxLCJyb2xlIjoiQURNSU5fUk9MRSIsImV4cCI6MTc3Mjk0Mjc2MSwiaXNzIjoiQXV0aFNlcnZpY2UiLCJhdWQiOiJBdXRoU2VydmljZSJ9.AQF0EYEk8coKZThds19FjX8tNZ4a7cnWOH_TDz5CNPg",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:3000/SistemaBancarioAdmin/v1/favorites",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3000",
+                  "path": [
+                    "SistemaBancarioAdmin",
+                    "v1",
+                    "favorites"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Actualizar Alias Favoritos",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c3JfYjZTaU53ekh2OXhzIiwianRpIjoiZmYzMDg2YTctOTc0Yi00ODY0LWFlMzctZjczNTczYTU5NTU1IiwiaWF0IjoxNzcyOTQwOTYxLCJyb2xlIjoiQURNSU5fUk9MRSIsImV4cCI6MTc3Mjk0Mjc2MSwiaXNzIjoiQXV0aFNlcnZpY2UiLCJhdWQiOiJBdXRoU2VydmljZSJ9.AQF0EYEk8coKZThds19FjX8tNZ4a7cnWOH_TDz5CNPg",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "PUT",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:3000/SistemaBancarioAdmin/v1/favorites/:id",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3000",
+                  "path": [
+                    "SistemaBancarioAdmin",
+                    "v1",
+                    "favorites",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": ""
+                    }
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Eliminar de favoritos",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c3JfYjZTaU53ekh2OXhzIiwianRpIjoiODlmODIwZTYtMTBmNS00YjZjLTkyZTMtYmY2YTgwZjgwYjAyIiwiaWF0IjoxNzcyOTQyMTUwLCJyb2xlIjoiQURNSU5fUk9MRSIsImV4cCI6MTc3Mjk0Mzk1MCwiaXNzIjoiQXV0aFNlcnZpY2UiLCJhdWQiOiJBdXRoU2VydmljZSJ9.jt8vr9Mhms9bfM0O3eZmdHfoyBQ3FnpQieN0EpK5kN4",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:3000/SistemaBancarioAdmin/v1/favorites/:Alias",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3000",
+                  "path": [
+                    "SistemaBancarioAdmin",
+                    "v1",
+                    "favorites",
+                    ":Alias"
+                  ],
+                  "variable": [
+                    {
+                      "key": "Alias",
+                      "value": ""
+                    }
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Hacer transferencia a favorito",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c3JfYjZTaU53ekh2OXhzIiwianRpIjoiZmYzMDg2YTctOTc0Yi00ODY0LWFlMzctZjczNTczYTU5NTU1IiwiaWF0IjoxNzcyOTQwOTYxLCJyb2xlIjoiQURNSU5fUk9MRSIsImV4cCI6MTc3Mjk0Mjc2MSwiaXNzIjoiQXV0aFNlcnZpY2UiLCJhdWQiOiJBdXRoU2VydmljZSJ9.AQF0EYEk8coKZThds19FjX8tNZ4a7cnWOH_TDz5CNPg",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"fromAccount\": \"1403255707\",\r\n  \"amount\": 500\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:3000/SistemaBancarioAdmin/v1/favorites/:id/transfer",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3000",
+                  "path": [
+                    "SistemaBancarioAdmin",
+                    "v1",
+                    "favorites",
+                    ":id",
+                    "transfer"
+                  ],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": ""
+                    }
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Divisas",
+      "item": [
+        {
+          "name": "divisas",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c3JfQXNHVVpkM0ZiRmo2IiwianRpIjoiNWI2NDhiZjQtMTlhNi00NmE3LTljNWYtNDcxYjk2NzZmZWM2IiwiaWF0IjoxNzcyNTM1Njg0LCJyb2xlIjoiQURNSU5fUk9MRSIsImV4cCI6MTc3MjUzNzQ4NCwiaXNzIjoiQXV0aFNlcnZpY2UiLCJhdWQiOiJBdXRoU2VydmljZSJ9.uyit3H2GY6JkUAHQvNORsSj9m0CGfI7RuUCoAUkB4cQ",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/SistemaBancarioAdmin/v1/currency/convert?from=GTQ&to=USD&amount=100",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "SistemaBancarioAdmin",
+                "v1",
+                "currency",
+                "convert"
+              ],
+              "query": [
+                {
+                  "key": "from",
+                  "value": "GTQ"
+                },
+                {
+                  "key": "to",
+                  "value": "USD"
+                },
+                {
+                  "key": "amount",
+                  "value": "100"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Divisa de cliente",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c3JfYjZTaU53ekh2OXhzIiwianRpIjoiMTYxYTBiNDAtYWE3Ny00NzVmLWJmNzYtNTFkYjg3MTE0ZDFlIiwiaWF0IjoxNzcyOTMzOTg2LCJyb2xlIjoiQURNSU5fUk9MRSIsImV4cCI6MTc3MjkzNTc4NiwiaXNzIjoiQXV0aFNlcnZpY2UiLCJhdWQiOiJBdXRoU2VydmljZSJ9.93gradAyV_3ZsE2VnmFm7TcoxZsUJ-T9f0yg---GPR4",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/SistemaBancarioAdmin/v1/currency/:accountId?to=USD",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "SistemaBancarioAdmin",
+                "v1",
+                "currency",
+                ":accountId"
+              ],
+              "query": [
+                {
+                  "key": "to",
+                  "value": "USD"
+                }
+              ],
+              "variable": [
+                {
+                  "key": "accountId",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Depositos",
+      "item": [
+        {
+          "name": "Deposito a usuario",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"accountNumber\": \"1403255707\",\n  \"amount\": 1000,\n  \"description\": \"Deposito por ventanilla\",\n  \"currency\": \"GTQ\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/SistemaBancarioAdmin/v1/deposits",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "SistemaBancarioAdmin",
+                "v1",
+                "deposits"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}

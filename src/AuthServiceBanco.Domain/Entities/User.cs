@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using AuthServiceBanco.Domain.Enums;
 
 namespace AuthServiceBanco.Domain.Entities;
 
@@ -31,6 +32,8 @@ public class User
     public string Password { get; set; } = string.Empty;
 
     public bool Status { get; set; } = false;
+
+    public AccountState AccountState { get; set; } = AccountState.PENDIENTE;
 
     [Required]
     public DateTime CreatedAt { get; set; }

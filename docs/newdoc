@@ -1,0 +1,208 @@
+POST http://localhost:5025/api/v1/admin/create-client 
+Validate token (admin) 
+Si lleva JSON 
+{
+     "name": "Juan", "surname": "Perez", "username": "jperez", "dpi": "1234567890123", "address": "Ciudad de Guatemala", "phone": "12345678", "email": "juan@example.com", "password": "Password123", "workName": "Empresa XYZ", "monthlyIncome": 5000 
+}
+
+
+--- Orden recomendado de pruebas y endpoints completos ---
+
+1) GET http://localhost:5025/api/v1/health
+- Público, comprueba que el servicio esté vivo.
+- No body.
+
+2) POST http://localhost:5025/api/v1/auth/login
+- Validate token: no
+- Body JSON:
+{
+  "username": "admin",
+  "password": "AdminPassword"
+}
+- Resultado: recibe JWT en respuesta (guardar para requests siguientes). Use este token si tiene rol ADMIN.
+
+3) GET http://localhost:5025/api/v1/admin/users
+- Validate token (admin)
+- Query opcional: ?page=1&pageSize=10&searchTerm=&role=
+- Comprueba listado de usuarios.
+
+4) POST http://localhost:5025/api/v1/admin/create-client
+- Validate token (admin)
+- Body JSON (ejemplo):
+{
+  "name": "Juan",
+  "surname": "Perez",
+  "username": "jperez",
+  "dpi": "1234567890123",
+  "address": "Ciudad de Guatemala",
+  "phone": "12345678",
+  "email": "juan@example.com",
+  "password": "Password123",
+  "workName": "Empresa XYZ",
+  "monthlyIncome": 5000
+}
+- Respuesta: usuario creado y datos devueltos.
+
+5) POST http://localhost:5025/api/v1/admin/users/{userId}/activate
+- Validate token (admin)
+- No body. Activa la cuenta (ACTIVA).
+
+6) GET http://localhost:5025/api/v1/users/{userId}/profile
+- Validate token (owner or admin)
+- No body. Devuelve perfil del usuario.
+
+7) GET http://localhost:5025/api/v1/auth/profile
+- Validate token (any authenticated user)
+- No body. Devuelve perfil del usuario autenticado.
+
+8) POST http://localhost:5025/api/v1/auth/verify-email
+- Validate token: no
+- Body JSON:
+{
+  "token": "codigo-de-verificacion"
+}
+
+9) POST http://localhost:5025/api/v1/auth/forgot-password
+- Body JSON:
+{
+  "email": "juan@example.com"
+}
+
+10) POST http://localhost:5025/api/v1/auth/reset-password
+- Body JSON:
+{
+  "token": "token-reset",
+  "newPassword": "NewPass123"
+}
+
+-- Node.js Admin/Banking API (usualmente montar base /SistemaBancarioAdmin/v1 o /v1 según deployment). Ajustar host/port si es diferente. --
+
+11) GET http://localhost:3000/ (o base del servicio) -- Salud (según configuración de frontend/backend)
+
+12) POST /v1/accounts (create account)  --> ruta protegida (admin)
+POST http://localhost:3000/v1/accounts
+- Validate token (admin)
+- If JSON body:
+{
+  "name": "Juan",
+  "surname": "Perez",
+  "username": "jperez",
+  "email": "juan@example.com",
+  "password": "Password123",
+  "phone": "12345678",
+  "dpi": "1234567890123",
+  "address": "Ciudad de Guatemala",
+  "workName": "Empresa XYZ",
+  "monthlyIncome": 5000,
+  "account_type": "AHORRO"
+}
+- Comportamiento: crea usuario en .NET (usa token admin) y luego crea cuenta en MongoDB.
+
+13) GET http://localhost:3000/v1/accounts/me
+- Validate token (user)
+- No body.
+- Devuelve la cuenta vinculada al usuario en el token.
+
+14) PUT http://localhost:3000/v1/accounts/me
+- Validate token (user)
+- Body JSON (cambiar tipo de cuenta si no hay transacciones): { "account_type": "CORRIENTE" }
+
+15) POST http://localhost:3000/v1/accounts/transfer
+- Validate token (user)
+- Body JSON:
+{
+  "toAccount": "1234567890",
+  "amount": 100,
+  "description": "Pago"
+}
+
+16) GET http://localhost:3000/v1/accounts/:id
+- Validate token (admin)
+- Reemplazar :id por ObjectId de la cuenta
+- Verifica formato ObjectId; devuelve 400 si inválido, 404 si no existe.
+
+17) GET http://localhost:3000/v1/accounts/:accountId/movements
+- Validate token (admin)
+- Reemplazar :accountId por ObjectId
+- Devuelve últimos 5 movimientos filtrados por tipos ['TRANSFERENCIA','COMPRA','CREDITO'] y el saldo.
+
+18) GET http://localhost:3000/v1/accounts/all
+- Validate token (admin)
+- Lista todas las cuentas.
+
+19) GET http://localhost:3000/v1/accounts/by-activity?active=true
+- Validate token (admin)
+- Filtra por is_active.
+
+20) GET http://localhost:3000/v1/accounts/by-balance?order=desc
+- Validate token (admin)
+- Ordena cuentas por balance.
+
+21) GET http://localhost:3000/v1/accounts/by-movements?order=desc
+- Validate token (admin)
+- Ordena cuentas por cantidad de movimientos.
+
+-- Depósitos y transacciones --
+22) POST http://localhost:3000/v1/deposits
+- Validate token (user) (admins pueden depositar en cualquier cuenta)
+- Body JSON:
+{
+  "accountNumber": "1234567890",
+  "amount": 500,
+  "description": "Depósito en ventanilla"
+}
+- Comprueba límite diario por cuenta (ej. Q10000), crea transacción revertible y suma al balance.
+
+23) GET http://localhost:3000/v1/deposits/pending
+- Validate token (admin)
+- Devuelve depósitos revertibles (menor a 60s) con tiempo restante.
+
+24) POST http://localhost:3000/v1/deposits/revert
+- Validate token (admin)
+- Body JSON: { "transactionId": "<id>" }
+- Requiere que la transacción sea DEPOSITO y menor a 60s; resta del saldo y marca revertida.
+
+25) PUT http://localhost:3000/v1/deposits/:id
+- Validate token (admin)
+- Body JSON: { "amount": 600 }
+- Modifica monto del depósito existente (no revertido) y ajusta balance en diff.
+
+26) POST http://localhost:3000/v1/transactions/deposit  (alternativa según rutas)
+- En algunos routers la ruta es /transaction/deposit y requiere rol ADMIN. Ajustar según configuración.
+
+27) GET http://localhost:3000/v1/transactions/my-transactions
+- Validate token (user)
+- Query: ?page=1&limit=10&type=TRANSFERENCIA&from_date=2026-01-01&to_date=2026-03-01
+
+28) GET http://localhost:3000/v1/transactions/:id
+- Validate token (user)
+- Devuelve la transacción si pertenece al usuario; comparación segura contra ObjectId implementada.
+
+29) GET http://localhost:3000/v1/transactions/all
+- Validate token (admin)
+- Paginado y filtros disponibles.
+
+-- Productos y favoritos (ejemplos) --
+30) GET http://localhost:3000/v1/products
+- Público.
+
+31) POST http://localhost:3000/v1/products
+- Validate token (admin)
+- Body: creación de producto.
+
+32) POST http://localhost:3000/v1/favorites
+- Validate token (user)
+- Body: crear favorito.
+
+-- Conversión de moneda --
+33) GET http://localhost:3000/v1/currency/convert?from=GTQ&to=USD&amount=100
+- Validate token (user)
+
+
+Notas y recomendaciones rápidas:
+- Ajusta host/port base según tu despliegue (.NET en 5025 por ejemplo; Node típicamente en 3000). Reemplaza `localhost:3000` por la URL real del servicio Node.
+- Guarda el JWT obtenido en el login y úsalo como `Authorization: Bearer <token>` para solicitudes protegidas.
+- Verifica que el token tenga el claim `role` correcto (ADMIN/USER) para endpoints protegidos por `validateRole`.
+- Revisa consistencia de campos temporales en depósitos: `createdAt` vs `transaction_date_time` (recomiendo unificar a `createdAt`).
+- Para pruebas automatizadas, sigue el orden numérico propuesto; empieza por health -> auth login -> admin create-client -> activate -> comprobaciones de cuenta y operaciones transaccionales.
+
