@@ -30,6 +30,8 @@ import serviceRoutes from '../src/routes/service.routes.js';
 import favoriteRoutes from '../src/routes/favorite.routes.js';
 // Importa las rutas de conversión de moneda
 import currencyRoutes from '../src/routes/currency.routes.js';
+// Importa configuracion de documentacion Swagger
+import { setupSwaggerDocs } from '../docs/swagger.js';
 
 // Ruta base para todos los endpoints de la API
 const BASE_PATH = '/SistemaBancarioAdmin/v1';
@@ -52,6 +54,9 @@ const middlewares = (app) => {
 
 // Función que registra todas las rutas de la API
 const routes = (app) => {
+    // Documentacion Swagger UI y JSON OpenAPI
+    setupSwaggerDocs(app, { route: '/docs' });
+
     // Rutas para manejo de cuentas bancarias
     app.use(`${BASE_PATH}/accounts`, accountRoutes);
     // Rutas para transacciones entre cuentas
