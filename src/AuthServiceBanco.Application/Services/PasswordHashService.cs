@@ -1,5 +1,7 @@
 using AuthServiceBanco.Application.Interfaces;
+using AuthServiceBanco.Domain.Entities;
 using Konscious.Security.Cryptography;
+using Microsoft.AspNetCore.Identity;
 using System.ComponentModel;
 using System.Security.Cryptography;
 using System.Text;
@@ -52,6 +54,11 @@ public class PasswordHashService : IPasswordHashService
                 var result = VerifyArgon2StandardFormat(password, hashedPassword);
                 Console.WriteLine($"[DEBUG] Verification result: {result}");
                 return result;
+            }
+            else if (hashedPassword.StartsWith("AQAAAA"))
+            {
+                Console.WriteLine("[DEBUG] Using ASP.NET Identity format verification");
+                return VerifyAspNetIdentityFormat(password, hashedPassword);
             }
             else
             {
@@ -122,6 +129,16 @@ public class PasswordHashService : IPasswordHashService
 
         var computedHash = argon2.GetBytes(HashSize);
         return hash.SequenceEqual(computedHash);
+    }
+
+    private static bool VerifyAspNetIdentityFormat(string password, string hashedPassword)
+    {
+        var hasher = new PasswordHasher<User>();
+        var user = new User();
+
+        var result = hasher.VerifyHashedPassword(user, hashedPassword, password);
+        return result == PasswordVerificationResult.Success ||
+               result == PasswordVerificationResult.SuccessRehashNeeded;
     }
 
     private static string FromBase64UrlSafe(string base64UrlSafe)
