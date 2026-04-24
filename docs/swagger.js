@@ -12,9 +12,10 @@ const TAGS = [
   { name: 'UserRole', description: 'Asignacion y consulta de roles por usuario' },
   { name: 'Productos', description: 'Gestión de productos del banco' },
   { name: 'Servicios', description: 'Gestión de servicios del banco' },
-  { name: 'Transaction', description: 'Operaciones y consultas de transacciones bancarias' },
-  { name: 'Deposit', description: 'Depósitos y administración de depósitos pendientes' },
-  { name: 'Activity', description: 'Historial de actividad y registros de cuenta' },
+  { name: 'Cuentas', description: 'Gestión de cuentas bancarias, transferencias y movimientos' },
+  { name: 'Transaction', description: 'Consultas de transacciones bancarias' },
+  { name: 'Deposit', description: 'Depósitos y administración de depósitos' },
+  { name: 'Activity', description: 'Historial de actividad de cuenta' },
 ];
 
 const AUTH_SECURITY = [{ bearerAuth: [] }, { xTokenAuth: [] }];
@@ -538,6 +539,12 @@ const COMPONENTS = {
     ServiceMutationResponse: { type: 'object', properties: { success: { type: 'boolean', example: true }, message: { type: 'string' }, service: { $ref: '#/components/schemas/Service' } } },
     ServiceGetResponse: { type: 'object', properties: { success: { type: 'boolean', example: true }, service: { $ref: '#/components/schemas/Service' } } },
     ServiceListResponse: { type: 'object', properties: { success: { type: 'boolean', example: true }, total: { type: 'integer' }, services: { type: 'array', items: { $ref: '#/components/schemas/Service' } } } },
+    // Sajche schemas - Cuentas bancarias
+    CreateMyAccountInput: { type: 'object', required: ['type'], properties: { type: { type: 'string', enum: ['AHORRO', 'CORRIENTE', 'NOMINA'], example: 'AHORRO' }, currency: { type: 'string', example: 'GTQ', default: 'GTQ' } } },
+    CreateAccountAdminInput: { type: 'object', required: ['userId', 'type'], properties: { userId: { type: 'string', example: 'd6ff04ca-0cf5-40c3-bf4f-f4f7d3bd4d3e' }, type: { type: 'string', enum: ['AHORRO', 'CORRIENTE', 'NOMINA'], example: 'AHORRO' }, currency: { type: 'string', example: 'GTQ' }, initialBalance: { type: 'number', minimum: 0, example: 500 } } },
+    TransferInput: { type: 'object', required: ['fromAccountNumber', 'toAccountNumber', 'amount'], properties: { fromAccountNumber: { type: 'string', example: '1234567890' }, toAccountNumber: { type: 'string', example: '0987654321' }, amount: { type: 'number', minimum: 0.01, example: 250 }, description: { type: 'string', example: 'Pago de servicios' } } },
+    UpdateAccountInput: { type: 'object', properties: { type: { type: 'string', enum: ['AHORRO', 'CORRIENTE', 'NOMINA'] }, currency: { type: 'string' }, status: { type: 'string', enum: ['ACTIVA', 'INACTIVA', 'PENDIENTE'] } } },
+    AccountResponse: { type: 'object', properties: { _id: { $ref: '#/components/schemas/MongoId' }, accountNumber: { type: 'string', example: '1234567890' }, type: { type: 'string', example: 'AHORRO' }, currency: { type: 'string', example: 'GTQ' }, balance: { type: 'number', example: 1500.00 }, status: { type: 'string', example: 'ACTIVA' }, owner: { type: 'string', example: 'd6ff04ca-0cf5-40c3-bf4f-f4f7d3bd4d3e' }, createdAt: { type: 'string', format: 'date-time' } } },
   },
 };
 
@@ -624,6 +631,25 @@ const ACTIVITY_PATHS = {
   [`${BASE_PATH}/transactions/history/{accountId}`]: { get: { tags: ['Activity'], operationId: 'getAccountActivityHistory', summary: 'Historial de actividad por cuenta', security: AUTH_SECURITY, parameters: [{ in: 'path', name: 'accountId', required: true, schema: { type: 'string' } }], responses: { 200: { description: 'Historial de actividad por cuenta' }, 401: { $ref: '#/components/responses/Unauthorized' }, 403: { $ref: '#/components/responses/Forbidden' }, 404: { description: 'No encontrado' }, 500: { $ref: '#/components/responses/InternalServerError' } } } },
 };
 
+// ==================== SAJCHE: Cuentas bancarias ====================
+const ACCOUNT_PATHS = {
+  [`${BASE_PATH}/accounts/my-info`]: { get: { tags: ['Cuentas'], operationId: 'getMyInfo', summary: 'Obtener mi información completa', description: 'Retorna los datos personales del usuario autenticado más todas sus cuentas bancarias.', security: AUTH_SECURITY, responses: { 200: { description: 'Información completa del usuario y sus cuentas' }, 401: { $ref: '#/components/responses/Unauthorized' }, 500: { $ref: '#/components/responses/InternalServerError' } } } },
+  [`${BASE_PATH}/accounts/me`]: { get: { tags: ['Cuentas'], operationId: 'getMyAccount', summary: 'Obtener mis cuentas', description: 'Lista las cuentas bancarias del usuario autenticado.', security: AUTH_SECURITY, responses: { 200: { description: 'Lista de cuentas del usuario' }, 401: { $ref: '#/components/responses/Unauthorized' }, 500: { $ref: '#/components/responses/InternalServerError' } } } },
+  [`${BASE_PATH}/accounts/my-account`]: { post: { tags: ['Cuentas'], operationId: 'createMyAccount', summary: 'Crear mi cuenta bancaria', description: 'Crea una nueva cuenta bancaria para el usuario autenticado. Queda pendiente de activación por un administrador.', security: AUTH_SECURITY, requestBody: { required: true, content: { 'application/json': { schema: { $ref: '#/components/schemas/CreateMyAccountInput' } } } }, responses: { 201: { description: 'Cuenta creada, pendiente de activación' }, 400: { $ref: '#/components/responses/BadRequest' }, 401: { $ref: '#/components/responses/Unauthorized' }, 500: { $ref: '#/components/responses/InternalServerError' } } } },
+  [`${BASE_PATH}/accounts/transfer`]: { post: { tags: ['Cuentas'], operationId: 'transfer', summary: 'Realizar transferencia', description: 'Transfiere fondos desde una cuenta propia a otra cuenta del sistema.', security: AUTH_SECURITY, requestBody: { required: true, content: { 'application/json': { schema: { $ref: '#/components/schemas/TransferInput' } } } }, responses: { 200: { description: 'Transferencia realizada correctamente' }, 400: { $ref: '#/components/responses/BadRequest' }, 401: { $ref: '#/components/responses/Unauthorized' }, 403: { $ref: '#/components/responses/Forbidden' }, 500: { $ref: '#/components/responses/InternalServerError' } } } },
+  [`${BASE_PATH}/accounts/all`]: { get: { tags: ['Cuentas'], operationId: 'getAllAccounts', summary: 'Listar todas las cuentas (admin)', description: 'Retorna todas las cuentas bancarias del sistema. Requiere rol ADMIN.', security: AUTH_SECURITY, responses: { 200: { description: 'Lista de todas las cuentas' }, 401: { $ref: '#/components/responses/Unauthorized' }, 403: { $ref: '#/components/responses/Forbidden' }, 500: { $ref: '#/components/responses/InternalServerError' } } } },
+  [`${BASE_PATH}/accounts/by-activity`]: { get: { tags: ['Cuentas'], operationId: 'getAccountsByActivity', summary: 'Filtrar cuentas por actividad', description: 'Filtra cuentas según su estado de actividad (activas/inactivas). Requiere rol ADMIN.', security: AUTH_SECURITY, parameters: [{ in: 'query', name: 'active', required: false, schema: { type: 'boolean' }, description: 'true = activas, false = inactivas' }], responses: { 200: { description: 'Cuentas filtradas por actividad' }, 401: { $ref: '#/components/responses/Unauthorized' }, 403: { $ref: '#/components/responses/Forbidden' }, 500: { $ref: '#/components/responses/InternalServerError' } } } },
+  [`${BASE_PATH}/accounts/by-balance`]: { get: { tags: ['Cuentas'], operationId: 'getAccountsByBalance', summary: 'Ordenar cuentas por saldo', description: 'Lista cuentas ordenadas por saldo (ascendente o descendente). Requiere rol ADMIN.', security: AUTH_SECURITY, parameters: [{ in: 'query', name: 'order', required: false, schema: { type: 'string', enum: ['asc', 'desc'], default: 'desc' } }], responses: { 200: { description: 'Cuentas ordenadas por saldo' }, 401: { $ref: '#/components/responses/Unauthorized' }, 403: { $ref: '#/components/responses/Forbidden' }, 500: { $ref: '#/components/responses/InternalServerError' } } } },
+  [`${BASE_PATH}/accounts/by-movements`]: { get: { tags: ['Cuentas'], operationId: 'getAccountsByMovements', summary: 'Ordenar cuentas por movimientos', description: 'Lista cuentas ordenadas por cantidad de movimientos. Requiere rol ADMIN.', security: AUTH_SECURITY, responses: { 200: { description: 'Cuentas ordenadas por movimientos' }, 401: { $ref: '#/components/responses/Unauthorized' }, 403: { $ref: '#/components/responses/Forbidden' }, 500: { $ref: '#/components/responses/InternalServerError' } } } },
+  [`${BASE_PATH}/accounts/{accountId}/activate`]: { post: { tags: ['Cuentas'], operationId: 'activateAccount', summary: 'Activar cuenta pendiente', description: 'Activa una cuenta que está en estado PENDIENTE. Requiere rol ADMIN.', security: AUTH_SECURITY, parameters: [{ in: 'path', name: 'accountId', required: true, schema: { $ref: '#/components/schemas/MongoId' } }], responses: { 200: { description: 'Cuenta activada correctamente' }, 401: { $ref: '#/components/responses/Unauthorized' }, 403: { $ref: '#/components/responses/Forbidden' }, 404: { description: 'Cuenta no encontrada' }, 500: { $ref: '#/components/responses/InternalServerError' } } } },
+  [`${BASE_PATH}/accounts/{accountId}/movements`]: { get: { tags: ['Cuentas'], operationId: 'getAccountMovements', summary: 'Ver movimientos de una cuenta', description: 'Retorna los últimos movimientos de una cuenta específica. Requiere rol ADMIN.', security: AUTH_SECURITY, parameters: [{ in: 'path', name: 'accountId', required: true, schema: { $ref: '#/components/schemas/MongoId' } }], responses: { 200: { description: 'Movimientos de la cuenta' }, 401: { $ref: '#/components/responses/Unauthorized' }, 403: { $ref: '#/components/responses/Forbidden' }, 404: { description: 'Cuenta no encontrada' }, 500: { $ref: '#/components/responses/InternalServerError' } } } },
+  [`${BASE_PATH}/accounts`]: { post: { tags: ['Cuentas'], operationId: 'createAccount', summary: 'Crear cuenta para usuario (admin)', description: 'Crea una cuenta bancaria para cualquier usuario. Queda activa inmediatamente. Requiere rol ADMIN.', security: AUTH_SECURITY, requestBody: { required: true, content: { 'application/json': { schema: { $ref: '#/components/schemas/CreateAccountAdminInput' } } } }, responses: { 201: { description: 'Cuenta creada y activa' }, 400: { $ref: '#/components/responses/BadRequest' }, 401: { $ref: '#/components/responses/Unauthorized' }, 403: { $ref: '#/components/responses/Forbidden' }, 500: { $ref: '#/components/responses/InternalServerError' } } } },
+  [`${BASE_PATH}/accounts/{id}`]: {
+    get: { tags: ['Cuentas'], operationId: 'getAccountById', summary: 'Obtener cuenta por ID', description: 'Retorna el detalle de una cuenta por su ID. Requiere rol ADMIN.', security: AUTH_SECURITY, parameters: [{ $ref: '#/components/parameters/IdPathParam' }], responses: { 200: { description: 'Detalle de la cuenta' }, 400: { $ref: '#/components/responses/InvalidId' }, 401: { $ref: '#/components/responses/Unauthorized' }, 403: { $ref: '#/components/responses/Forbidden' }, 404: { description: 'Cuenta no encontrada' }, 500: { $ref: '#/components/responses/InternalServerError' } } },
+    put: { tags: ['Cuentas'], operationId: 'updateAccount', summary: 'Actualizar cuenta', description: 'Actualiza información de una cuenta (no modifica el saldo). Requiere rol ADMIN.', security: AUTH_SECURITY, parameters: [{ $ref: '#/components/parameters/IdPathParam' }], requestBody: { required: true, content: { 'application/json': { schema: { $ref: '#/components/schemas/UpdateAccountInput' } } } }, responses: { 200: { description: 'Cuenta actualizada' }, 400: { $ref: '#/components/responses/BadRequest' }, 401: { $ref: '#/components/responses/Unauthorized' }, 403: { $ref: '#/components/responses/Forbidden' }, 404: { description: 'Cuenta no encontrada' }, 500: { $ref: '#/components/responses/InternalServerError' } } },
+  },
+};
+
 const swaggerSpec = {
   openapi: '3.0.3',
   info: {
@@ -642,6 +668,7 @@ const swaggerSpec = {
     ...USER_ROLE_PATHS,
     ...PRODUCT_PATHS,
     ...SERVICE_PATHS,
+    ...ACCOUNT_PATHS,
     ...TRANSACTION_PATHS,
     ...DEPOSIT_PATHS,
     ...ACTIVITY_PATHS,
