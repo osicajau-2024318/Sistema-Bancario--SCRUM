@@ -61,6 +61,25 @@ builder.Services.AddJwtAuthentication(builder.Configuration);
 // Configura políticas de rate limiting (límite de peticiones)
 builder.Services.AddRateLimitingPolicies();
 
+// Configura CORS para permitir peticiones desde el frontend
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("DefaultCorsPolicy", policy =>
+    {
+        policy.WithOrigins(
+            "http://localhost:5173",    // Puerto por defecto Vite
+            "http://localhost:5174",    // Puerto alternativo Vite
+            "http://localhost:3000",    // Otros puertos comunes
+            "http://localhost:3001",
+            "http://127.0.0.1:5173",
+            "http://127.0.0.1:5174"
+        )
+        .AllowAnyMethod()               // Permite GET, POST, PUT, DELETE, PATCH, etc.
+        .AllowAnyHeader()               // Permite cualquier header
+        .AllowCredentials();            // Permite enviar cookies y credenciales
+    });
+});
+
 // Construye la aplicación
 var app = builder.Build();
 
