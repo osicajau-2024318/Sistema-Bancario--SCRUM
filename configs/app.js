@@ -30,8 +30,10 @@ import serviceRoutes from '../src/routes/service.routes.js';
 import favoriteRoutes from '../src/routes/favorite.routes.js';
 // Importa las rutas de conversión de moneda
 import currencyRoutes from '../src/routes/currency.routes.js';
-// Importa configuracion de documentacion Swagger
-import { setupSwaggerDocs } from '../docs/swagger.js';
+// Importa las rutas de productos
+import productRoutes from '../src/routes/product.routes.js';
+// Importa la configuración de Swagger
+import { registerSwagger } from '../docs/swagger.js';
 
 // Ruta base para todos los endpoints de la API
 const BASE_PATH = '/SistemaBancarioAdmin/v1';
@@ -54,9 +56,6 @@ const middlewares = (app) => {
 
 // Función que registra todas las rutas de la API
 const routes = (app) => {
-    // Documentacion Swagger UI y JSON OpenAPI
-    setupSwaggerDocs(app, { route: '/docs' });
-
     // Rutas para manejo de cuentas bancarias
     app.use(`${BASE_PATH}/accounts`, accountRoutes);
     // Rutas para transacciones entre cuentas
@@ -67,6 +66,8 @@ const routes = (app) => {
     app.use(`${BASE_PATH}/services`, serviceRoutes);
     // Rutas para cuentas favoritas del usuario
     app.use(`${BASE_PATH}/favorites`, favoriteRoutes);
+    // Rutas para productos
+    app.use(`${BASE_PATH}/products`, productRoutes);
     // Rutas para conversión de moneda
     app.use(`${BASE_PATH}/currency`, currencyRoutes);
     // Endpoint de health check para verificar que el servidor está funcionando
@@ -75,14 +76,6 @@ const routes = (app) => {
             status: 'Healthy',
             timestamp: new Date().toISOString(),
             service: 'Sistema Bancario Server'
-        })
-    })
-
-    // Maneja rutas no encontradas (404)
-    app.use((req, res) => {
-        res.status(404).json({
-            success: false,
-            message: 'Endpoint no encontrado en Admin Api'
         })
     })
 }
@@ -102,6 +95,16 @@ export const initServer = async () => {
         middlewares(app);
         // Registra todas las rutas de la API
         routes(app);
+        // Registra la documentación Swagger
+        registerSwagger(app);
+
+        // Maneja rutas no encontradas (404)
+        app.use((req, res) => {
+            res.status(404).json({
+                success: false,
+                message: 'Endpoint no encontrado en Admin Api'
+            })
+        });
 
         // Aplica el manejador de errores al final de todo
         app.use(errorHandler);

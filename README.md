@@ -7,12 +7,19 @@
 ---
 
 ## Instrucciones de ejecución
-Ejecutar en la terminal del proyecto
-cd src/AuthServiceBanco.Api
-	dentro de esta carpeta ejecutar dotnet run 
-Abrir una nueva terminal en el proyecto
-	Ejecutar docker compose up -d
-	Ejecutar npm run dev 
+
+### Opción A — Tres pasos (manual)
+1. En la terminal del proyecto: `cd src/AuthServiceBanco.Api` y ejecutar `dotnet run`.
+2. Abrir otra terminal en la raíz del proyecto: `docker compose up -d` y luego `npm run dev`.
+
+### Opción B — Un solo comando (recomendado)
+Desde la raíz del proyecto ejecutar:
+
+```bash
+npm run start:all
+```
+
+Eso levanta Docker (PostgreSQL + MongoDB), el API .NET de autenticación y el servidor Node.js en una sola terminal. Requiere tener Docker en marcha y `concurrently` instalado (`npm install` o `pnpm install`).
 
 ## .NET - Auth Service
 
