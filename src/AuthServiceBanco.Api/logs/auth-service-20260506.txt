@@ -1,0 +1,42 @@
+[2026-05-06 16:01:35 INF] Checking database connection... {"SourceContext":"Program"}
+[2026-05-06 16:01:35 INF] Database ready. Running seed data... {"SourceContext":"Program"}
+[2026-05-06 16:01:36 INF] Database initialization completed successfully {"SourceContext":"Program"}
+[2026-05-06 16:01:36 INF] AuthService API is running at http://localhost:5025. Health endpoint: http://localhost:5025/health {"SourceContext":"Program"}
+[2026-05-06 16:16:13 WRN] Failed to determine the https port for redirect. {"EventId":{"Id":3,"Name":"FailedToDeterminePort"},"SourceContext":"Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware","RequestId":"0HNLBNKAS5VNR:00000001","RequestPath":"/api/v1/login","ConnectionId":"0HNLBNKAS5VNR"}
+[2026-05-06 16:16:13 INF] HTTP OPTIONS /api/v1/login responded 404 in 28.8412 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNLBNKAS5VNR:00000001","ConnectionId":"0HNLBNKAS5VNR"}
+[2026-05-06 16:18:02 INF] Checking database connection... {"SourceContext":"Program"}
+[2026-05-06 16:18:03 INF] Database ready. Running seed data... {"SourceContext":"Program"}
+[2026-05-06 16:18:03 INF] Database initialization completed successfully {"SourceContext":"Program"}
+[2026-05-06 16:18:03 INF] AuthService API is running at http://localhost:5025. Health endpoint: http://localhost:5025/health {"SourceContext":"Program"}
+[2026-05-06 16:18:28 WRN] Failed to determine the https port for redirect. {"EventId":{"Id":3,"Name":"FailedToDeterminePort"},"SourceContext":"Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware","RequestId":"0HNLBNLIVOV3F:00000001","RequestPath":"/api/v1/login","ConnectionId":"0HNLBNLIVOV3F"}
+[2026-05-06 16:18:28 INF] HTTP OPTIONS /api/v1/login responded 204 in 6.1276 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNLBNLIVOV3F:00000001","ConnectionId":"0HNLBNLIVOV3F"}
+[2026-05-06 16:18:28 INF] HTTP POST /api/v1/login responded 404 in 12.3310 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNLBNLIVOV3F:00000002","ConnectionId":"0HNLBNLIVOV3F"}
+[2026-05-06 16:20:17 INF] HTTP OPTIONS /api/v1/auth/login responded 204 in 0.3885 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNLBNLIVOV3F:00000003","ConnectionId":"0HNLBNLIVOV3F"}
+[2026-05-06 16:20:18 INF] HTTP POST /api/v1/auth/login responded 400 in 187.4887 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNLBNLIVOV3F:00000004","ConnectionId":"0HNLBNLIVOV3F"}
+[2026-05-06 16:21:18 INF] HTTP OPTIONS /api/v1/auth/login responded 204 in 0.1428 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNLBNLIVOV3F:00000005","ConnectionId":"0HNLBNLIVOV3F"}
+[2026-05-06 16:21:18 WRN] Failed login attempt {"EventId":{"Id":1003,"Name":"LogFailedLoginAttempt"},"SourceContext":"AuthServiceBanco.Application.Services.AuthService","ActionId":"23df5f30-3693-4d2a-a05c-758e40408291","ActionName":"AuthServiceBanco.Api.Controllers.AuthController.Login (AuthServiceBanco.Api)","RequestId":"0HNLBNLIVOV3F:00000006","RequestPath":"/api/v1/auth/login","ConnectionId":"0HNLBNLIVOV3F"}
+[2026-05-06 16:21:18 ERR] An unhandled exception occurred {"SourceContext":"AuthServiceBanco.Api.Middlewares.GlobalExceptionMiddleware","RequestId":"0HNLBNLIVOV3F:00000006","RequestPath":"/api/v1/auth/login","ConnectionId":"0HNLBNLIVOV3F"}
+System.UnauthorizedAccessException: Invalid credentials
+   at AuthServiceBanco.Application.Services.AuthService.LoginAsync(LoginDto loginDto) in C:\2024318\Sistema-Bancario--SCRUM\src\AuthServiceBanco.Application\Services\AuthService.cs:line 186
+   at AuthServiceBanco.Api.Controllers.AuthController.Login(LoginDto loginDto) in C:\2024318\Sistema-Bancario--SCRUM\src\AuthServiceBanco.Api\Controllers\AuthController.cs:line 50
+   at lambda_method260(Closure, Object)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.AwaitableObjectResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.RateLimiting.RateLimitingMiddleware.InvokeInternal(HttpContext context, EnableRateLimitingAttribute enableRateLimitingAttribute)
+   at AuthServiceBanco.Api.Middlewares.GlobalExceptionMiddleware.InvokeAsync(HttpContext context) in C:\2024318\Sistema-Bancario--SCRUM\src\AuthServiceBanco.Api\Middlewares\GlobalExceptionMiddleware.cs:line 18
+[2026-05-06 16:21:18 INF] HTTP POST /api/v1/auth/login responded 401 in 272.2819 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNLBNLIVOV3F:00000006","ConnectionId":"0HNLBNLIVOV3F"}
+[2026-05-06 16:22:09 INF] HTTP OPTIONS /api/v1/auth/login responded 204 in 0.1425 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNLBNLIVOV3F:00000007","ConnectionId":"0HNLBNLIVOV3F"}
+[2026-05-06 16:22:09 INF] User login successfully. {"EventId":{"Id":1002,"Name":"LogUserLoggedIn"},"SourceContext":"AuthServiceBanco.Application.Services.AuthService","ActionId":"23df5f30-3693-4d2a-a05c-758e40408291","ActionName":"AuthServiceBanco.Api.Controllers.AuthController.Login (AuthServiceBanco.Api)","RequestId":"0HNLBNLIVOV3F:00000008","RequestPath":"/api/v1/auth/login","ConnectionId":"0HNLBNLIVOV3F"}
+[2026-05-06 16:22:09 INF] HTTP POST /api/v1/auth/login responded 200 in 327.2296 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNLBNLIVOV3F:00000008","ConnectionId":"0HNLBNLIVOV3F"}
+[2026-05-06 16:37:10 INF] HTTP OPTIONS /api/v1/auth/login responded 204 in 0.1262 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNLBNLIVOV3G:00000001","ConnectionId":"0HNLBNLIVOV3G"}
+[2026-05-06 16:37:10 INF] User login successfully. {"EventId":{"Id":1002,"Name":"LogUserLoggedIn"},"SourceContext":"AuthServiceBanco.Application.Services.AuthService","ActionId":"23df5f30-3693-4d2a-a05c-758e40408291","ActionName":"AuthServiceBanco.Api.Controllers.AuthController.Login (AuthServiceBanco.Api)","RequestId":"0HNLBNLIVOV3G:00000002","RequestPath":"/api/v1/auth/login","ConnectionId":"0HNLBNLIVOV3G"}
+[2026-05-06 16:37:10 INF] HTTP POST /api/v1/auth/login responded 200 in 299.2848 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNLBNLIVOV3G:00000002","ConnectionId":"0HNLBNLIVOV3G"}

@@ -26,13 +26,11 @@ import transactionRoutes from '../src/routes/transaction.routes.js';
 import depositRoutes from '../src/routes/deposit.routes.js';
 // Importa las rutas de servicios del banco (beneficios, solo admin)
 import serviceRoutes from '../src/routes/service.routes.js';
-// Importa las rutas de productos del banco
-import productRoutes from '../src/routes/product.routes.js';
 // Importa las rutas de cuentas favoritas
 import favoriteRoutes from '../src/routes/favorite.routes.js';
 // Importa las rutas de conversión de moneda
 import currencyRoutes from '../src/routes/currency.routes.js';
-// Importa la función para registrar Swagger
+// Importa la configuración de Swagger
 import { registerSwagger } from '../docs/swagger.js';
 
 // Ruta base para todos los endpoints de la API
@@ -64,8 +62,6 @@ const routes = (app) => {
     app.use(`${BASE_PATH}/deposits`, depositRoutes);
     // Rutas para servicios/beneficios del banco (solo administrador)
     app.use(`${BASE_PATH}/services`, serviceRoutes);
-    // Rutas para productos del banco
-    app.use(`${BASE_PATH}/products`, productRoutes);
     // Rutas para cuentas favoritas del usuario
     app.use(`${BASE_PATH}/favorites`, favoriteRoutes);
     // Rutas para conversión de moneda
@@ -76,17 +72,6 @@ const routes = (app) => {
             status: 'Healthy',
             timestamp: new Date().toISOString(),
             service: 'Sistema Bancario Server'
-        })
-    })
-
-    // Registra la documentación Swagger
-    registerSwagger(app, BASE_PATH);
-
-    // Maneja rutas no encontradas (404)
-    app.use((req, res) => {
-        res.status(404).json({
-            success: false,
-            message: 'Endpoint no encontrado en Admin Api'
         })
     })
 }
@@ -106,6 +91,16 @@ export const initServer = async () => {
         middlewares(app);
         // Registra todas las rutas de la API
         routes(app);
+        // Registra la documentación Swagger
+        registerSwagger(app);
+
+        // Maneja rutas no encontradas (404)
+        app.use((req, res) => {
+            res.status(404).json({
+                success: false,
+                message: 'Endpoint no encontrado en Admin Api'
+            })
+        });
 
         // Aplica el manejador de errores al final de todo
         app.use(errorHandler);
