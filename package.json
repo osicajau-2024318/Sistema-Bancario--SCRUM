@@ -7,7 +7,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node index.js",
-    "dev": "nodemon index.js"
+    "dev": "nodemon index.js",
+    "start:all": "docker compose up -d && concurrently -n \"dotnet,node\" -c \"blue,green\" \"cd src/AuthServiceBanco.Api && dotnet run\" \"npm run dev\""
   },
   "keywords": [],
   "author": "",
@@ -29,11 +30,11 @@
     "multer": "^2.0.2",
     "multer-storage-cloudinary": "^4.0.0",
     "pg": "^8.19.0",
-    "swagger-jsdoc": "^6.2.8",
     "swagger-ui-express": "^5.0.1",
     "uuid": "^13.0.0"
   },
   "devDependencies": {
+    "concurrently": "^9.1.2",
     "nodemon": "^3.1.14"
   }
 }
