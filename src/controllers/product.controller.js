@@ -100,13 +100,14 @@ export const getProductById = async (req, res) => {
 export const updateProduct = async (req, res) => {
   try {
     const { id } = req.params;
-    const { name, description, price, is_active } = req.body;
+    const { name, description, price, is_active, type } = req.body;
 
     const update = {};
     if (name !== undefined) update.name = name;
     if (description !== undefined) update.description = description;
     if (price !== undefined) update.price = price;
     if (is_active !== undefined) update.is_active = is_active;
+    if (type !== undefined) update.type = type;
 
     const product = await Product.findByIdAndUpdate(
       id,
