@@ -30,6 +30,8 @@ import serviceRoutes from '../src/routes/service.routes.js';
 import favoriteRoutes from '../src/routes/favorite.routes.js';
 // Importa las rutas de conversión de moneda
 import currencyRoutes from '../src/routes/currency.routes.js';
+// Importa las rutas de productos
+import productRoutes from '../src/routes/product.routes.js';
 // Importa la configuración de Swagger
 import { registerSwagger } from '../docs/swagger.js';
 
@@ -64,6 +66,8 @@ const routes = (app) => {
     app.use(`${BASE_PATH}/services`, serviceRoutes);
     // Rutas para cuentas favoritas del usuario
     app.use(`${BASE_PATH}/favorites`, favoriteRoutes);
+    // Rutas para productos
+    app.use(`${BASE_PATH}/products`, productRoutes);
     // Rutas para conversión de moneda
     app.use(`${BASE_PATH}/currency`, currencyRoutes);
     // Endpoint de health check para verificar que el servidor está funcionando
