@@ -60,6 +60,9 @@ builder.Services.AddApiDocumentation();
 builder.Services.AddJwtAuthentication(builder.Configuration);
 // Configura políticas de rate limiting (límite de peticiones)
 builder.Services.AddRateLimitingPolicies();
+// Registra políticas de seguridad (CORS, Antiforgery, Data Protection)
+builder.Services.AddSecurityPolicies(builder.Configuration);
+builder.Services.AddSecurityOptions();
 
 // Construye la aplicación
 var app = builder.Build();
