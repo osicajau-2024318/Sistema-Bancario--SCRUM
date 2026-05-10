@@ -7,5 +7,5 @@ export const corsOptions = {
     // Métodos HTTP permitidos en las peticiones
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
     // Headers permitidos en las peticiones
-    allowedHeaders: ['Content-Type', 'Authorization'],
+    allowedHeaders: ['Content-Type', 'Authorization', 'x-token', 'X-Token'],
 };

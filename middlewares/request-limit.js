@@ -12,6 +12,8 @@ export const requestLimit = rateLimit({
     },
     standardHeaders: true, // Retorna rate limit info en los headers `RateLimit-*`
     legacyHeaders: false, // Desactiva los headers `X-RateLimit-*` deprecados
+    // Excluye Swagger para no bloquear la consulta de documentacion
+    skip: (req) => req.path === '/docs' || req.path === '/docs/' || req.path === '/docs.json' || req.path.startsWith('/docs/'),
     // Handler personalizado cuando se excede el límite
     handler: (req, res) => {
         // Registra en consola la IP que excedió el límite
