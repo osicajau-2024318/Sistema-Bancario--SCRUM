@@ -21,6 +21,9 @@ export const validateCreateProduct = [
   body('price')
     .notEmpty().withMessage('Precio obligatorio')
     .isFloat({ min: 0 }).withMessage('Precio debe ser mayor o igual a 0'),
+  body('paymentType')
+    .optional()
+    .isIn(['UNICO', 'MENSUAL']).withMessage('Tipo de pago debe ser UNICO o MENSUAL'),
   checkValidators
 ];
 
@@ -39,5 +42,8 @@ export const validateUpdateProduct = [
   body('is_active')
     .optional()
     .isBoolean().withMessage('is_active debe ser true o false'),
+  body('paymentType')
+    .optional()
+    .isIn(['UNICO', 'MENSUAL']).withMessage('Tipo de pago debe ser UNICO o MENSUAL'),
   checkValidators
 ];

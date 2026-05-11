@@ -4,7 +4,7 @@ import mongoose from 'mongoose';
 // Crear producto/servicio (solo admin)
 export const createProduct = async (req, res) => {
   try {
-    const { name, description, type, price } = req.body;
+    const { name, description, type, price, paymentType } = req.body;
     const created_by = req.user.id;
 
     const product = new Product({
@@ -12,6 +12,7 @@ export const createProduct = async (req, res) => {
       description: description || undefined,
       type,
       price,
+      paymentType: paymentType || 'UNICO',
       created_by
     });
 
@@ -100,7 +101,7 @@ export const getProductById = async (req, res) => {
 export const updateProduct = async (req, res) => {
   try {
     const { id } = req.params;
-    const { name, description, price, is_active, type } = req.body;
+    const { name, description, price, is_active, type, paymentType } = req.body;
 
     const update = {};
     if (name !== undefined) update.name = name;
@@ -108,6 +109,7 @@ export const updateProduct = async (req, res) => {
     if (price !== undefined) update.price = price;
     if (is_active !== undefined) update.is_active = is_active;
     if (type !== undefined) update.type = type;
+    if (paymentType !== undefined) update.paymentType = paymentType;
 
     const product = await Product.findByIdAndUpdate(
       id,

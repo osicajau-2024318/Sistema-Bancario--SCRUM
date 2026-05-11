@@ -26,6 +26,13 @@ const productSchema = new Schema({
     required: true,
     min: 0 // No puede ser negativo
   },
+  // Tipo de pago: único o mensual
+  paymentType: {
+    type: String,
+    enum: ['UNICO', 'MENSUAL'],
+    default: 'UNICO',
+    required: true
+  },
   // Indica si el producto está activo y disponible
   is_active: {
     type: Boolean,
