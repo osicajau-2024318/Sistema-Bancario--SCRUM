@@ -7,6 +7,21 @@ public static class RateLimitingExtensions
 {
     public static IServiceCollection AddRateLimitingPolicies(this IServiceCollection services)
     {
+        // Detecta entorno: en Development se relajan los límites para no bloquear
+        // por StrictMode, HMR, preflights y reintentos típicos del frontend
+        var aspNetEnv = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT")
+                        ?? Environment.GetEnvironmentVariable("DOTNET_ENVIRONMENT")
+                        ?? "Production";
+        var isDevelopment = string.Equals(aspNetEnv, "Development", StringComparison.OrdinalIgnoreCase);
+
+        // Límites para autenticación (login, register, recovery, etc.)
+        var authPermitLimit = isDevelopment ? 100 : 5;
+
+        // Límites generales de API
+        var apiTokenLimit = isDevelopment ? 1000 : 100;
+        var apiTokensPerPeriod = isDevelopment ? 200 : 20;
+        var apiQueueLimit = isDevelopment ? 50 : 5;
+
         services.AddRateLimiter(options =>
         {
             // Rate limiting para autenticación
@@ -16,8 +31,8 @@ public static class RateLimitingExtensions
                     factory: partition => new FixedWindowRateLimiterOptions
                     {
                         AutoReplenishment = true,
-                        PermitLimit = 5, // 5 intentos
-                        Window = TimeSpan.FromMinutes(1) // por minuto
+                        PermitLimit = authPermitLimit,
+                        Window = TimeSpan.FromMinutes(1)
                     }));
 
             // Rate limiting general para API
@@ -26,11 +41,11 @@ public static class RateLimitingExtensions
                     partitionKey: context.Connection.RemoteIpAddress?.ToString() ?? "unknown",
                     factory: partition => new TokenBucketRateLimiterOptions
                     {
-                        TokenLimit = 100, // 100 tokens
+                        TokenLimit = apiTokenLimit,
                         QueueProcessingOrder = QueueProcessingOrder.OldestFirst,
-                        QueueLimit = 5,
-                        ReplenishmentPeriod = TimeSpan.FromMinutes(1), // se repone cada minuto
-                        TokensPerPeriod = 20, // 20 tokens por minuto
+                        QueueLimit = apiQueueLimit,
+                        ReplenishmentPeriod = TimeSpan.FromMinutes(1),
+                        TokensPerPeriod = apiTokensPerPeriod,
                         AutoReplenishment = true
                     }));
 

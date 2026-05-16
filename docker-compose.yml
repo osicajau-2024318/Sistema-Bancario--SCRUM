@@ -10,9 +10,21 @@ services:
       POSTGRES_USER: root
       POSTGRES_PASSWORD: admin
     ports:
-     - "5435:5432"
+     - "5440:5432"
     volumes:
-      - postgres_data:/var/lib/postgressql/data
+      - postgres_data:/var/lib/postgresql/data
+
+  mongodb:
+    image: mongo:7
+    container_name: sistemaBancario_mongodb
+    restart: always
+    environment:
+      MONGO_INITDB_DATABASE: SistemaBancario
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
 
 volumes:
   postgres_data:
+  mongo_data:

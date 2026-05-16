@@ -15,9 +15,19 @@ public class UserProfile
     public string ProfilePicture { get; set; } = string.Empty;
 
     [Required]
-    [StringLength(8, MinimumLength = 8, ErrorMessage = "El número de telefono debe tener exactamente 8 digitos")]
-    [RegularExpression(@"^\d{8}$", ErrorMessage = "El teléfono solo debe contener números")]
+    [StringLength(8, MinimumLength = 8)]
     public string Phone { get; set; } = string.Empty;
+
+    [MaxLength(100)]
+    public string Address { get; set; } = string.Empty;
+
+    [MaxLength(13)]
+    public string Dpi { get; set; } = string.Empty;
+
+    [MaxLength(50)]
+    public string WorkName { get; set; } = string.Empty;
+
+    public decimal MonthlyIncome { get; set; }
 
     [Required]
     public User User { get; set; } = null!;

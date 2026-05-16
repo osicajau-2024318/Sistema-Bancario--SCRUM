@@ -1,0 +1,110 @@
+using AuthServiceBanco.Application.DTOs.Admin;
+using AuthServiceBanco.Application.Interfaces;
+using AuthServiceBanco.Domain.Constants;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
+
+namespace AuthServiceBanco.Api.Controllers;
+
+[ApiController]
+[Route("api/v1/admin")]
+[Authorize]
+public class AdminController(
+    IAdminService adminService,
+    IUserManagementService userManagementService
+) : ControllerBase
+{
+    private async Task<bool> CurrentUserIsAdmin()
+    {
+        // Primero revisa los claims del JWT (rapido, sin tocar BD)
+        // Recorre TODOS los claims "role" porque el token puede traer varios
+        var roleClaims = User.Claims
+            .Where(c => c.Type == "role" || c.Type == ClaimTypes.Role)
+            .Select(c => c.Value);
+
+        if (roleClaims.Any(r => string.Equals(r, RoleConstants.ADMIN_ROLE, StringComparison.Ordinal)))
+        {
+            return true;
+        }
+
+        // Fallback: si el JWT no trae el rol admin, consulta la BD
+        // Esto cubre el caso donde el usuario fue promovido despues de emitir el token
+        var userId = User.Claims.FirstOrDefault(c => c.Type == "sub")?.Value
+                     ?? User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
+
+        if (string.IsNullOrEmpty(userId)) return false;
+
+        var dbRoles = await userManagementService.GetUserRolesAsync(userId);
+        return dbRoles.Contains(RoleConstants.ADMIN_ROLE);
+    }
+
+    [HttpPost("create-client")]
+    public async Task<IActionResult> CreateClient([FromBody] CreateClientDto dto)
+    {
+        if (!await CurrentUserIsAdmin())
+            return StatusCode(403, new { success = false, message = "Forbidden" });
+
+        var result = await adminService.CreateClientAsync(dto);
+        return Ok(new { success = true, data = result });
+    }
+
+    [HttpGet("users")]
+    public async Task<IActionResult> GetAllUsers(
+        [FromQuery] int page = 1,
+        [FromQuery] int pageSize = 10,
+        [FromQuery] string? searchTerm = null,
+        [FromQuery] string? role = null)
+    {
+        if (!await CurrentUserIsAdmin())
+            return StatusCode(403, new { success = false, message = "Forbidden" });
+
+        var result = await adminService.GetAllUsersAsync(page, pageSize, searchTerm, role);
+        return Ok(new { success = true, data = result });
+    }
+
+    [HttpGet("users/{userId}")]
+    public async Task<IActionResult> GetUserById(string userId)
+    {
+        if (!await CurrentUserIsAdmin())
+            return StatusCode(403, new { success = false, message = "Forbidden" });
+
+        var result = await adminService.GetUserByIdAsync(userId);
+        return Ok(new { success = true, data = result });
+    }
+
+    [HttpPut("users/{userId}")]
+    public async Task<IActionResult> UpdateUser(string userId, [FromBody] UpdateUserDto dto)
+    {
+        if (!await CurrentUserIsAdmin())
+            return StatusCode(403, new { success = false, message = "Forbidden" });
+
+        var currentUserId = User.Claims.FirstOrDefault(c => c.Type == "sub")?.Value
+                            ?? User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
+        if (string.IsNullOrEmpty(currentUserId))
+            return Unauthorized(new { success = false, message = "Usuario no autenticado" });
+
+        var result = await adminService.UpdateUserAsync(userId, dto, currentUserId);
+        return Ok(new { success = true, data = result, message = "Usuario actualizado correctamente" });
+    }
+
+    [HttpDelete("users/{userId}")]
+    public async Task<IActionResult> DeleteUser(string userId)
+    {
+        if (!await CurrentUserIsAdmin())
+            return StatusCode(403, new { success = false, message = "Forbidden" });
+
+        var result = await adminService.DeleteUserAsync(userId);
+        return Ok(new { success = true, message = "Usuario eliminado correctamente" });
+    }
+
+    [HttpPost("users/{userId}/activate")]
+    public async Task<IActionResult> ActivateUser(string userId)
+    {
+        if (!await CurrentUserIsAdmin())
+            return StatusCode(403, new { success = false, message = "Forbidden" });
+
+        var result = await adminService.ActivateUserAccountAsync(userId);
+        return Ok(new { success = true, data = result, message = "Cuenta activada correctamente" });
+    }
+}
