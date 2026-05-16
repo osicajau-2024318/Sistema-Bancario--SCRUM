@@ -33,7 +33,7 @@ import currencyRoutes from '../src/routes/currency.routes.js';
 // Importa las rutas de productos
 import productRoutes from '../src/routes/product.routes.js';
 // Importa la configuración de Swagger
-import { registerSwagger } from '../docs/swagger.js';
+import { setupSwaggerDocs } from '../docs/swagger.js';
 
 // Ruta base para todos los endpoints de la API
 const BASE_PATH = '/SistemaBancarioAdmin/v1';
@@ -96,7 +96,7 @@ export const initServer = async () => {
         // Registra todas las rutas de la API
         routes(app);
         // Registra la documentación Swagger
-        registerSwagger(app);
+        setupSwaggerDocs(app);
 
         // Maneja rutas no encontradas (404)
         app.use((req, res) => {
