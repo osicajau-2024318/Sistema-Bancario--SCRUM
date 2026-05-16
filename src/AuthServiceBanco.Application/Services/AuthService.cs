@@ -40,33 +40,16 @@ public class AuthService(
             throw new BusinessException(ErrorCodes.USERNAME_ALREADY_EXISTS, "Username already exists");
         }
 
+        // Verificar si el DPI ya existe
+        if (!string.IsNullOrWhiteSpace(registerDto.Dpi) && await userRepository.ExistsByDpiAsync(registerDto.Dpi))
+        {
+            // Registrar si hay un logger específico no está implementado, usar mensaje consistente en español
+            throw new BusinessException(ErrorCodes.DPI_ALREADY_EXISTS, "Cuenta con DPI ya existente");
+        }
+
         // Validar y manejar la imagen de perfil
-        string profilePicturePath;
-
-        if (registerDto.ProfilePicture != null && registerDto.ProfilePicture.Size > 0)
-        {
-            var (isValid, errorMessage) = FileValidator.ValidateImage(registerDto.ProfilePicture);
-            if (!isValid)
-            {
-                logger.LogWarning($"File validation failed: {errorMessage}");
-                throw new BusinessException(ErrorCodes.INVALID_FILE_FORMAT, errorMessage!);
-            }
-
-            try
-            {
-                var fileName = FileValidator.GenerateSecureFileName(registerDto.ProfilePicture.FileName);
-                profilePicturePath = await _cloudinaryService.UploadImageAsync(registerDto.ProfilePicture, fileName);
-            }
-            catch (Exception)
-            {
-                logger.LogImageUploadError();
-                throw new BusinessException(ErrorCodes.IMAGE_UPLOAD_FAILED, "Failed to upload profile image");
-            }
-        }
-        else
-        {
-            profilePicturePath = _cloudinaryService.GetDefaultAvatarUrl();
-        }
+        string profilePicturePath = _cloudinaryService.GetDefaultAvatarUrl();
+        
 
         // Crear nuevo usuario y entidades relacionadas
         var emailVerificationToken = TokenGeneratorService.GenerateEmailVerificationToken();
@@ -83,7 +66,7 @@ public class AuthService(
             throw new InvalidOperationException($"Default role '{RoleConstants.USER_ROLE}' not found. Ensure seeding runs before registration.");
         }
 
-        var user = new User
+            var user = new User
         {
             Id = userId,
             Name = registerDto.Name,
@@ -91,13 +74,18 @@ public class AuthService(
             Username = registerDto.Username,
             Email = registerDto.Email.ToLowerInvariant(),
             Password = passwordHashService.HashPassword(registerDto.Password),
-            Status = false,
+                Status = false,
+                AccountState = Domain.Enums.AccountState.PENDIENTE,
             UserProfile = new UserProfile
             {
                 Id = userProfileId,
                 UserId = userId,
                 ProfilePicture = profilePicturePath,
-                Phone = registerDto.Phone
+                Phone = registerDto.Phone,
+                Address = registerDto.Address ?? string.Empty,
+                Dpi = registerDto.Dpi ?? string.Empty,
+                WorkName = registerDto.WorkName ?? string.Empty,
+                MonthlyIncome = registerDto.MonthlyIncome ?? 0
             },
             UserEmail = new UserEmail
             {
@@ -178,10 +166,17 @@ public class AuthService(
         }
 
         // Verificar si el usuario está activo
-        if (!user.Status)
+        if (user.AccountState != Domain.Enums.AccountState.ACTIVA)
         {
             logger.LogFailedLoginAttempt();
-            throw new UnauthorizedAccessException("User account is disabled");
+            throw new UnauthorizedAccessException("Cuenta pendiente de activación");
+        }
+
+        // Verificar si el email ha sido verificado
+        if (user.UserEmail?.EmailVerified == false)
+        {
+            logger.LogFailedLoginAttempt();
+            throw new UnauthorizedAccessException("Email not verified. Please check your email to verify your account.");
         }
 
         // Verificar contraseña
@@ -220,9 +215,14 @@ public class AuthService(
             Email = user.Email,
             ProfilePicture = _cloudinaryService.GetFullImageUrl(user.UserProfile?.ProfilePicture ?? string.Empty),
             Phone = user.UserProfile?.Phone ?? string.Empty,
+            Address = user.UserProfile?.Address ?? string.Empty,
+            Dpi = user.UserProfile?.Dpi ?? string.Empty,
+            WorkName = user.UserProfile?.WorkName ?? string.Empty,
+            MonthlyIncome = user.UserProfile?.MonthlyIncome ?? 0,
             Role = userRole,
             Status = user.Status,
             IsEmailVerified = user.UserEmail?.EmailVerified ?? false,
+            AccountState = user.AccountState.ToString(),
             CreatedAt = user.CreatedAt,
             UpdatedAt = user.UpdatedAt
         };
@@ -429,21 +429,17 @@ public class AuthService(
         return MapToUserResponseDto(user);
     }
 
-    public async Task RegisterLoginHistoryAsync(Guid userId, string ip)
-{
-    var country = await IpLocationService.GetCountryAsync(ip);
-
-    var history = new LoginHistory
+    public Task RegisterLoginHistoryAsync(string userId, string ipAddress)
     {
-        UserId = userId,
-        IpAddress = ip,
-        Country = country,
-        LoginDate = DateTime.UtcNow
-    };
+        logger.LogInformation("Login history requested for user {UserId} from IP {IpAddress}", userId, ipAddress);
+        return Task.CompletedTask;
+    }
 
-    _context.LoginHistories.Add(history);
-    await _context.SaveChangesAsync();
-}
+    public Task<IEnumerable<LoginHistory>> GetLoginHistoryAsync(string userId)
+    {
+        logger.LogInformation("Login history requested for user {UserId}", userId);
+        return Task.FromResult(Enumerable.Empty<LoginHistory>());
+    }
 
 }
 
