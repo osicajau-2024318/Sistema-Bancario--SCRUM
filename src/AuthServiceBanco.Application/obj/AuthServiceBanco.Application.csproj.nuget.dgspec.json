@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\SB\\Sistema-Bancario--SCRUM\\src\\AuthServiceBanco.Application\\AuthServiceBanco.Application.csproj": {}
+    "C:\\Sistema-Bancario--SCRUM\\src\\AuthServiceBanco.Application\\AuthServiceBanco.Application.csproj": {}
   },
   "projects": {
-    "C:\\SB\\Sistema-Bancario--SCRUM\\src\\AuthServiceBanco.Application\\AuthServiceBanco.Application.csproj": {
+    "C:\\Sistema-Bancario--SCRUM\\src\\AuthServiceBanco.Application\\AuthServiceBanco.Application.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\SB\\Sistema-Bancario--SCRUM\\src\\AuthServiceBanco.Application\\AuthServiceBanco.Application.csproj",
+        "projectUniqueName": "C:\\Sistema-Bancario--SCRUM\\src\\AuthServiceBanco.Application\\AuthServiceBanco.Application.csproj",
         "projectName": "AuthServiceBanco.Application",
-        "projectPath": "C:\\SB\\Sistema-Bancario--SCRUM\\src\\AuthServiceBanco.Application\\AuthServiceBanco.Application.csproj",
-        "packagesPath": "C:\\Users\\Informatica\\.nuget\\packages\\",
-        "outputPath": "C:\\SB\\Sistema-Bancario--SCRUM\\src\\AuthServiceBanco.Application\\obj\\",
+        "projectPath": "C:\\Sistema-Bancario--SCRUM\\src\\AuthServiceBanco.Application\\AuthServiceBanco.Application.csproj",
+        "packagesPath": "C:\\Users\\razep\\.nuget\\packages\\",
+        "outputPath": "C:\\Sistema-Bancario--SCRUM\\src\\AuthServiceBanco.Application\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Informatica\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\razep\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
@@ -26,8 +26,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\SB\\Sistema-Bancario--SCRUM\\src\\AuthServiceBanco.Domain\\AuthServiceBanco.Domain.csproj": {
-                "projectPath": "C:\\SB\\Sistema-Bancario--SCRUM\\src\\AuthServiceBanco.Domain\\AuthServiceBanco.Domain.csproj"
+              "C:\\Sistema-Bancario--SCRUM\\src\\AuthServiceBanco.Domain\\AuthServiceBanco.Domain.csproj": {
+                "projectPath": "C:\\Sistema-Bancario--SCRUM\\src\\AuthServiceBanco.Domain\\AuthServiceBanco.Domain.csproj"
               }
             }
           }
@@ -55,6 +55,10 @@
               "target": "Package",
               "version": "[1.26.0, )"
             },
+            "FluentValidation": {
+              "target": "Package",
+              "version": "[11.9.0, )"
+            },
             "Konscious.Security.Cryptography.Argon2": {
               "target": "Package",
               "version": "[1.3.1, )"
@@ -62,6 +66,10 @@
             "MailKit": {
               "target": "Package",
               "version": "[4.5.0, )"
+            },
+            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[8.0.0, )"
             },
             "Microsoft.Extensions.Configuration": {
               "target": "Package",
@@ -73,7 +81,7 @@
             },
             "System.IdentityModel.Tokens.Jwt": {
               "target": "Package",
-              "version": "[7.1.0, )"
+              "version": "[7.1.2, )"
             }
           },
           "imports": [
@@ -96,17 +104,17 @@
         }
       }
     },
-    "C:\\SB\\Sistema-Bancario--SCRUM\\src\\AuthServiceBanco.Domain\\AuthServiceBanco.Domain.csproj": {
+    "C:\\Sistema-Bancario--SCRUM\\src\\AuthServiceBanco.Domain\\AuthServiceBanco.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\SB\\Sistema-Bancario--SCRUM\\src\\AuthServiceBanco.Domain\\AuthServiceBanco.Domain.csproj",
+        "projectUniqueName": "C:\\Sistema-Bancario--SCRUM\\src\\AuthServiceBanco.Domain\\AuthServiceBanco.Domain.csproj",
         "projectName": "AuthServiceBanco.Domain",
-        "projectPath": "C:\\SB\\Sistema-Bancario--SCRUM\\src\\AuthServiceBanco.Domain\\AuthServiceBanco.Domain.csproj",
-        "packagesPath": "C:\\Users\\Informatica\\.nuget\\packages\\",
-        "outputPath": "C:\\SB\\Sistema-Bancario--SCRUM\\src\\AuthServiceBanco.Domain\\obj\\",
+        "projectPath": "C:\\Sistema-Bancario--SCRUM\\src\\AuthServiceBanco.Domain\\AuthServiceBanco.Domain.csproj",
+        "packagesPath": "C:\\Users\\razep\\.nuget\\packages\\",
+        "outputPath": "C:\\Sistema-Bancario--SCRUM\\src\\AuthServiceBanco.Domain\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Informatica\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\razep\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
