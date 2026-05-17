@@ -9,6 +9,12 @@ npm-debug.log*
 bin/
 obj/
 
+# Artefactos generados por el .NET API en runtime
+# - keys: claves de Data Protection (sensibles, por máquina)
+# - logs: salida de Serilog rotada por día (.txt)
+src/AuthServiceBanco.Api/keys/
+src/AuthServiceBanco.Api/logs/
+
 # Sistema operativo
 .DS_Store
 Thumbs.db

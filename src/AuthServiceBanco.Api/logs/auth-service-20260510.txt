@@ -1,0 +1,20 @@
+[2026-05-10 21:03:13 INF] Checking database connection... {"SourceContext":"Program"}
+[2026-05-10 21:03:14 INF] Database ready. Running seed data... {"SourceContext":"Program"}
+[2026-05-10 21:03:15 INF] Database initialization completed successfully {"SourceContext":"Program"}
+[2026-05-10 21:03:15 INF] AuthService API is running at http://localhost:5025. Health endpoint: http://localhost:5025/health {"SourceContext":"Program"}
+[2026-05-10 21:04:04 WRN] Failed to determine the https port for redirect. {"EventId":{"Id":3,"Name":"FailedToDeterminePort"},"SourceContext":"Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware","RequestId":"0HNLF17QMSBU1:00000001","RequestPath":"/api/v1/Auth/login","ConnectionId":"0HNLF17QMSBU1"}
+[2026-05-10 21:04:05 INF] HTTP OPTIONS /api/v1/Auth/login responded 405 in 770.9264 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNLF17QMSBU1:00000001","ConnectionId":"0HNLF17QMSBU1"}
+[2026-05-10 21:04:12 INF] HTTP OPTIONS /api/v1/Auth/login responded 405 in 1.7029 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNLF17QMSBU1:00000002","ConnectionId":"0HNLF17QMSBU1"}
+[2026-05-10 21:04:20 INF] HTTP OPTIONS /api/v1/Auth/login responded 405 in 3.3349 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNLF17QMSBU1:00000003","ConnectionId":"0HNLF17QMSBU1"}
+[2026-05-10 21:04:44 INF] HTTP OPTIONS /api/v1/Auth/login responded 405 in 0.5839 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNLF17QMSBU1:00000004","ConnectionId":"0HNLF17QMSBU1"}
+[2026-05-10 21:06:33 INF] HTTP OPTIONS /api/v1/Auth/api/v1/Auth/login responded 404 in 19.3921 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNLF17QMSBU2:00000001","ConnectionId":"0HNLF17QMSBU2"}
+[2026-05-10 21:07:25 INF] Checking database connection... {"SourceContext":"Program"}
+[2026-05-10 21:07:26 INF] Database ready. Running seed data... {"SourceContext":"Program"}
+[2026-05-10 21:07:27 INF] Database initialization completed successfully {"SourceContext":"Program"}
+[2026-05-10 21:07:27 INF] AuthService API is running at http://localhost:5025. Health endpoint: http://localhost:5025/health {"SourceContext":"Program"}
+[2026-05-10 21:07:55 WRN] Failed to determine the https port for redirect. {"EventId":{"Id":3,"Name":"FailedToDeterminePort"},"SourceContext":"Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware","RequestId":"0HNLF19VHIGIS:00000001","RequestPath":"/api/v1/Auth/api/v1/Auth/login","ConnectionId":"0HNLF19VHIGIS"}
+[2026-05-10 21:07:55 INF] HTTP OPTIONS /api/v1/Auth/api/v1/Auth/login responded 404 in 68.1498 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNLF19VHIGIS:00000001","ConnectionId":"0HNLF19VHIGIS"}
+[2026-05-10 21:09:12 INF] HTTP OPTIONS /api/v1/Auth/api/v1/Auth/login responded 404 in 14.7458 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNLF19VHIGIS:00000002","ConnectionId":"0HNLF19VHIGIS"}
+[2026-05-10 21:10:33 INF] User login successfully. {"EventId":{"Id":1002,"Name":"LogUserLoggedIn"},"SourceContext":"AuthServiceBanco.Application.Services.AuthService","ActionId":"ab64f715-e986-4a2b-9124-819f2aeb6540","ActionName":"AuthServiceBanco.Api.Controllers.AuthController.Login (AuthServiceBanco.Api)","RequestId":"0HNLF19VHIGIT:00000001","RequestPath":"/api/v1/Auth/login","ConnectionId":"0HNLF19VHIGIT"}
+[2026-05-10 21:10:33 INF] HTTP POST /api/v1/Auth/login responded 200 in 2657.6404 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNLF19VHIGIT:00000001","ConnectionId":"0HNLF19VHIGIT"}
+[2026-05-10 21:10:33 INF] HTTP GET /api/v1/Auth/profile responded 200 in 183.2782 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNLF19VHIGIU:00000001","ConnectionId":"0HNLF19VHIGIU"}
