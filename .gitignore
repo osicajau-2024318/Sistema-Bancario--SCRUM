@@ -1,13 +1,20 @@
 # Node.js
 node_modules/
 /node_modules/
-npm-debug.log*          
+.pnpm-store/
+npm-debug.log*
+
 # Logs
 *.log
 
-# Compilados .NET
+# Compilados .NET (cualquier proyecto bajo src/)
+**/bin/
+**/obj/
 bin/
 obj/
+*.dll
+*.pdb
+*.cache
 
 # Artefactos generados por el .NET API en runtime
 # - keys: claves de Data Protection (sensibles, por máquina)
