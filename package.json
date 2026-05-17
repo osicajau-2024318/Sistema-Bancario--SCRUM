@@ -5,7 +5,8 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "vitest run --hookTimeout 300000",
+    "test:unit": "node --test tests/transaction-deposit.test.js",
     "start": "node index.js",
     "dev": "nodemon index.js",
     "start:all": "docker compose up -d && concurrently -n \"dotnet,node\" -c \"blue,green\" \"cd src/AuthServiceBanco.Api && dotnet run\" \"npm run dev\""
@@ -35,6 +36,8 @@
   },
   "devDependencies": {
     "concurrently": "^9.1.2",
-    "nodemon": "^3.1.14"
+    "mongodb-memory-server": "^8.14.0",
+    "nodemon": "^3.1.14",
+    "vitest": "^4.1.6"
   }
 }
