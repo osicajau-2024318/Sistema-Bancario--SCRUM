@@ -4,7 +4,10 @@ import {
   getServices,
   getServiceById,
   updateService,
-  deleteService
+  deleteService,
+  createServicePayment,
+  getMyServicePayments,
+  getAllServicePayments
 } from '../controllers/service.controller.js';
 import { validateJWT } from '../../middlewares/validate-JWT.js';
 import { validateRole } from '../../middlewares/validate-role.js';
@@ -14,8 +17,14 @@ import {
   validateCreateService,
   validateUpdateService
 } from '../../middlewares/service.validators.js';
+import { validateCreateServicePayment } from '../../middlewares/service-payment.validators.js';
 
 const router = Router();
+
+// Cliente/Admin autenticado: pagos de servicios (impacto real en cuenta + transacción)
+router.post('/payments', validateJWT, validateCreateServicePayment, createServicePayment);
+router.get('/payments/me', validateJWT, getMyServicePayments);
+router.get('/payments', validateJWT, validateRole(Roles.ADMIN), getAllServicePayments);
 
 // Todas las rutas solo para administrador
 router.get('/', validateJWT, validateRole(Roles.ADMIN), getServices);
