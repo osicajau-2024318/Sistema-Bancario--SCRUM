@@ -208,9 +208,11 @@ export const getMyAccount = async (req, res) => {
     const accounts = await Account.find({ user_id: userId });
 
     if (!accounts || accounts.length === 0) {
-      return res.status(404).json({ 
-        success: false, 
-        message: 'No tienes cuentas bancarias registradas' 
+      return res.status(200).json({
+        success: true,
+        totalAccounts: 0,
+        accounts: [],
+        message: 'No tienes cuentas bancarias registradas'
       });
     }
 
@@ -589,12 +591,55 @@ export const getAccountsByBalance = async (req, res) => {
 // Admin: Ver todas las cuentas
 export const getAllAccounts = async (req, res) => {
   try {
-    const accounts = await Account.find();
+    const page = parseInt(req.query.page, 10) || 1;
+    const limit = parseInt(req.query.limit, 10) || 10;
+    const skip = (page - 1) * limit;
+
+    const filter = {};
+
+    if (req.query.search) {
+      const search = String(req.query.search).trim();
+      filter.$or = [
+        { account_number: { $regex: search, $options: 'i' } },
+        { user_id: { $regex: search, $options: 'i' } }
+      ];
+    }
+
+    if (req.query.type) {
+      filter.account_type = req.query.type;
+    }
+
+    if (req.query.currency) {
+      filter.currency = req.query.currency;
+    }
+
+    if (req.query.status) {
+      const statusMap = {
+        active: 'ACTIVA',
+        inactive: 'BLOQUEADA',
+        pending: 'PENDIENTE'
+      };
+      const mappedStatus = statusMap[String(req.query.status).toLowerCase()] || req.query.status;
+      filter.estado = mappedStatus;
+    }
+
+    const total = await Account.countDocuments(filter);
+    const accounts = await Account.find(filter)
+      .sort({ createdAt: -1 })
+      .skip(skip)
+      .limit(limit);
 
     res.json({
       success: true,
       count: accounts.length,
-      accounts
+      total,
+      accounts,
+      pagination: {
+        total,
+        page,
+        pages: Math.ceil(total / limit),
+        limit
+      }
     });
 
   } catch (error) {

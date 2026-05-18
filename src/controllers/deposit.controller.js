@@ -20,6 +20,10 @@ export const createDeposit = async (req, res) => {
       return res.status(400).json({ success: false, message: 'Faltan datos obligatorios' });
     }
 
+    if (!currency) {
+      return res.status(400).json({ success: false, message: 'Moneda es obligatoria' });
+    }
+
     if (amount <= 0) {
       return res.status(400).json({ success: false, message: 'El monto debe ser mayor a 0' });
     }

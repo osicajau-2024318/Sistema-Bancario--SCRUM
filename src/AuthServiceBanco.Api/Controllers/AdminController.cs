@@ -15,12 +15,28 @@ public class AdminController(
     IUserManagementService userManagementService
 ) : ControllerBase
 {
-    private Task<bool> CurrentUserIsAdmin()
+    private async Task<bool> CurrentUserIsAdmin()
     {
-        var role = User.Claims.FirstOrDefault(c => c.Type == "role")?.Value
-                   ?? User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role)?.Value;
+        // Primero revisa los claims del JWT (rapido, sin tocar BD)
+        // Recorre TODOS los claims "role" porque el token puede traer varios
+        var roleClaims = User.Claims
+            .Where(c => c.Type == "role" || c.Type == ClaimTypes.Role)
+            .Select(c => c.Value);
 
-        return Task.FromResult(string.Equals(role, RoleConstants.ADMIN_ROLE, StringComparison.Ordinal));
+        if (roleClaims.Any(r => string.Equals(r, RoleConstants.ADMIN_ROLE, StringComparison.Ordinal)))
+        {
+            return true;
+        }
+
+        // Fallback: si el JWT no trae el rol admin, consulta la BD
+        // Esto cubre el caso donde el usuario fue promovido despues de emitir el token
+        var userId = User.Claims.FirstOrDefault(c => c.Type == "sub")?.Value
+                     ?? User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
+
+        if (string.IsNullOrEmpty(userId)) return false;
+
+        var dbRoles = await userManagementService.GetUserRolesAsync(userId);
+        return dbRoles.Contains(RoleConstants.ADMIN_ROLE);
     }
 
     [HttpPost("create-client")]
@@ -79,7 +95,7 @@ public class AdminController(
             return StatusCode(403, new { success = false, message = "Forbidden" });
 
         var result = await adminService.DeleteUserAsync(userId);
-        return Ok(new { success = true, message = "Usuario eliminado correctamente" });
+        return Ok(new { success = true, message = "Usuario desactivado correctamente" });
     }
 
     [HttpPost("users/{userId}/activate")]
@@ -90,5 +106,15 @@ public class AdminController(
 
         var result = await adminService.ActivateUserAccountAsync(userId);
         return Ok(new { success = true, data = result, message = "Cuenta activada correctamente" });
+    }
+
+    [HttpPost("users/{userId}/deactivate")]
+    public async Task<IActionResult> DeactivateUser(string userId)
+    {
+        if (!await CurrentUserIsAdmin())
+            return StatusCode(403, new { success = false, message = "Forbidden" });
+
+        var result = await adminService.DeactivateUserAccountAsync(userId);
+        return Ok(new { success = true, data = result, message = "Cuenta desactivada correctamente" });
     }
 }

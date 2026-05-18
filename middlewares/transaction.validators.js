@@ -9,7 +9,9 @@ export const validateDeposit = [
     .isFloat({ min: 1 })
     .withMessage('Monto debe ser mayor a 0'),
   body('currency')
-    .optional()
+    .notEmpty()
+    .withMessage('Moneda es obligatoria')
+    .bail()
     .isIn(['GTQ', 'USD'])
     .withMessage('Moneda debe ser GTQ o USD'),
   body('description')
