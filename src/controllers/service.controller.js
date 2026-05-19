@@ -15,8 +15,24 @@ function isAdminRole(role) {
   return role === 'ADMIN' || role === 'ADMIN_ROLE';
 }
 
+/**
+ * Pago de un servicio del catálogo de productos.
+ *
+ * Por qué NO usamos transacciones de MongoDB aquí:
+ *  - mongoose.startSession() + session.startTransaction() solo funciona en
+ *    replica sets o sharded clusters. En despliegues standalone (el caso
+ *    típico del docker-compose del proyecto y MongoDB local) lanza
+ *    "Transaction numbers are only allowed on a replica set member".
+ *  - Para que la operación funcione en cualquier deployment hacemos una saga
+ *    manual con rollback explícito: descontamos saldo, creamos la transacción
+ *    y el registro de pago, y si alguno falla revertimos lo aplicado.
+ */
 export const createServicePayment = async (req, res) => {
-  let session = null;
+  let accountDebited = false;
+  let transactionCreated = null;
+  let originalBalance = null;
+  let account = null;
+
   try {
     const userId = req.user.id;
     const userRole = req.user.role;
@@ -44,7 +60,7 @@ export const createServicePayment = async (req, res) => {
       });
     }
 
-    const account = await Account.findById(accountId);
+    account = await Account.findById(accountId);
     if (!account) {
       return res.status(404).json({
         success: false,
@@ -82,17 +98,16 @@ export const createServicePayment = async (req, res) => {
       });
     }
 
-    session = await mongoose.startSession();
-    session.startTransaction();
-
+    originalBalance = account.balance;
     account.balance -= amountDebited;
-    await account.save({ session });
+    await account.save();
+    accountDebited = true;
 
     const txName = description?.trim()
       ? `Pago de servicio: ${description.trim()}`
       : `Pago de servicio: ${serviceProduct.name}`;
 
-    const transaction = new Transaction({
+    transactionCreated = await Transaction.create({
       transaction_name: txName,
       transaction_amount: amountDebited,
       transaction_type: 'DEBITO',
@@ -105,12 +120,11 @@ export const createServicePayment = async (req, res) => {
       account_id: account._id,
       user_id: account.user_id,
     });
-    await transaction.save({ session });
 
-    const payment = new ServicePayment({
+    const payment = await ServicePayment.create({
       service_id: serviceProduct._id,
       account_id: account._id,
-      transaction_id: transaction._id,
+      transaction_id: transactionCreated._id,
       user_id: account.user_id,
       amount_requested: requestedAmount,
       amount_debited: amountDebited,
@@ -121,31 +135,32 @@ export const createServicePayment = async (req, res) => {
       description: String(description || '').trim(),
       status: 'COMPLETADO',
     });
-    await payment.save({ session });
-
-    await session.commitTransaction();
-    session.endSession();
-    session = null;
 
     return res.status(201).json({
       success: true,
       message: 'Pago de servicio realizado correctamente',
       data: {
         payment: payment.toObject(),
-        transaction: transaction.toObject(),
+        transaction: transactionCreated.toObject(),
         new_balance: account.balance,
       },
     });
   } catch (error) {
-    if (session) {
-      try {
-        await session.abortTransaction();
-        session.endSession();
-      } catch {
-        // no-op
+    // Rollback manual: revertir cambios parciales en orden inverso.
+    if (transactionCreated?._id) {
+      try { await Transaction.deleteOne({ _id: transactionCreated._id }); } catch (e) {
+        console.warn('rollback tx fallo:', e.message);
       }
     }
-    console.error(error);
+    if (accountDebited && account && originalBalance != null) {
+      try {
+        account.balance = originalBalance;
+        await account.save();
+      } catch (e) {
+        console.warn('rollback balance fallo:', e.message);
+      }
+    }
+    console.error('createServicePayment error:', error);
     return res.status(500).json({
       success: false,
       message: 'Error al pagar servicio',
