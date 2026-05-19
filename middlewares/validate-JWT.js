@@ -43,7 +43,6 @@ export const validateJWT = (req, res, next) => {
         const decoded = jwt.verify(token, jwtConfig.secret, verifyOptions);
 
         // Log para debug - remover en producción
-        // Advierte si el token no tiene el campo 'role'
         if (!decoded.role) {
             console.warn(
                 `Token sin campo 'role' para usuario ${decoded.sub}. Payload:`,
@@ -51,15 +50,22 @@ export const validateJWT = (req, res, next) => {
             );
         }
 
-        // Agrega la información del usuario al objeto request
+        // Normaliza roles para soportar claims múltiples y formatos distintos
+        const decodedRoles = decoded.role;
+        const roles = Array.isArray(decodedRoles)
+            ? decodedRoles.map((role) => String(role).toUpperCase())
+            : decodedRoles
+                ? [String(decodedRoles).toUpperCase()]
+                : ['USER_ROLE'];
+
         req.user = {
             id: decoded.sub, // userId del servicio de autenticación
             jti: decoded.jti, // ID único del token
             iat: decoded.iat, // Emitido en (timestamp)
-            role: decoded.role || 'USER_ROLE', // Rol del usuario (default: USER_ROLE)
+            role: roles[0], // Rol principal
+            roles, // Todos los roles presentes en el token
         };
 
-        // Continúa con el siguiente middleware o controlador
         next();
     } catch (error) {
         console.error('Error de validación JWT:', error.message);
