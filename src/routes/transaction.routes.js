@@ -30,9 +30,10 @@ router.get('/history/me', validateJWT, getHistoryMe);
 // Admin ve historial de una cuenta por ID
 router.get('/history/:accountId', validateJWT, validateRole(Roles.ADMIN), getHistoryByAccountId);
 
-// RUTAS PÚBLICAS (sin autenticación)
-// Crear depósito a una cuenta (no requiere token; mismo comportamiento que POST /deposits)
-router.post('/deposit', validateDeposit, createDeposit);
+// Crear depósito a una cuenta. Solo admin (ventanilla); alias de POST /deposits.
+// Cerrado por seguridad: antes era público y permitía acreditar saldo a cualquier
+// cuenta sin autenticación, lo que es un riesgo en producción.
+router.post('/deposit', validateJWT, validateRole(Roles.ADMIN), validateDeposit, createDeposit);
 
 // RUTAS DE CLIENTE (requieren autenticación)
 // Obtener transacciones propias con filtros (paginación, tipo, fechas). Usar ?limit=9999 para traer todas.

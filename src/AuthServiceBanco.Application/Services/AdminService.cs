@@ -277,4 +277,24 @@ public class AdminService(
 
         return await GetUserByIdAsync(userId);
     }
+
+    public async Task<UserResponseDto> ResetUserPasswordAsync(string userId, AdminResetPasswordDto dto)
+    {
+        // El admin puede resetear cualquier contraseña, incluyendo cuentas pendientes.
+        // No exigimos verificación por email para que sea usable en gestión interna
+        // (recuperación asistida, restauración de datos de demo, soporte).
+        if (string.IsNullOrWhiteSpace(dto.NewPassword) || dto.NewPassword.Length < 6)
+        {
+            throw new InvalidOperationException("La nueva contraseña debe tener al menos 6 caracteres");
+        }
+
+        var user = await users.GetByIdAsync(userId);
+
+        user.Password = passwordHashService.HashPassword(dto.NewPassword);
+        user.UpdatedAt = DateTime.UtcNow;
+
+        await users.UpdateAsync(user);
+
+        return await GetUserByIdAsync(userId);
+    }
 }

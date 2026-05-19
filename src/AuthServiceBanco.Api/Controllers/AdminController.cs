@@ -117,4 +117,14 @@ public class AdminController(
         var result = await adminService.DeactivateUserAccountAsync(userId);
         return Ok(new { success = true, data = result, message = "Cuenta desactivada correctamente" });
     }
+
+    [HttpPost("users/{userId}/reset-password")]
+    public async Task<IActionResult> ResetUserPassword(string userId, [FromBody] AdminResetPasswordDto dto)
+    {
+        if (!await CurrentUserIsAdmin())
+            return StatusCode(403, new { success = false, message = "Forbidden" });
+
+        var result = await adminService.ResetUserPasswordAsync(userId, dto);
+        return Ok(new { success = true, data = result, message = "Contraseña restablecida correctamente" });
+    }
 }

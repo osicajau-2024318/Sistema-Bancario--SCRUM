@@ -8,7 +8,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node index.js",
     "dev": "nodemon index.js",
-    "start:all": "docker compose up -d && concurrently -n \"dotnet,node\" -c \"blue,green\" \"cd src/AuthServiceBanco.Api && dotnet run\" \"npm run dev\""
+    "start:all": "docker compose up -d && concurrently -n \"dotnet,node\" -c \"blue,green\" \"cd src/AuthServiceBanco.Api && dotnet run\" \"npm run dev\"",
+    "seed:passwords": "node scripts/seed-passwords.js"
   },
   "keywords": [],
   "author": "",
