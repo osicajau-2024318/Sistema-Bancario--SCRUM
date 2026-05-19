@@ -6,6 +6,17 @@
 
 ---
 
+## Documentación complementaria
+
+- 📋 **Evidencia SCRUM**: [`docs/scrum/`](./docs/scrum/) — roles del equipo,
+  tablero, planificaciones por sprint, dailies, retrospectiva y métricas.
+- 🔐 **Reset de contraseñas demo**: `npm run seed:passwords` deja todas las
+  cuentas cliente con la contraseña `Cliente123!`.
+- 🗃 **Credenciales demo**: detalle completo en
+  [`../bank-frontend/TESTING_USUARIOS.md`](../bank-frontend/TESTING_USUARIOS.md).
+
+---
+
 ## Instrucciones de ejecución
 
 ### Opción A — Tres pasos (manual)
