@@ -111,6 +111,20 @@ Si lleva JSON
 DELETE http://localhost:5025/api/v1/admin/users/{userId}
 Validate token (admin)
 
+POST http://localhost:5025/api/v1/admin/users/{userId}/activate
+Validate token (admin)
+
+POST http://localhost:5025/api/v1/admin/users/{userId}/deactivate
+Validate token (admin)
+
+POST http://localhost:5025/api/v1/admin/users/{userId}/reset-password
+Validate token (admin)
+Si lleva JSON
+{
+  "newPassword": "Cliente123!"
+}
+Resetea la contraseña sin requerir el flujo de email + token; pensado para gestión interna y datos de demo.
+
 ---
 
 ## .NET - Users
@@ -277,34 +291,26 @@ Body (id = ID de la transacción de tipo DEPOSITO):
 
 ---
 
-## Node.js - Services (servicios/beneficios del banco, solo admin)
+## Node.js - Services (catálogo y pagos)
 
-GET http://localhost:3000/SistemaBancarioAdmin/v1/services
-Validate token (admin)
-Query opcional: ?is_active=true&assigned_to=userId
+> **Importante:** el catálogo y la gestión administrativa de servicios viven en `/products?type=SERVICIO`. Los endpoints `GET/POST/PUT/DELETE /services` están deprecados y responden **410 Gone** con la ruta de migración. Solo `/services/payments/*` sigue activo para los pagos transaccionales.
 
-GET http://localhost:3000/SistemaBancarioAdmin/v1/services/{id}
-Validate token (admin)
-
-POST http://localhost:3000/SistemaBancarioAdmin/v1/services
-Validate token (admin)
-Si lleva JSON
+POST http://localhost:3000/SistemaBancarioAdmin/v1/services/payments
+Validate token (user o admin)
+Body:
 {
-  "name": "Transferencias sin costo",
-  "description": "Hasta 5 transferencias mensuales sin comisión",
-  "assigned_to": "usr_abc123"
+  "serviceId": "<id del Product type=SERVICIO>",
+  "accountId": "<id de cuenta origen>",
+  "amount": 150,
+  "currency": "GTQ",
+  "reference": "Factura #1234",
+  "description": "Pago de luz"
 }
 
-PUT http://localhost:3000/SistemaBancarioAdmin/v1/services/{id}
-Validate token (admin)
-Si lleva JSON
-{
-  "name": "Transferencias sin costo - Premium",
-  "is_active": true,
-  "assigned_to": "usr_xyz"
-}
+GET http://localhost:3000/SistemaBancarioAdmin/v1/services/payments/me
+Validate token (user o admin)
 
-DELETE http://localhost:3000/SistemaBancarioAdmin/v1/services/{id}
+GET http://localhost:3000/SistemaBancarioAdmin/v1/services/payments
 Validate token (admin)
 
 ---
@@ -344,8 +350,13 @@ Validate token (user o admin)
 
 ## Node.js - Currency
 
+GET http://localhost:3000/SistemaBancarioAdmin/v1/currency/rates?base=GTQ
+Validate token (user o admin)
+Devuelve el feed completo de tasas de la moneda base (default GTQ).
+
 GET http://localhost:3000/SistemaBancarioAdmin/v1/currency/convert?from=GTQ&to=USD&amount=100
 Validate token (user o admin)
 
-GET http://localhost:3000/SistemaBancarioAdmin/v1/currency/{accountId}
+GET http://localhost:3000/SistemaBancarioAdmin/v1/currency/{accountId}?to=USD
 Validate token (user o admin)
+Convierte el saldo de la cuenta a la moneda destino.
