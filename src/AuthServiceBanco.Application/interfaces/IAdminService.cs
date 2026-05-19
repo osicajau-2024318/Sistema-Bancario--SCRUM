@@ -11,4 +11,6 @@ public interface IAdminService
     Task<UserResponseDto> UpdateUserAsync(string userId, UpdateUserDto dto, string currentUserId);
     Task<bool> DeleteUserAsync(string userId);
     Task<UserResponseDto> ActivateUserAccountAsync(string userId);
+    Task<UserResponseDto> DeactivateUserAccountAsync(string userId);
+    Task<UserResponseDto> ResetUserPasswordAsync(string userId, AdminResetPasswordDto dto);
 }

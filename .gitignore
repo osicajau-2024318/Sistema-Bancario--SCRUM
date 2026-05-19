@@ -1,20 +1,27 @@
 # Node.js
 node_modules/
 /node_modules/
-npm-debug.log*          
+.pnpm-store/
+npm-debug.log*
+
 # Logs
 *.log
 
-# Frontend (Vite/React)
-dist/
-build/
-
-# Compilados .NET
+# Compilados .NET (cualquier proyecto bajo src/)
+**/bin/
+**/obj/
 bin/
 obj/
+*.dll
+*.pdb
+*.cache
+
+# Artefactos generados por el .NET API en runtime
+# - keys: claves de Data Protection (sensibles, por máquina)
+# - logs: salida de Serilog rotada por día (.txt)
+src/AuthServiceBanco.Api/keys/
+src/AuthServiceBanco.Api/logs/
 
 # Sistema operativo
 .DS_Store
 Thumbs.db
-*.cache
-*.log

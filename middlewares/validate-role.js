@@ -1,5 +1,8 @@
 'use strict';
 
+// Importa las constantes de roles definidas en el sistema
+import { Roles } from '../src/constants/roles.js';
+
 // Middleware que valida si el usuario tiene uno de los roles permitidos
 // Recibe como parámetros los roles que están autorizados para acceder a la ruta
 export const validateRole = (...allowedRoles) => {

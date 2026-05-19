@@ -8,8 +8,11 @@ import { validateRevertDeposit, validateUpdateDeposit } from '../../middlewares/
 
 const router = Router();
 
-// Depósito a una cuenta (público: no requiere token; ej. ventanilla, terceros)
-router.post('/', validateDeposit, createDeposit);
+// Depósito a una cuenta. Solo admin (ventanilla) puede crear depósitos.
+// Antes este endpoint era público para simular ventanilla/terceros, pero
+// permitía acreditar saldo a cualquier cuenta sin autenticación, lo que
+// representaba un riesgo de seguridad real para el sistema bancario.
+router.post('/', validateJWT, validateRole(Roles.ADMIN), validateDeposit, createDeposit);
 
 // Solo admin puede ver depósitos pendientes
 router.get('/pending', validateJWT, validateRole(Roles.ADMIN), getPendingDeposits);

@@ -29,7 +29,8 @@ public class UserProfileController(IUserManagementService userManagementService)
             return NotFound(new { success = false, message = "Usuario no encontrado" });
         }
 
-        var currentUserId = User.Claims.FirstOrDefault(c => c.Type == "sub")?.Value;
+        var currentUserId = User.Claims.FirstOrDefault(c => c.Type == "sub")?.Value
+            ?? User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
         var role = User.Claims.FirstOrDefault(c => c.Type == "role")?.Value
                    ?? User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role)?.Value;
 
