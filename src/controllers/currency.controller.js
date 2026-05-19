@@ -59,6 +59,45 @@ export const convertMoney = async (req, res) => {
 };
 
 /**
+ * Devuelve el feed de tasas vigentes para una moneda base (default GTQ).
+ * Útil para construir widgets de cotización sin tener que armar conversiones
+ * de a una. Endpoint: GET /currency/rates?base=GTQ
+ */
+export const getRates = async (req, res) => {
+  try {
+    const base = String(req.query.base || 'GTQ').toUpperCase();
+    const url = `https://www.floatrates.com/daily/${base.toLowerCase()}.json`;
+    const response = await fetch(url);
+
+    if (!response.ok) {
+      return res.status(502).json({ success: false, message: 'No se pudo obtener las tasas de cambio del proveedor' });
+    }
+
+    const data = await response.json();
+    const rates = Object.values(data).map((entry) => ({
+      code: String(entry.code || '').toUpperCase(),
+      name: entry.name || '',
+      rate: Number(entry.rate),
+      date: entry.date || null,
+    })).filter((entry) => Number.isFinite(entry.rate));
+
+    return res.status(200).json({
+      success: true,
+      base,
+      total: rates.length,
+      rates,
+      provider: 'floatrates.com',
+    });
+  } catch (error) {
+    console.error('Error en getRates:', error.message);
+    return res.status(500).json({
+      success: false,
+      message: 'Error al obtener tasas de cambio',
+    });
+  }
+};
+
+/**
  * Convierte moneda de una cuenta
  * Endpoint: GET /SistemaBancarioAdmin/v1/currency/:accountId?to=USD
  */
