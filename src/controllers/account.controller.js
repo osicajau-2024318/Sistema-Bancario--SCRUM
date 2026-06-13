@@ -3,19 +3,13 @@ import mongoose from 'mongoose';
 // Importa el modelo de Cuenta bancaria
 import Account from '../models/account.model.js';
 // Importa el servicio de conversión de moneda
-import { convertCurrency } from '../services/currency.service.js';
+import { convertCurrency, getDynamicRate } from '../services/currency.service.js';
 // Importa servicios para verificar usuarios y crear clientes en el servicio de autenticación .NET
 import { verifyUserExists, verifyMonthlyIncome, createClientInAuthService } from '../services/authService.service.js';
 // Importa el modelo de Transacción para registrar movimientos
 import Transaction from '../models/transaction.model.js';
 // Importa axios para hacer peticiones HTTP al servicio de autenticación
 import axios from 'axios';
-
-// Tasa de cambio GTQ a USD (configurable)
-const EXCHANGE_RATE = {
-  GTQ_TO_USD: 7.8, // 1 USD = 7.8 GTQ
-  USD_TO_GTQ: 7.8
-};
 
 // Función helper que verifica si una cuenta está activa
 // Maneja diferentes formatos de estado que puede tener una cuenta
@@ -344,18 +338,18 @@ export const transfer = async (req, res) => {
     let exchangeUsed = null;
     let conversionNote = '';
 
-    // Verificar si hay conversión de moneda
+    // Verificar si hay conversión de moneda (tasa dinámica desde floatrates)
     if (currencyFrom !== toAccountData.currency) {
+      const exchangeRate = await getDynamicRate(currencyFrom, toAccountData.currency);
+
       if (currencyFrom === 'GTQ' && toAccountData.currency === 'USD') {
-        // Convertir de GTQ a USD
-        creditAmount = parseFloat((amount / EXCHANGE_RATE.GTQ_TO_USD).toFixed(2));
-        exchangeUsed = EXCHANGE_RATE.GTQ_TO_USD;
-        conversionNote = `Transferencia de GTQ ${amount} a USD ${creditAmount} (Tasa: ${EXCHANGE_RATE.GTQ_TO_USD})`;
+        creditAmount = parseFloat((amount / exchangeRate).toFixed(2));
+        exchangeUsed = exchangeRate;
+        conversionNote = `Transferencia de GTQ ${amount} a USD ${creditAmount} (Tasa: ${exchangeRate})`;
       } else if (currencyFrom === 'USD' && toAccountData.currency === 'GTQ') {
-        // Convertir de USD a GTQ
-        creditAmount = parseFloat((amount * EXCHANGE_RATE.USD_TO_GTQ).toFixed(2));
-        exchangeUsed = EXCHANGE_RATE.USD_TO_GTQ;
-        conversionNote = `Transferencia de USD ${amount} a GTQ ${creditAmount} (Tasa: ${EXCHANGE_RATE.USD_TO_GTQ})`;
+        creditAmount = parseFloat((amount * exchangeRate).toFixed(2));
+        exchangeUsed = exchangeRate;
+        conversionNote = `Transferencia de USD ${amount} a GTQ ${creditAmount} (Tasa: ${exchangeRate})`;
       }
     }
 
@@ -448,19 +442,31 @@ export const getAccountById = async (req, res) => {
 export const getAccountsByActivity = async (req, res) => {
   try {
     const { active } = req.query;
+    const page = parseInt(req.query.page, 10) || 1;
+    const limit = parseInt(req.query.limit, 10) || 20;
+    const skip = (page - 1) * limit;
     
     const filter = {};
     if (active !== undefined) {
       filter.is_active = active === 'true';
     }
 
+    const total = await Account.countDocuments(filter);
     const accounts = await Account.find(filter)
-      .sort({ updatedAt: -1 });
+      .sort({ updatedAt: -1 })
+      .skip(skip)
+      .limit(limit);
 
     res.json({
       success: true,
       count: accounts.length,
-      accounts
+      accounts,
+      pagination: {
+        total,
+        page,
+        pages: Math.ceil(total / limit) || 1,
+        limit
+      }
     });
 
   } catch (error) {
@@ -475,6 +481,9 @@ export const getAccountsByActivity = async (req, res) => {
 export const getAccountsByMovements = async (req, res) => {
   try {
     const { order = 'desc' } = req.query;
+    const page = parseInt(req.query.page, 10) || 1;
+    const limit = parseInt(req.query.limit, 10) || 20;
+    const skip = (page - 1) * limit;
 
     const accounts = await Account.find();
 
@@ -499,10 +508,19 @@ export const getAccountsByMovements = async (req, res) => {
     const sortOrder = order === 'asc' ? 1 : -1;
     accountsWithMovements.sort((a, b) => sortOrder * (a.movementsCount - b.movementsCount));
 
+    const total = accountsWithMovements.length;
+    const paginatedAccounts = accountsWithMovements.slice(skip, skip + limit);
+
     res.json({
       success: true,
-      count: accountsWithMovements.length,
-      accounts: accountsWithMovements
+      count: paginatedAccounts.length,
+      accounts: paginatedAccounts,
+      pagination: {
+        total,
+        page,
+        pages: Math.ceil(total / limit) || 1,
+        limit
+      }
     });
 
   } catch (error) {
@@ -567,16 +585,28 @@ export const getAccountMovements = async (req, res) => {
 export const getAccountsByBalance = async (req, res) => {
   try {
     const { order = 'desc' } = req.query; // 'asc' o 'desc'
+    const page = parseInt(req.query.page, 10) || 1;
+    const limit = parseInt(req.query.limit, 10) || 20;
+    const skip = (page - 1) * limit;
     
     const sortOrder = order === 'asc' ? 1 : -1;
 
+    const total = await Account.countDocuments();
     const accounts = await Account.find()
-      .sort({ balance: sortOrder });
+      .sort({ balance: sortOrder })
+      .skip(skip)
+      .limit(limit);
 
     res.json({
       success: true,
       count: accounts.length,
-      accounts
+      accounts,
+      pagination: {
+        total,
+        page,
+        pages: Math.ceil(total / limit) || 1,
+        limit
+      }
     });
 
   } catch (error) {
