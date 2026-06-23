@@ -10,6 +10,8 @@ export const validateCreateDeposit = [
 
 export const validateRevertDeposit = [
   body('transactionId').notEmpty().withMessage('ID de transacción obligatorio'),
+  body('reason').notEmpty().withMessage('El motivo de reversión es obligatorio'),
+  body('adminId').notEmpty().withMessage('El ID del administrador es obligatorio'),
   checkValidators
 ];
 

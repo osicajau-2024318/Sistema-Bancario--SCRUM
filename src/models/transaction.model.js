@@ -122,6 +122,16 @@ const transactionSchema = new Schema({
   revertible: { type: Boolean, default: false },
   // Indica si la transacción ya fue revertida
   reverted: { type: Boolean, default: false },
+  // ID del administrador que realizó la reversión
+  reverted_by: {
+    type: String,
+    default: null
+  },
+  // Motivo de la reversión para auditoría
+  revert_reason: {
+    type: String,
+    default: null
+  },
 
 }, { timestamps: true }); // Agrega createdAt y updatedAt automáticamente
 

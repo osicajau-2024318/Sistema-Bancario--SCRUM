@@ -112,10 +112,21 @@ export const createDeposit = async (req, res) => {
   }
 };
 
+const REVERT_WINDOW_SECONDS = 24 * 60 * 60;
+
 // Reversión de depósito
 export const revertDeposit = async (req, res) => {
   try {
-    const { transactionId } = req.body;
+    const { transactionId, reason, adminId } = req.body;
+
+    if (!reason || String(reason).trim() === '') {
+      return res.status(400).json({ success: false, message: 'El motivo de reversión es obligatorio' });
+    }
+
+    if (!adminId || String(adminId).trim() === '') {
+      return res.status(400).json({ success: false, message: 'El ID del administrador es obligatorio' });
+    }
+
     const transaction = await Transaction.findById(transactionId);
     if (!transaction) return res.status(404).json({ success: false, message: 'Transacción no encontrada' });
 
@@ -129,7 +140,9 @@ export const revertDeposit = async (req, res) => {
 
     const now = new Date();
     const diff = (now - transaction.createdAt) / 1000;
-    if (diff > 60) return res.status(400).json({ success: false, message: 'Solo depósitos menores a 1 minuto pueden revertirse' });
+    if (diff > REVERT_WINDOW_SECONDS) {
+      return res.status(400).json({ success: false, message: 'Solo depósitos realizados en las últimas 24 horas pueden revertirse' });
+    }
 
     // Restar del saldo
     const account = await Account.findById(transaction.account_id);
@@ -139,6 +152,8 @@ export const revertDeposit = async (req, res) => {
     // Marcar transacción como revertida
     transaction.reverted = true;
     transaction.revertible = false;
+    transaction.reverted_by = String(adminId).trim();
+    transaction.revert_reason = String(reason).trim();
     await transaction.save();
 
     res.status(200).json({ success: true, message: 'Depósito revertido exitosamente', balance: account.balance });
@@ -149,17 +164,18 @@ export const revertDeposit = async (req, res) => {
   }
 };
 
-// Admin: Ver depósitos revertibles (menores a 1 minuto)
+// Admin: Ver depósitos revertibles del día actual
 export const getPendingDeposits = async (req, res) => {
   try {
     const now = new Date();
-    const oneMinuteAgo = new Date(now.getTime() - 60000); // 1 minuto atrás
+    const startOfDay = new Date(now);
+    startOfDay.setHours(0, 0, 0, 0);
 
     const deposits = await Transaction.find({
       transaction_type: 'DEPOSITO',
       revertible: true,
       reverted: false,
-      createdAt: { $gte: oneMinuteAgo }
+      createdAt: { $gte: startOfDay }
     })
     .populate('account_id')
     .sort({ createdAt: -1 });
@@ -167,8 +183,8 @@ export const getPendingDeposits = async (req, res) => {
     // Calcular tiempo restante para revertir cada depósito
     const depositsWithTime = deposits.map(deposit => {
       const elapsed = (now - deposit.createdAt) / 1000; // segundos
-      const remaining = Math.max(0, 60 - elapsed); // segundos restantes
-      
+      const remaining = Math.max(0, REVERT_WINDOW_SECONDS - elapsed); // segundos restantes
+
       return {
         ...deposit.toObject(),
         secondsRemaining: Math.floor(remaining),
