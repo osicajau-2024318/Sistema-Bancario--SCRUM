@@ -2,12 +2,7 @@ import mongoose from 'mongoose';
 import Account from '../models/account.model.js';
 import Transaction from '../models/transaction.model.js';
 import { Roles } from '../constants/roles.js';
-
-// Tasa de cambio GTQ a USD (configurable)
-const EXCHANGE_RATE = {
-  GTQ_TO_USD: 7.8, // 1 USD = 7.8 GTQ
-  USD_TO_GTQ: 7.8
-};
+import { getDynamicRate } from '../services/currency.service.js';
 
 export const createDeposit = async (req, res) => {
   try {
@@ -18,6 +13,10 @@ export const createDeposit = async (req, res) => {
 
     if (!accountNumber || !amount) {
       return res.status(400).json({ success: false, message: 'Faltan datos obligatorios' });
+    }
+
+    if (!currency) {
+      return res.status(400).json({ success: false, message: 'Moneda es obligatoria' });
     }
 
     if (amount <= 0) {
@@ -43,17 +42,16 @@ export const createDeposit = async (req, res) => {
     let conversionNote = '';
 
     if (currencyToUse !== account.currency) {
-      // Hay conversión de moneda
+      const exchangeRate = await getDynamicRate(currencyToUse, account.currency);
+
       if (currencyToUse === 'GTQ' && account.currency === 'USD') {
-        // Convertir de GTQ a USD
-        depositAmount = parseFloat((amount / EXCHANGE_RATE.GTQ_TO_USD).toFixed(2));
-        exchangeUsed = EXCHANGE_RATE.GTQ_TO_USD;
-        conversionNote = `Depósito de GTQ ${amount} convertido a USD ${depositAmount} (Tasa: ${EXCHANGE_RATE.GTQ_TO_USD})`;
+        depositAmount = parseFloat((amount / exchangeRate).toFixed(2));
+        exchangeUsed = exchangeRate;
+        conversionNote = `Depósito de GTQ ${amount} convertido a USD ${depositAmount} (Tasa: ${exchangeRate})`;
       } else if (currencyToUse === 'USD' && account.currency === 'GTQ') {
-        // Convertir de USD a GTQ
-        depositAmount = parseFloat((amount * EXCHANGE_RATE.USD_TO_GTQ).toFixed(2));
-        exchangeUsed = EXCHANGE_RATE.USD_TO_GTQ;
-        conversionNote = `Depósito de USD ${amount} convertido a GTQ ${depositAmount} (Tasa: ${EXCHANGE_RATE.USD_TO_GTQ})`;
+        depositAmount = parseFloat((amount * exchangeRate).toFixed(2));
+        exchangeUsed = exchangeRate;
+        conversionNote = `Depósito de USD ${amount} convertido a GTQ ${depositAmount} (Tasa: ${exchangeRate})`;
       }
     }
 

@@ -16,6 +16,20 @@ const transactionSchema = new Schema({
     min: 0 // No puede ser negativo
   },
 
+  // Monto original solicitado antes de la conversión
+  original_amount: {
+    type: Number,
+    default: null,
+    min: 0
+  },
+
+  // Monto convertido aplicado a la cuenta destino
+  converted_amount: {
+    type: Number,
+    default: null,
+    min: 0
+  },
+
   // Tipo de transacción
   transaction_type: {
     type: String,

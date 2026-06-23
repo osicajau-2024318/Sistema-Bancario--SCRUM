@@ -16,10 +16,19 @@ export const validateRole = (...allowedRoles) => {
       });
     }
 
-    // Verifica si el rol del usuario está en la lista de roles permitidos
-    const hasRole = allowedRoles.includes(req.user.role);
+    const userRoles = Array.isArray(req.user.roles)
+      ? req.user.roles
+      : [req.user.role];
 
-    // Si no tiene el rol necesario, retorna error 403 (prohibido)
+    const normalizedAllowedRoles = allowedRoles.map((role) => String(role).toUpperCase());
+
+    const hasRole = userRoles.some((role) => {
+      const normalizedRole = String(role).toUpperCase();
+      return normalizedAllowedRoles.includes(normalizedRole)
+        || normalizedAllowedRoles.includes(`${normalizedRole}_ROLE`)
+        || normalizedAllowedRoles.includes(normalizedRole.replace(/_ROLE$/, ''));
+    });
+
     if (!hasRole) {
       return res.status(403).json({
         success: false,

@@ -226,14 +226,19 @@ public class AdminService(
     {
         var user = await users.GetByIdAsync(userId);
 
-        // No permitir eliminar administradores
+        // Nunca eliminar físicamente cuentas de usuario.
+        // Este flujo se conserva por compatibilidad y ahora solo desactiva.
         var isAdmin = user.UserRoles.Any(ur => ur.Role.Name == RoleConstants.ADMIN_ROLE);
         if (isAdmin)
         {
-            throw new InvalidOperationException("No se puede eliminar un usuario administrador");
+            throw new InvalidOperationException("No se puede desactivar un usuario administrador");
         }
 
-        return await users.DeleteAsync(userId);
+        user.AccountState = Domain.Enums.AccountState.INACTIVA;
+        user.Status = false;
+        user.UpdatedAt = DateTime.UtcNow;
+        await users.UpdateAsync(user);
+        return true;
     }
 
     public async Task<UserResponseDto> ActivateUserAccountAsync(string userId)
@@ -248,6 +253,45 @@ public class AdminService(
     // A la hora de activar la cuenta por ADMIN el email se verifica automaticamente
     if (user.UserEmail != null)
         user.UserEmail.EmailVerified = true;
+
+        await users.UpdateAsync(user);
+
+        return await GetUserByIdAsync(userId);
+    }
+
+    public async Task<UserResponseDto> DeactivateUserAccountAsync(string userId)
+    {
+        var user = await users.GetByIdAsync(userId);
+
+        var isAdmin = user.UserRoles.Any(ur => ur.Role.Name == RoleConstants.ADMIN_ROLE);
+        if (isAdmin)
+        {
+            throw new InvalidOperationException("No se puede desactivar un usuario administrador");
+        }
+
+        user.AccountState = Domain.Enums.AccountState.INACTIVA;
+        user.Status = false;
+        user.UpdatedAt = DateTime.UtcNow;
+
+        await users.UpdateAsync(user);
+
+        return await GetUserByIdAsync(userId);
+    }
+
+    public async Task<UserResponseDto> ResetUserPasswordAsync(string userId, AdminResetPasswordDto dto)
+    {
+        // El admin puede resetear cualquier contraseña, incluyendo cuentas pendientes.
+        // No exigimos verificación por email para que sea usable en gestión interna
+        // (recuperación asistida, restauración de datos de demo, soporte).
+        if (string.IsNullOrWhiteSpace(dto.NewPassword) || dto.NewPassword.Length < 6)
+        {
+            throw new InvalidOperationException("La nueva contraseña debe tener al menos 6 caracteres");
+        }
+
+        var user = await users.GetByIdAsync(userId);
+
+        user.Password = passwordHashService.HashPassword(dto.NewPassword);
+        user.UpdatedAt = DateTime.UtcNow;
 
         await users.UpdateAsync(user);
 

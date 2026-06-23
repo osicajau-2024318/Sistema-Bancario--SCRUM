@@ -190,6 +190,7 @@ public class AuthService(
 
         // Generar token JWT
         var token = jwtTokenService.GenerateToken(user);
+        var refreshToken = jwtTokenService.GenerateRefreshToken(user);
         var expiryMinutes = int.Parse(configuration["JwtSettings:ExpiryInMinutes"] ?? "30");
 
         // Crear respuesta compacta
@@ -198,6 +199,46 @@ public class AuthService(
             Success = true,
             Message = "Login exitoso",
             Token = token,
+            RefreshToken = refreshToken,
+            UserDetails = MapToUserDetailsDto(user),
+            ExpiresAt = DateTime.UtcNow.AddMinutes(expiryMinutes)
+        };
+    }
+
+    public async Task<AuthResponseDto> RefreshTokenAsync(RefreshTokenDto refreshTokenDto)
+    {
+        if (string.IsNullOrWhiteSpace(refreshTokenDto.RefreshToken))
+        {
+            throw new UnauthorizedAccessException("Refresh token requerido");
+        }
+
+        var userId = jwtTokenService.GetUserIdFromRefreshToken(refreshTokenDto.RefreshToken);
+        if (string.IsNullOrEmpty(userId))
+        {
+            throw new UnauthorizedAccessException("Refresh token inválido o expirado");
+        }
+
+        var user = await userRepository.GetByIdAsync(userId);
+        if (user == null)
+        {
+            throw new UnauthorizedAccessException("Usuario no encontrado");
+        }
+
+        if (user.AccountState != Domain.Enums.AccountState.ACTIVA)
+        {
+            throw new UnauthorizedAccessException("Cuenta pendiente de activación");
+        }
+
+        var token = jwtTokenService.GenerateToken(user);
+        var refreshToken = jwtTokenService.GenerateRefreshToken(user);
+        var expiryMinutes = int.Parse(configuration["JwtSettings:ExpiryInMinutes"] ?? "30");
+
+        return new AuthResponseDto
+        {
+            Success = true,
+            Message = "Token renovado exitosamente",
+            Token = token,
+            RefreshToken = refreshToken,
             UserDetails = MapToUserDetailsDto(user),
             ExpiresAt = DateTime.UtcNow.AddMinutes(expiryMinutes)
         };

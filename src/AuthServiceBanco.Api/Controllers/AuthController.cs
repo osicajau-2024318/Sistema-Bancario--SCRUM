@@ -51,6 +51,21 @@ public class AuthController(IAuthService authService) : ControllerBase
         return Ok(result);
     }
 
+    [HttpPost("refresh")]
+    [EnableRateLimiting("AuthPolicy")]
+    public async Task<ActionResult<AuthResponseDto>> Refresh([FromBody] RefreshTokenDto refreshTokenDto)
+    {
+        try
+        {
+            var result = await authService.RefreshTokenAsync(refreshTokenDto);
+            return Ok(result);
+        }
+        catch (UnauthorizedAccessException ex)
+        {
+            return Unauthorized(new { success = false, message = ex.Message });
+        }
+    }
+
     [HttpPost("verify-email")]
     [EnableRateLimiting("ApiPolicy")]
     public async Task<ActionResult<EmailResponseDto>> VerifyEmail([FromBody] VerifyEmailDto verifyEmailDto)
@@ -111,18 +126,24 @@ public class AuthController(IAuthService authService) : ControllerBase
 
 
     [HttpGet("login-history")]
-[Authorize]
-public async Task<IActionResult> GetLoginHistory()
-{
-    var userId = User.Claims.First(c => c.Type == "sub").Value;
-
-    var history = await authService.GetLoginHistoryAsync(userId);
-
-    return Ok(new
+    [Authorize]
+    public async Task<IActionResult> GetLoginHistory()
     {
-        success = true,
-        data = history
-    });
-}
+        var userId = User.Claims.FirstOrDefault(c => c.Type == "sub")?.Value
+            ?? User.Claims.FirstOrDefault(c => c.Type == "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier")?.Value;
+
+        if (string.IsNullOrEmpty(userId))
+        {
+            return Unauthorized(new { success = false, message = "Usuario no autenticado" });
+        }
+
+        var history = await authService.GetLoginHistoryAsync(userId);
+
+        return Ok(new
+        {
+            success = true,
+            data = history
+        });
+    }
 
 }

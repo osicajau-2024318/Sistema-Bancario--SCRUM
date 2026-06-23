@@ -121,6 +121,11 @@ export const getTransactionById = async (req, res) => {
   try {
     const { id } = req.params;
     const userId = req.user.id;
+    const userRole = req.user.role;
+    const isAdmin =
+      userRole === 'ADMIN' ||
+      userRole === 'ADMIN_ROLE' ||
+      (Array.isArray(userRole) && userRole.includes('ADMIN_ROLE'));
     if (!mongoose.Types.ObjectId.isValid(id)) {
       return res.status(400).json({ success: false, message: 'ID de transacción inválido' });
     }
@@ -129,7 +134,7 @@ export const getTransactionById = async (req, res) => {
       return res.status(404).json({ success: false, message: 'Transacción no encontrada' });
     }
     const txUserId = transaction.user_id?.toString ? transaction.user_id.toString() : transaction.user_id;
-    if (txUserId !== userId) {
+    if (!isAdmin && txUserId !== userId) {
       return res.status(403).json({ success: false, message: 'No tienes permiso para ver esta transacción' });
     }
     res.json({ success: true, transaction });

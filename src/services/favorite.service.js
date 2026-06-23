@@ -2,6 +2,7 @@ import Favorite from '../models/favorite.model.js';
 import Account from '../models/account.model.js';
 import Transaction from '../models/transaction.model.js';
 import mongoose from 'mongoose';
+import { getDynamicRate } from './currency.service.js';
 
 /**
  * Busca un favorito por ID (ObjectId) o por alias del usuario.
@@ -75,32 +76,59 @@ export const transferFromFavorite = async (idOrAlias, amount, fromUserId, fromAc
     throw new Error('Saldo insuficiente');
   }
 
-  fromAccount.balance -= amount;
-  toAccountData.balance += amount;
-  fromAccount.daily_transferred_amount += amount;
+  let debitAmount = amount;
+  let creditAmount = amount;
+  let exchangeRate = null;
+  let conversionName = '';
+
+  if (fromAccount.currency !== toAccountData.currency) {
+    exchangeRate = await getDynamicRate(fromAccount.currency, toAccountData.currency);
+
+    if (fromAccount.currency === 'GTQ' && toAccountData.currency === 'USD') {
+      creditAmount = parseFloat((amount / exchangeRate).toFixed(2));
+      conversionName = `Transferencia rápida convertida (${fromAccount.currency} → ${toAccountData.currency})`;
+    } else if (fromAccount.currency === 'USD' && toAccountData.currency === 'GTQ') {
+      creditAmount = parseFloat((amount * exchangeRate).toFixed(2));
+      conversionName = `Transferencia rápida convertida (${fromAccount.currency} → ${toAccountData.currency})`;
+    }
+  }
+
+  fromAccount.balance = parseFloat((fromAccount.balance - debitAmount).toFixed(2));
+  toAccountData.balance = parseFloat((toAccountData.balance + creditAmount).toFixed(2));
+  fromAccount.daily_transferred_amount = parseFloat((fromAccount.daily_transferred_amount + debitAmount).toFixed(2));
 
   await fromAccount.save();
   await toAccountData.save();
 
   const debit = new Transaction({
-    transaction_name: `Transferencia rápida a ${favorite.alias}`,
-    transaction_amount: amount,
+    transaction_name: conversionName || `Transferencia rápida a ${favorite.alias}`,
+    transaction_amount: debitAmount,
     transaction_type: 'DEBITO',
     transaction_method_payment: 'TRANSFERENCIA',
     account_id: fromAccount._id,
     user_id: fromAccount.user_id,
     from_account: fromAccount.account_number,
-    to_account: toAccountData.account_number
+    to_account: toAccountData.account_number,
+    exchange_rate: exchangeRate,
+    currency_from: fromAccount.currency,
+    currency_to: toAccountData.currency,
+    original_amount: debitAmount,
+    converted_amount: creditAmount
   });
   const credit = new Transaction({
-    transaction_name: `Transferencia recibida`,
-    transaction_amount: amount,
+    transaction_name: conversionName || `Transferencia recibida`,
+    transaction_amount: creditAmount,
     transaction_type: 'CREDITO',
     transaction_method_payment: 'TRANSFERENCIA',
     account_id: toAccountData._id,
     user_id: toAccountData.user_id,
     from_account: fromAccount.account_number,
-    to_account: toAccountData.account_number
+    to_account: toAccountData.account_number,
+    exchange_rate: exchangeRate,
+    currency_from: fromAccount.currency,
+    currency_to: toAccountData.currency,
+    original_amount: debitAmount,
+    converted_amount: creditAmount
   });
   await debit.save();
   await credit.save();
@@ -113,6 +141,10 @@ export const transferFromFavorite = async (idOrAlias, amount, fromUserId, fromAc
       to_account: toAccountData.account_number,
       to_alias: favorite.alias,
       amount,
+      converted_amount: creditAmount,
+      exchange_rate: exchangeRate,
+      currency_from: fromAccount.currency,
+      currency_to: toAccountData.currency,
       daily_remaining: fromAccount.daily_transfer_limit - fromAccount.daily_transferred_amount
     }
   };

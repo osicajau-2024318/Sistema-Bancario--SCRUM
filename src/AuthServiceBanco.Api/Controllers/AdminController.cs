@@ -95,7 +95,7 @@ public class AdminController(
             return StatusCode(403, new { success = false, message = "Forbidden" });
 
         var result = await adminService.DeleteUserAsync(userId);
-        return Ok(new { success = true, message = "Usuario eliminado correctamente" });
+        return Ok(new { success = true, message = "Usuario desactivado correctamente" });
     }
 
     [HttpPost("users/{userId}/activate")]
@@ -106,5 +106,25 @@ public class AdminController(
 
         var result = await adminService.ActivateUserAccountAsync(userId);
         return Ok(new { success = true, data = result, message = "Cuenta activada correctamente" });
+    }
+
+    [HttpPost("users/{userId}/deactivate")]
+    public async Task<IActionResult> DeactivateUser(string userId)
+    {
+        if (!await CurrentUserIsAdmin())
+            return StatusCode(403, new { success = false, message = "Forbidden" });
+
+        var result = await adminService.DeactivateUserAccountAsync(userId);
+        return Ok(new { success = true, data = result, message = "Cuenta desactivada correctamente" });
+    }
+
+    [HttpPost("users/{userId}/reset-password")]
+    public async Task<IActionResult> ResetUserPassword(string userId, [FromBody] AdminResetPasswordDto dto)
+    {
+        if (!await CurrentUserIsAdmin())
+            return StatusCode(403, new { success = false, message = "Forbidden" });
+
+        var result = await adminService.ResetUserPasswordAsync(userId, dto);
+        return Ok(new { success = true, data = result, message = "Contraseña restablecida correctamente" });
     }
 }
