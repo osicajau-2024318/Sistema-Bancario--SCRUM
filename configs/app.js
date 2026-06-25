@@ -32,6 +32,10 @@ import favoriteRoutes from '../src/routes/favorite.routes.js';
 import currencyRoutes from '../src/routes/currency.routes.js';
 // Importa las rutas de productos
 import productRoutes from '../src/routes/product.routes.js';
+// Importa las rutas de tarjetas de crédito
+import creditCardRoutes from '../src/routes/credit-card.routes.js';
+// Importa las rutas de préstamos
+import loanRoutes from '../src/routes/loan.routes.js';
 // Importa la configuración de Swagger
 import { setupSwaggerDocs } from '../docs/swagger.js';
 
@@ -70,6 +74,10 @@ const routes = (app) => {
     app.use(`${BASE_PATH}/products`, productRoutes);
     // Rutas para conversión de moneda
     app.use(`${BASE_PATH}/currency`, currencyRoutes);
+    // Rutas para tarjetas de crédito
+    app.use(`${BASE_PATH}/credit-cards`, creditCardRoutes);
+    // Rutas para préstamos
+    app.use(`${BASE_PATH}/loans`, loanRoutes);
     // Endpoint de health check para verificar que el servidor está funcionando
     app.get(`${BASE_PATH}/health`, (request, response) => {
         response.status(200).json({
