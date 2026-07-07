@@ -755,7 +755,7 @@ export const registerUser = async (req, res) => {
     // Registrar usuario en  queda con Status false (pendiente)
     let result;
     try {
-      result = await axios.post(`${process.env.AUTH_SERVICE_URL}/api/v1/auth/register`, {
+      result = await axios.post(`${process.env.AUTH_SERVICE_URL}/Auth/register`, {
         name, surname, username, email, password, phone,
         dpi: dpi || '', address: address || '',
         workName: workName || '', monthlyIncome
